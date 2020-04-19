@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Xaminals.Views.Publishers.Models"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
+             x:Class="Xaminals.Views.Publishers.PublisherLocation"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:PublisherLocationViewModel />
+    </ContentPage.BindingContext>
+    <Frame CornerRadius="10"  
+                   BackgroundColor="White" Margin="30, 50, 30, 30" Padding="20, 25" VerticalOptions="Start">
+        <StackLayout>
+            <mySharedControls:FetchingLocation />
+            <Label Text="Enter location details" />
+            <Entry Placeholder="Display name for the location" Text="{Binding Name.Value}"/>
+            <Editor HeightRequest="50" Placeholder="Display address or landmark" Text="{Binding DisplayAddress.Value}"/>
+            <Entry Placeholder="Geolocation lattitude" Text="{Binding Lat.Value}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Entry Placeholder="Geolocation longtitude" Grid.Row="0" Grid.Column="0" Text="{Binding Long.Value}"/>
+                <Button FontFamily="{StaticResource FontAwesomeSolid}" Grid.Row="0" Grid.Column="1"  StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding FetchLocation}" />
+            </Grid>
+            <Button Text="SAVE LOCATION" Command="{Binding SaveCommand}" StyleClass="primaryButton" />
+            <Button Text="CANCEL" Command="{Binding CancelPopupCommand}" />
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

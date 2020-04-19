@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             x:Class="Loffers.CustomControls.Search.FetchingLocation">
+    <StackLayout>
+        <StackLayout IsVisible="{Binding FetchingLocation}"  Padding="2">
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <customControl:GlyphLabel x:Name="labelCompans" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="CenterAndExpand" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
+                <Label Text="Fetching your location..." StyleClass="DimText"  VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Padding="2">
+            <StackLayout.Triggers>
+                <DataTrigger TargetType="StackLayout" Binding="{Binding LocationAvailable}" Value="false">
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+                <DataTrigger TargetType="StackLayout" Binding="{Binding LocationAvailable}" Value="true">
+                    <Setter Property="IsVisible" Value="False" />
+                </DataTrigger>
+            </StackLayout.Triggers>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Label Text="It seems your location service is disabled, click to enable it." StyleClass="DimText"  VerticalOptions="CenterAndExpand"/>
+                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf013;" Command="{Binding OpenLocationDialogCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

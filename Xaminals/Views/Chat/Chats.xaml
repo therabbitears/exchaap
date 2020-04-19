@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:localLoffersFormatters="clr-namespace:Loffers.Infra.Formatters"
+             xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:local="clr-namespace:Loffers.Views.Chat.Models"
+             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
+             mc:Ignorable="d"
+             x:Class="Loffers.Views.Chat.Chats"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:ChatListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+            <localLoffersFormatters:DateTimeDuractionConverted x:Key="cnvDateTimeDuractionConverted"></localLoffersFormatters:DateTimeDuractionConverted>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout StyleClass="parentContainer" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
+            <!--<Button Text="Refresh" Command="{Binding LoadItemsCommand}" />-->
+            <customControls:ExtenderListView x:Name="ItemsListView"
+                ItemsSource="{Binding Chats}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                SeparatorVisibility="Default"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedChat}"
+                OnTappedCommand="{Binding TappedItemChangedCommand}">
+            <x:Arguments>
+                <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+            </x:Arguments>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5" Padding="5" x:Name="ChatItem">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding IsSelf}" Value="true">
+                                    <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                </DataTrigger>
+                                <MultiTrigger TargetType="Grid">
+                                    <MultiTrigger.Conditions>
+                                        <BindingCondition
+                                                        Binding="{Binding IsSelf}"
+                                                        Value="false" />
+                                        <BindingCondition
+                                                        Binding="{Binding Status}"
+                                                        Value="0" />     
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="BackgroundColor" Value="#dfdfdf" />
+                                </MultiTrigger> 
+                            </Grid.Triggers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ContentView Grid.RowSpan="2" Grid.Column="0">
+                                <StackLayout>
+                                        <Frame CornerRadius="100" 
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       HorizontalOptions="Center"
+                                       Padding="0"
+                                       IsClippedToBounds="True">            
+                                            <Image 
+                                       Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center" 
+                                       HeightRequest="50" 
+                                       WidthRequest="50"
+                                       BackgroundColor="Transparent"
+                                       Source="{Binding Image}" />
+                                        </Frame>
+                                </StackLayout>
+                            </ContentView>
+                            <StackLayout Grid.Column="1" Grid.Row="0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeading}" StyleClass="OfferHeading"/>
+                                    <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Stamp, Converter={StaticResource cnvDateTimeDuractionConverted}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Grid.Row="1">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Grid.Row="0" Grid.Column="0"  Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="End" 
+                                       HeightRequest="15" 
+                                       WidthRequest="15"
+                                       BackgroundColor="Transparent" 
+                                       Source="{Binding PublisherLogo}"/>
+                                    <Label Text="{Binding PublisherName}"  StyleClass="publisherName, primaryColorText, smallText" Grid.Row="0" Grid.Column="1"  />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf3c5;" StyleClass="primaryColorText, gylypLabel"  />
+                                        <Label Text="{Binding LocationName}" StyleClass="BusinessLocation" />
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                                <Label IsVisible="{Binding IsSelf}" Text="You:" FontAttributes="Bold" LineBreakMode="NoWrap" />
+                                <Label IsVisible="{Binding IsSelf, Converter={StaticResource cnvReveresBoolConverter}}" LineBreakMode="NoWrap" FontAttributes="Bold" Text="{Binding DisplayName, StringFormat='{0}:'}" />
+                                <Label Text="{Binding Message}"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </customControls:ExtenderListView>
+        </StackLayout>
+        <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>
+    </StackLayout>
+</ContentPage>

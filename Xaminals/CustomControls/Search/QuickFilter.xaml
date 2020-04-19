@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Xaminals.CustomControls.Search.QuickFilter">
+    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout VerticalOptions="StartAndExpand" Orientation="Horizontal">
+                <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#04b0b0" MaximumTrackColor="#00D0D0" ThumbColor="#D00000" />
+                <StackLayout WidthRequest="30" VerticalOptions="Center">
+                    <Label x:Name="displayLabel" StyleClass="DimText, bold" HorizontalOptions="CenterAndExpand" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}'}" />
+                    <Label Text="km" StyleClass="DimText" HorizontalOptions="CenterAndExpand">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
+                                <Setter Property="Text" Value="km" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
+                                <Setter Property="Text" Value="mi" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                </StackLayout>
+                <Button FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf0b0;" Command="{Binding ShowCritriaCommand}" StyleClass="flatButton, primaryColorText" WidthRequest="30" />
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

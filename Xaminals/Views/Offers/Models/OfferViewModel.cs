@@ -1,0 +1,155 @@
+﻿using Plugin.Media.Abstractions;
+using Plugin.ValidationRules;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using Xamarin.Forms;
+using Xaminals.ViewModels;
+using Xaminals.Views.Categories.Models.DTO;
+
+namespace Xaminals.Views.Offers.Models
+{
+    [QueryProperty("Id", "offerid")]
+    public partial class OfferViewModel : BaseViewModel
+    {
+        private ValidatableObject<string> _heading;
+        public ValidatableObject<string> Heading
+        {
+            get { return _heading; }
+            set { _heading = value; }
+        }
+
+
+        private ValidatableObject<string> _detail;
+        public ValidatableObject<string> Detail
+        {
+            get { return _detail; }
+            set { _detail = value; }
+        }
+
+
+        private ValidatableObject<string> _terms;
+
+        public ValidatableObject<string> Terms
+        {
+            get { return _terms; }
+            set { _terms = value; }
+        }
+
+        private ValidatableObject<DateTime> _validfrom;
+        public ValidatableObject<DateTime> Validfrom
+        {
+            get { return _validfrom; }
+            set { _validfrom = value; }
+        }
+
+        private ValidatableObject<TimeSpan> _validFromTime;
+        public ValidatableObject<TimeSpan> ValidFromTime
+        {
+            get { return _validFromTime; }
+            set { _validFromTime = value; }
+        }
+
+
+        private ValidatableObject<DateTime> _validto;
+        public ValidatableObject<DateTime> ValidTo
+        {
+            get { return _validto; }
+            set { _validto = value; }
+        }
+
+        private ValidatableObject<TimeSpan> _validToTime;
+        public ValidatableObject<TimeSpan> ValidToTime
+        {
+            get { return _validToTime; }
+            set { _validToTime = value; }
+        }
+
+        private Stream _imageStream;
+        public Stream ImageStream
+        {
+            get { return _imageStream; }
+            set
+            {
+                _imageStream = value;
+                OnPropertyChanged("ImageStream");
+            }
+        }
+
+        private ImageSource imageSource = ImageSource.FromUri(new Uri("https://loffers.sklative.com/offers/offer-placeholder.png"));
+        public ImageSource SourceImage
+        {
+            get { return imageSource; }
+            set { imageSource = value; OnPropertyChanged("SourceImage"); }
+        }
+
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            set
+            {
+                var newValue = Uri.UnescapeDataString(value);
+                if (newValue != _id)
+                {
+                    _id = newValue;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+
+        private MediaFile _mediaFile;
+
+        protected override void IntializeMembers()
+        {
+            base.IntializeMembers();
+            _heading = new ValidatableObject<string>();
+            _detail = new ValidatableObject<string>();
+            _terms = new ValidatableObject<string>();
+            _validfrom = new ValidatableObject<DateTime>();
+            _validfrom.Value = DateTime.Now;
+            _validFromTime = new ValidatableObject<TimeSpan>();
+            _validFromTime.Value = DateTime.Now.TimeOfDay;
+
+            _validto = new ValidatableObject<DateTime>();
+            _validto.Value = DateTime.Now;
+
+            _validToTime = new ValidatableObject<TimeSpan>();
+            _validToTime.Value = DateTime.Now.AddDays(1).TimeOfDay;
+
+            _categories = new ObservableCollection<CategoryModel>();
+            _locations = new ObservableCollection<OfferPublisherLocationModel>();
+            this.Title = "Offer";
+        }
+
+        #region Lists
+
+        ObservableCollection<CategoryModel> _categories;
+        public ObservableCollection<CategoryModel> Categories
+        {
+            get
+            {
+                return _categories;
+            }
+            set
+            {
+                _categories = value;
+            }
+        }
+
+        ObservableCollection<OfferPublisherLocationModel> _locations;
+        public ObservableCollection<OfferPublisherLocationModel> Locations
+        {
+            get
+            {
+                return _locations;
+            }
+            set
+            {
+                _locations = value;
+            }
+        }
+
+        #endregion
+    }
+}

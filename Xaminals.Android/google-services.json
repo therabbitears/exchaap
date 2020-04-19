@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "681040235046",
+    "firebase_url": "https://loffers.firebaseio.com",
+    "project_id": "loffers",
+    "storage_bucket": "loffers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681040235046:android:4587c4ad8ddc7b4f04f4e7",
+        "android_client_info": {
+          "package_name": "com.quartile.loffers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681040235046-jogc7iq09nisjo87ms65jarobmc7g32i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCICxugqnf0x7SPY1txLYAnOKkX-5Y7-fk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681040235046-jogc7iq09nisjo87ms65jarobmc7g32i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

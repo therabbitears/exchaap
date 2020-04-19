@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:offerviews="clr-namespace:Xaminals.Views.Offers"
+       xmlns:local="clr-namespace:Xaminals.Models"
+       xmlns:publisherviews="clr-namespace:Xaminals.Views.Publishers"       
+       xmlns:settingsview="clr-namespace:Xaminals.Views.Settings"  
+        xmlns:vsettingsview="clr-namespace:Loffers.Views.Settings"  
+       xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+       xmlns:starredview="clr-namespace:Xaminals.Views.Starred"  
+       xmlns:chatview="clr-namespace:Loffers.Views.Chat"  
+       FlyoutBackgroundImage="photo.jpg"
+       FlyoutBackgroundImageAspect="AspectFill"
+       FlyoutHeaderBehavior="CollapseOnScroll"
+       Navigating="OnNavigating"
+       Navigated="OnNavigated"
+       x:Class="Xaminals.AppShell">
+    <Shell.BindingContext>
+        <local:SessionModel />
+    </Shell.BindingContext>
+    <Shell.Resources>
+        <ResourceDictionary>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+        </ResourceDictionary>
+        <Style x:Key="BaseStyle"
+               TargetType="Element">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#e34234" />
+            <Setter Property="Shell.ForegroundColor"
+                    Value="White" />
+            <Setter Property="Shell.TitleColor"
+                    Value="White" />
+            <Setter Property="Shell.DisabledColor"
+                    Value="#B4FFFFFF" />
+            <Setter Property="Shell.UnselectedColor"
+                    Value="#95FFFFFF" />
+        </Style>
+        <Style x:Key="MainShell"
+               TargetType="Element"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="#e34234" />
+        </Style>
+    </Shell.Resources>
+
+    <TabBar x:Name="RootTab">
+        <Tab Title="Discover" x:Name="tabDiscover">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf02c;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+
+            <ShellContent Route="discovery"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate offerviews:OfferList}" Shell.NavBarIsVisible="False" />
+        </Tab>
+        <Tab Title="Starred" x:Name="tabStarred">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf005;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+            <ShellContent Route="starred"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate starredview:Starred}" />
+        </Tab>
+        <Tab Title="Chats" x:Name="tabChats">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf086;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+            <ShellContent Route="starred"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate chatview:Chats}" />
+        </Tab>
+        <Tab Title="Account">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf509;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+            <ShellContent Route="account"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate settingsview:Settings}" />
+        </Tab>
+        <!--<Tab Title="Locations" x:Name="tabLocations1">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf3c5;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+
+            <ShellContent Route="locations"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate publisherviews:PublishedLocations}" />
+        </Tab>-->
+        <Tab Title="Locations" x:Name="tabLocations">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf3c5;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+            <ShellContent Route="locations"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate publisherviews:PublishedLocations}" />
+        </Tab>
+        <Tab Title="My offers" x:Name="tabMyOffers">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf507;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+
+            <ShellContent Route="myoffers"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate offerviews:MyOffers}" />
+        </Tab>
+        <Tab Title="Publisher" x:Name="tbPublisher">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf54f;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+
+            <ShellContent Route="mypublishers"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate publisherviews:PublisherList}" />
+        </Tab>
+    </TabBar>
+</Shell>

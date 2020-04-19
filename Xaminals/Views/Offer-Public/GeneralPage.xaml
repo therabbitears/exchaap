@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=Loffers"
+             xmlns:local="clr-namespace:Xaminals.Views.Offers.ViewModels"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Offer_Public.GeneralPage"
+             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=Loffers">
+    <ContentPage.BindingContext>
+        <local:ReportOfferViewModel />
+    </ContentPage.BindingContext>
+    <pages:PopupPage.Animation>
+        <rgAnimations:CustomMoveAnimation PositionIn="Bottom" PositionOut="Bottom"
+                                    DurationIn="300" DurationOut="500"
+                                    />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
+            <customControl:PopupCloseView />
+
+            <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
+                <ActivityIndicator IsRunning="{Binding IsBusy}"  />
+            </StackLayout>
+            <Label Text="{Binding Offer.Name, StringFormat='Report: {0}'}"  StyleClass="SectionHeadingStyle"/>
+            <StackLayout Orientation="Vertical" BindableLayout.ItemsSource="{Binding Options}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Selected}"/>
+                            <Label  Text="{Binding Text}" Margin="0,6,0,0"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <StackLayout>
+                <Editor HeightRequest="50" Text="{Binding Comment}" IsSpellCheckEnabled="True" Placeholder="Enter details how you find this offer "/>
+            </StackLayout>
+            <StackLayout>
+                <Button  Text="REPORT" Command="{Binding ReportCommand}" StyleClass="primaryButton" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

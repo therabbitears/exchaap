@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xaminals.Views.Settings.ViewModels"
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Settings.PersonalSettings"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:PersonalSettingsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout StyleClass="parentContainer">
+            <Entry Text="{Binding Name.Value}" Placeholder="Your name" />
+            <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError"/>
+
+            <Entry Text="{Binding Email.Value}" Placeholder="Email" />
+            <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError"/>
+
+            <Entry Text="{Binding PhoneNumber.Value}" Placeholder="Phone number" />
+            <Label Text="{Binding PhoneNumber.Errors[0]}" StyleClass="validationError"/>
+
+            <Button Text="Update information" Command="{Binding SaveDetailsCommand}" StyleClass="primaryButton" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

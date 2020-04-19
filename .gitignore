@@ -1,0 +1,14 @@
+Xaminals/obj/
+Xaminals/bin/
+Xaminals.UWP/Xaminals.UWP/obj/
+Xaminals.UWP/Xaminals.UWP/bin/
+Xaminals.iOS/obj/
+loffers.android/loffers.android.Android/obj/
+Xaminals.Android/obj/
+Xaminals.Android/bin/
+Loffers.Server/obj/
+Loffers.Server/bin/
+loffers.api/obj/
+loffers.api/bin/
+packages/
+.vs/

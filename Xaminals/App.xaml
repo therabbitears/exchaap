@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Xaminals.App"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:local="clr-namespace:Loffers.GlobalViewModel">
+
+    <Application.Resources>
+        <StyleSheet Source="/Assets/main.css" />
+        <ResourceDictionary>
+            <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
+            <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+            <!-- Just to learn<OnPlatform x:Key="Bootstrap" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Glyphicons" />
+                <On Platform="Android" Value="glyphicons-halflings-regular.ttf#Glyphicons" />
+                <On Platform="UWP" Value="Assets/Fonts/glyphicons-halflings-regular.ttf#Glyphicons" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="Material" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="Material Design Icons" />
+                <On Platform="Android" Value="materialdesignicons-webfont.ttf#Material Design Icons" />
+                <On Platform="UWP" Value="Assets/Fonts/materialdesignicons-webfont.ttf#Material Design Icons" />
+            </OnPlatform>
+
+            <Style TargetType="{x:Type Label}" x:Key="MaterialIcons">
+                <Setter Property="FontFamily" Value="{StaticResource Material}"/>
+                <Setter Property="FontSize" Value="100"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="LightSkyBlue"/>
+                <Setter Property="FontSize" Value="Large"/>
+            </Style>
+            <Style TargetType="{x:Type Label}" x:Key="BotstrapIcons">
+                <Setter Property="FontFamily" Value="{StaticResource Bootstrap}"/>
+                <Setter Property="FontSize" Value="100"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="LightSkyBlue"/>
+            </Style> End Just to learn-->
+
+
+            <Style TargetType="Button">                
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="iOS" Value="MerriweatherSans-Regular" />
+                        <On Platform="Android" Value="MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
+                        <On Platform="UWP" Value="/Assets/Fonts/MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
+                    </OnPlatform>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Label">
+                <Style.Triggers>
+                    <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">
+                        <Setter Property="FontFamily">
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="iOS" Value="MerriweatherSans-Bold" />
+                                <On Platform="Android" Value="MerriweatherSans-Bold.ttf#MerriweatherSans-Bold" />
+                                <On Platform="UWP" Value="/Assets/Fonts/MerriweatherSans-Bold.ttf#MerriweatherSans-Bold" />
+                            </OnPlatform>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+
+                <Setter Property="FontFamily">
+                    <OnPlatform x:TypeArguments="x:String">
+                        <On Platform="iOS" Value="MerriweatherSans-Regular" />
+                        <On Platform="Android" Value="MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
+                        <On Platform="UWP" Value="/Assets/Fonts/MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
+                    </OnPlatform>
+                </Setter>
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesome5Brands-Regular-400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Brands-Regular-400.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesome5Free-Solid-900.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesome5Free-Regular-400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Free-Regular-400.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+           
+        </ResourceDictionary>
+        <DataTemplate x:Key="AnimalTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImageUrl}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+                <Label Grid.Row="1"
+                       Grid.Column="1" 
+                       Text="{Binding Location}"
+                       FontAttributes="Italic" 
+                       VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="OfferPublicTemplate">
+            <ViewCell>
+                <Grid BackgroundColor="White" StyleClass="offerItem" x:Name="OfferItem">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ContentView Grid.Column="0" Grid.Row="0">
+                        <StackLayout>
+                            <Image 
+                                       Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Start" 
+                                       HeightRequest="80" 
+                                       WidthRequest="80"
+                                       BackgroundColor="Transparent"
+                                       Source="{Binding Image}" />
+
+                            <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="{Binding ValidTill, Converter={StaticResource cnvDateTimeConverter}}" StyleClass="expiryTag, primaryBackground"/>
+                        </StackLayout>
+                    </ContentView>
+                    <StackLayout Grid.Column="1" Grid.Row="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label HorizontalOptions="StartAndExpand"  Text="{Binding Name}" StyleClass="OfferHeading" LineBreakMode="WordWrap"/>
+                            <Label HorizontalOptions="End" VerticalOptions="Center" LineBreakMode="NoWrap" Text="{Binding Distance.Distance, Converter={StaticResource cnvDistanceToUnit}}" StyleClass="DimText"  />
+                        </StackLayout>
+                        <StackLayout>
+                            <Label  Text="{Binding Detail}" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Grid.Row="0" Grid.Column="0"  Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="End" 
+                                       HeightRequest="20" 
+                                       WidthRequest="20"
+                                       BackgroundColor="Transparent" Source="{Binding PublisherLogo}" />
+                                <Label Text="{Binding PublisherName}"  StyleClass="publisherName, primaryColorText" Grid.Row="0" Grid.Column="1"  />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf3c5;" StyleClass="primaryColorText, gylypLabel" />
+                                <Label Text="{Binding LocationAddress}" StyleClass="BusinessLocation" LineBreakMode="TailTruncation" MaxLines="2" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0">
+                                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton" Text="&#xf5a0;" Command="{Binding OpenMapsCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="1">
+                                <Button StyleClass="flatButton, gylypButton" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf005;" Command="{Binding StarOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" >
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button" Binding="{Binding Starred}" Value="true">
+                                            <Setter Property="TextColor" Value="#c48404" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton" Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="3">
+                                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton" Text="&#xf1e0;" Command="{Binding ShareOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="4">
+                                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf024;" Command="{Binding ReportOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+        <DataTemplate x:Key="SelectionStackTemplate">
+            <StackLayout>
+            <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" IsChecked="{Binding Selected}" />
+                    <Label Grid.Column="1" Text="{Binding Name}" Margin="0,6,0,0"/>
+            </Grid>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TermsStackTemplate">
+            <StackLayout>
+                <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <customControl:GlyphLabel Text="&#xf111;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="6" VerticalOptions="Center" TextColor="Gray" HorizontalOptions="Start" />
+                    <Label Grid.Column="1" Text="{Binding .}" VerticalOptions="Center" Padding="5,0"/>
+                </Grid>
+            </StackLayout>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LocationSelectionTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" 
+                       IsChecked="{Binding Selected}" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="AnimalSearchTemplate">
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.15*" />
+                    <ColumnDefinition Width="0.85*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding ImageUrl}" 
+                       Aspect="AspectFill"
+                       HeightRequest="40" 
+                       WidthRequest="40" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Name}" 
+                       FontAttributes="Bold" />
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
+    <Application.BindingContext>
+        <local:ApplicationViewModel />
+    </Application.BindingContext>
+</Application>

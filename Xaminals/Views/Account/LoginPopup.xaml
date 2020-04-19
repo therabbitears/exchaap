@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=Loffers"
+             xmlns:local="clr-namespace:Xaminals.Views.Account.ViewModel"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Account.LoginPopup"
+             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=Loffers">
+    <ContentPage.BindingContext>
+        <local:LoginViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <pages:PopupPage.Animation>
+        <rgAnimations:CustomMoveAnimation PositionIn="Bottom" PositionOut="Bottom" DurationIn="300" DurationOut="500" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
+            <customControl:PopupCloseView />
+            <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" HeightRequest="30" WidthRequest="30"/>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Please enter your credentials" />
+                <Entry Text="{Binding Username.Value}"
+                       Placeholder="Username" />
+
+                <Label Text="{Binding Username.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Username.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+
+
+                <Entry Text="{Binding Password.Value}"
+                       Placeholder="Password"
+                       IsPassword="True" />
+                <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+
+                <Label Text="Invalid credentials entered" 
+                       IsVisible="{Binding AreCredentialsInvalid}" 
+                       StyleClass="validationError" />
+
+                <Button Text="Forgot password?" Command="{Binding ForgotPasswordCommand}" HorizontalOptions="Start" StyleClass="flatButton" />
+                <Button Text="Authenticate" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
+                <Button Grid.Row="3" Text="Register" Command="{Binding RegisterCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

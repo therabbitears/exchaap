@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Offers.Offer"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:OfferViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout StyleClass="parentContainer">
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                <StackLayout>
+                    <Label Text="Please enter offer details" />
+                    <Entry Text="{Binding Heading.Value}"
+                       Placeholder="Enter offer heading" />
+
+                    <Label Text="{Binding Heading.Errors[0]}" StyleClass="validationError" />
+
+                    <Editor Text="{Binding Detail.Value}"
+                       Placeholder="Offer details" />
+                    <Label Text="{Binding Detail.Errors[0]}" StyleClass="validationError" />
+
+                    <Editor Text="{Binding Terms.Value}"
+                       Placeholder="Terms and conditions, use return key to enter more than one line" />
+                    <Label Text="{Binding Terms.Errors[0]}" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <!--<RowDefinition Height="Auto"/>-->
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <DatePicker Date="{Binding ValidFrom.Value}" Grid.Row="0"   Grid.Column="0" />
+                        <TimePicker Time="{Binding ValidFromTime.Value}" Grid.Row="0"   Grid.Column="1" />
+                        <Label Text="{Binding ValidFrom.Errors[0]}" Grid.Row="1" Grid.ColumnSpan="2" StyleClass="validationError"/>
+
+                        <DatePicker Date="{Binding ValidTo.Value}" Grid.Row="2"  Grid.Column="0" />
+                        <TimePicker Time="{Binding ValidToTime.Value}" Grid.Row="2"  Grid.Column="1" />
+                        <Label Text="{Binding ValidTo.Errors[0]}" Grid.Row="3" Grid.ColumnSpan="2" StyleClass="validationError" />
+
+                        <AbsoluteLayout BackgroundColor="Transparent" Grid.Row="4" Grid.ColumnSpan="2">
+                            <!--<BoxView BackgroundColor="Gray" AbsoluteLayout.LayoutBounds="0,0,1,100" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" />-->
+                            <!--<Button BackgroundColor="Maroon" AbsoluteLayout.LayoutBounds=".5,55,70,70" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="35" />-->
+                            <Frame CornerRadius="100" AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" HeightRequest="400" WidthRequest="400" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True">
+                                <Image x:Name="imageView" Source="{Binding SourceImage}" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Frame>
+
+                            <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
+                        </AbsoluteLayout>
+
+                        <!--<Image x:Name="imageView" HeightRequest="300" Source="{Binding SourceImage}" WidthRequest="400" Grid.Row="4" Grid.ColumnSpan="2" />-->
+
+                        <!--<Button Grid.Row="5" Grid.ColumnSpan="2" Text="Select image" Command="{Binding SelectImageCommand}" />-->
+                    </Grid>
+
+                </StackLayout>
+                <Label Text="Categories" StyleClass="SectionHeadingStyle"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Margin="10" Padding="10" BindableLayout.ItemTemplate="{StaticResource SelectionStackTemplate}" Orientation="Vertical" />
+                <Label Text="Locations" StyleClass="SectionHeadingStyle"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding Locations}" Margin="10" Padding="10" BindableLayout.ItemTemplate="{StaticResource SelectionStackTemplate}" Orientation="Vertical" />
+                <Button Grid.Row="3" Text="Save" Command="{Binding SaveOfferCommand}" StyleClass="primaryButton" />
+                <Button Grid.Row="4" Text="Cancel" Command="{Binding CancelCommand}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

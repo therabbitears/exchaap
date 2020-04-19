@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xaminals.Views.Offers.ViewModels"
+             mc:Ignorable="d"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Xaminals.Views.Offers.Report"
+             CloseWhenBackgroundIsClicked="False"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:ReportOfferViewModel />
+    </ContentPage.BindingContext>
+    <Frame CornerRadius="10"  
+                   BackgroundColor="White" Margin="30, 50, 30, 30" Padding="15" VerticalOptions="Start">
+        <StackLayout>
+            <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
+                <ActivityIndicator IsRunning="{Binding IsBusy}"  />
+            </StackLayout>
+            <Label Text="{Binding Offer.Name, StringFormat='Report: {0}'}"  StyleClass="SectionHeadingStyle"/>
+            <StackLayout Orientation="Vertical" BindableLayout.ItemsSource="{Binding Options}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Selected}"/>
+                            <Label  Text="{Binding Text}" Margin="0,6,0,0"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <StackLayout>
+                <Editor HeightRequest="50" Text="{Binding Comment}" IsSpellCheckEnabled="True" Placeholder="Enter details how you find this offer "/>
+            </StackLayout>
+            <StackLayout>
+                <Button  Text="REPORT" Command="{Binding ReportCommand}" StyleClass="primaryButton" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="CANCEL" Command="{Binding CancelPopupCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

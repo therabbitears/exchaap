@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=Loffers"
+             xmlns:local="clr-namespace:Xaminals.Views.Account.ViewModel"
+             mc:Ignorable="d"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             x:Class="Xaminals.Views.Account.RegisterPopup"
+             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=Loffers"
+             CloseWhenBackgroundIsClicked="False">
+    <ContentPage.BindingContext>
+        <local:SignupViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <pages:PopupPage.Animation>
+        <rgAnimations:CustomMoveAnimation PositionIn="Bottom" PositionOut="Bottom" DurationIn="300" DurationOut="500" />
+    </pages:PopupPage.Animation>
+    <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
+        <customControl:PopupCloseView />
+
+        <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"  />
+        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label Text="Please enter your details" />
+                <Entry Text="{Binding Name.Value}"
+                       Placeholder="Your name" />
+
+                <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+
+                <Entry Text="{Binding Email.Value}"
+                       Placeholder="Email" />
+
+                <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
+
+                <Entry Text="{Binding Password.Value}"
+                       Placeholder="Password"
+                       IsPassword="True" />
+                <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+
+                <Entry Text="{Binding ConfirmPassword.Value}"
+                       Placeholder="Confirm password"
+                       IsPassword="True" />
+                <Label Text="{Binding ConfirmPassword.Errors[0]}" IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" StyleClass="validationError" />
+
+                <Label Text="Invalid credentials entered" 
+                       IsVisible="{Binding AreCredentialsInvalid}" 
+                       StyleClass="validationError" />
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding Agreed.Value}"/>
+                    <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" class="MediumText, DimText">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="By clicking this you are agreed with our " />
+                                <Span Text="terms" TextColor="#d00000" TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenUrlCommand}"
+                                          CommandParameter="http://loffers.sklative.com/legal/terms" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span Text=" and " />
+                                <Span Text="privacy policy" TextColor="#d00000" TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenUrlCommand}"
+                                          CommandParameter="http://loffers.sklative.com/policy/privacy" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span Text="." />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <Label Text="{Binding Agreed.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Agreed.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
+            </StackLayout>
+
+            <Button Grid.Row="3" Text="Cancel" Command="{Binding CancelPopupCommand}" />
+            <Button Grid.Row="2" Text="Register" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
+        </Grid>
+    </StackLayout>
+</pages:PopupPage>

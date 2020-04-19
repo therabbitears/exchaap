@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             mc:Ignorable="d"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:local="clr-namespace:Xaminals.Views.Publishers.Models"
+             x:Class="Xaminals.Views.Publishers.PublishedLocations" 
+             xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
+             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:PublisherLocationListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout StyleClass="parentContainer" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
+            <customControls:ExtenderListView  BackgroundColor="White"  
+               x:Name="ItemsListView" 
+               ItemsSource="{Binding AvailableLocations}"
+               VerticalOptions="FillAndExpand"
+               HasUnevenRows="true"
+               RefreshCommand="{Binding LoadItemsCommand}"
+               IsPullToRefreshEnabled="true"
+               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+               SelectionMode="None"
+               IsVisible="{Binding Context.SessionModel.IsLoggedIn}"
+               SeparatorVisibility="None"
+               OnTappedCommand="{Binding OnTappedCommand}">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="LocationItem">
+                            <ViewCell.ContextActions>
+                                <MenuItem BindingContext="{Binding Source={x:Reference ItemsListView}, Path=BindingContext}"   Command="{Binding DeleteCommand}" CommandParameter="{Binding Source={x:Reference LocationItem}, Path=BindingContext}" Text="Delete"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout BackgroundColor="White" Margin="5" Padding="5">
+                                <StackLayout HorizontalOptions="StartAndExpand" Padding="5" Grid.Column="0">
+                                    <Label Text="{Binding Name}" StyleClass="OfferHeading" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf3c5;" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="Red"  Grid.Row="1" Grid.Column="0"/>
+                                        <Label VerticalOptions="Center" StyleClass="OfferSubHeading" Text="{Binding DisplayAddress, StringFormat='Display address: {0}'}" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout VerticalOptions="End" Padding="5" Orientation="Horizontal">
+                                    <Label  StyleClass="DimText" Text="{Binding Lat, StringFormat='Lat: {0}'}" />
+                                    <Label  StyleClass="DimText" Text="{Binding Long, StringFormat='Long: {0}'}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </customControls:ExtenderListView>
+        </StackLayout>
+        <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>
+    </StackLayout>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddNewCommand}" Name="itemAddNew"  Text="Add new location" Order="Primary" Priority="0" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

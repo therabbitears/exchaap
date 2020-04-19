@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Offers.MyOffers"
+             xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
+             Title="{Binding Title}">
+    <ContentPage.BindingContext>
+        <local:MyOffersListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddOfferCommand}" Name="itemAdd"  Text="New" Order="Primary" Priority="0" />
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
+            <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+            <localFormatters:ListToCountConverter x:Key="cnvListToCountConverter"></localFormatters:ListToCountConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout StyleClass="parentContainer" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
+            <ListView x:Name="ItemsListView"
+                ItemsSource="{Binding MyOffers}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected"                
+                SelectedItem = "{Binding OfferSelectedItem}"
+                SeparatorVisibility="None" IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="White" Margin="5" Padding="5" x:Name="OfferItem">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentView Grid.RowSpan="2" Grid.Column="0">
+                                    <StackLayout>
+                                        <Image 
+                                       Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Start" 
+                                       HeightRequest="100" 
+                                       WidthRequest="100"
+                                       BackgroundColor="Transparent"
+                                       Source="{Binding Image}" />
+                                    </StackLayout>
+                                </ContentView>
+                                <StackLayout Grid.Column="1" Grid.Row="0">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeadline}" StyleClass="OfferHeading"/>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <Label  Text="{Binding OfferDescription}" StyleClass="OfferSubHeading"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Grid.Row="1" Grid.Column="1">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label  StyleClass="DimText" Text="{Binding ValidFrom, StringFormat='Applicable from: {0}'}" />
+                                        <Label  StyleClass="DimText" Text="{Binding ValidTill, StringFormat='Applicable until: {0}'}" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label  StyleClass="DimText" Text="{Binding Categories,Converter={StaticResource cnvListToCountConverter}, StringFormat='{0} categories'}" />
+                                        <Label  StyleClass="DimText" Text="{Binding Locations, Converter={StaticResource cnvListToCountConverter}, StringFormat='{0} locations'}" />
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>
+
+    </StackLayout>
+</ContentPage>

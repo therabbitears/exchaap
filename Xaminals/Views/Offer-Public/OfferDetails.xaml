@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
+             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Offer_Public.OfferDetails"
+             xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
+             Title="{Binding Offer.Name}">
+    <ContentPage.BindingContext>
+        <local:OfferDetailsViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
+            <localFormatters:MultilineToListConverter x:Key="cnvMultilineToListConverter"></localFormatters:MultilineToListConverter>
+            <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout StyleClass="parentContainer" x:Name="MainContextHolder">
+                <mySharedControls:FetchingLocation IsVisible="{Binding FetchingLocation}" />
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                <StackLayout BackgroundColor="#FFFFFF" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{Binding Offer}" x:Name="OfferItem">
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ContentView Grid.Column="0" Grid.Row="0">
+                            <StackLayout>
+                                <Image 
+                                       Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="StartAndExpand" 
+                                       HeightRequest="100" 
+                                       WidthRequest="100"
+                                       BackgroundColor="Transparent"
+                                       Source="{Binding Image}" />
+
+                                <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="{Binding ValidTill, Converter={StaticResource cnvDateTimeConverter}}" StyleClass="expiryTag, primaryBackground"/>
+                            </StackLayout>
+                        </ContentView>
+                        <StackLayout Grid.Column="1" Grid.Row="0">
+                            <StackLayout Orientation="Horizontal">
+                                <Label HorizontalOptions="StartAndExpand"  Text="{Binding Name}" StyleClass="OfferHeading" LineBreakMode="WordWrap"/>
+                                <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Distance, Converter={StaticResource cnvDistanceToUnit}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
+                            </StackLayout>
+                            <StackLayout>
+                                <Label  Text="{Binding Detail}" TextColor="Black" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Aspect="AspectFit" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="End" 
+                                       HeightRequest="20" 
+                                       WidthRequest="20"
+                                       BackgroundColor="Transparent" Source="{Binding PublisherLogo}" />
+                                    <Label Text="{Binding PublisherName}" StyleClass="publisherName, primaryColorText" VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="primaryColorText, gylypLabel" Text="&#xf3c5;" />
+                                    <StackLayout>
+                                        <Label Text="{Binding LocationName}" StyleClass="BusinessLocation" />
+                                        <Label Text="{Binding LocationAddress}" StyleClass="BusinessLocation"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>                       
+                        <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Grid Grid.Column="1" Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0">
+                                    <Button StyleClass="flatButton, gylypButton" Command="{Binding OpenMapsCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf5a0;" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="1">
+                                    <Button StyleClass="flatButton, gylypButton"  FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf005;" Command="{Binding StarOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"  CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" >
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" Binding="{Binding Starred}" Value="true">
+                                                <Setter Property="TextColor" Value="#f7fc5d" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Button" Binding="{Binding Starred}" Value="false">
+                                                <Setter Property="TextColor" Value="Gray" />
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
+                                </StackLayout>
+                                <StackLayout Grid.Column="2">
+                                    <Button FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="flatButton, gylypButton"  Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="3">
+                                    <Button FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="flatButton, gylypButton"  Text="&#xf1e0;"  Command="{Binding ShareOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
+                                </StackLayout>
+                                <StackLayout Grid.Column="4">
+                                    <Button FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf024;" Command="{Binding ReportOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                    <Label Text="Terms and conditions" StyleClass="SectionHeadingStyle"/>
+                    <StackLayout BindableLayout.ItemsSource="{Binding TermsMultiline}" Margin="10" Padding="10" BindableLayout.ItemTemplate="{StaticResource TermsStackTemplate}" Orientation="Vertical" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

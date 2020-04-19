@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Xaminals.ViewModels.Offers"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Xaminals.Views.Offer_Public.OfferCriteria">
+    <pages:PopupPage.BindingContext>
+        <local:SearchViewModel />
+    </pages:PopupPage.BindingContext>
+    <!--<pages:PopupPage.Animation>
+        <rgAnimations:MoveAnimation PositionIn="Right" PositionOut="Bottom"
+                                    DurationIn="500" DurationOut="500"
+                                    />
+    </pages:PopupPage.Animation>-->
+    <Frame CornerRadius="10"  
+                   BackgroundColor="White" Margin="30, 50, 30, 30" Padding="15" VerticalOptions="StartAndExpand">
+        <Grid VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0">
+            <StackLayout>
+                <Label Text="Search in range" />
+                <Slider Maximum="100" Minimum="1" Value="{Binding MaxDistance}" x:Name="slider"  MaximumTrackColor="#B6B1B0" ThumbColor="#FF2A00" />
+                <Label x:Name="displayLabel" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}KM(S)'}" HorizontalOptions="StartAndExpand" TextColor="Gray"  FontSize="12" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Categories" StyleClass="SectionHeadingStyle"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Margin="10" Padding="10" BindableLayout.ItemTemplate="{StaticResource SelectionStackTemplate}" Orientation="Vertical" />
+            </StackLayout>
+            <Button Text="Search" Command="{Binding SaveCriteriaCommand}" StyleClass="primaryButton" />
+            <Button Text="Cancel" Command="{Binding CancelPopupCommand}" />
+        </StackLayout>
+        </Grid>
+    </Frame>
+</pages:PopupPage>
