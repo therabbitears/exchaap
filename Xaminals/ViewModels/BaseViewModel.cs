@@ -240,6 +240,7 @@ namespace Xaminals.ViewModels
                 }
 
                 location = location ?? await Geolocation.GetLocationAsync(request, token);
+                var reverse = await Geocoding.GetPlacemarksAsync(location);
             }
             catch (Exception ex)
             {
