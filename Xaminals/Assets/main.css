@@ -1,7 +1,8 @@
 ﻿.parentContainer {
     background-color: #F8F8F8;
-    padding:5;
+    padding: 5;
 }
+
 .SectionHeadingStyle {
     color: #D00000;
     font-size: 18;
@@ -10,7 +11,7 @@
 
 .validationError {
     color: #D00000;
-    font-size:12;
+    font-size: 12;
 }
 
 .OfferHeading {
@@ -35,7 +36,7 @@
 
 .messagestamp {
     color: #cfcfcf;
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 
 button {
@@ -45,8 +46,8 @@ button {
     border-radius: 10;
     border-width: 1;
     border-color: #505050;
-    padding:2;
-    height:35;
+    padding: 2;
+    height: 35;
 }
 
 checkbox {
@@ -62,16 +63,16 @@ checkbox {
 
 .popupContainer {
     margin: 30, 50, 30, 30;
-    padding:20;
-    vertical-align:top;
+    padding: 20;
+    vertical-align: top;
 }
 
 .flatButton {
     border-width: 0;
-    border-color: transparent;    
+    border-color: transparent;
     background-color: transparent;
-    padding:2;
-    margin:3;
+    padding: 2;
+    margin: 3;
 }
 
 .primaryColorText {
@@ -82,9 +83,9 @@ checkbox {
     color: #00D0D0;
 }
 
-.publisherName{
-    font-weight:bold;
-    font-size:12;
+.publisherName {
+    font-weight: bold;
+    font-size: 12;
 }
 
 .gylypLabel {
@@ -95,10 +96,10 @@ checkbox {
 }
 
 .gylypLabelBig {
-    height:22;
-    width:22;
-    font-size:20;
-    font-weight:bold;
+    height: 22;
+    width: 22;
+    font-size: 20;
+    font-weight: bold;
 }
 
 .gylypButton {
@@ -116,41 +117,41 @@ checkbox {
 }
 
 .whiteText {
-    color:#fff;
+    color: #fff;
 }
 
 .highlighted-tab {
-    font-weight:bold;
+    font-weight: bold;
     color: #ec8021;
 }
 
 .chatBubble {
-    padding:4;
-    margin:2;
+    padding: 4;
+    margin: 2;
 }
 
 .message {
-    color:#fff;
-    font-size:14;
-    padding:3;
-    margin:0;
+    color: #fff;
+    font-size: 14;
+    padding: 3;
+    margin: 0;
 }
 
 .nopadding {
-    padding:0;
+    padding: 0;
 }
 
 .nomargin {
-    margin:0;
+    margin: 0;
 }
 
 .smallText {
-    font-size:12;
+    font-size: 12;
 }
 
 .expiryTag {
-    font-size:9;
-    color:#fff;
+    font-size: 9;
+    color: #fff;
 }
 
 .primaryBackground {
@@ -162,14 +163,14 @@ checkbox {
 }
 
 .BusinessLocation {
-    font-size:12;
+    font-size: 12;
 }
 
 .offerItem {
-    padding:3;
-    margin:5;
+    padding: 3;
+    margin: 5;
 }
 
 .bold {
-    font-weight:bold;
+    font-weight: bold;
 }
