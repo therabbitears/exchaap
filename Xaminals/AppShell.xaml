@@ -57,6 +57,19 @@
                       Style="{StaticResource MainShell}"
                       ContentTemplate="{DataTemplate offerviews:OfferList}" Shell.NavBarIsVisible="False" />
         </Tab>
+        <Tab Title="My exchaups" x:Name="tabMyOffers">
+            <Tab.Icon>
+                <FontImageSource
+                        FontFamily="{DynamicResource FontAwesomeSolid}"
+                        Glyph="&#xf507;"
+                        Size="20"
+                        Color="White" />
+            </Tab.Icon>
+
+            <ShellContent Route="myoffers"
+                      Style="{StaticResource MainShell}"
+                      ContentTemplate="{DataTemplate offerviews:MyOffers}" />
+        </Tab>
         <Tab Title="Starred" x:Name="tabStarred">
             <Tab.Icon>
                 <FontImageSource
@@ -92,57 +105,6 @@
             <ShellContent Route="account"
                       Style="{StaticResource MainShell}"
                       ContentTemplate="{DataTemplate settingsview:Settings}" />
-        </Tab>
-        <!--<Tab Title="Locations" x:Name="tabLocations1">
-            <Tab.Icon>
-                <FontImageSource
-                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                        Glyph="&#xf3c5;"
-                        Size="20"
-                        Color="White" />
-            </Tab.Icon>
-
-            <ShellContent Route="locations"
-                      Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate publisherviews:PublishedLocations}" />
-        </Tab>-->
-        <Tab Title="Locations" x:Name="tabLocations">
-            <Tab.Icon>
-                <FontImageSource
-                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                        Glyph="&#xf3c5;"
-                        Size="20"
-                        Color="White" />
-            </Tab.Icon>
-            <ShellContent Route="locations"
-                      Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate publisherviews:PublishedLocations}" />
-        </Tab>
-        <Tab Title="My offers" x:Name="tabMyOffers">
-            <Tab.Icon>
-                <FontImageSource
-                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                        Glyph="&#xf507;"
-                        Size="20"
-                        Color="White" />
-            </Tab.Icon>
-
-            <ShellContent Route="myoffers"
-                      Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate offerviews:MyOffers}" />
-        </Tab>
-        <Tab Title="Publisher" x:Name="tbPublisher">
-            <Tab.Icon>
-                <FontImageSource
-                        FontFamily="{DynamicResource FontAwesomeSolid}"
-                        Glyph="&#xf54f;"
-                        Size="20"
-                        Color="White" />
-            </Tab.Icon>
-
-            <ShellContent Route="mypublishers"
-                      Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate publisherviews:PublisherList}" />
         </Tab>
     </TabBar>
 </Shell>
