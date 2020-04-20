@@ -3,7 +3,7 @@
     public class UrlConstants
     {
         //public const string baseUrl = "http://localhost:1234/";
-        public const string baseUrl = "https://loffers.sklative.com/";
+        public const string baseUrl = "https://exchaup.sklative.com/";
         //public const string baseUrl = "http://localhost:64223/";
 
 
@@ -43,5 +43,7 @@
         public const string LoadChatUrl = "api/conversations/loadchat";
         public const string LoadChatsUrl = "api/conversations/all";
         public const string MarkChatsReadUrl = "api/conversations/markread";
+
+        public const string SearchLocationsUrl = "api/locations/search";
     }
 }

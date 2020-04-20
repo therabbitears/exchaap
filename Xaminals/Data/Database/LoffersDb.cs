@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using exchaup.Views.Offer_Public.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace Xaminals.Data.Database
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(TokenModel)).ConfigureAwait(false);
                 }
 
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(SearchLocationItemViewModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(SearchLocationItemViewModel)).ConfigureAwait(false);
+                }
+
                 initialized = true;
             }
         }
@@ -72,6 +78,11 @@ namespace Xaminals.Data.Database
         }
 
         public Task<int> SaveTokenAsync(TokenModel item)
+        {
+            return Database.InsertAsync(item);
+        }
+
+        public Task<int> SaveLocationAsync(SearchLocationItemViewModel item)
         {
             return Database.InsertAsync(item);
         }

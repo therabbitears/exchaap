@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xaminals;
 
@@ -9,28 +10,43 @@ namespace exchaup.CustomControls.SearchHandlers
 {
     public class LocationSearchHandler : SearchHandler
     {
-        protected override void OnQueryChanged(string oldValue, string newValue)
-        {
-            base.OnQueryChanged(oldValue, newValue);
+        public static readonly BindableProperty OnTappedCommandProperty = BindableProperty.Create(
+                                propertyName: "OnTappedCommand",
+                                returnType: typeof(ICommand),
+                                declaringType: typeof(LocationSearchHandler),
+                                defaultValue: null,
+                                defaultBindingMode: BindingMode.TwoWay,
+                                propertyChanged: onTappedProperyChanged
+        );
 
-            //if (string.IsNullOrWhiteSpace(newValue))
-            //{
-            //    ItemsSource = null;
-            //}
-            //else
-            //{
-            //    ItemsSource = MonkeyData.Monkeys
-            //        .Where(monkey => monkey.Name.ToLower().Contains(newValue.ToLower()))
-            //        .ToList<Animal>();
-            //}
+        private static void onTappedProperyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            // ----- Someone changed the full control's Value property. Store
+            //       that new value in the internal Switch's IsToggled property.
+            LocationSearchHandler targetView;
+
+            targetView = (LocationSearchHandler)bindable;
+            if (targetView != null)
+                targetView.OnTappedCommand = (ICommand)newValue;
+        }
+
+        public ICommand OnTappedCommand
+        {
+            get
+            {
+                return (ICommand)GetValue(OnTappedCommandProperty);
+            }
+            set
+            {
+                SetValue(OnTappedCommandProperty, value);
+                OnPropertyChanged("OnTappedCommand");
+            }
         }
 
         protected override async void OnItemSelected(object item)
         {
             base.OnItemSelected(item);
-
-            // Note: strings will be URL encoded for navigation (e.g. "Blue Monkey" becomes "Blue%20Monkey"). Therefore, decode at the receiver.
-            await (App.Current.MainPage as Xamarin.Forms.Shell).GoToAsync($"monkeydetails?name={((Animal)item).Name}");
+            OnTappedCommand?.Execute(item);
         }
     }
 
@@ -55,7 +71,7 @@ namespace exchaup.CustomControls.SearchHandlers
                 Name = "Baboon",
                 Location = "Africa & Asia",
                 Details = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
-                ImageUrl = "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Papio_anubis_%28Serengeti%2C_2009%29.jpg/200px-Papio_anubis_%28Serengeti%2C_2009%29.jpg"
+                ImageUrl = "https://loffers.sklative.com/assets/icons/x-Small.png"
             });
 
             Monkeys.Add(new Animal

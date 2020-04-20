@@ -30,11 +30,13 @@
     </ContentPage.Resources>
     
     <Shell.SearchHandler>
-        <SearchHandler Placeholder="Enter search term" x:Name="searchHandler"
+        <controls:LocationSearchHandler Placeholder="Enter search term" x:Name="searchHandler"
                                       ItemsSource="{Binding Locations}"
                                       Command="{Binding SearchCommand}"
                                       ItemTemplate="{StaticResource AnimalSearchTemplate}"
-                                      CommandParameter="{Binding Source={x:Reference searchHandler}, Path=Query}"/>
+                                      CommandParameter="{Binding Source={x:Reference searchHandler}, Path=Query}"
+                                      OnTappedCommand="{Binding ItemSelectionCommand}"
+                                      />
     </Shell.SearchHandler>
     <StackLayout>
         <Label Text="hu me r" />

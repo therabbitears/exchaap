@@ -226,6 +226,7 @@
     <Compile Include="Controllers\Chats\ChatsController.cs" />
     <Compile Include="Controllers\ILogger.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Locations\LocationsController.cs" />
     <Compile Include="Controllers\Logger.cs" />
     <Compile Include="Controllers\Offers\UsersController.cs" />
     <Compile Include="Controllers\Offers\OffersController.cs" />
@@ -315,6 +316,7 @@
     <Compile Include="Services\ChatService.cs" />
     <Compile Include="Services\CoordinatesService.cs" />
     <Compile Include="Services\Distance.cs" />
+    <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\OffersService.cs" />
     <Compile Include="Services\PublisherService.cs" />
     <Compile Include="Services\RandonService.cs" />
@@ -397,6 +399,7 @@
     <Folder Include="Data\Authentication\Contexts\" />
     <Folder Include="offers\" />
     <Folder Include="Views\Chats\" />
+    <Folder Include="Views\Locations\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
@@ -451,7 +454,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51485</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64223/</IISUrl>
+          <IISUrl>http://localhost:64224/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

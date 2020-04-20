@@ -5,7 +5,7 @@ namespace Xaminals.Data.Database
 {
     public static class DbConstants
     {
-        public const string DatabaseFilename = "loffers.db3";
+        public const string DatabaseFilename = "exchaups.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
             // open the database in read/write mode

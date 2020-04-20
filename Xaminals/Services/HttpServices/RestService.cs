@@ -71,6 +71,15 @@ namespace Xaminals.Services.HttpServices
             return await Get<T>(UrlConstants.MyPublishersUrl);
         }
 
+        internal async Task<T> SearchLocations<T>(string keyword) where T : IHttpResult
+        {
+            var queryStrings = new List<QueryString>()
+            {
+                new QueryString{key= "keyword", value=keyword }
+            };
+            return await Get<T>(UrlConstants.SearchLocationsUrl, queryStrings);
+        }
+
         public async Task<T> UpdateOffer<T>(object item) where T : IHttpResult
         {
             return await Put<T>(item, UrlConstants.UpdateOfferUrl);

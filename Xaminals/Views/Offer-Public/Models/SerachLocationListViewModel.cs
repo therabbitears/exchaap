@@ -11,5 +11,11 @@ namespace exchaup.Views.Offer_Public.Models
             get { return _locations; }
             set { _locations = value; }
         }
+
+        protected override void IntializeMembers()
+        {
+            base.IntializeMembers();
+            Locations = new ObservableCollection<SearchLocationItemViewModel>();
+        }
     }
 }
