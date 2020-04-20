@@ -76,26 +76,6 @@
                             </Picker.Items>
                         </Picker>
                     </StackLayout>
-                    <Label  StyleClass="SectionHeadingStyle" Text="Application mode" />
-                    <Label  StyleClass="DimText" Text="Application mode let's you switch between a business and a user, publisher spaces you can use as a business to publish your offers." />
-                    <StackLayout  Padding="12" Margin="0,10,0,10" BackgroundColor="#FFFFFF" IsVisible="{Binding Context.SessionModel.IsPublisher, Converter={StaticResource cnvReveresBoolConverter}}">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ClickSwitchSpaceCommand}" />
-                        </StackLayout.GestureRecognizers>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Switch to publisher space" />
-                            <customControl:GlyphLabel Text="&#xf2f1;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" TextColor="Red" HorizontalOptions="EndAndExpand" />
-                        </StackLayout>
-                    </StackLayout>
-                    <StackLayout Padding="12" Margin="0,10,0,10" BackgroundColor="#FFFFFF" IsVisible="{Binding Context.SessionModel.IsPublisher}">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ClickSwitchSpaceCommand}" />
-                        </StackLayout.GestureRecognizers>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="Switch back to normal space" />
-                            <customControl:GlyphLabel Text="&#xf2f1;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" TextColor="Red" HorizontalOptions="EndAndExpand" />
-                        </StackLayout>
-                    </StackLayout>
                     <Grid Padding="10" BackgroundColor="#FFFFFF" Margin="0,5,0,5">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ClickAboutCommand}" />

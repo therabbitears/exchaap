@@ -4,9 +4,6 @@ namespace Xaminals.Models
 {
     public class SessionModel : NotificableObject
     {
-        public delegate void AppSpaceChanged(bool isPublisher);
-        public event AppSpaceChanged OnOnAppSpaceChanged;
-
         private bool _isLogib;
         public bool IsLoggedIn
         {
@@ -21,22 +18,6 @@ namespace Xaminals.Models
             }
         }
 
-
-        private bool _IsPublisher;
-        public bool IsPublisher
-        {
-            get { return _IsPublisher; }
-            set
-            {
-                if (_IsPublisher != value)
-                {
-                    _IsPublisher = value;
-                    OnPropertyChanged("IsPublisher");
-                    OnOnAppSpaceChanged?.Invoke(value);
-                }
-            }
-        }
-
         private static readonly Lazy<TokenModel> _token = new Lazy<TokenModel>();
         public TokenModel Token
         {
@@ -45,6 +26,5 @@ namespace Xaminals.Models
                 return _token.Value;
             }
         }
-
     }
 }

@@ -22,7 +22,6 @@ namespace Xaminals.ViewModels.Settings
         public ICommand LogoutCommand { get; set; }
         public ICommand LogoutConfirmCommand { get; set; }
         public ICommand UpdatePasswordCommand { get; set; }
-        public ICommand ClickSwitchSpaceCommand { get; set; }
         public ICommand ClickAboutCommand { get; set; }
         
         public ICommand LoadSettingCommands { get; set; }
@@ -36,7 +35,6 @@ namespace Xaminals.ViewModels.Settings
             LogoutConfirmCommand = new Command(async () => await Logout(null));
             UpdatePasswordCommand = new Command(async () => await ExecuteUpdatePasswordCommand(null));
             ClickCategoriesInfoCommand = new Command(async () => await ExecuteCategoriesInfoCommand(null));
-            ClickSwitchSpaceCommand = new Command(async () => await SwitchSpace());
             LoadSettingCommands = new Command(async () => await ExecuteLoadSettingCommands(null));
             SaveSettingCommands = new Command(async () => await SaveSettings(new { this.MaxRange }));
             ClickAboutCommand = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new About(), true));
@@ -98,15 +96,6 @@ namespace Xaminals.ViewModels.Settings
             return false;
         }
 
-        async Task SwitchSpace()
-        {
-            var result = await SaveSettings(new { IsPublisher = !this.Context.SessionModel.IsPublisher });
-            if (result)
-            {
-                this.Context.SessionModel.IsPublisher = !this.Context.SessionModel.IsPublisher;
-            }
-        }
-
         async Task ExecuteLoadSettingCommands(object obj)
         {
             if (IsLoggedIn)
@@ -123,7 +112,6 @@ namespace Xaminals.ViewModels.Settings
                     if (!result.IsError)
                     {
                         this.MaxRange = result.Result.Configuration.MaxRange;
-                        this.Context.SessionModel.IsPublisher = result.Result.Configuration.IsPublisher;
                         this.UnitOfMeasurement = result.Result.Configuration.UnitOfMeasurement;
                         this.CategoriesCount = result.Result.Categories.Count(c => c.Selected);
                         this.Name = result.Result.Name;

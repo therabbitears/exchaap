@@ -35,13 +35,10 @@ namespace Xaminals
             {
 
             });
-
-            UpdateUI(SingletonLoffersContext.Context.SessionModel.IsPublisher);
         }
 
         private void AddListners()
         {
-            SingletonLoffersContext.Context.SessionModel.OnOnAppSpaceChanged += OnSpaceChanged;
             (Application.Current as App).ApplicationModel.OnMessageArrived += OnMessageReceived;
         }
 
@@ -52,61 +49,6 @@ namespace Xaminals
                 // Need Badge support here.
                 // icon.Color = Color.FromHex("#ec8021");
             }
-        }
-
-        private void OnSpaceChanged(bool isPublisher)
-        {
-            UpdateUI(SingletonLoffersContext.Context.SessionModel.IsPublisher);
-        }
-
-        private void UpdateUI(bool isPublisher)
-        {
-            if (!isPublisher)
-            {
-                RemovePublisherTabs();
-                AddUserTabs();
-            }
-            else
-            {
-                RemoveUserTabs();
-                AddPublisherTabs();
-            }
-        }
-
-        private void AddPublisherTabs()
-        {
-            if (!RootTab.Items.Contains(tbPublisher))
-                RootTab.Items.Insert(0, tbPublisher);
-
-            if (!RootTab.Items.Contains(tabLocations))
-                RootTab.Items.Insert(1, tabLocations);
-
-            if (!RootTab.Items.Contains(tabMyOffers))
-                RootTab.Items.Insert(2, tabMyOffers);
-        }
-
-        private void AddUserTabs()
-        {
-            if (!RootTab.Items.Contains(tabDiscover))
-                RootTab.Items.Insert(0, tabDiscover);
-
-            if (!RootTab.Items.Contains(tabStarred))
-                RootTab.Items.Insert(2, tabStarred);
-            // RootTab.Items.Insert(1, tabMap);
-        }
-
-        private void RemovePublisherTabs()
-        {
-            RootTab.Items.Remove(tbPublisher);
-            RootTab.Items.Remove(tabMyOffers);
-            RootTab.Items.Remove(tabLocations);
-        }
-
-        void RemoveUserTabs()
-        {
-            RootTab.Items.Remove(tabDiscover);
-            //RootTab.Items.Remove(tabMap);
-            RootTab.Items.Remove(tabStarred);
         }
 
         void RegisterRoutes()
