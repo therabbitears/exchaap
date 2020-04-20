@@ -25,21 +25,19 @@
         <Style x:Key="BaseStyle"
                TargetType="Element">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#e34234" />
+                    Value="#CF9625" />
             <Setter Property="Shell.ForegroundColor"
-                    Value="White" />
+                    Value="#FFFFFF" />
             <Setter Property="Shell.TitleColor"
-                    Value="White" />
-            <Setter Property="Shell.DisabledColor"
-                    Value="#B4FFFFFF" />
+                    Value="#FFFFFF" />
             <Setter Property="Shell.UnselectedColor"
-                    Value="#95FFFFFF" />
+                    Value="#FFFFFF" />
         </Style>
         <Style x:Key="MainShell"
                TargetType="Element"
                BasedOn="{StaticResource BaseStyle}">
             <Setter Property="Shell.BackgroundColor"
-                    Value="#e34234" />
+                    Value="#CF9625" />
         </Style>
     </Shell.Resources>
 
