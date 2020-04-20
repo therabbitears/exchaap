@@ -15,7 +15,6 @@
         <local:OffersListViewModel />
     </ContentPage.BindingContext>
     <StackLayout StyleClass="parentContainer">
-        <myControls:QuickFilter />
         <StackLayout IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="No offer found around for the criteria, perhaps you would like to change?" />
             <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
@@ -36,5 +35,6 @@
                 <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
             </x:Arguments>
         </customControls:ExtenderListView>
+        <myControls:QuickFilter />
     </StackLayout>
 </ContentPage>

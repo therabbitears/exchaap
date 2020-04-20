@@ -8,7 +8,7 @@
     <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
             <StackLayout VerticalOptions="StartAndExpand" Orientation="Horizontal">
-                <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#04b0b0" MaximumTrackColor="#00D0D0" ThumbColor="#D00000" />
+                <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#FCF3E1" ThumbColor="#CF9625" />
                 <StackLayout WidthRequest="30" VerticalOptions="Center">
                     <Label x:Name="displayLabel" StyleClass="DimText, bold" HorizontalOptions="CenterAndExpand" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}'}" />
                     <Label Text="km" StyleClass="DimText" HorizontalOptions="CenterAndExpand">
