@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
              xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offer_Public.OfferDetails"
              xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"

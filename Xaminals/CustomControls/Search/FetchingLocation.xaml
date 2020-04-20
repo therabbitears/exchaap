@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              x:Class="Loffers.CustomControls.Search.FetchingLocation">
     <StackLayout>
         <StackLayout IsVisible="{Binding FetchingLocation}"  Padding="2">

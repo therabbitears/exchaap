@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Loffers.CustomControls.PopupCloseView"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers">
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup">
   <ContentView.Content>
         <StackLayout Padding="3">
             <StackLayout.GestureRecognizers>

@@ -3,13 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=Loffers"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
              xmlns:local="clr-namespace:Xaminals.Views.Account.ViewModel"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Account.LoginPopup"
-             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=Loffers">
+             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup">
     <ContentPage.BindingContext>
         <local:LoginViewModel />
     </ContentPage.BindingContext>

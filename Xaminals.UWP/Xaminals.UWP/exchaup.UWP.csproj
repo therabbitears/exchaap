@@ -263,9 +263,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Xaminals\Loffers.csproj">
+    <ProjectReference Include="..\..\Xaminals\exchaup.csproj">
       <Project>{cd4de9e8-2721-47f3-ba95-999b6f75ff27}</Project>
-      <Name>Loffers</Name>
+      <Name>exchaup</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

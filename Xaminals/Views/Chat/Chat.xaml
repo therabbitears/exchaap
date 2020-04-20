@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:localFormatters="clr-namespace:Loffers.Infra.Formatters"
              xmlns:local="clr-namespace:Loffers.Views.Chat.Models"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Loffers.Views.Chat.Chat"
              xmlns:CustomeControls="clr-namespace:Loffers.CustomControls">

@@ -6,7 +6,7 @@
              xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
              xmlns:localLoffersFormatters="clr-namespace:Loffers.Infra.Formatters"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=Loffers"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              xmlns:local="clr-namespace:Loffers.Views.Chat.Models"
              xmlns:customControls="clr-namespace:Xaminals.CustomControls"
              mc:Ignorable="d"

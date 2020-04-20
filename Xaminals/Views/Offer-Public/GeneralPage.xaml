@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=Loffers"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
              xmlns:local="clr-namespace:Xaminals.Views.Offers.ViewModels"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offer_Public.GeneralPage"
-             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=Loffers">
+             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup">
     <ContentPage.BindingContext>
         <local:ReportOfferViewModel />
     </ContentPage.BindingContext>
