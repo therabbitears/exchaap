@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="exchaup.Views.Offer_Public.SearchLocation"
              xmlns:controls="clr-namespace:exchaup.CustomControls.SearchHandlers"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              xmlns:local="clr-namespace:exchaup.Views.Offer_Public.Models">
 
     <ContentPage.BindingContext>
@@ -28,7 +29,7 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    
+
     <Shell.SearchHandler>
         <controls:LocationSearchHandler Placeholder="Enter search term" x:Name="searchHandler"
                                       ItemsSource="{Binding Locations}"
@@ -38,12 +39,21 @@
                                       OnTappedCommand="{Binding ItemSelectionCommand}"
                                       />
     </Shell.SearchHandler>
-    <StackLayout>
-        <Label Text="hu me r" />
-    </StackLayout>
-    <!--<CollectionView Margin="20"
-                    ItemsSource="{x:Static data:MonkeyData.Monkeys}"
-                    ItemTemplate="{StaticResource AnimalTemplate}"
-                    SelectionMode="Single"
-                    SelectionChanged="OnCollectionViewSelectionChanged" />-->
+    <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding Saved}" Margin="20"  SelectionMode="Single">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="10" x:Name="itemLocation">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <customControl:GlyphLabel Text="&#xf1da;" FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText" />
+                    <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

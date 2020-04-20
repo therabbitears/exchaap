@@ -252,6 +252,20 @@
             </Grid>
         </DataTemplate>
 
+        <!--<DataTemplate x:Key="LocationHistoryTemplate">
+            <Grid Padding="10" x:Name="itemLocation">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <customControl:GlyphLabel Text="&#xf1da;" FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText" />
+                <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+            </Grid>
+        </DataTemplate>-->
+
         <DataTemplate x:Key="AnimalSearchTemplate">
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>

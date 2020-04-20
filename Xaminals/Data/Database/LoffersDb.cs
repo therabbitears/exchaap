@@ -82,9 +82,19 @@ namespace Xaminals.Data.Database
             return Database.InsertAsync(item);
         }
 
+        public Task<SearchLocationItemViewModel> FindSingle(SearchLocationItemViewModel item)
+        {
+            return Database.Table<SearchLocationItemViewModel>().Where(c => c.Name == item.Name && c.Lat == item.Lat && c.Long == item.Long).FirstOrDefaultAsync();
+        }
+
         public Task<int> SaveLocationAsync(SearchLocationItemViewModel item)
         {
             return Database.InsertAsync(item);
+        }
+
+        public Task<List<SearchLocationItemViewModel>> GetAllLocationsAsync()
+        {
+            return Database.Table<SearchLocationItemViewModel>().ToListAsync();
         }
 
         public Task<int> DeleteTokenAsync()
