@@ -43,11 +43,18 @@ namespace Xaminals.Views.Offers.Models
             set { _validfrom = value; }
         }
 
-        private bool _isGiveUp;
+        private bool _isGiveUp = false;
         public bool IsGiveUp
         {
             get { return _isGiveUp; }
             set { SetProperty(ref _isGiveUp, value); }
+        }
+
+        private bool _immedietlyAvailable = true;
+        public bool ImmediatelyAvailable
+        {
+            get { return _immedietlyAvailable; }
+            set { SetProperty(ref _immedietlyAvailable, value); }
         }
 
         private Stream _imageStream;

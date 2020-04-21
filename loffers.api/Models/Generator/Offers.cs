@@ -34,9 +34,9 @@ namespace loffers.api.Models.Generator
         [StringLength(5000)]
         public string TermsAndConditions { get; set; }
 
-        public DateTime ValidFrom { get; set; }
+        public DateTime? ValidFrom { get; set; }
 
-        public DateTime ValidTill { get; set; }
+        public DateTime? ValidTill { get; set; }
 
         public bool Active { get; set; }
 
@@ -72,5 +72,9 @@ namespace loffers.api.Models.Generator
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserStarredOffers> UserStarredOffers { get; set; }
+
+        public int CategoryID { get; set; }
+
+        public virtual Categories Categories { get; set; }
     }
 }

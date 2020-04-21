@@ -286,6 +286,10 @@
     <Compile Include="Migrations\202004171052464_Security.designer.cs">
       <DependentUpon>202004171052464_Security.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004211211165_Changes.cs" />
+    <Compile Include="Migrations\202004211211165_Changes.designer.cs">
+      <DependentUpon>202004211211165_Changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -434,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004171052464_Security.resx">
       <DependentUpon>202004171052464_Security.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211211165_Changes.resx">
+      <DependentUpon>202004211211165_Changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
