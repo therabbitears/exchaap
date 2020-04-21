@@ -1,4 +1,5 @@
 ﻿
+using exchaup.Views.Offer_Public.Models;
 using System.Collections.ObjectModel;
 
 namespace Xaminals.ViewModels.Settings
@@ -70,6 +71,21 @@ namespace Xaminals.ViewModels.Settings
         {
             base.IntializeMembers();
             this.Title = "Settings";
+            this.SelectedLocation = new SearchLocationItemViewModel() { Landmark = "Current location", Lat = 0, Long = 0, Name = "Current location", IsCurrent = true };
+        }
+
+        private bool _useCurrentLocation = true;
+        public bool UseCurrentLocatiom
+        {
+            get { return _useCurrentLocation; }
+            set { SetProperty(ref _useCurrentLocation, value); }
+        }
+
+        private SearchLocationItemViewModel _SelectedLocation;
+        public SearchLocationItemViewModel SelectedLocation
+        {
+            get { return _SelectedLocation; }
+            set { SetProperty(ref _SelectedLocation, value); }
         }
     }
 }

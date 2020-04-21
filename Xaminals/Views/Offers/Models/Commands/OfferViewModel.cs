@@ -112,8 +112,7 @@ namespace Xaminals.Views.Offers.Models
                     Heading = this.Heading.Value,
                     Detail = this.Detail.Value,
                     Terms = this.Terms.Value,
-                    ValidFrom = this.Validfrom.Value.Date.AddTicks(this.ValidFromTime.Value.Ticks),
-                    ValidTo = this.ValidTo.Value.Date.AddTicks(this.ValidToTime.Value.Ticks),
+                    ValidFrom = this.Validfrom.Value.Value,
                     Image = imageModel != null ? imageModel.url : Image,
                     Categories = Categories.Where(c => c.Selected).Select(c => new { c.Id, c.Name }).ToArray(),
                     OfferLocations = Locations.Where(c => c.Selected).Select(c => new { c.Id, c.Name }).ToArray(),
@@ -228,13 +227,6 @@ namespace Xaminals.Views.Offers.Models
                     if (model.ValidFrom != null)
                     {
                         this.Validfrom.Value = model.ValidFrom.Value.Date;
-                        this.ValidFromTime.Value = model.ValidFrom.Value.TimeOfDay;
-                    }
-
-                    if (model.ValidTill != null)
-                    {
-                        this.ValidTo.Value = model.ValidTill.Value.Date;
-                        this.ValidToTime.Value = model.ValidTill.Value.TimeOfDay;
                     }
 
                     if (model.Categories != null)

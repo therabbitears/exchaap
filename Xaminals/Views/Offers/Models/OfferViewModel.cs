@@ -36,33 +36,18 @@ namespace Xaminals.Views.Offers.Models
             set { _terms = value; }
         }
 
-        private ValidatableObject<DateTime> _validfrom;
-        public ValidatableObject<DateTime> Validfrom
+        private ValidatableObject<DateTime?> _validfrom;
+        public ValidatableObject<DateTime?> Validfrom
         {
             get { return _validfrom; }
             set { _validfrom = value; }
         }
 
-        private ValidatableObject<TimeSpan> _validFromTime;
-        public ValidatableObject<TimeSpan> ValidFromTime
+        private bool _isGiveUp;
+        public bool IsGiveUp
         {
-            get { return _validFromTime; }
-            set { _validFromTime = value; }
-        }
-
-
-        private ValidatableObject<DateTime> _validto;
-        public ValidatableObject<DateTime> ValidTo
-        {
-            get { return _validto; }
-            set { _validto = value; }
-        }
-
-        private ValidatableObject<TimeSpan> _validToTime;
-        public ValidatableObject<TimeSpan> ValidToTime
-        {
-            get { return _validToTime; }
-            set { _validToTime = value; }
+            get { return _isGiveUp; }
+            set { SetProperty(ref _isGiveUp, value); }
         }
 
         private Stream _imageStream;
@@ -106,17 +91,8 @@ namespace Xaminals.Views.Offers.Models
             _heading = new ValidatableObject<string>();
             _detail = new ValidatableObject<string>();
             _terms = new ValidatableObject<string>();
-            _validfrom = new ValidatableObject<DateTime>();
+            _validfrom = new ValidatableObject<DateTime?>();
             _validfrom.Value = DateTime.Now;
-            _validFromTime = new ValidatableObject<TimeSpan>();
-            _validFromTime.Value = DateTime.Now.TimeOfDay;
-
-            _validto = new ValidatableObject<DateTime>();
-            _validto.Value = DateTime.Now;
-
-            _validToTime = new ValidatableObject<TimeSpan>();
-            _validToTime.Value = DateTime.Now.AddDays(1).TimeOfDay;
-
             _categories = new ObservableCollection<CategoryModel>();
             _locations = new ObservableCollection<OfferPublisherLocationModel>();
             this.Title = "Offer";

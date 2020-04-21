@@ -50,7 +50,16 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <customControl:GlyphLabel Text="&#xf1da;" FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText" />
+                    <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText">
+                        <customControl:GlyphLabel.Triggers>
+                            <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="false">
+                                <Setter Property="Text" Value="&#xf1da;"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="true">
+                                <Setter Property="Text" Value="&#xf14e;"/>
+                            </DataTrigger>
+                        </customControl:GlyphLabel.Triggers>
+                    </customControl:GlyphLabel>
                     <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
                 </Grid>
             </DataTemplate>

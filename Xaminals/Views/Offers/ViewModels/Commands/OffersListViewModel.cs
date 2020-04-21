@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using exchaup.Views.Offer_Public;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -18,7 +19,7 @@ namespace Xaminals.Views.Offers.ViewModels
         public ICommand ShowCritriaCommand { get; set; }
         public ICommand OnTappedCommand { get; set; }
         public ICommand OnDataRequiredCommand { get; set; }
-
+        public ICommand SelectLocationCommand { get; set; }
 
         protected override void IntializeCommands()
         {
@@ -27,6 +28,7 @@ namespace Xaminals.Views.Offers.ViewModels
             ShowCritriaCommand = new Command(async () => await ExecuteShowCritriaCommand());
             OnTappedCommand = new Command(async (object sender) => await ExecuteOnTappedCommand(sender));
             OnDataRequiredCommand = new Command(async (object sender) => await ExecuteLoadItemsCommand(false));
+            SelectLocationCommand = new Command(async (object sender) => await Shell.Current.Navigation.PushAsync(new SearchLocation()));
             LoadItemsCommand.Execute(null);
         }
 

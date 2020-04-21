@@ -30,11 +30,12 @@ namespace exchaup.Views.Offer_Public.Models
             var selectedItem = sender as SearchLocationItemViewModel;
             try
             {
-                var existing = await Database.FindSingle(selectedItem);
-                if (existing == null)
-                    await Database.SaveLocationAsync(selectedItem);
-
-                Saved.Add(selectedItem);
+                Context.SettingsModel.SelectedLocation.IsCurrent = selectedItem.IsCurrent;
+                Context.SettingsModel.SelectedLocation.Landmark = selectedItem.Landmark;
+                Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;
+                Context.SettingsModel.SelectedLocation.Long = selectedItem.Long;
+                Context.SettingsModel.SelectedLocation.Lat = selectedItem.Lat;
+                await AddLocation(selectedItem);
                 await Shell.Current.Navigation.PopAsync(true);
             }
             catch (Exception ex)
@@ -47,14 +48,15 @@ namespace exchaup.Views.Offer_Public.Models
         {
             try
             {
+                this.Saved.Add(new SearchLocationItemViewModel() { Landmark = "Current location", Lat = 0, Long = 0, Name = "Current location", IsCurrent = true });
                 var items = await Database.GetAllLocationsAsync();
                 if (items != null)
                 {
-                    foreach (var item in items)
+                    foreach (var item in items.OrderByDescending(c => c.IsCurrent))
                     {
                         this.Saved.Add(item);
                     }
-                }
+                }                
             }
             catch (Exception ex)
             {
@@ -64,7 +66,7 @@ namespace exchaup.Views.Offer_Public.Models
 
 
         async Task ExecuteSearchCommand(object sender)
-        {
+        {            
             IsBusy = true;
 
             try
@@ -93,6 +95,15 @@ namespace exchaup.Views.Offer_Public.Models
             {
                 IsBusy = false;
             }
+        }
+
+        async Task AddLocation(SearchLocationItemViewModel selectedItem)
+        {
+            var existing = await Database.FindSingle(selectedItem);
+            if (existing == null)
+                await Database.SaveLocationAsync(selectedItem);
+
+            Saved.Add(selectedItem);
         }
     }
 }

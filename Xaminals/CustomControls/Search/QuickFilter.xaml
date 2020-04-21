@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              x:Class="Xaminals.CustomControls.Search.QuickFilter">
     <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -24,6 +25,22 @@
                 </StackLayout>
                 <Button FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf0b0;" Command="{Binding ShowCritriaCommand}" StyleClass="flatButton, primaryColorText" WidthRequest="30" />
             </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectLocationCommand}"/>
+                </Grid.GestureRecognizers>
+                <customControl:GlyphLabel Grid.Row="0" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="labelCompans" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
+                <Label Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Text="{Binding Context.SettingsModel.SelectedLocation.Name}" StyleClass="DimText" />
+                <Label Text="Tap to edit" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" />
+            </Grid>
         </StackLayout>
     </StackLayout>
 </ContentView>
