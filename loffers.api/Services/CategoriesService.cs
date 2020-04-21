@@ -16,7 +16,7 @@ namespace Loffers.Server.Services
 
         public async Task<object> GetAll()
         {
-            return await context.Categories.Where(c => c.Active).Select(c => new { c.Id, c.Name, c.Image }).ToListAsync();
+            return await context.Categories.Include(c => c.ParentCategories).Where(c => c.Active).Select(c => new { c.Id, c.Name, c.Image, ParentId = c.ParentCategories != null ? c.ParentCategories.Id : null }).ToListAsync();
         }
 
         public async Task<Categories> GetOne(string id)

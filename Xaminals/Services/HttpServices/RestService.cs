@@ -220,6 +220,11 @@ namespace Xaminals.Services.HttpServices
             return await Get<T>(UrlConstants.UserCategoriesUrl);
         }
 
+        public async Task<T> PublicCategories<T>() where T : IHttpResult
+        {
+            return await Get<T>(UrlConstants.PublicOffers);
+        }
+
         public async Task<T> SaveCategories<T>(object model) where T : IHttpResult
         {
             return await Put<T>(model, UrlConstants.UserCategoriesSaveUrl);

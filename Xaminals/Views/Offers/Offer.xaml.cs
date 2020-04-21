@@ -1,5 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using exchaup.Views.Common;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xaminals.Views.Offers.Models;
 
 namespace Xaminals.Views.Offers
 {
@@ -9,6 +11,16 @@ namespace Xaminals.Views.Offers
         public Offer()
         {
             InitializeComponent();
+        }
+
+        private void OnListToGetsFocus(object sender, FocusEventArgs e)
+        {
+            Shell.Current.Navigation.PushAsync(new CategorySelection(false, this.BindingContext as ICategorySelectable));
+        }
+
+        private void OnExchangeWithGetsFocus(object sender, FocusEventArgs e)
+        {
+            Shell.Current.Navigation.PushAsync(new CategorySelection(true, this.BindingContext as ICategorySelectable));
         }
     }
 }

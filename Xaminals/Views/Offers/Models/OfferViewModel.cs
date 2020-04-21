@@ -10,7 +10,7 @@ using Xaminals.Views.Categories.Models.DTO;
 namespace Xaminals.Views.Offers.Models
 {
     [QueryProperty("Id", "offerid")]
-    public partial class OfferViewModel : BaseViewModel
+    public partial class OfferViewModel : BaseViewModel, ICategorySelectable
     {
         private ValidatableObject<string> _heading;
         public ValidatableObject<string> Heading
@@ -119,6 +119,15 @@ namespace Xaminals.Views.Offers.Models
                 _categories = value;
             }
         }
+
+        private CategoryModel categoryModel;
+
+        public CategoryModel Category
+        {
+            get { return categoryModel; }
+            set { categoryModel = value; }
+        }
+
 
         ObservableCollection<OfferPublisherLocationModel> _locations;
         public ObservableCollection<OfferPublisherLocationModel> Locations

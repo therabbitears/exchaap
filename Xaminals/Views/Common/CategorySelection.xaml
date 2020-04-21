@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="exchaup.Views.Common.CategorySelection"
+             xmlns:Model="clr-namespace:exchaup.Views.Common.Models">
+    <ContentPage.BindingContext>
+        <Model:CategorySelectionViewModel />
+    </ContentPage.BindingContext>
+    <Shell.SearchHandler>
+        <SearchHandler Placeholder="Enter search term" x:Name="searchHandler" Query="{Binding Query}" />
+    </Shell.SearchHandler>
+    <StackLayout>
+        <ScrollView Orientation="Horizontal">
+            <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}"
+             Orientation="Horizontal">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" Margin="10" Padding="10" BorderColor="#CF9625">
+                            <Label Text="{Binding Name}" StyleClass="primaryColorText"  />
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </ScrollView>
+        <Button Text="OK" StyleClass="primaryButton" IsVisible="{Binding MultiSelection}" Command="{Binding RaiseOkCommand}"/>
+        <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding FilteredCategories}" Margin="20" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" x:Name="itemLocation">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsParent}" Value="true">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                    <Setter Property="Margin" Value="-20,0,0,0"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="Image" Binding="{Binding IsParent}" Value="false">
+                                    <Setter Property="IsVisible" Value="True"/>
+                                    <Setter Property="Margin" Value="0,0,0,0"/>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

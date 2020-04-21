@@ -12,24 +12,6 @@
     <ContentPage.BindingContext>
         <local:SerachLocationListViewModel />
     </ContentPage.BindingContext>
-    <ContentPage.Resources>
-        <Style TargetType="Grid">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" 
-                                        Value="#689F39" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
-    </ContentPage.Resources>
-
     <Shell.SearchHandler>
         <controls:LocationSearchHandler Placeholder="Enter search term" x:Name="searchHandler"
                                       ItemsSource="{Binding Locations}"

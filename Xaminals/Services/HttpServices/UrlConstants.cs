@@ -45,5 +45,6 @@
         public const string MarkChatsReadUrl = "api/conversations/markread";
 
         public const string SearchLocationsUrl = "api/locations/search";
+        public const string PublicOffers = "api/categories/list";
     }
 }

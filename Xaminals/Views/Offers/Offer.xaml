@@ -15,7 +15,7 @@
             <StackLayout StyleClass="parentContainer">
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
                 <StackLayout>
-                    <SearchBar Placeholder="What you want to exchaup." />
+                    <SearchBar Placeholder="What you want to exchaup." Focused="OnListToGetsFocus" />
                     <Label Text="I am giving it up." />
                     <Label Text="Turn on if you are listing this and expecting nothing in return." StyleClass="DimText" />
                     <Switch IsToggled="{Binding IsGiveUp}" HorizontalOptions="StartAndExpand" />
@@ -29,7 +29,7 @@
                             </DataTrigger>
                         </StackLayout.Triggers>
                         <Label Text="What you want to exchange with(You can select multiple options.)" />
-                        <SearchBar Placeholder="Search items you want exchange with" />
+                        <SearchBar Placeholder="Search items you want exchange with" Focused="OnExchangeWithGetsFocus"/>
                     </StackLayout>
                     <Entry Text="{Binding Heading.Value}" Placeholder="Enter heading" />
                     <Editor Text="{Binding Detail.Value}" Placeholder="Optional: detail." />
