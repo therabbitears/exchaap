@@ -1,7 +1,6 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,7 +11,6 @@ using Xaminals.Models;
 using Xaminals.Services.HttpServices;
 using Xaminals.Views.Categories.Models.DTO;
 using Xaminals.Views.Offers.ViewModels;
-using static Xaminals.Services.HttpServices.RestService;
 
 namespace Xaminals.Views.Offers.Models
 {
@@ -20,8 +18,6 @@ namespace Xaminals.Views.Offers.Models
     {
         public ICommand SaveOfferCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
-        public Command LoadCategoriesCommand { get; set; }
-        public Command LoadLocationsCommand { get; set; }
         public Command LoadOfferCommand { get; set; }
 
 
@@ -33,15 +29,7 @@ namespace Xaminals.Views.Offers.Models
             SaveOfferCommand = new Command(SaveOffer);
             SelectImageCommand = new Command(SelectImage);
 
-            if (string.IsNullOrEmpty(Id))
-            {
-                LoadCategoriesCommand = new Command(async () => await ExecuteLoadCategoriesCommand());
-                LoadCategoriesCommand.Execute(null);
-
-                LoadLocationsCommand = new Command(async () => await ExecuteLoadLocationsCommand());
-                LoadLocationsCommand.Execute(null);
-            }
-            else
+            if (!string.IsNullOrEmpty(Id))
             {
                 LoadOfferCommand = new Command(async () => await ExecuteLoadOfferCommand());
                 LoadOfferCommand.Execute(null);
@@ -141,70 +129,7 @@ namespace Xaminals.Views.Offers.Models
                 }
             }
         }
-
-
-        async Task ExecuteLoadLocationsCommand()
-        {
-            IsBusy = true;
-
-            try
-            {
-                _locations.Clear();
-                var result = await new RestService().OfferLocations<HttpResult<List<OfferPublisherLocationModel>>>();
-                if (!result.IsError)
-                {
-                    foreach (var item in result.Result)
-                    {
-                        _locations.Add(item);
-                    }
-                }
-                else
-                {
-                    await RaiseError(result.Errors.First().Description);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                await RaiseError("An error occurred while loading locations.");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        async Task ExecuteLoadCategoriesCommand()
-        {
-            IsBusy = true;
-
-            try
-            {
-                _categories.Clear();
-                var result = await new RestService().OfferCategories<HttpResult<List<CategoryModel>>>();
-                if (!result.IsError)
-                {
-                    foreach (var item in result.Result)
-                    {
-                        _categories.Add(item);
-                    }
-                }
-                else
-                {
-                    await RaiseError(result.Errors.First().Description);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                await RaiseError("An error occurred while loading categories.");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
+       
         async Task ExecuteLoadOfferCommand()
         {
             if (!IsBusy)

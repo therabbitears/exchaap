@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="exchaup.Views.Common.CategorySelection"
-             xmlns:Model="clr-namespace:exchaup.Views.Common.Models">
+             xmlns:Model="clr-namespace:exchaup.Views.Common.Models"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer">
     <ContentPage.BindingContext>
         <Model:CategorySelectionViewModel />
     </ContentPage.BindingContext>
@@ -18,9 +19,9 @@
              Orientation="Horizontal">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Frame CornerRadius="10" Margin="10" Padding="10" BorderColor="#CF9625">
-                            <Label Text="{Binding Name}" StyleClass="primaryColorText"  />
-                        </Frame>
+                        <StackLayout>
+                            <OffeControls:SelectedCategory />
+                        </StackLayout>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </StackLayout>
@@ -37,7 +38,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}">
+                        <Image Source="{Binding Image}" HeightRequest="30" WidthRequest="30" Aspect="AspectFit">
                             <Image.Triggers>
                                 <DataTrigger TargetType="Image" Binding="{Binding IsParent}" Value="true">
                                     <Setter Property="IsVisible" Value="False"/>

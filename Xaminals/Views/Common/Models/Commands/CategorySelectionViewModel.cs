@@ -56,7 +56,11 @@ namespace exchaup.Views.Common.Models
                 {
                     if (!MultiSelection)
                     {
-                        SelectInto.Category = selected;
+                        //SelectInto.Category = selected;
+                        SelectInto.Category.Id = selected.Id;
+                        SelectInto.Category.Image = selected.Image;
+                        SelectInto.Category.Name = selected.Name;
+                        SelectInto.Category.Selected = selected.Selected;
                         await Shell.Current.Navigation.PopAsync(true);
                     }
                     else

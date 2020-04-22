@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offers.Offer"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
+             xmlns:categoryModel="clr-namespace:Xaminals.Views.Categories.Models.DTO"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:OfferViewModel />
@@ -16,6 +18,19 @@
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
                 <StackLayout>
                     <SearchBar Placeholder="What you want to exchaup." Focused="OnListToGetsFocus" />
+                    <OffeControls:SelectedCategory>
+                        <OffeControls:SelectedCategory.Triggers>
+                            <DataTrigger TargetType="OffeControls:SelectedCategory" Binding="{Binding Selected}" Value="true">
+                                <Setter Property="IsVisible" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="OffeControls:SelectedCategory" Binding="{Binding Selected}" Value="false">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                        </OffeControls:SelectedCategory.Triggers>
+                        <OffeControls:SelectedCategory.BindingContext>
+                            <categoryModel:CategoryModel />
+                        </OffeControls:SelectedCategory.BindingContext>
+                    </OffeControls:SelectedCategory>
                     <Label Text="I am giving it up." />
                     <Label Text="Turn on if you are listing this and expecting nothing in return." StyleClass="DimText" />
                     <Switch IsToggled="{Binding IsGiveUp}" HorizontalOptions="StartAndExpand" />
@@ -30,6 +45,17 @@
                         </StackLayout.Triggers>
                         <Label Text="What you want to exchange with(You can select multiple options.)" />
                         <SearchBar Placeholder="Search items you want exchange with" Focused="OnExchangeWithGetsFocus"/>
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <OffeControls:SelectedCategory />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </ScrollView>
                     </StackLayout>
                     <Entry Text="{Binding Heading.Value}" Placeholder="Enter heading" />
                     <Editor Text="{Binding Detail.Value}" Placeholder="Optional: detail." />

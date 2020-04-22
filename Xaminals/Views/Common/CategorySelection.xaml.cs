@@ -15,7 +15,6 @@ namespace exchaup.Views.Common
 
         public CategorySelection(bool multiSelection, ICategorySelectable category) : this()
         {
-            InitializeComponent();
             if (this.BindingContext is CategorySelectionViewModel context)
             {
                 context.MultiSelection = multiSelection;

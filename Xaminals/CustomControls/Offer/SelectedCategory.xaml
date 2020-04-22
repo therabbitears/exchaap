@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="exchaup.CustomControls.Offer.SelectedCategory">
+  <ContentView.Content>
+        <Frame Margin="2" Padding="5" BackgroundColor="#f2f2f2" CornerRadius="10">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="{Binding Image}" WidthRequest="15" HeightRequest="15" Margin="2"/>
+                <Label Text="{Binding Name}" />
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

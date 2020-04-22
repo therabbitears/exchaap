@@ -102,6 +102,7 @@ namespace Xaminals.Views.Offers.Models
             _validfrom.Value = DateTime.Now;
             _categories = new ObservableCollection<CategoryModel>();
             _locations = new ObservableCollection<OfferPublisherLocationModel>();
+            categoryModel = new CategoryModel();
             this.Title = "Offer";
         }
 
@@ -125,7 +126,7 @@ namespace Xaminals.Views.Offers.Models
         public CategoryModel Category
         {
             get { return categoryModel; }
-            set { categoryModel = value; }
+            set { SetProperty(ref categoryModel, value); }
         }
 
 
