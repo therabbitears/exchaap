@@ -66,7 +66,7 @@
 
             <ShellContent Route="myoffers"
                       Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate offerviews:Offer}" />
+                      ContentTemplate="{DataTemplate offerviews:MyOffers}" />
         </Tab>
         <Tab Title="Starred" x:Name="tabStarred">
             <Tab.Icon>
@@ -78,7 +78,7 @@
             </Tab.Icon>
             <ShellContent Route="starred"
                       Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate common:CategorySelection}" />
+                      ContentTemplate="{DataTemplate starredview:Starred}" />
         </Tab>
         <Tab Title="Chats" x:Name="tabChats">
             <Tab.Icon>

@@ -1,10 +1,12 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xaminals.Infra.Results;
 using Xaminals.Models;
@@ -19,6 +21,7 @@ namespace Xaminals.Views.Offers.Models
         public ICommand SaveOfferCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
         public Command LoadOfferCommand { get; set; }
+        public Command LoadCurrentLocationCommand { get; set; }
 
 
         public string Image { get; set; }
@@ -28,11 +31,49 @@ namespace Xaminals.Views.Offers.Models
             base.IntializeCommands();
             SaveOfferCommand = new Command(SaveOffer);
             SelectImageCommand = new Command(SelectImage);
-
+            LoadCurrentLocationCommand = new Command(ExecuteLoadCurrentLocationCommand);
             if (!string.IsNullOrEmpty(Id))
             {
                 LoadOfferCommand = new Command(async () => await ExecuteLoadOfferCommand());
                 LoadOfferCommand.Execute(null);
+            }
+
+            LoadCurrentLocationCommand.Execute(null);
+        }
+
+        async void ExecuteLoadCurrentLocationCommand()
+        {
+            try
+            {
+                var location = await LoadLocation(false);
+                this.Location.Lat = location.Latitude;
+                this.Location.Long = location.Longitude;
+
+                var placemarks = await Geocoding.GetPlacemarksAsync(location);
+
+                var placemark = placemarks?.FirstOrDefault();
+                if (placemark != null)
+                {
+                    var geocodeAddress =
+                        $"AdminArea:       {placemark.AdminArea}\n" +
+                        $"CountryCode:     {placemark.CountryCode}\n" +
+                        $"CountryName:     {placemark.CountryName}\n" +
+                        $"FeatureName:     {placemark.FeatureName}\n" +
+                        $"Locality:        {placemark.Locality}\n" +
+                        $"PostalCode:      {placemark.PostalCode}\n" +
+                        $"SubAdminArea:    {placemark.SubAdminArea}\n" +
+                        $"SubLocality:     {placemark.SubLocality}\n" +
+                        $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
+                        $"Thoroughfare:    {placemark.Thoroughfare}\n";
+
+                    await RaiseSuccess(geocodeAddress);
+                }
+            }
+            catch (Exception ex)
+            {
+                await RaiseError(ex.Message);
+                this.Location.Name = "N/A";
+                this.Location.DisplayAddress = "N/A";
             }
         }
 
@@ -87,27 +128,51 @@ namespace Xaminals.Views.Offers.Models
         {
             if (Validate())
             {
-                var service = new RestService();
-
-                if (ImageStream != null && imageModel == null)
-                {
-                    imageModel = await service.UploadImageAsynch(ImageStream, this.Heading.Value.Replace(" ", string.Empty) + ".png");
-                    imageModel.uploaded = true;
-                }
-
-                var objectToSend = new
-                {
-                    Heading = this.Heading.Value,
-                    Detail = this.Detail.Value,
-                    Terms = this.Terms.Value,
-                    ValidFrom = this.Validfrom.Value.Value,
-                    Image = imageModel != null ? imageModel.url : Image,
-                    Categories = Categories.Where(c => c.Selected).Select(c => new { c.Id, c.Name }).ToArray(),
-                    OfferLocations = Locations.Where(c => c.Selected).Select(c => new { c.Id, c.Name }).ToArray(),
-                    Id
-                };
                 try
                 {
+                    var service = new RestService();
+
+                    if (ImageStream != null && imageModel == null)
+                    {
+                        imageModel = await service.UploadImageAsynch(ImageStream, this.Heading.Value.Replace(" ", string.Empty) + ".png");
+                        imageModel.uploaded = true;
+                    }
+                    //if (string.IsNullOrEmpty(this.Category.Name))
+                    //{
+                    //    this.Category.Id = "46f188db-a2a8-44d5-b171-c0adbbb3d7d9";
+                    //    this.Category.Name = "Mobile";
+                    //}
+
+                    //if (!this.IsGiveUp && !this.Categories.Any())
+                    //{
+                    //    this.Categories = new ObservableCollection<CategoryModel>()
+                    //{
+                    //    new CategoryModel(){Id="46f188db-a2a8-44d5-b171-c0adbbb3d7d9", Name="Mobile" },
+                    //    new CategoryModel(){Id="e175cd99-72c9-441e-a43d-f959d9b0e3e4", Name="Mobile headphones" }
+                    //};
+                    //}
+
+                    var objectToSend = new
+                    {
+                        Category = new { Category.Id, Category.Name },
+                        Heading = this.Heading.Value,
+                        Detail = this.Detail.Value,
+                        Terms = this.Terms.Value,
+                        ValidFrom = this.ImmediatelyAvailable ? default(DateTime?) : this.Validfrom.Value.Value,
+                        Image = imageModel != null ? imageModel.url : Image,
+                        Categories = Categories.Select(c => new { c.Id, c.Name }).ToArray(),
+                        OfferLocation = new
+                        {
+                            this.Location.Id,
+                            this.Location.Lat,
+                            this.Location.Long,
+                            this.Location.Name,
+                            this.Location.Selected
+                        },
+                        Id
+                    };
+
+
                     var result = !string.IsNullOrEmpty(this.Id) ? await service.UpdateOffer<HttpResult<object>>(objectToSend) : await service.CreateOffer<HttpResult<object>>(objectToSend);
 
                     if (!result.IsError)
@@ -129,7 +194,7 @@ namespace Xaminals.Views.Offers.Models
                 }
             }
         }
-       
+
         async Task ExecuteLoadOfferCommand()
         {
             if (!IsBusy)
@@ -165,11 +230,12 @@ namespace Xaminals.Views.Offers.Models
 
                     if (model.Locations != null)
                     {
-                        this.Locations.Clear();
-                        foreach (var item in model.Locations)
-                        {
-                            this.Locations.Add(new OfferPublisherLocationModel() { Id = item.Id, Name = item.Name, Selected = item.Selected });
-                        }
+                        this.Location.DisplayAddress = model.Locations.DisplayAddress;
+                        this.Location.Id = model.Locations.Id;
+                        this.Location.Lat = model.Locations.Lat;
+                        this.Location.Long = model.Locations.Long;
+                        this.Location.Name = model.Locations.Name;
+                        this.Location.Selected = model.Locations.Selected;
                     }
                 }
                 else

@@ -26,7 +26,7 @@ namespace Xaminals.Views.Common.Alerts
             int SecondsElapsed = 0;
             Device.StartTimer(new TimeSpan(0, 0, 1), () =>
             {
-                if (SecondsElapsed < 2)
+                if (SecondsElapsed < 50)
                 {
                     SecondsElapsed++;
                     return true;

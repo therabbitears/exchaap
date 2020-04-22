@@ -213,6 +213,14 @@ namespace Xaminals.ViewModels
 
         protected virtual async Task<Location> GetCurrentLocation(bool tryCached = false, CancellationToken token = default)
         {
+            if (!Context.SettingsModel.SelectedLocation.IsCurrent)
+                return new Location(Context.SettingsModel.SelectedLocation.Lat, Context.SettingsModel.SelectedLocation.Long);
+
+            return await LoadLocation(tryCached, token);
+        }
+
+        protected async Task<Location> LoadLocation(bool tryCached, CancellationToken token = default)
+        {
             var service = DependencyService.Get<ILocationService>();
             if (service != null && !service.IsLocationAvailable())
             {
@@ -250,7 +258,6 @@ namespace Xaminals.ViewModels
             FetchingLocation = false;
             return location;
         }
-
 
         protected virtual void OpenLocationSettings()
         {

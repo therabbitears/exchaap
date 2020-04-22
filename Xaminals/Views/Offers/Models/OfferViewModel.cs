@@ -43,13 +43,6 @@ namespace Xaminals.Views.Offers.Models
             set { _validfrom = value; }
         }
 
-        private bool _isGiveUp = false;
-        public bool IsGiveUp
-        {
-            get { return _isGiveUp; }
-            set { SetProperty(ref _isGiveUp, value); }
-        }
-
         private bool _immedietlyAvailable = true;
         public bool ImmediatelyAvailable
         {
@@ -99,9 +92,9 @@ namespace Xaminals.Views.Offers.Models
             _detail = new ValidatableObject<string>();
             _terms = new ValidatableObject<string>();
             _validfrom = new ValidatableObject<DateTime?>();
-            _validfrom.Value = DateTime.Now;
             _categories = new ObservableCollection<CategoryModel>();
-            _locations = new ObservableCollection<OfferPublisherLocationModel>();
+            _location = new OfferPublisherLocationModel();
+            //categoryModel = new CategoryModel() { Selected = true, Name = "Mobile" };
             categoryModel = new CategoryModel();
             this.Title = "Offer";
         }
@@ -130,16 +123,16 @@ namespace Xaminals.Views.Offers.Models
         }
 
 
-        ObservableCollection<OfferPublisherLocationModel> _locations;
-        public ObservableCollection<OfferPublisherLocationModel> Locations
+        OfferPublisherLocationModel _location;
+        public OfferPublisherLocationModel Location
         {
             get
             {
-                return _locations;
+                return _location;
             }
             set
             {
-                _locations = value;
+                _location = value;
             }
         }
 

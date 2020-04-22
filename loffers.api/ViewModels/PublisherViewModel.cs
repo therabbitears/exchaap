@@ -17,5 +17,6 @@
         public string DisplayAddress { get; set; }
         public decimal Lat { get; set; }
         public decimal Long { get; set; }
+        public string Id { get; set; }
     }
 }

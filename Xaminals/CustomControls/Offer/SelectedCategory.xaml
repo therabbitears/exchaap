@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="exchaup.CustomControls.Offer.SelectedCategory">
   <ContentView.Content>
-        <Frame Margin="2" Padding="5" BackgroundColor="#f2f2f2" CornerRadius="10">
+        <Frame Margin="5" Padding="8" BackgroundColor="#f2f2f2" CornerRadius="10">
             <StackLayout Orientation="Horizontal">
                 <Image Source="{Binding Image}" WidthRequest="15" HeightRequest="15" Margin="2"/>
                 <Label Text="{Binding Name}" />

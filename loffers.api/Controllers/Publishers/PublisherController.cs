@@ -156,7 +156,7 @@ namespace Loffers.Server.Controllers
         {
             try
             {
-                var result = await service.SaveLocation(publisher, UserId);
+                var result = await service.SaveLocation<object>(publisher, UserId);
                 return Ok(new HttpResult(result));
             }
             catch (PublisherNotFoundException ex)

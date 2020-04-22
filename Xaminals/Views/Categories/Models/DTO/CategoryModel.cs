@@ -5,7 +5,13 @@ namespace Xaminals.Views.Categories.Models.DTO
     public class CategoryModel : NotificableObject
     {
         public string Id { get; set; }
-        public string Name { get; set; }
+        
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value;OnPropertyChanged("Name"); }
+        }
 
         private bool _selected;
         public bool Selected
@@ -14,7 +20,13 @@ namespace Xaminals.Views.Categories.Models.DTO
             set { _selected = value; OnPropertyChanged("Selected"); }
         }
 
-        public string Image { get; set; }
+        private string _Image;
+        public string Image
+        {
+            get { return _Image; }
+            set { _Image = value; }
+        }
+
         public string ParentId { get; set; }
         public bool IsParent { get { return string.IsNullOrEmpty(ParentId); } }
     }

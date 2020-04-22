@@ -12,13 +12,19 @@
     <ContentPage.BindingContext>
         <local:OfferViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveOfferCommand}"/>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout StyleClass="parentContainer">
                 <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
                 <StackLayout>
-                    <SearchBar Placeholder="What you want to exchaup." Focused="OnListToGetsFocus" />
-                    <OffeControls:SelectedCategory>
+                    <Label  StyleClass="SectionHeadingStyle" Text="General"/>
+                    <Label StyleClass="formLabel" Text="What thing do you want to exchange or giveaway:"/>
+                    <Entry Placeholder="Select from list." Focused="OnListToGetsFocus" />
+                    <OffeControls:SelectedCategory x:Name="selectedItem" BindingContext="{Binding Category}">
                         <OffeControls:SelectedCategory.Triggers>
                             <DataTrigger TargetType="OffeControls:SelectedCategory" Binding="{Binding Selected}" Value="true">
                                 <Setter Property="IsVisible" Value="True"/>
@@ -27,13 +33,7 @@
                                 <Setter Property="IsVisible" Value="False"/>
                             </DataTrigger>
                         </OffeControls:SelectedCategory.Triggers>
-                        <OffeControls:SelectedCategory.BindingContext>
-                            <categoryModel:CategoryModel />
-                        </OffeControls:SelectedCategory.BindingContext>
                     </OffeControls:SelectedCategory>
-                    <Label Text="I am giving it up." />
-                    <Label Text="Turn on if you are listing this and expecting nothing in return." StyleClass="DimText" />
-                    <Switch IsToggled="{Binding IsGiveUp}" HorizontalOptions="StartAndExpand" />
                     <StackLayout>
                         <StackLayout.Triggers>
                             <DataTrigger TargetType="StackLayout" Binding="{Binding IsGiveUp}" Value="true">
@@ -43,8 +43,8 @@
                                 <Setter Property="IsVisible" Value="True"/>
                             </DataTrigger>
                         </StackLayout.Triggers>
-                        <Label Text="What you want to exchange with(You can select multiple options.)" />
-                        <SearchBar Placeholder="Search items you want exchange with" Focused="OnExchangeWithGetsFocus"/>
+                        <Label Text="What you want exchange with:(Don't selected anything if you are giving it up)" StyleClass="formLabel" />
+                        <Entry Placeholder="Select one or multiple from the list." Focused="OnExchangeWithGetsFocus"/>
                         <ScrollView Orientation="Horizontal">
                             <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                 <BindableLayout.ItemTemplate>
@@ -57,12 +57,14 @@
                             </StackLayout>
                         </ScrollView>
                     </StackLayout>
-                    <Entry Text="{Binding Heading.Value}" Placeholder="Enter heading" />
-                    <Editor Text="{Binding Detail.Value}" Placeholder="Optional: detail." />
-                    <Label Text="{Binding Detail.Errors[0]}" StyleClass="validationError" />
-                    <Editor Text="{Binding Terms.Value}" Placeholder="Instructions(like how old, brand etc.)" />
-                    <Label Text="{Binding Terms.Errors[0]}" />
-                    <Label StyleClass="DimText" Text="Immediately available" />
+                    <Label  StyleClass="SectionHeadingStyle" Text="Detail"/>
+                    <Label Text="Enter an easy and short title of this ad:" StyleClass="formLabel" />
+                    <Entry Text="{Binding Heading.Value}" Placeholder="Title" />
+                    <Label Text="Enter an optional detail of this ad(Like brand or age):" StyleClass="formLabel" />
+                    <Editor Text="{Binding Detail.Value}" Placeholder="Detail" />
+                    <Label Text="Enter optional instructions if any:" StyleClass="formLabel" />
+                    <Editor Text="{Binding Terms.Value}" Placeholder="Detail" />
+                    <Label Text="The date this is available from(Keep it ticked if available from now):" StyleClass="formLabel" />
                     <Switch IsToggled="{Binding ImmediatelyAvailable}" HorizontalOptions="StartAndExpand" />
                     <StackLayout>
                         <StackLayout.Triggers>
@@ -73,9 +75,8 @@
                                 <Setter Property="IsVisible" Value="True"/>
                             </DataTrigger>
                         </StackLayout.Triggers>
-                        <Label StyleClass="DimText" Text="Date is available from:" />
+                        <Label StyleClass="formLabel" Text="Select the date it is available from:" />
                         <DatePicker Date="{Binding ValidFrom.Value}" />
-                        <Label Text="{Binding ValidFrom.Errors[0]}" StyleClass="validationError"/>
                     </StackLayout>
                     <AbsoluteLayout BackgroundColor="Transparent" Grid.Row="1" Grid.ColumnSpan="2">
                         <Frame CornerRadius="100" AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" HeightRequest="400" WidthRequest="400" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True">
@@ -83,8 +84,6 @@
                         </Frame>
                         <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>
-                    <Button Text="Save" Command="{Binding SaveOfferCommand}" StyleClass="primaryButton" />
-                    <Button Text="Cancel" Command="{Binding CancelCommand}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

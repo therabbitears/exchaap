@@ -1,8 +1,10 @@
 ﻿using loffers.api.Models.Generator;
 using Loffers.Server.Data;
 using Loffers.Server.Errors;
+using Loffers.Server.ViewModels;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +26,7 @@ namespace Loffers.Server.Services
         {
             var offerresult = context.Offers.Add(offer);
             context.Entry(offer.Publishers).State = EntityState.Unchanged;
+            context.Entry(offer.Categories).State = EntityState.Unchanged;
 
             if (offer.OfferCategories != null)
             {
@@ -63,16 +66,36 @@ namespace Loffers.Server.Services
         public async Task<object> Create(OfferModel model, string token)
         {
             var publisherForUser = await publisherService.GetPublisherForUser(token);
-            var locations = model.OfferLocations.Select(c => new OfferLocations() { }).ToList();
-            int index = 0;
-            foreach (var location in model.OfferLocations)
+            List<OfferLocations> locations = new List<OfferLocations>();
+            if (string.IsNullOrEmpty(model.OfferLocation.Id))
             {
-                locations[index].PublisherLocations = await publisherService.GetOneLocation(location.Id);
-                index++;
+                var publisherLocation = await new PublisherService(context).SaveLocation<PublisherLocationViewModel>(new ViewModels.PublisherLocationViewModel()
+                {
+                    DisplayAddress = model.OfferLocation.DisplayAddress,
+                    Lat = model.OfferLocation.Lat,
+                    Long = model.OfferLocation.Long,
+                    Name = model.OfferLocation.Name
+                }, token);
+
+
+
+                var offerLocations = new OfferLocations()
+                {
+                    Active = true,
+                    CreatedBy = token,
+                    CreatedOn = DateTime.UtcNow,
+                    LastEditedOn = DateTime.UtcNow,
+                    LastEditedBy = token,
+                    PublisherLocations = await context.PublisherLocations.FirstOrDefaultAsync(c => c.Id == publisherLocation.Id)
+                };
+
+                context.Entry(offerLocations.PublisherLocations).State = EntityState.Unchanged;
+                locations.Add(offerLocations);
             }
 
             var offer = new Offers()
             {
+                Categories = await context.Categories.FirstOrDefaultAsync(c => c.Id == model.Category.Id),
                 Active = true,
                 CreatedBy = token,
                 CreatedOn = DateTime.Now,
@@ -81,8 +104,7 @@ namespace Loffers.Server.Services
                 OfferDescription = model.Detail,
                 OfferHeadline = model.Heading,
                 TermsAndConditions = model.Terms,
-                ValidFrom = model.ValidFrom.Value,
-                ValidTill = model.ValidTo.Value,
+                ValidFrom = model.ValidFrom != null ? model.ValidFrom.Value : DateTime.UtcNow,
                 Image = model.Image,
                 Publishers = publisherForUser,
                 Id = Guid.NewGuid().ToString(),
@@ -127,6 +149,7 @@ namespace Loffers.Server.Services
                                                 offer.ValidFrom,
                                                 offer.ValidTill,
                                                 offer.OfferCategories,
+                                                offer.Categories,
                                                 offer.OfferID,
                                                 Starred = string.IsNullOrEmpty(token) ? false : context.UserStarredOffers.Any(c => c.OfferId == offer.OfferID && c.OfferLocationID == location.OfferLocationID && c.UserId == token && c.Active)
                                             })
@@ -147,6 +170,7 @@ namespace Loffers.Server.Services
                                             d.ValidFrom,
                                             d.ValidTill,
                                             Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id }),
+                                            Category = new { d.Categories.Id, d.Categories.Image, d.Categories.Name },
                                             Coordinates = new { d.Lat, d.Long },
                                             Distance = new CoordinatesDistance()
                                             {
@@ -395,22 +419,22 @@ namespace Loffers.Server.Services
                 }
             }
 
-            if (offer.OfferLocations != null && offer.OfferLocations.Any())
-            {
-                foreach (var item in offer.OfferLocations)
-                {
-                    var newlyAdded = new OfferLocations();
-                    newlyAdded.CreatedBy = token;
-                    newlyAdded.CreatedOn = DateTime.Now;
-                    newlyAdded.LastEditedBy = token;
-                    newlyAdded.LastEditedOn = DateTime.Now;
-                    newlyAdded.Offers = offerresult;
-                    newlyAdded.PublisherLocations = await context.PublisherLocations.Include(c => c.Locations).FirstOrDefaultAsync(c => c.Id == item.Id);
-                    context.Entry(newlyAdded.PublisherLocations).State = EntityState.Unchanged;
-                    context.Entry(newlyAdded.PublisherLocations.Locations).State = EntityState.Unchanged;
-                    newlyAdded.Active = true;
-                }
-            }
+            //if (offer.OfferLocations != null && offer.OfferLocations.Any())
+            //{
+            //    foreach (var item in offer.OfferLocations)
+            //    {
+            //        var newlyAdded = new OfferLocations();
+            //        newlyAdded.CreatedBy = token;
+            //        newlyAdded.CreatedOn = DateTime.Now;
+            //        newlyAdded.LastEditedBy = token;
+            //        newlyAdded.LastEditedOn = DateTime.Now;
+            //        newlyAdded.Offers = offerresult;
+            //        newlyAdded.PublisherLocations = await context.PublisherLocations.Include(c => c.Locations).FirstOrDefaultAsync(c => c.Id == item.Id);
+            //        context.Entry(newlyAdded.PublisherLocations).State = EntityState.Unchanged;
+            //        context.Entry(newlyAdded.PublisherLocations.Locations).State = EntityState.Unchanged;
+            //        newlyAdded.Active = true;
+            //    }
+            //}
 
             await context.SaveChangesAsync();
             return new { offer.Id, offer.Heading };

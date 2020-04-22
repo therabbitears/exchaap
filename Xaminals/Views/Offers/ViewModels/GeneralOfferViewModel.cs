@@ -91,15 +91,15 @@ namespace Xaminals.Views.Offers.ViewModels
             set { _SubPublisherLogo = value; OnPropertyChanged("SubPublisherLogo"); }
         }
 
-        private DateTime _ValidFrom;
-        public DateTime ValidFrom
+        private DateTime? _ValidFrom;
+        public DateTime? ValidFrom
         {
             get { return _ValidFrom; }
             set { _ValidFrom = value; OnPropertyChanged("ValidFrom"); }
         }
 
-        private DateTime _ValidTill;
-        public DateTime ValidTill
+        private DateTime? _ValidTill;
+        public DateTime? ValidTill
         {
             get { return _ValidTill; }
             set { _ValidTill = value; OnPropertyChanged("ValidTill"); }

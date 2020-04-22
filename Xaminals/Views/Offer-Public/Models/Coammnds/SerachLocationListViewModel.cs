@@ -35,7 +35,10 @@ namespace exchaup.Views.Offer_Public.Models
                 Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;
                 Context.SettingsModel.SelectedLocation.Long = selectedItem.Long;
                 Context.SettingsModel.SelectedLocation.Lat = selectedItem.Lat;
-                await AddLocation(selectedItem);
+                if (!selectedItem.IsCurrent)
+                {
+                    await AddLocation(selectedItem);
+                }
                 await Shell.Current.Navigation.PopAsync(true);
             }
             catch (Exception ex)

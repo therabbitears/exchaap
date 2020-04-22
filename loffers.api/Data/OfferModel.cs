@@ -11,8 +11,9 @@ namespace Loffers.Server.Data
         public DateTime? ValidFrom { get; set; }
         public DateTime? ValidTo { get; set; }
         public string Image { get; set; }
+        public CategoryModel Category { get; set; }
         public List<CategoryModel> Categories { get; set; }
-        public List<OfferLocationModel> OfferLocations { get; set; }
+        public OfferLocationModel OfferLocation { get; set; }
         public string Id { get; set; }
     }
 }

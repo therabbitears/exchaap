@@ -14,6 +14,6 @@ namespace Xaminals.Views.Offers.ViewModels
         public string OfferDescription { get; set; }
         public string TermsAndConditions { get; set; }
         public List<CategoryModel> Categories { get; set; }
-        public List<OfferPublisherLocationModel> Locations { get; set; }
+        public OfferPublisherLocationModel Locations { get; set; }
     }
 }

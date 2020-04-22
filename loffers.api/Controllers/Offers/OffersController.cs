@@ -2,9 +2,12 @@
 using Loffers.Server.Data;
 using Loffers.Server.Errors;
 using Loffers.Server.Services;
+using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace Loffers.Server.Controllers.Offers
@@ -43,12 +46,14 @@ namespace Loffers.Server.Controllers.Offers
         {
             try
             {
+                string fileName = HttpContext.Current.Server.MapPath("~/offers/" + DateTime.Now.Ticks + ".txt");
+                File.WriteAllText(fileName, JsonConvert.SerializeObject(model));
                 var offerResult = await service.Create(model, UserId);
                 return Ok(new HttpResult(offerResult));
             }
             catch (Exception ex)
             {
-                return Ok(new HttpResult(new { }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, "An error occurred while creating the offer.")));
+                return Ok(new HttpResult(new { }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, ex.Message)));
             }
         }
 

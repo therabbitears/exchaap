@@ -4,7 +4,7 @@
     {
         //public const string baseUrl = "http://localhost:1234/";
         public const string baseUrl = "https://exchaup.sklative.com/";
-        //public const string baseUrl = "http://localhost:64223/";
+        //public const string baseUrl = "http://localhost:64224/";
 
 
         public const string CreateUrl = "api/account/register";

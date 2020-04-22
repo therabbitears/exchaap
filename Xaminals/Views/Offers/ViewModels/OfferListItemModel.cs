@@ -24,8 +24,9 @@ namespace Xaminals.Views.Offers.ViewModels
         public string LocationName { get; set; }
         public string LocationAddress { get; set; }
         public string SubPublisherLogo { get; set; }
-        public DateTime ValidFrom { get; set; }
-        public DateTime ValidTill { get; set; }
+        public DateTime? ValidFrom { get; set; }
+        public DateTime? ValidTill { get; set; }
+        public CategoryModel Category { get; set; }
         public List<CategoryModel> Categories { get; set; }
         public Coordinates Coordinates { get; set; }
         public CoordinatesDistance Distance { get; set; }

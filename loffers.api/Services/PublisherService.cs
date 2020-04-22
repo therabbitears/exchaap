@@ -43,7 +43,7 @@ namespace Loffers.Server.Services
             }).ToListAsync();
         }
 
-        public async Task<object> SaveLocation(PublisherLocationViewModel publisher, string token)
+        public async Task<PublisherLocationViewModel> SaveLocation<T>(PublisherLocationViewModel publisher, string token)
         {
             var publisherForUser = await GetPublisherForUser(token);
             if (publisherForUser != null)
@@ -74,7 +74,8 @@ namespace Loffers.Server.Services
                 context.Entry(publisherLocations.Publishers).State = EntityState.Unchanged;
                 context.PublisherLocations.Add(publisherLocations);
                 await context.SaveChangesAsync();
-                return new { publisher = publisherForUser.Id, location = publisherLocations.Id };
+                publisher.Id = publisherLocations.Id;
+                return publisher;
             }
 
             throw new PublisherNotFoundException();
