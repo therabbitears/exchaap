@@ -35,14 +35,6 @@
                         </OffeControls:SelectedCategory.Triggers>
                     </OffeControls:SelectedCategory>
                     <StackLayout>
-                        <StackLayout.Triggers>
-                            <DataTrigger TargetType="StackLayout" Binding="{Binding IsGiveUp}" Value="true">
-                                <Setter Property="IsVisible" Value="False"/>
-                            </DataTrigger>
-                            <DataTrigger TargetType="StackLayout" Binding="{Binding IsGiveUp}" Value="false">
-                                <Setter Property="IsVisible" Value="True"/>
-                            </DataTrigger>
-                        </StackLayout.Triggers>
                         <Label Text="What you want exchange with:(Don't selected anything if you are giving it up)" StyleClass="formLabel" />
                         <Entry Placeholder="Select one or multiple from the list." Focused="OnExchangeWithGetsFocus"/>
                         <ScrollView Orientation="Horizontal">
