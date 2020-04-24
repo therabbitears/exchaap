@@ -490,7 +490,7 @@ namespace Loffers.Server.Services
                     c.CreatedOn,
                     c.Id,
                     Category = new { c.Categories.Id, c.Categories.Name, c.Categories.Image },
-                    Categories = c.OfferCategories.Select(d => new { d.Categories.Id, d.Categories.Name, Image = c.Image }),
+                    Categories = c.OfferCategories.Select(d => new { d.Categories.Id, d.Categories.Name, d.Categories.Image }),
                     Locations = c.OfferLocations.Select(d => new { d.PublisherLocations.Id, d.PublisherLocations.Locations.Name }).FirstOrDefault()
                 }).Where(c => c.CreatedBy == token).ToListAsync();
         }
