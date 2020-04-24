@@ -116,6 +116,11 @@
                        VerticalOptions="End" />
             </Grid>
         </DataTemplate>
+        <ControlTemplate x:Key="Indicator">
+            <StackLayout>
+                <Label Text="Hye"/>
+            </StackLayout>
+        </ControlTemplate>
         <DataTemplate x:Key="OfferPublicTemplate">
             <ViewCell>
                 <Grid BackgroundColor="White" StyleClass="offerItem" x:Name="OfferItem">

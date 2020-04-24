@@ -1,4 +1,5 @@
-﻿using exchaup.Views.Offer_Public.Models;
+﻿using exchaup.Models;
+using exchaup.Views.Offer_Public.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,11 @@ namespace Xaminals.Data.Database
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(SearchLocationItemViewModel)).ConfigureAwait(false);
                 }
 
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(ApplicationStateModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(ApplicationStateModel)).ConfigureAwait(false);
+                }
+
                 initialized = true;
             }
         }
@@ -85,6 +91,16 @@ namespace Xaminals.Data.Database
         public Task<SearchLocationItemViewModel> FindSingle(SearchLocationItemViewModel item)
         {
             return Database.Table<SearchLocationItemViewModel>().Where(c => c.Name == item.Name && c.Lat == item.Lat && c.Long == item.Long).FirstOrDefaultAsync();
+        }
+
+        public Task<ApplicationStateModel> FindLastState()
+        {
+            return Database.Table<ApplicationStateModel>().FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveLastState(ApplicationStateModel item)
+        {
+            return Database.InsertAsync(item);
         }
 
         public Task<int> SaveLocationAsync(SearchLocationItemViewModel item)

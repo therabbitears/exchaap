@@ -17,8 +17,8 @@ namespace exchaup.Views.Common
         {
             if (this.BindingContext is CategorySelectionViewModel context)
             {
-                context.MultiSelection = multiSelection;
                 context.SelectInto = category;
+                context.MultiSelection = multiSelection;
             }
         }
     }

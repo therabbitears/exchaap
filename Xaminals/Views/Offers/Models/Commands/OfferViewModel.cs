@@ -172,9 +172,7 @@ namespace Xaminals.Views.Offers.Models
                         Id
                     };
 
-
                     var result = !string.IsNullOrEmpty(this.Id) ? await service.UpdateOffer<HttpResult<object>>(objectToSend) : await service.CreateOffer<HttpResult<object>>(objectToSend);
-
                     if (!result.IsError)
                     {
                         await ExecuteCancelCommand();

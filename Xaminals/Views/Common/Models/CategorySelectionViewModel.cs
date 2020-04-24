@@ -40,7 +40,11 @@ namespace exchaup.Views.Common.Models
         public bool MultiSelection
         {
             get { return _MultiSelection; }
-            set { SetProperty(ref _MultiSelection, value); }
+            set
+            {
+                SetProperty(ref _MultiSelection, value);
+                // ItemSelectionCommand.Execute(new CategoryModel() { Id = "adsd-dasd-dsad-dsad--dasd-dasd-", Image = "https://us.v-cdn.net/5019960/uploads/userpics/113/n3Z7GA6I9VNTC.png", Name = "Dumped", Selected = true });
+            }
         }
 
         private ICategorySelectable _SelectInto;

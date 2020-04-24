@@ -24,7 +24,7 @@ namespace exchaup.Views.Common.Models
             LoadItemsCommand = new Command(async (object sender) => await ExecuteLoadItemsCommand(sender));
             ExrecuteQueryCommand = new Command(async () => await ExecuteQuery());
             ItemSelectionCommand = new Command(async (object sender) => await ExecuteItemSelectionCommand(sender));
-            RaiseOkCommand = new Command(async (object sender) => await ExecuteRaiseOkCommand(sender));
+            RaiseOkCommand = new Command(async (object sender) => await ExecuteRaiseOkCommand(sender));            
             LoadItemsCommand.Execute(null);
         }
 
@@ -72,6 +72,7 @@ namespace exchaup.Views.Common.Models
             }
             catch (Exception ex)
             {
+                await RaiseError(ex.Message);
                 Debug.WriteLine(ex.Message);
             }
         }

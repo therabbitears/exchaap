@@ -7,7 +7,6 @@
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offers.Offer"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
-             xmlns:categoryModel="clr-namespace:Xaminals.Views.Categories.Models.DTO"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:OfferViewModel />
@@ -23,20 +22,13 @@
                 <StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="General"/>
                     <Label StyleClass="formLabel" Text="What thing do you want to exchange or giveaway:"/>
-                    <Entry Placeholder="Select from list." Focused="OnListToGetsFocus" />
-                    <OffeControls:SelectedCategory x:Name="selectedItem" BindingContext="{Binding Category}">
-                        <OffeControls:SelectedCategory.Triggers>
-                            <DataTrigger TargetType="OffeControls:SelectedCategory" Binding="{Binding Selected}" Value="true">
-                                <Setter Property="IsVisible" Value="True"/>
-                            </DataTrigger>
-                            <DataTrigger TargetType="OffeControls:SelectedCategory" Binding="{Binding Selected}" Value="false">
-                                <Setter Property="IsVisible" Value="False"/>
-                            </DataTrigger>
-                        </OffeControls:SelectedCategory.Triggers>
-                    </OffeControls:SelectedCategory>
+                    <SearchBar Placeholder="Select from list." Focused="OnListToGetsFocus" Text="{Binding Category.Name}" BackgroundColor="Red" />
+                    <StackLayout IsVisible="{Binding Category.Selected}">
+                        <OffeControls:SelectedCategory x:Name="selectedItem" BindingContext="{Binding Category}" />
+                    </StackLayout>
                     <StackLayout>
                         <Label Text="What you want exchange with:(Don't selected anything if you are giving it up)" StyleClass="formLabel" />
-                        <Entry Placeholder="Select one or multiple from the list." Focused="OnExchangeWithGetsFocus"/>
+                        <SearchBar Placeholder="Select one or multiple from the list." Focused="OnExchangeWithGetsFocus"/>
                         <ScrollView Orientation="Horizontal">
                             <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                 <BindableLayout.ItemTemplate>

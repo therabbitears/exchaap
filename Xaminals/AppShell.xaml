@@ -5,7 +5,8 @@
        xmlns:local="clr-namespace:Xaminals.Models"
        xmlns:common="clr-namespace:exchaup.Views.Common"       
        xmlns:settingsview="clr-namespace:Xaminals.Views.Settings"  
-        xmlns:vsettingsview="clr-namespace:Loffers.Views.Settings"  
+       xmlns:vsettingsview="clr-namespace:Loffers.Views.Settings"  
+       xmlns:homeViews="clr-namespace:exchaup.Views.Home"
        xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
        xmlns:starredview="clr-namespace:Xaminals.Views.Starred"  
        xmlns:chatview="clr-namespace:Loffers.Views.Chat"  
@@ -78,7 +79,7 @@
             </Tab.Icon>
             <ShellContent Route="starred"
                       Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate starredview:Starred}" />
+                      ContentTemplate="{DataTemplate homeViews:StartupCarousel}" />
         </Tab>
         <Tab Title="Chats" x:Name="tabChats">
             <Tab.Icon>

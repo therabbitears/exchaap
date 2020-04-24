@@ -95,7 +95,7 @@ namespace Xaminals.Views.Offers.Models
             _categories = new ObservableCollection<CategoryModel>();
             _location = new OfferPublisherLocationModel();
             //categoryModel = new CategoryModel() { Selected = true, Name = "Mobile" };
-            categoryModel = new CategoryModel();
+            Category = new CategoryModel();
             this.Title = "Offer";
         }
 
@@ -127,7 +127,7 @@ namespace Xaminals.Views.Offers.Models
         public OfferPublisherLocationModel Location
         {
             get
-            {
+                               {
                 return _location;
             }
             set

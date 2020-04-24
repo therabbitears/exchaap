@@ -40,7 +40,7 @@ namespace Xaminals.UWP
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
-                Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental", "Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "UseLegacyRenderers", "VerifyShellUWPFlagEnabled");
+                Xamarin.Forms.Forms.SetFlags("Shell_UWP_Experimental", "Shell_Experimental", "Visual_Experimental", "CollectionView_Experimental", "UseLegacyRenderers", "VerifyShellUWPFlagEnabled", "IndicatorView_Experimental", "CarouselView_Experimental");
 
                 var assembliesToInclude = new[] { typeof(Xamarin.Forms.Maps.UWP.MapRenderer).GetTypeInfo().Assembly };
                 Rg.Plugins.Popup.Popup.Init();

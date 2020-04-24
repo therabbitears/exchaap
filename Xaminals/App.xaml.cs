@@ -1,4 +1,6 @@
-﻿using Loffers.GlobalViewModel;
+﻿using exchaup.Models;
+using exchaup.Views.Home;
+using Loffers.GlobalViewModel;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,7 +23,16 @@ namespace Xaminals
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            if (Database.FindLastState().Result == null)
+            {
+                Database.SaveLastState(new ApplicationStateModel() { SkipIntro = true });
+                MainPage = new StartupCarousel();                
+                return;
+            }
+            else
+            {
+                MainPage = new AppShell();
+            }
         }
 
         protected override void OnStart()
