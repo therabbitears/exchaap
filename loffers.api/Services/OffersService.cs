@@ -446,7 +446,7 @@ namespace Loffers.Server.Services
             {
                 if (context.Offers.Any(c => c.CreatedBy == token))
                 {
-                    var offer = await context.Offers.FirstOrDefaultAsync(c => c.Id == id);
+                    var offer = await context.Offers.Include(c => c.Categories).FirstOrDefaultAsync(c => c.Id == id);
                     var offerObject = new
                     {
                         offer.OfferHeadline,
@@ -459,30 +459,10 @@ namespace Loffers.Server.Services
                         offer.ValidTill,
                         offer.Active,
                         offer.Id,
-                        Locations = await context.PublisherLocations.Include(c => c.Locations).Where(c => c.PublisherID == offer.PublisherID).Select(c => new OfferLocationModel { Id = c.Id, Name = c.Locations.Name, Selected = false }).ToListAsync(),
-                        Categories = await context.Categories.Select(c => new OfferCategoryModel { Id = c.Id, Name = c.Name, Selected = false }).ToListAsync()
+                        Category = new { offer.Categories.Id, offer.Categories.Name, offer.Categories.Image },
+                        Locations = await context.PublisherLocations.Include(c => c.Locations).Where(c => c.PublisherID == offer.PublisherID).Select(c => new OfferLocationModel { Id = c.Id, Name = c.Locations.Name, Selected = false }).FirstOrDefaultAsync(),
+                        Categories = await context.Categories.Select(c => new OfferCategoryModel { Id = c.Id, Name = c.Name, Selected = false, Image = c.Image }).ToListAsync()
                     };
-
-                    var offerCategories = await context.OfferCategories.Include(c => c.Categories).Where(c => c.OfferID == offer.OfferID).ToListAsync();
-                    var offerLocations = await context.OfferLocations.Include(c => c.PublisherLocations).Include(c => c.PublisherLocations.Locations).Where(c => c.OfferID == offer.OfferID).Select(c => new { c.PublisherLocations.Id, c.PublisherLocations.Locations.Name, Selected = true }).ToListAsync();
-
-                    foreach (var item in offerCategories)
-                    {
-                        var categoryExist = offerObject.Categories.FirstOrDefault(c => c.Id == item.Categories.Id);
-                        if (categoryExist != null)
-                        {
-                            categoryExist.Selected = true;
-                        }
-                    }
-
-                    foreach (var item in offerLocations)
-                    {
-                        var categoryExist = offerObject.Locations.FirstOrDefault(c => c.Id == item.Id);
-                        if (categoryExist != null)
-                        {
-                            categoryExist.Selected = true;
-                        }
-                    }
 
                     return offerObject;
                 }
@@ -497,7 +477,7 @@ namespace Loffers.Server.Services
 
         public async Task<object> ForUser(string token)
         {
-            return await context.Offers.Include(c => c.OfferCategories).Include("OfferCategories.Categories")
+            return await context.Offers.Include(c => c.Categories).Include(c => c.OfferCategories).Include("OfferCategories.Categories")
                 .Include(c => c.OfferLocations).Include("OfferLocations.PublisherLocations").Include("OfferLocations.PublisherLocations.Locations").Select(c => new
                 {
                     c.OfferHeadline,
@@ -509,8 +489,9 @@ namespace Loffers.Server.Services
                     c.CreatedBy,
                     c.CreatedOn,
                     c.Id,
-                    Categories = c.OfferCategories.Select(d => new { d.Categories.Id, d.Categories.Name }),
-                    Locations = c.OfferLocations.Select(d => new { d.PublisherLocations.Id, d.PublisherLocations.Locations.Name })
+                    Category = new { c.Categories.Id, c.Categories.Name, c.Categories.Image },
+                    Categories = c.OfferCategories.Select(d => new { d.Categories.Id, d.Categories.Name, Image = c.Image }),
+                    Locations = c.OfferLocations.Select(d => new { d.PublisherLocations.Id, d.PublisherLocations.Locations.Name }).FirstOrDefault()
                 }).Where(c => c.CreatedBy == token).ToListAsync();
         }
     }

@@ -79,7 +79,7 @@
             </Tab.Icon>
             <ShellContent Route="starred"
                       Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate homeViews:StartupCarousel}" />
+                      ContentTemplate="{DataTemplate starredview:Starred}" />
         </Tab>
         <Tab Title="Chats" x:Name="tabChats">
             <Tab.Icon>

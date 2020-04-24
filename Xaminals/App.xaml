@@ -3,6 +3,7 @@
              x:Class="Xaminals.App"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:local="clr-namespace:Loffers.GlobalViewModel">
 
     <Application.Resources>
@@ -143,7 +144,13 @@
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
 
-                            <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="{Binding ValidTill, Converter={StaticResource cnvDateTimeConverter}}" StyleClass="expiryTag, primaryBackground"/>
+                            <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" StyleClass="expiryTag, primaryBackground" IsVisible="False">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Categories.Count}" Value="0">
+                                        <Setter Property="IsVisible" Value="True"/>
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
                         </StackLayout>
                     </ContentView>
                     <StackLayout Grid.Column="1" Grid.Row="0">
@@ -154,19 +161,17 @@
                         <StackLayout>
                             <Label  Text="{Binding Detail}" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
                         </StackLayout>
-                        <StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Grid.Row="0" Grid.Column="0"  Aspect="AspectFit" 
-                                       HorizontalOptions="Center" 
-                                       VerticalOptions="End" 
-                                       HeightRequest="20" 
-                                       WidthRequest="20"
-                                       BackgroundColor="Transparent" Source="{Binding PublisherLogo}" />
-                                <Label Text="{Binding PublisherName}"  StyleClass="publisherName, primaryColorText" Grid.Row="0" Grid.Column="1"  />
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf3c5;" StyleClass="primaryColorText, gylypLabel" />
-                                <Label Text="{Binding LocationAddress}" StyleClass="BusinessLocation" LineBreakMode="TailTruncation" MaxLines="2" />
+                        <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" />
+
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <OffeControls:SelectedCategory />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
                             </StackLayout>
                         </StackLayout>
                     </StackLayout>

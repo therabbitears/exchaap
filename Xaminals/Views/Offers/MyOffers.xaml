@@ -8,6 +8,7 @@
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offers.MyOffers"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:MyOffersListViewModel />
@@ -72,17 +73,21 @@
                                         <Label  Text="{Binding OfferDescription}" StyleClass="OfferSubHeading"/>
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout Grid.Row="1" Grid.Column="1">
+                                <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" />
+                                <StackLayout Grid.Row="2" Grid.Column="1">
+                                    <Label  StyleClass="DimText" Text="{Binding ValidFrom, StringFormat='Available from: {0}'}" />
                                     <StackLayout Orientation="Horizontal">
-                                        <Label  StyleClass="DimText" Text="{Binding ValidFrom, StringFormat='Applicable from: {0}'}" />
-                                        <Label  StyleClass="DimText" Text="{Binding ValidTill, StringFormat='Applicable until: {0}'}" />
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label  StyleClass="DimText" Text="{Binding Categories,Converter={StaticResource cnvListToCountConverter}, StringFormat='{0} categories'}" />
-                                        <Label  StyleClass="DimText" Text="{Binding Locations, Converter={StaticResource cnvListToCountConverter}, StringFormat='{0} locations'}" />
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout>
+                                                        <OffeControls:SelectedCategory />
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
-
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
