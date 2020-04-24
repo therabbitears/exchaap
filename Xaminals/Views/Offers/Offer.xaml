@@ -22,7 +22,7 @@
                 <StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="General"/>
                     <Label StyleClass="formLabel" Text="What thing do you want to exchange or giveaway:"/>
-                    <SearchBar Placeholder="Select from list." Focused="OnListToGetsFocus" Text="{Binding Category.Name}" BackgroundColor="Red" />
+                    <SearchBar Placeholder="Select from list." Focused="OnListToGetsFocus" Text="{Binding Category.Name}" Margin="0"/>
                     <StackLayout IsVisible="{Binding Category.Selected}">
                         <OffeControls:SelectedCategory x:Name="selectedItem" BindingContext="{Binding Category}" />
                     </StackLayout>
