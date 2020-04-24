@@ -19,6 +19,13 @@ namespace exchaup.Views.Offer_Public.Models
             set { _saved = value; }
         }
 
+        private string _Query;
+        public string Query
+        {
+            get { return _Query; }
+            set { SetProperty(ref _Query, value); }
+        }
+
         protected override void IntializeMembers()
         {
             base.IntializeMembers();

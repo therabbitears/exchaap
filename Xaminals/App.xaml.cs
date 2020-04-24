@@ -23,8 +23,8 @@ namespace Xaminals
         public App()
         {
             InitializeComponent();
-
-            if (Database.FindLastState().Result == null)
+            LastState = Database.FindLastState().Result;
+            if (LastState == null)
             {
                 MainPage = new StartupCarousel();                
             }
@@ -90,5 +90,7 @@ namespace Xaminals
 
         public static Color BaseThemeColor { get { return Color.FromHex("#D00000"); } }
         public static Color BaseThemeSecondaryColor { get { return Color.FromHex("#cf4848"); } }
+
+        public static ApplicationStateModel LastState { get; set; }
     }
 }

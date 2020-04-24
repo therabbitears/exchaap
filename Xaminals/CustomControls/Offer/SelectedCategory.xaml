@@ -6,10 +6,10 @@
              mc:Ignorable="d"
              x:Class="exchaup.CustomControls.Offer.SelectedCategory">
   <ContentView.Content>
-        <Frame Margin="5" Padding="8" BackgroundColor="#f2f2f2" CornerRadius="10">
+        <Frame Margin="5" Padding="4,4" CornerRadius="10" BackgroundColor="#f2f2f2" x:Name="parent">
             <StackLayout Orientation="Horizontal">
-                <Image Source="{Binding Image}" WidthRequest="15" HeightRequest="15" Margin="2"/>
-                <Label Text="{Binding Name}" />
+                <Image Source="{Binding Image}" WidthRequest="15" HeightRequest="15" Margin="1,0"/>
+                <Label Text="{Binding Name}" StyleClass="DimText, MediumText"/>
             </StackLayout>
         </Frame>
     </ContentView.Content>

@@ -71,7 +71,21 @@ namespace Xaminals.ViewModels.Settings
         {
             base.IntializeMembers();
             this.Title = "Settings";
-            this.SelectedLocation = new SearchLocationItemViewModel() { Landmark = "Current location", Lat = 0, Long = 0, Name = "Current location", IsCurrent = true };
+            if (App.LastState != null && !string.IsNullOrEmpty(App.LastState.LastLocationName))
+            {
+                this.SelectedLocation = new SearchLocationItemViewModel()
+                {
+                    Landmark = App.LastState.LastLocationName,
+                    Lat = App.LastState.Lat,
+                    Long = App.LastState.Long,
+                    Name = App.LastState.LastLocationName,
+                    IsCurrent = !App.LastState.CustomLocation
+                };
+            }
+            else
+            {
+                this.SelectedLocation = new SearchLocationItemViewModel() { Landmark = "Current location", Lat = 0, Long = 0, Name = "Current location", IsCurrent = true };
+            }
         }
 
         private bool _useCurrentLocation = true;

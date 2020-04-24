@@ -7,44 +7,48 @@
              x:Class="exchaup.Views.Offer_Public.SearchLocation"
              xmlns:controls="clr-namespace:exchaup.CustomControls.SearchHandlers"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
-             xmlns:local="clr-namespace:exchaup.Views.Offer_Public.Models">
+             xmlns:local="clr-namespace:exchaup.Views.Offer_Public.Models"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup">
 
     <ContentPage.BindingContext>
         <local:SerachLocationListViewModel />
     </ContentPage.BindingContext>
     <Shell.SearchHandler>
-        <controls:LocationSearchHandler Placeholder="Enter search term" x:Name="searchHandler"
+        <controls:LocationSearchHandler 
+                                      Placeholder="Enter search term" 
+                                      x:Name="searchHandler"
                                       ItemsSource="{Binding Locations}"
-                                      Command="{Binding SearchCommand}"
                                       ItemTemplate="{StaticResource AnimalSearchTemplate}"
-                                      CommandParameter="{Binding Source={x:Reference searchHandler}, Path=Query}"
                                       OnTappedCommand="{Binding ItemSelectionCommand}"
-                                      />
+                                      Query="{Binding Query}" />
     </Shell.SearchHandler>
-    <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding Saved}" Margin="20"  SelectionMode="Single">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid Padding="10" x:Name="itemLocation">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText">
-                        <customControl:GlyphLabel.Triggers>
-                            <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="false">
-                                <Setter Property="Text" Value="&#xf1da;"/>
-                            </DataTrigger>
-                            <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="true">
-                                <Setter Property="Text" Value="&#xf14e;"/>
-                            </DataTrigger>
-                        </customControl:GlyphLabel.Triggers>
-                    </customControl:GlyphLabel>
-                    <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
-                </Grid>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <StackLayout>
+        <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
+        <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding Saved}" Margin="20"  SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" x:Name="itemLocation">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText">
+                            <customControl:GlyphLabel.Triggers>
+                                <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="false">
+                                    <Setter Property="Text" Value="&#xf1da;"/>
+                                </DataTrigger>
+                                <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="true">
+                                    <Setter Property="Text" Value="&#xf14e;"/>
+                                </DataTrigger>
+                            </customControl:GlyphLabel.Triggers>
+                        </customControl:GlyphLabel>
+                        <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

@@ -25,6 +25,18 @@ namespace exchaup.Views.Offer_Public.Models
             LoadExistingCommand.Execute(null);
         }
 
+        protected override void AddListeners()
+        {
+            base.AddListeners();
+            this.PropertyChanged += OnPropertyChanged;
+        }
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Query")
+                SearchCommand.Execute(Query);
+        }
+
         async Task ExecuteItemSelectionCommand(object sender)
         {
             var selectedItem = sender as SearchLocationItemViewModel;
@@ -39,12 +51,24 @@ namespace exchaup.Views.Offer_Public.Models
                 {
                     await AddLocation(selectedItem);
                 }
-                await Shell.Current.Navigation.PopAsync(true);
+                await Database.DeleteStates();
+                var newState = new exchaup.Models.ApplicationStateModel()
+                {
+                    SkipIntro = true,
+                    CustomLocation = !selectedItem.IsCurrent,
+                    LastLocationName = selectedItem.Name,
+                    Long = selectedItem.Long,
+                    Lat = selectedItem.Lat
+                };
+                await Database.SaveLastState(newState);
             }
             catch (Exception ex)
             {
+                await RaiseError(ex.Message);
                 Debug.WriteLine(ex.Message);
             }
+
+            await Shell.Current.Navigation.PopAsync(true);
         }
 
         async Task ExecuteLoadExistingCommand(object sender)
@@ -59,7 +83,7 @@ namespace exchaup.Views.Offer_Public.Models
                     {
                         this.Saved.Add(item);
                     }
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -67,36 +91,46 @@ namespace exchaup.Views.Offer_Public.Models
             }
         }
 
-
+        string lastQuery = string.Empty;
         async Task ExecuteSearchCommand(object sender)
-        {            
-            IsBusy = true;
+        {
+            if (IsBusy)
+                return;
 
-            try
+            if (!string.IsNullOrEmpty(Query) && Query.Length > 2)
             {
-                var result = await new RestService().SearchLocations<HttpResult<List<SearchLocationItemViewModel>>>(sender.ToString());
-                if (!result.IsError)
-                {
-                    this.Locations.Clear();
+                lastQuery = Query;
+                IsBusy = true;
 
-                    foreach (var item in result.Result)
+                try
+                {
+                    var result = await new RestService().SearchLocations<HttpResult<List<SearchLocationItemViewModel>>>(Query);
+                    if (!result.IsError)
                     {
-                        this.Locations.Add(item);
+                        this.Locations.Clear();
+
+                        foreach (var item in result.Result)
+                        {
+                            this.Locations.Add(item);
+                        }
+                    }
+                    else
+                    {
+                        await RaiseError(result.Errors.First().Description);
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    await RaiseError(result.Errors.First().Description);
+                    Debug.WriteLine(ex);
+                    await RaiseError("An error occurred while searching for locations.");
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                await RaiseError("An error occurred while searching for locations.");
-            }
-            finally
-            {
-                IsBusy = false;
+                finally
+                {
+                    IsBusy = false;
+                }
+
+                if (lastQuery != Query)
+                    await ExecuteSearchCommand(Query);
             }
         }
 

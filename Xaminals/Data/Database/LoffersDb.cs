@@ -98,9 +98,19 @@ namespace Xaminals.Data.Database
             return Database.Table<ApplicationStateModel>().FirstOrDefaultAsync();
         }
 
+        public Task<int> DeleteStates()
+        {
+            return Database.DeleteAllAsync<ApplicationStateModel>();
+        }
+
         public Task<int> SaveLastState(ApplicationStateModel item)
         {
             return Database.InsertAsync(item);
+        }
+
+        public Task<int> UpdateLastState(ApplicationStateModel item)
+        {
+            return Database.UpdateAsync(item);
         }
 
         public Task<int> SaveLocationAsync(SearchLocationItemViewModel item)

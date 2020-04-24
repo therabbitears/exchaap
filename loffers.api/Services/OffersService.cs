@@ -169,7 +169,7 @@ namespace Loffers.Server.Services
                                             d.SubPublisherLogo,
                                             d.ValidFrom,
                                             d.ValidTill,
-                                            Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id }),
+                                            Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
                                             Category = new { d.Categories.Id, d.Categories.Image, d.Categories.Name },
                                             Coordinates = new { d.Lat, d.Long },
                                             Distance = new CoordinatesDistance()

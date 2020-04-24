@@ -131,15 +131,16 @@
                         <StackLayout>
                             <Label  Text="{Binding Detail}" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
                         </StackLayout>
-                        <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" />
-
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <OffeControls:SelectedCategory BindingContext="{Binding Category}" ShowColor="False" HorizontalOptions="Start" />
+                        </StackLayout>
                         <StackLayout Orientation="Horizontal">
                             <ScrollView Orientation="Horizontal">
                             <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
-                                        <StackLayout>
-                                            <OffeControls:SelectedCategory />
+                                         <StackLayout HorizontalOptions="Start">
+                                                <OffeControls:SelectedCategory />
                                         </StackLayout>
                                     </DataTemplate>
                                 </BindableLayout.ItemTemplate>
