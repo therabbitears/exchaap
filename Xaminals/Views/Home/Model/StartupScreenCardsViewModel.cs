@@ -21,21 +21,21 @@ namespace exchaup.Views.Home.Model
             {
                 Title = "Baboon",
                 Description = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
-                Image = "https://loffers.sklative.com/assets/icons/x-Small.png"
+                Image = "https://img.icons8.com/flat_round/4x/year-of-monkey.png"
             });
 
             this.Cards.Add(new StartupCardModel()
             {
                 Title = "Capuchin Monkey",
                 Description = "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
-                Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Capuchin_Costa_Rica.jpg/200px-Capuchin_Costa_Rica.jpg"
+                Image = "https://img.icons8.com/emoji/4x/monkey.png"
             });
 
             this.Cards.Add(new StartupCardModel()
             {
                 Title = "Blue Monkey",
                 Description = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
-                Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/BlueMonkey.jpg/220px-BlueMonkey.jpg"
+                Image = "https://img.icons8.com/officel/4x/gorilla.png"
             });
         }
     }

@@ -8,7 +8,7 @@ namespace Xaminals.CustomControls
     {
         #region Properties
 
-        public static readonly BindableProperty HasItems = BindableProperty.Create(
+        public static readonly BindableProperty AnyItemProperty = BindableProperty.Create(
                                  propertyName: "AnyItem",
                                  returnType: typeof(bool),
                                  declaringType: typeof(ExtenderListView),
@@ -33,7 +33,7 @@ namespace Xaminals.CustomControls
                                  defaultValue: null,
                                  defaultBindingMode: BindingMode.TwoWay,
                                  propertyChanged: onOnDataRequiredCommandProperyChanged
-         );       
+         );
 
         public static readonly BindableProperty CurrentPageNumberProperty = BindableProperty.Create(
                                  propertyName: "CurrentPageNumber",
@@ -42,7 +42,7 @@ namespace Xaminals.CustomControls
                                  defaultValue: 0,
                                  defaultBindingMode: BindingMode.TwoWay,
                                  propertyChanged: onPageNumberProperyChanged
-         );       
+         );
 
         private static void onTappedProperyChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -90,12 +90,12 @@ namespace Xaminals.CustomControls
         {
             get
             {
-                return (bool)GetValue(HasItems);
+                return (bool)GetValue(AnyItemProperty);
             }
             set
             {
-                SetValue(HasItems, value);
-                OnPropertyChanged("HasItems");
+                SetValue(AnyItemProperty, value);
+                OnPropertyChanged("AnyItem");
             }
         }
 
@@ -138,6 +138,13 @@ namespace Xaminals.CustomControls
             }
         }
 
+        private object _lastVisibleItem;
+        public object LastVisibleItem
+        {
+            get { return _lastVisibleItem; }
+            set { _lastVisibleItem = value; }
+        }
+
         #endregion
 
         #region Mutators
@@ -153,10 +160,14 @@ namespace Xaminals.CustomControls
         private void OnScrolled(object sender, ItemVisibilityEventArgs e)
         {
             var source = (this.ItemsSource as IList);
-            if (e.Item == source[source.Count - 1] && AnyItem)
+            if (e.Item == source[source.Count - 1])
             {
-                CurrentPageNumber++;
-                OnDataRequiredCommand?.Execute(this);
+                if (LastVisibleItem != e.Item)
+                {
+                    CurrentPageNumber++;
+                    LastVisibleItem = e.Item;
+                    OnDataRequiredCommand?.Execute(this);
+                }
             }
         }
 

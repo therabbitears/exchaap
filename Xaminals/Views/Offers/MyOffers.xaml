@@ -76,7 +76,7 @@
                                 <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" />
                                 <StackLayout Grid.Row="2" Grid.Column="1">
                                     <Label  StyleClass="DimText" Text="{Binding ValidFrom, StringFormat='Available from: {0}'}" />
-                                    <StackLayout Orientation="Horizontal">
+                                    <ScrollView Orientation="Horizontal">
                                         <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                             <BindableLayout.ItemTemplate>
                                                 <DataTemplate>
@@ -86,7 +86,7 @@
                                                 </DataTemplate>
                                             </BindableLayout.ItemTemplate>
                                         </StackLayout>
-                                    </StackLayout>
+                                    </ScrollView>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

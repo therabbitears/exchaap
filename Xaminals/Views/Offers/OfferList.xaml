@@ -31,7 +31,7 @@
                 OnTappedCommand="{Binding OnTappedCommand}"
                 CurrentPageNumber ="{Binding CurrentPageNumber}"
                 OnDataRequiredCommand="{Binding OnDataRequiredCommand}"
-                                         AnyItem="{Binding HasItems}">
+                AnyItem="{Binding HasItems}">
             <x:Arguments>
                 <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
             </x:Arguments>
