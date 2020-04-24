@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offers.Offer"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:OfferViewModel />
@@ -16,9 +17,9 @@
         <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ScrollView>
             <StackLayout StyleClass="parentContainer">
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
+            <ScrollView>
                 <StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="General"/>
                     <Label StyleClass="formLabel" Text="What thing do you want to exchange or giveaway:"/>
@@ -69,7 +70,7 @@
                         <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

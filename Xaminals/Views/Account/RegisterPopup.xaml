@@ -10,6 +10,7 @@
              xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
              x:Class="Xaminals.Views.Account.RegisterPopup"
              xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              CloseWhenBackgroundIsClicked="False">
     <ContentPage.BindingContext>
         <local:SignupViewModel />
@@ -24,10 +25,7 @@
     </pages:PopupPage.Animation>
     <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
         <customControl:PopupCloseView />
-
-        <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
-            <ActivityIndicator IsRunning="{Binding IsBusy}"  />
-        </StackLayout>
+        <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

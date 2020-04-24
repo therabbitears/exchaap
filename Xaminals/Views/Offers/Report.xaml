@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Xaminals.Views.Offers.ViewModels"
              mc:Ignorable="d"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              x:Class="Xaminals.Views.Offers.Report"
              CloseWhenBackgroundIsClicked="False"
              Title="{Binding Title}">
@@ -15,9 +16,7 @@
     <Frame CornerRadius="10"  
                    BackgroundColor="White" Margin="30, 50, 30, 30" Padding="15" VerticalOptions="Start">
         <StackLayout>
-            <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
-                <ActivityIndicator IsRunning="{Binding IsBusy}"  />
-            </StackLayout>
+            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <Label Text="{Binding Offer.Name, StringFormat='Report: {0}'}"  StyleClass="SectionHeadingStyle"/>
             <StackLayout Orientation="Vertical" BindableLayout.ItemsSource="{Binding Options}">
                 <BindableLayout.ItemTemplate>

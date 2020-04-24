@@ -12,7 +12,7 @@
             <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
-            <Style TargetType="Button">                
+            <Style TargetType="Button">
                 <Setter Property="FontFamily">
                     <OnPlatform x:TypeArguments="x:String">
                         <On Platform="iOS" Value="MerriweatherSans-Regular" />
@@ -60,7 +60,7 @@
                 <On Platform="iOS" Value="FontAwesome5Free-Regular" />
                 <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Free-Regular-400.otf#Font Awesome 5 Free" />
             </OnPlatform>
-           
+
         </ResourceDictionary>
         <DataTemplate x:Key="AnimalTemplate">
             <Grid Padding="10">
@@ -114,7 +114,7 @@
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
 
-                            <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" StyleClass="expiryTag, primaryBackground" IsVisible="False">
+                            <Label Padding="2" HorizontalOptions="FillAndExpand" Text="Giveaway" StyleClass="expiryTag, primaryBackground" IsVisible="False">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label" Binding="{Binding Categories.Count}" Value="0">
                                         <Setter Property="IsVisible" Value="True"/>
@@ -128,23 +128,22 @@
                             <Label HorizontalOptions="StartAndExpand"  Text="{Binding Name}" StyleClass="OfferHeading" LineBreakMode="WordWrap"/>
                             <Label HorizontalOptions="End" VerticalOptions="Center" LineBreakMode="NoWrap" Text="{Binding Distance.Distance, Converter={StaticResource cnvDistanceToUnit}}" StyleClass="DimText"  />
                         </StackLayout>
-                        <StackLayout>
                             <Label  Text="{Binding Detail}" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
+                        <StackLayout>
+                            <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                         </StackLayout>
-                        <StackLayout Grid.Row="1" Grid.Column="1">
-                            <OffeControls:SelectedCategory BindingContext="{Binding Category}" ShowColor="False" HorizontalOptions="Start" />
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout>
+                            <Label Text="Expected to exchange with:"/>
                             <ScrollView Orientation="Horizontal">
-                            <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                         <StackLayout HorizontalOptions="Start">
+                                <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackLayout HorizontalOptions="Start">
                                                 <OffeControls:SelectedCategory />
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
                             </ScrollView>
                         </StackLayout>
                     </StackLayout>
@@ -188,17 +187,17 @@
         </DataTemplate>
         <DataTemplate x:Key="SelectionStackTemplate">
             <StackLayout>
-            <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <CheckBox Grid.Column="0" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" IsChecked="{Binding Selected}" />
+                <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" IsChecked="{Binding Selected}" />
                     <Label Grid.Column="1" Text="{Binding Name}" Margin="0,6,0,0"/>
-            </Grid>
+                </Grid>
             </StackLayout>
         </DataTemplate>
 

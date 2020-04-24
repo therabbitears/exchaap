@@ -8,6 +8,7 @@
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offer_Public.OfferDetails"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
              Title="{Binding Offer.Name}">
     <ContentPage.BindingContext>
@@ -24,7 +25,7 @@
         <ScrollView>
             <StackLayout StyleClass="parentContainer" x:Name="MainContextHolder">
                 <mySharedControls:FetchingLocation IsVisible="{Binding FetchingLocation}" />
-                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
                 <StackLayout BackgroundColor="#FFFFFF" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BindingContext="{Binding Offer}" x:Name="OfferItem">
                     <Grid Margin="5">
                         <Grid.RowDefinitions>

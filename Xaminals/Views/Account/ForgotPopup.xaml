@@ -9,7 +9,8 @@
              xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
              mc:Ignorable="d"
              x:Class="Loffers.Views.Account.ForgotPopup"
-             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup">
+             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup">
     <ContentPage.BindingContext>
         <local:ResetPasswordViewModel />
     </ContentPage.BindingContext>
@@ -24,10 +25,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
             <customControl:PopupCloseView />
-
-            <StackLayout Padding="0,0,0,20" IsVisible="{Binding IsBusy}">
-                <ActivityIndicator IsRunning="{Binding IsBusy}"  />
-            </StackLayout>
+            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <StackLayout>
                 <StackLayout.Triggers>
                     <DataTrigger TargetType="StackLayout" Binding="{Binding IsCodeSent}" Value="false">
