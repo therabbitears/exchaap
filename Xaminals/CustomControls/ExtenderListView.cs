@@ -153,7 +153,7 @@ namespace Xaminals.CustomControls
         private void OnScrolled(object sender, ItemVisibilityEventArgs e)
         {
             var source = (this.ItemsSource as IList);
-            if (e.Item == source[source.Count - 1])
+            if (e.Item == source[source.Count - 1] && AnyItem)
             {
                 CurrentPageNumber++;
                 OnDataRequiredCommand?.Execute(this);

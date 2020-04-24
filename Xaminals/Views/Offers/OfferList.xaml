@@ -30,7 +30,8 @@
                 SeparatorVisibility="None" ItemTemplate="{StaticResource OfferPublicTemplate}"
                 OnTappedCommand="{Binding OnTappedCommand}"
                 CurrentPageNumber ="{Binding CurrentPageNumber}"
-                OnDataRequiredCommand="{Binding OnDataRequiredCommand}">
+                OnDataRequiredCommand="{Binding OnDataRequiredCommand}"
+                                         AnyItem="{Binding HasItems}">
             <x:Arguments>
                 <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
             </x:Arguments>
