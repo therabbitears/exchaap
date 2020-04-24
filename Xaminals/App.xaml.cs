@@ -1,5 +1,6 @@
 ﻿using exchaup.Models;
 using exchaup.Views.Home;
+using exchaup.Views.Home.Model;
 using Loffers.GlobalViewModel;
 using System;
 using Xamarin.Forms;
@@ -25,14 +26,17 @@ namespace Xaminals
 
             if (Database.FindLastState().Result == null)
             {
-                Database.SaveLastState(new ApplicationStateModel() { SkipIntro = true });
                 MainPage = new StartupCarousel();                
-                return;
             }
             else
             {
                 MainPage = new AppShell();
             }
+
+            MessagingCenter.Subscribe<StartupScreenCardsViewModel>(this, "GotoApp", async (obj) =>
+            {
+                MainPage = new AppShell();
+            });
         }
 
         protected override void OnStart()

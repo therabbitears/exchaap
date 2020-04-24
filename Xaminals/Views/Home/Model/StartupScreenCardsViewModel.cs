@@ -4,7 +4,7 @@ using Xaminals.ViewModels;
 
 namespace exchaup.Views.Home.Model
 {
-    public class StartupScreenCardsViewModel : BaseViewModel
+    public partial class StartupScreenCardsViewModel : BaseViewModel
     {
         private ObservableCollection<StartupCardModel> _cards;
         public ObservableCollection<StartupCardModel> Cards
@@ -35,7 +35,8 @@ namespace exchaup.Views.Home.Model
             {
                 Title = "Blue Monkey",
                 Description = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
-                Image = "https://img.icons8.com/officel/4x/gorilla.png"
+                Image = "https://img.icons8.com/officel/4x/gorilla.png",
+                ShowGoButton = true
             });
         }
     }

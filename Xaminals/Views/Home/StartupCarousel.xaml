@@ -5,41 +5,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:exchaup.Views.Home.Model"
-             x:Class="exchaup.Views.Home.StartupCarousel">
+             x:Class="exchaup.Views.Home.StartupCarousel"
+             x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:StartupScreenCardsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
-            <CarouselView ItemsSource="{Binding Cards}" CurrentItemChanged="CarouselView_CurrentItemChanged" IndicatorView="indicatorView">
+            <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout VerticalOptions="CenterAndExpand">
-                            <Label Text="{Binding Title}"
+                                <Label Text="{Binding Title}"
                                FontAttributes="Bold"
                                FontSize="Large"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-                            <Image Source="{Binding Image}"
+                                <Image Source="{Binding Image}"
                                Aspect="AspectFill"
                                HeightRequest="150"
                                WidthRequest="150"
                                HorizontalOptions="Center" />
-                            <Label Text="{Binding Description}"
+                                <Label Text="{Binding Description}"
                                FontAttributes="Italic"
                                HorizontalOptions="Center"
                                MaxLines="5"
                                LineBreakMode="TailTruncation" />
-                            </StackLayout>
+                            </StackLayout>                            
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
+            <Button StyleClass="flatButton" Text="Go to app" Command="{Binding GoToAppCommand}" />
             <IndicatorView x:Name="indicatorView"
                    IndicatorColor="LightGray"
                    SelectedIndicatorColor="DarkGray"
-                   HorizontalOptions="Center" IndicatorsShape="Circle" Margin="0, -20, 0, 0" >
+                   HorizontalOptions="Center" IndicatorsShape="Circle" >
             </IndicatorView>
         </StackLayout>
     </ContentPage.Content>

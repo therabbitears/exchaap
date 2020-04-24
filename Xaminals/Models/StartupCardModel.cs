@@ -23,5 +23,7 @@ namespace exchaup.Models
             get { return _image; }
             set { _image = value; OnPropertyChanged("Image"); }
         }
+
+        public bool ShowGoButton { get; set; }
     }
 }
