@@ -60,7 +60,7 @@
                                        WidthRequest="100"
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
-                                        <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                        <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                             <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                                         </ContentView>
                                     </StackLayout>
@@ -74,7 +74,7 @@
                                     </StackLayout>
                                 </StackLayout>
                                 <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
-                                <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
                                 <Label Text="Listed to exchange with:"/>
                                 <StackLayout Grid.Row="2" Grid.Column="1">
                                     <ScrollView Orientation="Horizontal">

@@ -11,7 +11,7 @@ namespace exchaup.Infra.Formatters
         {
             if (value is IList valueAsList)
             {
-                if (parameter!=null && bool.TryParse(parameter.ToString(), out bool zeroLengthExpect))
+                if (parameter != null && bool.TryParse(parameter.ToString(), out bool zeroLengthExpect))
                 {
                     if (!zeroLengthExpect)
                         return valueAsList.Count > 0;
