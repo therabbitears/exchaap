@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using Xaminals.ViewModels;
 using Xaminals.Views.Categories.Models.DTO;
 
 namespace Xaminals.Views.Offers.ViewModels
 {
-    public class GeneralOfferViewModel : BaseViewModel, IOfferViewModel
+    public partial class GeneralOfferViewModel : BaseViewModel, IOfferViewModel
     {
         public string Id { get; set; }
 
@@ -116,15 +117,23 @@ namespace Xaminals.Views.Offers.ViewModels
         public ObservableCollection<CategoryModel> Categories { get; set; }
         public CategoryModel Category { get; set; }
         public Coordinates Coordinates { get; set; }
-        
+
         private bool _Starred;
         public bool Starred
         {
             get { return _Starred; }
-            set { _Starred = value;OnPropertyChanged("Starred"); }
+            set { _Starred = value; OnPropertyChanged("Starred"); }
         }
 
         public string LocationId { get; set; }
+
+        private bool _HasCategoroies;
+
+        public bool HasCategoroies
+        {
+            get { return _HasCategoroies; }
+            set { SetProperty(ref _HasCategoroies, value); }
+        }
 
         protected override void IntializeMembers()
         {

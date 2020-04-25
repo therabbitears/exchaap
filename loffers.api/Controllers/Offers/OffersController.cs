@@ -96,11 +96,11 @@ namespace Loffers.Server.Controllers.Offers
         [Route("details")]
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IHttpActionResult> Detail(string Id = "", string locationid = "", double currentLat = 0, double currentLong = 0, string unit = "m")
+        public async Task<IHttpActionResult> Detail(string Id = "", double currentLat = 0, double currentLong = 0, string unit = "m")
         {
             try
             {
-                var offerResult = await service.Details(Id, locationid, currentLat, currentLong, unit);
+                var offerResult = await service.Details(Id, currentLat, currentLong, unit);
                 return Ok(new HttpResult(offerResult));
             }
             catch (Exception ex)

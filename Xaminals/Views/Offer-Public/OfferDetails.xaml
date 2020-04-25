@@ -20,6 +20,7 @@
             <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
             <localFormatters:MultilineToListConverter x:Key="cnvMultilineToListConverter"></localFormatters:MultilineToListConverter>
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -48,7 +49,7 @@
                                        WidthRequest="100"
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
-                                <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
+                                <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding HasCategoroies, Converter={StaticResource cnvReveresBoolConverter}}">
                                     <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                                 </ContentView>
                             </StackLayout>
@@ -64,7 +65,7 @@
                             <StackLayout>
                                 <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                             </StackLayout>
-                            <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
+                            <StackLayout IsVisible="{Binding HasCategoroies, Converter={StaticResource cnvReveresBoolConverter}}">
                                 <Label Text="Expected to exchange with:"/>
                                 <ScrollView Orientation="Horizontal">
                                     <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">

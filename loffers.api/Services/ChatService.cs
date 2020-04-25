@@ -131,7 +131,7 @@ namespace loffers.api.Services
 
         public async Task<object> Chats(string userID)
         {
-            var list = context.ChatGroupUsers.Include("ChatGroups").Include("ChatGroups.Offers").Include("ChatGroups.Offers.Publishers").Include("ChatGroups.OfferLocations").Include("ChatGroups.OfferLocations.PublisherLocations").Include("ChatGroups.OfferLocations.PublisherLocations.Locations").Where(c => c.UserId == userID).Join
+            var list = context.ChatGroupUsers.Include("ChatGroups").Include("ChatGroups.Offers").Include("ChatGroups.Offers.Categories").Where(c => c.UserId == userID).Join
                     (context.ChatGroupMessages.Include("ChatGroupUsers").GroupBy(x => x.ChatGroupUsers.GroupID, (key, g) => g.OrderByDescending(e => e.CreatedOn).FirstOrDefault()), users => users.GroupID, chatGroupMessage => chatGroupMessage.ChatGroupUsers.GroupID, (users, chatGroupMessage) => new
                     {
                         OfferId = users.ChatGroups.Offers.Id,
@@ -142,13 +142,10 @@ namespace loffers.api.Services
                         chatGroupMessage.Message,
                         users.ChatGroups.Offers.OfferHeadline,
                         users.ChatGroups.Offers.Image,
-                        PublisherName = users.ChatGroups.Offers.Publishers.Name,
-                        PublisherLogo = users.ChatGroups.Offers.Publishers.Image,
                         IsSelf = chatGroupMessage.ChatGroupUsers.UserId == userID,
                         DisplayName = context.UserProfileSnapshots.FirstOrDefault(d => d.UserId == chatGroupMessage.ChatGroupUsers.UserId).FullName,
-                        Status = chatGroupMessage.Status,
-                        LocationId= users.ChatGroups.OfferLocations.PublisherLocations.Id,
-                        LocationName = users.ChatGroups.OfferLocations.PublisherLocations.Locations.Name
+                        chatGroupMessage.Status,
+                        Category = new { users.ChatGroups.Offers.Categories.Id, users.ChatGroups.Offers.Categories.Name, users.ChatGroups.Offers.Categories.Image },
                     }).Where(c => c.UserId == userID);
 
             return await list.OrderByDescending(c => c.Stamp).ToListAsync();

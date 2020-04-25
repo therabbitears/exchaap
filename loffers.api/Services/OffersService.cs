@@ -281,7 +281,8 @@ namespace Loffers.Server.Services
                                                 Starred = true,
                                                 LocationToken = d.OfferLocations.PublisherLocations.Id,
                                                 d.Offers.ValidTill,
-                                                Categories = d.Offers.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id }),
+                                                Category = new { d.Offers.Categories.Id, d.Offers.Categories.Image, d.Offers.Categories.Name },
+                                                Categories = d.Offers.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
                                                 Coordinates = new { d.OfferLocations.PublisherLocations.Locations.Lat, d.OfferLocations.PublisherLocations.Locations.Long },
                                                 Distance = new CoordinatesDistance() { DistanceIn = unit },
                                                 d.Offers.Id
@@ -297,7 +298,7 @@ namespace Loffers.Server.Services
             return new Coordinates(currentLat, currentLong).DistanceTo(new Coordinates((double)lat, (double)@long), showDistanceIn);
         }
 
-        public async Task<object> Details(string id, string locationId, double currentLat, double currentLong, string unit)
+        public async Task<object> Details(string id, double currentLat, double currentLong, string unit)
         {
             int showDistanceIn = (int)ShowDistanceIn.Kilometers;
             if (unit != null)
@@ -361,7 +362,7 @@ namespace Loffers.Server.Services
                                             Coordinates = new { d.Lat, d.Long },
                                             Distance = new CoordinatesDistance() { DistanceIn = unit },
                                         })
-                                        .FirstOrDefaultAsync(c => c.Id == id && c.LocationToken == locationId);
+                                        .FirstOrDefaultAsync(c => c.Id == id);
 
             resultSet.Distance.Distance = CalculateCoordicates(resultSet.Coordinates.Lat, resultSet.Coordinates.Long, currentLat, currentLong, showDistanceIn);
             return resultSet;

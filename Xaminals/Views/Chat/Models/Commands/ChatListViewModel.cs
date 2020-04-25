@@ -63,7 +63,7 @@ namespace Loffers.Views.Chat.Models
             if (IsLoggedIn)
             {
                 if (sender is ChatListItemModel SelectedChat)
-                    await Shell.Current.GoToAsync($"chat?offerid=" + SelectedChat.OfferId + "&groupname=" + SelectedChat.Name + "&locationid=" + SelectedChat.LocationId, true);
+                    await Shell.Current.GoToAsync($"chat?offerid=" + SelectedChat.OfferId + "&groupname=" + SelectedChat.Name, true);
             }
             else
             {
@@ -93,8 +93,6 @@ namespace Loffers.Views.Chat.Models
                                 existingChat.Message = item.Message;
                                 existingChat.Name = item.Name;
                                 existingChat.OfferHeading = item.OfferHeading;
-                                existingChat.PublisherLogo = item.PublisherLogo;
-                                existingChat.PublisherName = item.PublisherName;
                                 existingChat.Sender = item.Sender;
                                 existingChat.Stamp = item.Stamp;
                                 existingChat.UserId = item.UserId;

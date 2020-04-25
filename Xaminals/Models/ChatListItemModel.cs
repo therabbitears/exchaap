@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using Xaminals.Models;
+using Xaminals.Views.Categories.Models.DTO;
 
 namespace Loffers.Models
 {
@@ -28,8 +29,6 @@ namespace Loffers.Models
         [JsonProperty("OfferHeadline")]
         public string OfferHeading { get; set; }
         public string Image { get; set; }
-        public string PublisherName { get; set; }
-        public string PublisherLogo { get; set; }
 
         private bool _isSelf;
         public bool IsSelf
@@ -54,22 +53,12 @@ namespace Loffers.Models
             set { _status = value; OnPropertyChanged("Status"); }
         }
 
-        private string _locationId;
-        public string LocationId
+        private CategoryModel _category;
+        public CategoryModel Category
         {
-            get { return _locationId; }
-            set { _locationId = value; OnPropertyChanged("LocationId"); }
+            get { return _category; }
+            set { _category = value; }
         }
 
-        private string _locationName;
-        public string LocationName
-        {
-            get { return _locationName; }
-            set
-            {
-                _locationName = value;
-                OnPropertyChanged("LocationName");
-            }
-        }
     }
 }

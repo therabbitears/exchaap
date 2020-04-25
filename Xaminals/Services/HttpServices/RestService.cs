@@ -199,14 +199,13 @@ namespace Xaminals.Services.HttpServices
             });
         }
 
-        public async Task<T> OfferDetail<T>(string id, string locationId, double currentLat, double currentLong, string unit) where T : IHttpResult
+        public async Task<T> OfferDetail<T>(string id, double currentLat, double currentLong, string unit) where T : IHttpResult
         {
             return await Get<T>(UrlConstants.MyDetailOfferUrl, new List<QueryString>() {
                 new QueryString{key=  "id", value=id},
                 new QueryString{key=  "currentLat", value=currentLat.ToString() },
                 new QueryString{key= "currentLong", value = currentLong.ToString() } ,
-                new QueryString{key=  "unit",value=unit},
-                new QueryString{key=  "locationId",value=locationId}
+                new QueryString{key=  "unit",value=unit}
             });
         }
 

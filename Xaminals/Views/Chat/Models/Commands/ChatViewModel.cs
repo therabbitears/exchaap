@@ -150,7 +150,7 @@ namespace Loffers.Views.Chat.Models
             try
             {
                 var location = await GetCurrentLocation(true);
-                var result = await new RestService().OfferDetail<HttpResult<OfferListItemViewModel>>(Id, LocationId, location.Latitude, location.Longitude, "M");
+                var result = await new RestService().OfferDetail<HttpResult<OfferListItemViewModel>>(Id, location.Latitude, location.Longitude, "M");
                 if (!result.IsError)
                 {
                     this.Title = result.Result.Title;

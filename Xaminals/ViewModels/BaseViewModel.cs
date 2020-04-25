@@ -38,9 +38,19 @@ namespace Xaminals.ViewModels
             AddListeners();
         }
 
+        ~BaseViewModel()
+        {
+            RemoveListeners();
+        }       
+
         protected virtual void AddListeners()
         {
             this.Context.SessionModel.PropertyChanged += OnSessionModelPropertyChanged;
+        }
+
+        protected virtual void RemoveListeners()
+        {
+            this.Context.SessionModel.PropertyChanged -= OnSessionModelPropertyChanged;
         }
 
         private void OnSessionModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

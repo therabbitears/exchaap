@@ -74,9 +74,9 @@
                                     </StackLayout>
                                 </StackLayout>
                                 <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
-                                <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
+                                <StackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
                                 <Label Text="Listed to exchange with:"/>
-                                <StackLayout Grid.Row="2" Grid.Column="1">
+                                <StackLayout>
                                     <ScrollView Orientation="Horizontal">
                                         <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                             <BindableLayout.ItemTemplate>

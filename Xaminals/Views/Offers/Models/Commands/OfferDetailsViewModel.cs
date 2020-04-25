@@ -117,7 +117,7 @@ namespace Xaminals.Views.Offers.Models
             {
                 var location = await GetCurrentLocation(true);
                 IsBusy = true;
-                var result = await new RestService().OfferDetail<HttpResult<OfferListItemViewModel>>(Id, this.LocationId, location.Latitude, location.Longitude, "M");
+                var result = await new RestService().OfferDetail<HttpResult<OfferListItemViewModel>>(Id, location.Latitude, location.Longitude, "M");
                 if (!result.IsError)
                 {
                     Mapper.Map(result.Result, this.Offer);
