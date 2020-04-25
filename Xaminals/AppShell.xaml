@@ -7,7 +7,7 @@
        xmlns:settingsview="clr-namespace:Xaminals.Views.Settings"  
        xmlns:vsettingsview="clr-namespace:Loffers.Views.Settings"  
        xmlns:homeViews="clr-namespace:exchaup.Views.Home"
-       xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+       xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
        xmlns:starredview="clr-namespace:Xaminals.Views.Starred"  
        xmlns:chatview="clr-namespace:Loffers.Views.Chat"  
        FlyoutBackgroundImage="photo.jpg"

@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace Xaminals.Infra.Formatters
+namespace exchaup.Infra.Formatters
 {
     public class DatetimeToStringConverter : IValueConverter
     {

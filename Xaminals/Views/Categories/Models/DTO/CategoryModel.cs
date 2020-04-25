@@ -24,7 +24,7 @@ namespace Xaminals.Views.Categories.Models.DTO
         public string Image
         {
             get { return _Image; }
-            set { _Image = value; }
+            set { _Image = value; OnPropertyChanged("Image"); }
         }
 
         public string ParentId { get; set; }

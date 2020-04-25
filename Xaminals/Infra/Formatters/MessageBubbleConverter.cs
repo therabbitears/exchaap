@@ -3,7 +3,7 @@ using System.Globalization;
 using Xamarin.Forms;
 using Xaminals;
 
-namespace Loffers.Infra.Formatters
+namespace exchaup.Infra.Formatters
 {
     public class MessageBubbleConverter : IValueConverter
     {

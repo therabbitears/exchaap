@@ -4,9 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
-             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              x:Class="Xaminals.Views.Offer_Public.OfferDetails"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
@@ -19,6 +20,7 @@
             <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
             <localFormatters:MultilineToListConverter x:Key="cnvMultilineToListConverter"></localFormatters:MultilineToListConverter>
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
+            <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -46,8 +48,9 @@
                                        WidthRequest="100"
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
-
-                                <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="{Binding ValidTill, Converter={StaticResource cnvDateTimeConverter}}" StyleClass="expiryTag, primaryBackground"/>
+                                <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                    <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
+                                </ContentView>
                             </StackLayout>
                         </ContentView>
                         <StackLayout Grid.Column="1" Grid.Row="0">
@@ -59,24 +62,23 @@
                                 <Label  Text="{Binding Detail}" TextColor="Black" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
                             </StackLayout>
                             <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Image Aspect="AspectFit" 
-                                       HorizontalOptions="Center" 
-                                       VerticalOptions="End" 
-                                       HeightRequest="20" 
-                                       WidthRequest="20"
-                                       BackgroundColor="Transparent" Source="{Binding PublisherLogo}" />
-                                    <Label Text="{Binding PublisherName}" StyleClass="publisherName, primaryColorText" VerticalOptions="Center" />
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="primaryColorText, gylypLabel" Text="&#xf3c5;" />
-                                    <StackLayout>
-                                        <Label Text="{Binding LocationName}" StyleClass="BusinessLocation" />
-                                        <Label Text="{Binding LocationAddress}" StyleClass="BusinessLocation"/>
-                                    </StackLayout>
-                                </StackLayout>
+                                <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                             </StackLayout>
-                        </StackLayout>                       
+                            <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                <Label Text="Expected to exchange with:"/>
+                                <ScrollView Orientation="Horizontal">
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout HorizontalOptions="Start">
+                                                    <OffeControls:SelectedCategory />
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                </ScrollView>
+                            </StackLayout>
+                        </StackLayout>
                         <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                             <Grid Grid.Column="1" Grid.Row="2">
                                 <Grid.RowDefinitions>
@@ -116,7 +118,7 @@
                             </Grid>
                         </StackLayout>
                     </Grid>
-                    <Label Text="Terms and conditions" StyleClass="SectionHeadingStyle"/>
+                    <Label Text="Additional detail" StyleClass="SectionHeadingStyle"/>
                     <StackLayout BindableLayout.ItemsSource="{Binding TermsMultiline}" Margin="10" Padding="10" BindableLayout.ItemTemplate="{StaticResource TermsStackTemplate}" Orientation="Vertical" />
                 </StackLayout>
             </StackLayout>

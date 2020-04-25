@@ -1,7 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
+using Xaminals;
 
-namespace Xaminals.Infra.Formatters
+namespace exchaup.Infra.Formatters
 {
     public class DistanceToUnit : IValueConverter
     {

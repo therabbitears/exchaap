@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace Xaminals.Infra.Formatters
+namespace exchaup.Infra.Formatters
 {
     public class MultilineToListConverter : IValueConverter
     {

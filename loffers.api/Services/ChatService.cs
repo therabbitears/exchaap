@@ -118,7 +118,7 @@ namespace loffers.api.Services
                         Stamp = c.CreatedOn,
                         IsSelf = c.ChatGroupUsers.UserId == userId,
                         DisplayName = context.UserProfileSnapshots.FirstOrDefault(d => d.UserId == c.ChatGroupUsers.UserId).FullName,
-                        Status = c.Status
+                        c.Status
                     }).OrderBy(c => c.Stamp)
                     .ToListAsync();
             }

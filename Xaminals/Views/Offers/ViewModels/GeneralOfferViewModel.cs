@@ -114,6 +114,7 @@ namespace Xaminals.Views.Offers.ViewModels
 
         public string PublisherToken { get; set; }
         public ObservableCollection<CategoryModel> Categories { get; set; }
+        public CategoryModel Category { get; set; }
         public Coordinates Coordinates { get; set; }
         
         private bool _Starred;
@@ -124,5 +125,12 @@ namespace Xaminals.Views.Offers.ViewModels
         }
 
         public string LocationId { get; set; }
+
+        protected override void IntializeMembers()
+        {
+            base.IntializeMembers();
+            Categories = new ObservableCollection<CategoryModel>();
+            Category = new CategoryModel();
+        }
     }
 }

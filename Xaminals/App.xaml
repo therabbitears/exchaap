@@ -2,15 +2,15 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Xaminals.App"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
-             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:local="clr-namespace:Loffers.GlobalViewModel">
-
     <Application.Resources>
         <StyleSheet Source="/Assets/main.css" />
         <ResourceDictionary>
             <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
+            <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
             <Style TargetType="Button">
                 <Setter Property="FontFamily">
@@ -114,13 +114,9 @@
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
 
-                            <Label Padding="2" HorizontalOptions="FillAndExpand" Text="Giveaway" StyleClass="expiryTag, primaryBackground" IsVisible="False">
-                                <Label.Triggers>
-                                    <DataTrigger TargetType="Label" Binding="{Binding Categories.Count}" Value="0">
-                                        <Setter Property="IsVisible" Value="True"/>
-                                    </DataTrigger>
-                                </Label.Triggers>
-                            </Label>
+                            <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
+                            </ContentView>
                         </StackLayout>
                     </ContentView>
                     <StackLayout Grid.Column="1" Grid.Row="0">
@@ -132,7 +128,7 @@
                         <StackLayout>
                             <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                         </StackLayout>
-                        <StackLayout>
+                        <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
                             <Label Text="Expected to exchange with:"/>
                             <ScrollView Orientation="Horizontal">
                                 <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">

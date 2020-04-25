@@ -24,7 +24,7 @@
         <StackLayout Grid.Row="0">
             <StackLayout>
                 <Label Text="Search in range" />
-                <Slider Maximum="100" Minimum="1" Value="{Binding MaxDistance}" x:Name="slider"  MaximumTrackColor="#B6B1B0" ThumbColor="#FF2A00" />
+                    <Slider Maximum="100" Minimum="1" Value="{Binding MaxDistance}" x:Name="slider"  MinimumTrackColor="#CF9625" MaximumTrackColor="#ffdf9e" ThumbColor="#CF9625" />
                 <Label x:Name="displayLabel" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}KM(S)'}" HorizontalOptions="StartAndExpand" TextColor="Gray"  FontSize="12" VerticalOptions="CenterAndExpand" />
             </StackLayout>
             <StackLayout>

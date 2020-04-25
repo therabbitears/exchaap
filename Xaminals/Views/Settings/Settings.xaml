@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.ViewModels.Settings"
-             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Settings.Settings"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
@@ -58,7 +58,7 @@
 
                     <StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
                         <Label Text="Maximum range"/>
-                        <Slider Maximum="100" DragCompletedCommand="{Binding SaveSettingCommands}" Minimum="1" Value="{Binding MaxRange}" MaximumTrackColor="#B6B1B0" ThumbColor="#FF2A00" x:Name="slider" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40"/>
+                        <Slider Maximum="100" DragCompletedCommand="{Binding SaveSettingCommands}" Minimum="1" Value="{Binding MaxRange}" MinimumTrackColor="#CF9625" MaximumTrackColor="#ffdf9e" ThumbColor="#CF9625" x:Name="slider" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40"/>
                         <Label x:Name="displayLabel" Text="{Binding Source={x:Reference slider},
                               Path=Value,
                               StringFormat='{0:F0}KM(S)'}"

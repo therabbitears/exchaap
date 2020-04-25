@@ -6,7 +6,7 @@
              xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
              xmlns:local="clr-namespace:Xaminals.Views.Account.ViewModel"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Account.LoginPopup"
              xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup"

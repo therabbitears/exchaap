@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:localFormatters="clr-namespace:Xaminals.Infra.Formatters"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offers.MyOffers"
@@ -19,10 +19,8 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <localFormatters:DatetimeToStringConverter x:Key="cnvDateTimeConverter"></localFormatters:DatetimeToStringConverter>
-            <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
-            <localFormatters:ListToCountConverter x:Key="cnvListToCountConverter"></localFormatters:ListToCountConverter>
+            <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -47,13 +45,12 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <ContentView Grid.RowSpan="2" Grid.Column="0">
+                                <ContentView Grid.RowSpan="3" Grid.Column="0">
                                     <StackLayout>
                                         <Image 
                                        Aspect="AspectFit" 
@@ -63,6 +60,9 @@
                                        WidthRequest="100"
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
+                                        <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                            <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
+                                        </ContentView>
                                     </StackLayout>
                                 </ContentView>
                                 <StackLayout Grid.Column="1" Grid.Row="0">
@@ -73,9 +73,10 @@
                                         <Label  Text="{Binding OfferDescription}" StyleClass="OfferSubHeading"/>
                                     </StackLayout>
                                 </StackLayout>
-                                <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" />
+                                <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
+                                <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}}">
+                                <Label Text="Listed to exchange with:"/>
                                 <StackLayout Grid.Row="2" Grid.Column="1">
-                                    <Label  StyleClass="DimText" Text="{Binding ValidFrom, StringFormat='Available from: {0}'}" />
                                     <ScrollView Orientation="Horizontal">
                                         <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                             <BindableLayout.ItemTemplate>
@@ -87,6 +88,7 @@
                                             </BindableLayout.ItemTemplate>
                                         </StackLayout>
                                     </ScrollView>
+                                </StackLayout>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

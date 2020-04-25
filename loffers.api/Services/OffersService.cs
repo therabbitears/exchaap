@@ -310,6 +310,7 @@ namespace Loffers.Server.Services
             }
 
             var resultSet = await context.Offers
+                                        .Include(c => c.Categories)
                                         .Include(c => c.OfferLocations).Include("OfferLocations.PublisherLocations").Include("OfferLocations.PublisherLocations.Locations")
                                         .Include(c => c.Publishers)
                                         .Include(c => c.OfferCategories).Include("OfferCategories.Categories")
@@ -335,7 +336,8 @@ namespace Loffers.Server.Services
                                                 SubPublisherLogo = location.PublisherLocations.Image,
                                                 offer.ValidFrom,
                                                 offer.ValidTill,
-                                                offer.OfferCategories
+                                                offer.OfferCategories,
+                                                Category = offer.Categories
                                             })
                                         .Select(d => new
                                         {
@@ -354,7 +356,8 @@ namespace Loffers.Server.Services
                                             d.ValidFrom,
                                             d.ValidTill,
                                             LocationToken = d.LocationId,
-                                            Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id }),
+                                            Category = new { d.Category.Id, d.Category.Name, d.Category.Image },
+                                            Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
                                             Coordinates = new { d.Lat, d.Long },
                                             Distance = new CoordinatesDistance() { DistanceIn = unit },
                                         })
