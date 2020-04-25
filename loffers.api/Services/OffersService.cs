@@ -368,11 +368,6 @@ namespace Loffers.Server.Services
             return resultSet;
         }
 
-        private bool isLocationClosedBy(OfferLocations location, double currentLat, double currentLong, int maximumDistanceInMeters)
-        {
-            return new Coordinates(currentLat, currentLong).DistanceTo(new Coordinates((double)location.PublisherLocations.Locations.Lat, (double)location.PublisherLocations.Locations.Long)) < maximumDistanceInMeters;
-        }
-
         public async Task<object> Update(OfferModel offer, string token)
         {
             var offerresult = await context.Offers.Include(c => c.OfferCategories).Include(c => c.OfferLocations).FirstOrDefaultAsync(c => c.Id == offer.Id);
@@ -450,7 +445,7 @@ namespace Loffers.Server.Services
             {
                 if (context.Offers.Any(c => c.CreatedBy == token))
                 {
-                    var offer = await context.Offers.Include(c => c.Categories).FirstOrDefaultAsync(c => c.Id == id);
+                    var offer = await context.Offers.Include(c => c.Categories).Include("OfferCategories").Include("OfferCategories.Categories").FirstOrDefaultAsync(c => c.Id == id);
                     var offerObject = new
                     {
                         offer.OfferHeadline,
@@ -464,8 +459,7 @@ namespace Loffers.Server.Services
                         offer.Active,
                         offer.Id,
                         Category = new { offer.Categories.Id, offer.Categories.Name, offer.Categories.Image },
-                        Locations = await context.PublisherLocations.Include(c => c.Locations).Where(c => c.PublisherID == offer.PublisherID).Select(c => new OfferLocationModel { Id = c.Id, Name = c.Locations.Name, Selected = false }).FirstOrDefaultAsync(),
-                        Categories = await context.Categories.Select(c => new OfferCategoryModel { Id = c.Id, Name = c.Name, Selected = false, Image = c.Image }).ToListAsync()
+                        Categories = offer.OfferCategories.Select(c => new OfferCategoryModel { Id = c.Categories.Id, Name = c.Categories.Name, Selected = false, Image = c.Categories.Image }).ToList()
                     };
 
                     return offerObject;

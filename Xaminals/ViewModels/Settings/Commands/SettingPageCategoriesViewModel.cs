@@ -45,6 +45,7 @@ namespace Xaminals.ViewModels.Settings
                 if (!result.IsError)
                 {
                     App.Context.SettingsModel.CategoriesCount = Categories.Where(c => c.Selected).Count();
+                    await ExecuteCancelCommand();
                     await RaiseSuccess("Categories has been updated successfully.");
                 }
                 else
@@ -74,9 +75,13 @@ namespace Xaminals.ViewModels.Settings
                 var result = await new RestService().UserCategories<HttpResult<List<CategoryModel>>>();
                 if (!result.IsError)
                 {
-                    foreach (var item in result.Result)
+                    foreach (var item in result.Result.Where(c => string.IsNullOrEmpty(c.ParentId)))
                     {
                         _categories.Add(item);
+                        foreach (var itemChild in result.Result.Where(c => c.ParentId == item.Id))
+                        {
+                            _categories.Add(itemChild);
+                        }
                     }
                 }
                 else

@@ -70,6 +70,7 @@ namespace Xaminals.Views.Settings.ViewModels
                         App.Context.SettingsModel.Email = this.Email.Value;
                         App.Context.SettingsModel.PhoneNumber = this.PhoneNumber.Value;
                         await RaiseSuccess("User information has been updated successfully.");
+                        await ExecuteCancelCommand();
                     }
                     else
                         await RaiseError(result.Errors.First().Description);

@@ -222,7 +222,7 @@ namespace Xaminals.Views.Offers.Models
                         this.Categories.Clear();
                         foreach (var item in model.Categories)
                         {
-                            this.Categories.Add(new CategoryModel() { Id = item.Id, Name = item.Name, Selected = item.Selected });
+                            this.Categories.Add(new CategoryModel() { Id = item.Id, Name = item.Name, Selected = item.Selected, Image = item.Image });
                         }
                     }
 

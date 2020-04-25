@@ -4,14 +4,20 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Settings.ViewModels"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Settings.PersonalSettings"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:PersonalSettingsViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Update" Command="{Binding SaveDetailsCommand}"/>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
+            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <Entry Text="{Binding Name.Value}" Placeholder="Your name" />
             <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError"/>
 
@@ -20,8 +26,6 @@
 
             <Entry Text="{Binding PhoneNumber.Value}" Placeholder="Phone number" />
             <Label Text="{Binding PhoneNumber.Errors[0]}" StyleClass="validationError"/>
-
-            <Button Text="Update information" Command="{Binding SaveDetailsCommand}" StyleClass="primaryButton" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

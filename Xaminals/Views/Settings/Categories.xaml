@@ -4,17 +4,51 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.ViewModels.Settings"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Settings.Categories"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:SettingPageCategoriesViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCategoriesInfoCommand}"/>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
-            <Label Text="Categories"/>
-            <CollectionView ItemsSource="{Binding Categories}" ItemTemplate="{StaticResource SelectionStackTemplate}" />
-            <Button Text="Update categories" Command="{Binding SaveCategoriesInfoCommand}" StyleClass="primaryButton" />
+            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
+            <Label Text="Categories" StyleClass="SectionHeadingStyle"/>
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" x:Name="itemLocation">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0">
+                                <StackLayout.Triggers>
+                                    <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="true">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                        <Setter Property="Margin" Value="-20,0,0,0"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="false">
+                                        <Setter Property="IsVisible" Value="True"/>
+                                        <Setter Property="Margin" Value="0,0,0,0"/>
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                                <CheckBox IsChecked="{Binding Selected}" WidthRequest="25"/>
+                                <Image Source="{Binding Image}"  HeightRequest="30" WidthRequest="30" Aspect="AspectFit" />
+                            </StackLayout>                           
+                            <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

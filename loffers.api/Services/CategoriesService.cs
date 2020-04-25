@@ -26,9 +26,9 @@ namespace Loffers.Server.Services
 
         public async Task<object> UserCategories(string token)
         {
-            var categories = await context.Categories.Where(c => c.Active).ToListAsync();
+            var categories = await context.Categories.Include(c => c.ParentCategories).Where(c => c.Active).ToListAsync();
             var userCategories = await context.UserCategories.Where(c => c.UserId == token && c.Active).ToListAsync();
-            return categories.Select(c => new { c.Id, c.Name, Selected = userCategories.Any(d => d.CategoryID == c.CategoryID && c.Active) }).ToList();
+            return categories.Select(c => new { c.Id, c.Name, Selected = userCategories.Any(d => d.CategoryID == c.CategoryID && c.Active), c.Image, ParentId = c.ParentCategories?.Id }).ToList();
         }
 
         public async Task<object> SaveUserCategories(List<UserCategoryModel> categories, string userId)
