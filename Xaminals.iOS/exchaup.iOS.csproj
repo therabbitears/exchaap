@@ -96,10 +96,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AppConstants.cs" />
+    <Compile Include="FirebaseAnalyticsCommon.cs" />
     <Compile Include="LocationService.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
+    <None Include="GoogleService-Info.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
@@ -178,6 +180,9 @@
       <Version>2.0.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.Firebase.iOS.Analytics">
+      <Version>6.4.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>4.5.0.530</Version>
     </PackageReference>

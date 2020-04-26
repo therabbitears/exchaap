@@ -20,6 +20,8 @@ namespace Xaminals.iOS
 
             RegisterForRemoteNotifications();
 
+            Firebase.Core.App.Configure();
+
             return base.FinishedLaunching(app, options);
         }
 
