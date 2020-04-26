@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="FirebaseAnalytics.cs" />
     <Compile Include="LocationService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MyFirebaseMessagingService.cs" />
