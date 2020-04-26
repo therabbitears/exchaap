@@ -89,10 +89,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/16/2019 03:00:40</publishTime>
     </File>
     <File Include="bin/loffers.api.dll">
-      <publishTime>04/26/2020 12:25:43</publishTime>
+      <publishTime>04/26/2020 19:49:41</publishTime>
     </File>
     <File Include="bin/loffers.api.pdb">
-      <publishTime>04/26/2020 12:25:43</publishTime>
+      <publishTime>04/26/2020 19:49:41</publishTime>
     </File>
     <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
       <publishTime>04/24/2018 12:47:38</publishTime>
@@ -291,6 +291,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>04/19/2020 12:21:07</publishTime>
+    </File>
+    <File Include="Views/Home/OfferDetails.cshtml">
+      <publishTime>04/26/2020 19:41:14</publishTime>
+    </File>
+    <File Include="Views/Home/OfferDetails.Mobile.cshtml">
+      <publishTime>04/26/2020 19:42:38</publishTime>
     </File>
     <File Include="Views/Home/Privacy.cshtml">
       <publishTime>04/17/2020 22:08:08</publishTime>

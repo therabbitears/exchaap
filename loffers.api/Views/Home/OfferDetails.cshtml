@@ -1,0 +1,147 @@
+﻿@model loffers.api.ViewModels.OfferDetailsViewModel
+@{
+    ViewBag.Title = "OfferDetails";
+    <style>
+        .offer-container {
+            border: 2px solid #CF9625;
+            border-width: 0px 2px 2px 2px;
+            padding: 4px;
+            line-height: 20px;
+        }
+
+        .giveaway {
+            background: #CF9625;
+            width: 100%;
+            padding: 2px;
+            text-align: center;
+            color: #fff;
+            font-weight: normal;
+        }
+
+        .image-container {
+            display: inline-block;
+            width: 115px;
+            text-align: center;
+            margin: 2px;
+        }
+
+            .image-container img {
+                margin: 10px !important;
+            }
+
+        .side-detail {
+            display: inline-block;
+            vertical-align: top;
+            padding: 3px;
+            line-height: 24px;
+        }
+
+        .OfferHeading {
+            color: #CF9625;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .OfferSubHeading {
+            color: #303030;
+            font-size: 15px;
+        }
+
+        .DimText {
+            color: #888888;
+            font-size: 10px;
+        }
+
+        .SectionHeadingStyle {
+            color: #CF9625;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .categories {
+            margin: 3px;
+        }
+
+        .more-details {
+            line-height: 26px;
+        }
+
+
+       .category {
+    display: inline-block;
+    padding: 0px 10px;
+    margin: 5px;
+    background: #e5e5e5;
+    border-radius: 10px;
+}
+
+         .download-container {
+            padding-top:5px;
+            margin:3px;
+        }
+    </style>
+}
+
+<div class="offer-container">
+    <div>
+        <div class="image-container">
+            <img src="@Model.Image" width="100" />
+            @if (Model.Categories == null || !Model.Categories.Any())
+            {
+                <div class="giveaway">
+                    <span>Giveaway</span>
+                </div>
+            }
+        </div>
+        <div class="side-detail">
+            <div>
+                <span class="OfferHeading">@Model.Name</span>
+            </div>
+            <div>
+                <span class="OfferSubHeading">@Model.Detail</span>
+            </div>
+            <div>
+                <div class="category">
+                    <img src="@Model.Category.Image" width="20" />
+                    <span class="DimText">@Model.Category.Name</span>
+                </div>
+            </div>
+            @if (Model.Categories != null && Model.Categories.Any())
+            {
+                <div class="categories">
+                    <span>Expected to exchange with:</span>
+                    <div>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <div class="category">
+                                <img src="@item.Image" width="20" />
+                                <span class="DimText">@item.Name</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Terms))
+            {
+                <div class="more-details">
+                    <div>
+                        <span class="SectionHeadingStyle">Details</span>
+                    </div>
+                    <div>
+                        <span>@Model.Terms</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="download-container">
+        <div>
+            <span class="SectionHeadingStyle">Download the app now</span>
+        </div>
+        <img src="~/Content/googleplay.png" style="height: 50px; " alt="download from google play" title="download from google play" />
+        <img src="~/Content/appstore.png" style="height:50px;opacity: 0.6;width:150px;" alt="download from appstore" title="download from appstore" />
+    </div>
+</div>
+

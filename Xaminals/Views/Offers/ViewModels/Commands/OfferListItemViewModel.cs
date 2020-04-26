@@ -86,8 +86,15 @@ namespace Xaminals.Views.Offers.ViewModels
         private async Task ExecuteShareOfferCommand(object value)
         {
             if (value is OfferListItemViewModel offer)
-                // Share message and an optional title.
-                await CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage() { Text = "Checkout this offer:" + offer.Name, Title = "More details: " + offer.Detail, Url = UrlConstants.baseUrl });
+            {
+                string text = "Checkout this ";
+                if (offer.Categories!=null && offer.Categories.Any())
+                    text += "exchange ad.";
+                else
+                    text += "giveaway(giving for free) ad.";
+
+                await CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage() { Text = text, Title = offer.Name, Url = offer.Url });
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using loffers.api.Models.Generator;
+using loffers.api.ViewModels;
 using Loffers.Server.Data;
 using Loffers.Server.Errors;
 using Loffers.Server.ViewModels;
@@ -181,7 +182,8 @@ namespace Loffers.Server.Services
                                                 Distance = (double)LoffersContext.DistanceCalculate((decimal)currentLat, d.Lat, (decimal)currentLong, d.Long),
                                             },
                                             d.Id,
-                                            d.Starred
+                                            d.Starred,
+                                            Url = BaseUrlToSaveImages + "home/offerdetails?id=" + d.Id + "&unit=" + unit
                                         });
 
             if (categories != null && categories.Any())
@@ -289,7 +291,8 @@ namespace Loffers.Server.Services
                                                 Categories = d.Offers.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
                                                 Coordinates = new { d.OfferLocations.PublisherLocations.Locations.Lat, d.OfferLocations.PublisherLocations.Locations.Long },
                                                 Distance = new CoordinatesDistance() { DistanceIn = unit },
-                                                d.Offers.Id
+                                                d.Offers.Id,
+                                                Url = BaseUrlToSaveImages + "home/offerdetails?id=" + d.Offers.Id + "&unit=" + unit
                                             }).ToListAsync();
 
 
@@ -302,7 +305,7 @@ namespace Loffers.Server.Services
             return new Coordinates(currentLat, currentLong).DistanceTo(new Coordinates((double)lat, (double)@long), showDistanceIn);
         }
 
-        public async Task<object> Details(string id, double currentLat, double currentLong, string unit)
+        public async Task<OfferDetailsViewModel> Details(string id, double currentLat, double currentLong, string unit)
         {
             int showDistanceIn = (int)ShowDistanceIn.Kilometers;
             if (unit != null)
@@ -345,28 +348,21 @@ namespace Loffers.Server.Services
                                                 offer.OfferCategories,
                                                 Category = offer.Categories
                                             })
-                                        .Select(d => new
+                                        .Select(d => new OfferDetailsViewModel()
                                         {
-                                            d.Id,
+                                            Id = d.Id,
                                             Name = d.OfferHeadline,
                                             Detail = d.OfferDescription,
                                             Terms = d.TermsAndConditions,
-                                            d.Image,
-                                            d.OriginalImage,
+                                            Image = d.Image,
+                                            OriginalImage = d.OriginalImage,
                                             OfferToken = d.Id,
-                                            d.PublisherName,
-                                            d.PublisherLogo,
-                                            PublisherToken = d.PublisherId,
-                                            d.LocationName,
-                                            LocationAddress = d.DisplayAddress,
-                                            d.SubPublisherLogo,
-                                            d.ValidFrom,
-                                            d.ValidTill,
-                                            LocationToken = d.LocationId,
-                                            Category = new { d.Category.Id, d.Category.Name, d.Category.Image },
-                                            Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
-                                            Coordinates = new { d.Lat, d.Long },
+                                            ValidFrom = d.ValidFrom,
+                                            Category = new CategoryModel() { Id = d.Category.Id, Name = d.Category.Name, Image = d.Category.Image },
+                                            Categories = d.OfferCategories.Select(c => new CategoryModel() { Id = c.Categories.Id, Name = c.Categories.Name, Image = c.Categories.Image }).ToList(),
+                                            Coordinates = new CoordinatesShort() { Lat = d.Lat, Long = d.Long },
                                             Distance = new CoordinatesDistance() { DistanceIn = unit },
+                                            Url = BaseUrlToSaveImages + "home/offerdetails?id=" + d.Id + "&unit=" + unit
                                         })
                                         .FirstOrDefaultAsync(c => c.Id == id);
 

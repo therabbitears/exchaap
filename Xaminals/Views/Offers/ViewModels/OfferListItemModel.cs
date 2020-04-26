@@ -37,6 +37,8 @@ namespace Xaminals.Views.Offers.ViewModels
             get { return _Starred; }
             set { _Starred = value; OnPropertyChanged("Starred"); }
         }
+
+        public string Url { get; set; }
     }
 
     public class CoordinatesDistance

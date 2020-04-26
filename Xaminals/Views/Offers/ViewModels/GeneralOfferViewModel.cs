@@ -18,6 +18,15 @@ namespace Xaminals.Views.Offers.ViewModels
             set { _Name = value; OnPropertyChanged("Name"); }
         }
 
+        private string _url;
+
+        public string Url
+        {
+            get { return _url; }
+            set { _url = value; OnPropertyChanged("Url"); }
+        }
+
+
         private string _Detail;
         public string Detail
         {

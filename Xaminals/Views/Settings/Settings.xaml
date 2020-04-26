@@ -55,8 +55,7 @@
                         <Label Text="{Binding CategoriesCount, StringFormat='{0} categories Selected'}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
                         <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
                     </Grid>
-
-                    <StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
+                    <!--<StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
                         <Label Text="Maximum range"/>
                         <Slider Maximum="100" DragCompletedCommand="{Binding SaveSettingCommands}" Minimum="1" Value="{Binding MaxRange}" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" x:Name="slider" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40"/>
                         <Label x:Name="displayLabel" Text="{Binding Source={x:Reference slider},
@@ -66,7 +65,7 @@
                               TextColor="Gray"
                               FontSize="12"
                               VerticalOptions="CenterAndExpand" />
-                    </StackLayout>
+                    </StackLayout>-->
                     <StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
                         <Label Text="Distance unit"/>
                         <Picker x:Name="Unity" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding UnitOfMeasurement}" >

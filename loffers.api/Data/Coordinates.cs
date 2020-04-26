@@ -11,4 +11,10 @@
             Longitude = longitude;
         }
     }
+
+    public class CoordinatesShort 
+    {
+        public decimal Lat { get; set; }
+        public decimal Long { get; set; }
+    }
 }

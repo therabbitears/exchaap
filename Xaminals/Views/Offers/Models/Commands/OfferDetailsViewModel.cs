@@ -26,7 +26,7 @@ namespace Xaminals.Views.Offers.Models
         public ICommand ShareOfferCommand
         {
             get; set;
-        }
+        }       
 
         protected override void AddListeners()
         {
@@ -100,7 +100,13 @@ namespace Xaminals.Views.Offers.Models
 
         private async Task ExecuteShareOfferCommand(object value)
         {
-            await CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage() { Text = "Checkout this offer:" + this.Offer.Name, Title = "More details: " + this.Offer.Detail, Url = UrlConstants.baseUrl });
+            string text = "Checkout this ";
+            if (Offer.Categories != null && Offer.Categories.Any())
+                text += "exchange ad.";
+            else
+                text += "giveaway(giving for free) ad.";
+
+            await CrossShare.Current.Share(new Plugin.Share.Abstractions.ShareMessage() { Text = text, Title = Offer.Name, Url = Offer.Url });
         }
 
         async Task OpenMaps()

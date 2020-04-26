@@ -20,6 +20,7 @@ namespace Xaminals.Views.Offers.ViewModels
         public ICommand OnTappedCommand { get; set; }
         public ICommand OnDataRequiredCommand { get; set; }
         public ICommand SelectLocationCommand { get; set; }
+        public ICommand SaveLastItemsCommand { get; set; }
 
         protected override void IntializeCommands()
         {
@@ -29,6 +30,7 @@ namespace Xaminals.Views.Offers.ViewModels
             OnTappedCommand = new Command(async (object sender) => await ExecuteOnTappedCommand(sender));
             OnDataRequiredCommand = new Command(async (object sender) => await ExecuteLoadItemsCommand(false));
             SelectLocationCommand = new Command(async (object sender) => await Shell.Current.Navigation.PushAsync(new SearchLocation()));
+            SaveLastItemsCommand = new Command(async (object sender) => ExecuteSaveLastItemsCommand(sender));
             LoadItemsCommand.Execute(null);
         }
 
@@ -84,7 +86,10 @@ namespace Xaminals.Views.Offers.ViewModels
         protected virtual void PopulateViewContext(List<OfferListItemViewModel> result, bool isRefresh)
         {
             if (isRefresh)
+            {
                 _myOffers.Clear();
+                SaveLastItemsCommand.Execute(result);
+            }
 
             foreach (var item in result)
             {
@@ -92,6 +97,14 @@ namespace Xaminals.Views.Offers.ViewModels
             }
 
             HasItems = _myOffers.Any();
+        }
+
+        async void ExecuteSaveLastItemsCommand(object v)
+        {
+            if (v != null && v is List<OfferListItemViewModel> list)
+            {
+               // await Database.SaveItemAsync(list);
+            }
         }
     }
 }

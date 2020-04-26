@@ -49,6 +49,11 @@ namespace Xaminals.Data.Database
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(ApplicationStateModel)).ConfigureAwait(false);
                 }
 
+                //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(OfferListItemViewModel).Name))
+                //{
+                //    await Database.CreateTablesAsync(CreateFlags.None, typeof(OfferListItemViewModel)).ConfigureAwait(false);
+                //}
+
                 initialized = true;
             }
         }
@@ -81,6 +86,11 @@ namespace Xaminals.Data.Database
                 return Database.UpdateAsync(item);
             else
                 return Database.InsertAsync(item);
+        }
+
+        public Task<int> SaveItemAsync(List<OfferListItemViewModel> item)
+        {
+            return Database.InsertAllAsync(item);
         }
 
         public Task<int> SaveTokenAsync(TokenModel item)

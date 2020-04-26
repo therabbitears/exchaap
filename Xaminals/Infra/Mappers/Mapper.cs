@@ -13,6 +13,7 @@ namespace Xaminals.Infra.Mappers
                 destination.Detail = source.Detail;
                 destination.Terms = source.Terms;
                 destination.Name = source.Name;
+                destination.Url = source.Url;
                 destination.Distance = source.Distance.Distance;
                 destination.Id = source.Id;
                 destination.Image = source.Image;
