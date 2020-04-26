@@ -1,4 +1,5 @@
-﻿using Loffers.GlobalViewModel;
+﻿using exchaup;
+using Loffers.GlobalViewModel;
 using Loffers.Services.LocationServices;
 using Plugin.Geolocator;
 using Rg.Plugins.Popup.Services;
@@ -41,7 +42,7 @@ namespace Xaminals.ViewModels
         ~BaseViewModel()
         {
             RemoveListeners();
-        }       
+        }
 
         protected virtual void AddListeners()
         {
@@ -292,5 +293,31 @@ namespace Xaminals.ViewModels
 
         bool _locationAvailable = true;
         public bool LocationAvailable { get { return _locationAvailable; } set { SetProperty(ref _locationAvailable, value); } }
+
+        private IFirebaseAnalytics _analyticsService;
+        public IFirebaseAnalytics AnalyticsService
+        {
+            get
+            {
+                if (_analyticsService == null)
+                {
+                    _analyticsService = DependencyService.Get<IFirebaseAnalytics>();
+                }
+
+                return _analyticsService;
+            }
+        }
+
+        protected void LogPageViews(string pageName)
+        {
+            try
+            {
+                AnalyticsService.SendEvent("pageview", "pageName", pageName);
+            }
+            catch (Exception ex)
+            {
+                RaiseError(ex.Message);
+            }
+        }
     }
 }

@@ -38,6 +38,8 @@ namespace exchaup.Views.Home.Model
                 Image = "https://img.icons8.com/officel/4x/gorilla.png",
                 ShowGoButton = true
             });
+
+            LogPageViews("startupcarousel");
         }
     }
 }

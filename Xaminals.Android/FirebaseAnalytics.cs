@@ -6,7 +6,7 @@ using Firebase.Analytics;
 using Xamarin.Forms;
 using Xaminals.Droid;
 
-[assembly: Xamarin.Forms.Dependency(typeof(FirebaseAnalyticsCommon))]
+[assembly: Dependency(typeof(FirebaseAnalyticsCommon))]
 namespace Xaminals.Droid
 {
 
@@ -27,7 +27,7 @@ namespace Xaminals.Droid
 
         public void SendEvent(string eventId, IDictionary<string, string> parameters)
         {
-            var firebaseAnalytics = FireaseAnalytics.GetInstance(Forms.Context);
+            var firebaseAnalytics = FirebaseAnalytics.GetInstance(Forms.Context);
 
             if (parameters == null)
             {
