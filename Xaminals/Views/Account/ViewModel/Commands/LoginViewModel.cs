@@ -1,4 +1,5 @@
-﻿using Loffers.Views.Account;
+﻿using exchaup.Models;
+using Loffers.Views.Account;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Diagnostics;
@@ -26,16 +27,21 @@ namespace Xaminals.Views.Account.ViewModel
             AuthenticateCommand = new Command(Authenticate);
             RegisterCommand = new Command(Register);
             ForgotPasswordCommand = new Command(async () => { await CloseAllPopups(); await PopupNavigation.Instance.PushAsync(new ForgotPopup(), true); });
+            RecordAnalyticsEventCommand.Execute(AnalyticsModel.InstanceOf(AnalyticsModel.EventNames.PageViewEvent, AnalyticsModel.ParameterNames.PageName, "login"));
         }
 
         private async void Authenticate(object obj)
         {
             if (Validate())
             {
+                
+
                 var service = new RestService();
                 IsBusy = true;
                 try
                 {
+                    RecordAnalyticsEventCommand.Execute(AnalyticsModel.InstanceOf(AnalyticsModel.EventNames.Login, AnalyticsModel.ParameterNames.User, this.Username.Value));
+
                     var result = await service.Login(new System.Collections.Generic.Dictionary<string, string>() {
                     { "username", this.Username.Value },
                     { "password", this.Password.Value },

@@ -1,4 +1,5 @@
 ﻿using exchaup;
+using exchaup.Models;
 using Loffers.GlobalViewModel;
 using Loffers.Services.LocationServices;
 using Plugin.Geolocator;
@@ -29,7 +30,7 @@ namespace Xaminals.ViewModels
         public ICommand PopupLoginCommand { get; set; }
         public ICommand PopupRegisterCommand { get; set; }
         public ICommand OpenLocationDialogCommand { get; set; }
-
+        public ICommand RecordAnalyticsEventCommand { get; set; }
 
         public BaseViewModel()
         {
@@ -67,6 +68,7 @@ namespace Xaminals.ViewModels
             PopupLoginCommand = new Command(async () => await ExecutePopupLoginCommand());
             PopupRegisterCommand = new Command(async () => await ExecutePopupRegisterCommand());
             OpenUrlCommand = new Command(async (object parameter) => await Launcher.TryOpenAsync(new Uri(parameter?.ToString())));
+            RecordAnalyticsEventCommand = new Command(ExecuteRecordAnalyticsEventCommand);
             OpenLocationDialogCommand = new Command(OpenLocationSettings);
         }
 
@@ -308,16 +310,29 @@ namespace Xaminals.ViewModels
             }
         }
 
-        protected void LogPageViews(string pageName)
+        async void ExecuteRecordAnalyticsEventCommand(object obj)
         {
             try
             {
-                AnalyticsService.SendEvent("pageview", "pageName", pageName);
+                var analiticsObject = obj as AnalyticsModel;
+                AnalyticsService.SendEvent(analiticsObject.EventName, analiticsObject.Parameters);
             }
             catch (Exception ex)
             {
-                RaiseError(ex.Message);
+                await RaiseError(ex.Message);
             }
         }
+
+        //protected void LogPageViews(string pageName)
+        //{
+        //    try
+        //    {
+        //        AnalyticsService.SendEvent("pageview", "pageName", pageName);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        RaiseError(ex.Message);
+        //    }
+        //}
     }
 }

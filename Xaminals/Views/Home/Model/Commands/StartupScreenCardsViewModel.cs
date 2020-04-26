@@ -16,6 +16,7 @@ namespace exchaup.Views.Home.Model
             GoToAppCommand = new Command(async (object sender) => await ExecureGoCommand(null));
             SaveDataCoammnd = new Command((object sender) => ExecureSaveDataCoammnd(null));
             SaveDataCoammnd.Execute(null);
+            RecordAnalyticsEventCommand.Execute(AnalyticsModel.InstanceOf(AnalyticsModel.EventNames.PageViewEvent, AnalyticsModel.ParameterNames.PageName, "startupcarousel"));
         }
 
         public async Task ExecureGoCommand(object p)
