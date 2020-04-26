@@ -25,6 +25,7 @@ namespace Xaminals.Views.Offers.Models
 
 
         public string Image { get; set; }
+        public string OriginalImage { get; set; }
 
         protected override void IntializeCommands()
         {
@@ -128,6 +129,7 @@ namespace Xaminals.Views.Offers.Models
         {
             if (Validate())
             {
+                IsBusy = true;
                 try
                 {
                     var service = new RestService();
@@ -143,7 +145,7 @@ namespace Xaminals.Views.Offers.Models
                     //    this.Category.Name = "Mobile";
                     //}
 
-                    //if (!this.IsGiveUp && !this.Categories.Any())
+                    //if (!this.Categories.Any())
                     //{
                     //    this.Categories = new ObservableCollection<CategoryModel>()
                     //{
@@ -157,9 +159,10 @@ namespace Xaminals.Views.Offers.Models
                         Category = new { Category.Id, Category.Name },
                         Heading = this.Heading.Value,
                         Detail = this.Detail.Value,
-                        Terms = this.Terms.Value,
+                        Terms = this.Terms,
                         ValidFrom = this.ImmediatelyAvailable ? default(DateTime?) : this.Validfrom.Value.Value,
                         Image = imageModel != null ? imageModel.url : Image,
+                        OriginalImage = imageModel != null ? imageModel.originalUrl : OriginalImage,
                         Categories = Categories.Select(c => new { c.Id, c.Name }).ToArray(),
                         OfferLocation = new
                         {
@@ -206,17 +209,21 @@ namespace Xaminals.Views.Offers.Models
                     var model = result.Result;
                     this.Heading.Value = model.OfferHeadline;
                     this.Image = model.Image;
+                    this.OriginalImage = model.OriginalImage;
 
                     if (!string.IsNullOrEmpty(model.Image))
                         this.SourceImage = ImageSource.FromUri(new Uri(model.Image));
 
                     this.Detail.Value = model.OfferDescription;
-                    this.Terms.Value = model.TermsAndConditions;
+                    this.Terms = model.TermsAndConditions;
                     if (model.ValidFrom != null)
                     {
                         this.Validfrom.Value = model.ValidFrom.Value.Date;
                     }
 
+                    Category.Id = model.Category.Id;
+                    Category.Image = model.Category.Image;
+                    Category.Name = model.Category.Name;
                     if (model.Categories != null)
                     {
                         this.Categories.Clear();

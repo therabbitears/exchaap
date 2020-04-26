@@ -120,7 +120,7 @@
                         </StackLayout>
                     </Grid>
                     <Label Text="Additional detail" StyleClass="SectionHeadingStyle"/>
-                    <StackLayout BindableLayout.ItemsSource="{Binding TermsMultiline}" Margin="10" Padding="10" BindableLayout.ItemTemplate="{StaticResource TermsStackTemplate}" Orientation="Vertical" />
+                    <Label Text="{Binding Terms}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

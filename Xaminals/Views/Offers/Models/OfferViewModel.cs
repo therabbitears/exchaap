@@ -28,12 +28,18 @@ namespace Xaminals.Views.Offers.Models
         }
 
 
-        private ValidatableObject<string> _terms;
-
-        public ValidatableObject<string> Terms
+        private string _terms;
+        public string Terms
         {
             get { return _terms; }
             set { _terms = value; }
+        }
+
+        private bool _IsCategorySelected = true;
+        public bool IsCategorySelected
+        {
+            get { return _IsCategorySelected; }
+            set { SetProperty(ref _IsCategorySelected, value); }
         }
 
         private ValidatableObject<DateTime?> _validfrom;
@@ -90,11 +96,9 @@ namespace Xaminals.Views.Offers.Models
             base.IntializeMembers();
             _heading = new ValidatableObject<string>();
             _detail = new ValidatableObject<string>();
-            _terms = new ValidatableObject<string>();
             _validfrom = new ValidatableObject<DateTime?>();
             _categories = new ObservableCollection<CategoryModel>();
             _location = new OfferPublisherLocationModel();
-            //categoryModel = new CategoryModel() { Selected = true, Name = "Mobile" };
             Category = new CategoryModel();
             this.Title = "Offer";
         }
@@ -115,7 +119,6 @@ namespace Xaminals.Views.Offers.Models
         }
 
         private CategoryModel categoryModel;
-
         public CategoryModel Category
         {
             get { return categoryModel; }
@@ -127,7 +130,7 @@ namespace Xaminals.Views.Offers.Models
         public OfferPublisherLocationModel Location
         {
             get
-                               {
+            {
                 return _location;
             }
             set

@@ -151,6 +151,10 @@ namespace loffers.api.Models.Generator
                 .IsUnicode(false);
 
             modelBuilder.Entity<Offers>()
+               .Property(e => e.OriginalImage)
+               .IsUnicode(false);
+
+            modelBuilder.Entity<Offers>()
                 .Property(e => e.Id)
                 .IsUnicode(false);
 

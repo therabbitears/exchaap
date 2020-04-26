@@ -15,5 +15,6 @@ namespace Loffers.Server.Data
         public List<CategoryModel> Categories { get; set; }
         public OfferLocationModel OfferLocation { get; set; }
         public string Id { get; set; }
+        public string OriginalImage { get; set; }
     }
 }

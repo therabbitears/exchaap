@@ -36,7 +36,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Name}"  VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="Red" />
+                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" VerticalOptions="Center" HorizontalOptions="EndAndExpand" StyleClass="goArrow"/>
                     </Grid>
                     <Button Command="{Binding UpdatePasswordCommand}" CornerRadius="5" Text="Update password" />
                     <Button Command="{Binding LogoutCommand}" CornerRadius="5" Text="Logout"  StyleClass="primaryButton"/>
@@ -53,12 +53,12 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding CategoriesCount, StringFormat='{0} categories Selected'}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
-                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" TextColor="Red" HorizontalOptions="EndAndExpand" />
+                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
                     </Grid>
 
                     <StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
                         <Label Text="Maximum range"/>
-                        <Slider Maximum="100" DragCompletedCommand="{Binding SaveSettingCommands}" Minimum="1" Value="{Binding MaxRange}" MinimumTrackColor="#CF9625" MaximumTrackColor="#ffdf9e" ThumbColor="#CF9625" x:Name="slider" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40"/>
+                        <Slider Maximum="100" DragCompletedCommand="{Binding SaveSettingCommands}" Minimum="1" Value="{Binding MaxRange}" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" x:Name="slider" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40"/>
                         <Label x:Name="displayLabel" Text="{Binding Source={x:Reference slider},
                               Path=Value,
                               StringFormat='{0:F0}KM(S)'}"
@@ -88,7 +88,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="About LoFers" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
-                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" TextColor="Red" HorizontalOptions="EndAndExpand" />
+                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
                     </Grid>
                 </StackLayout>
                 <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>

@@ -142,6 +142,7 @@ namespace loffers.api.Services
                         chatGroupMessage.Message,
                         users.ChatGroups.Offers.OfferHeadline,
                         users.ChatGroups.Offers.Image,
+                        users.ChatGroups.Offers.OriginalImage,
                         IsSelf = chatGroupMessage.ChatGroupUsers.UserId == userID,
                         DisplayName = context.UserProfileSnapshots.FirstOrDefault(d => d.UserId == chatGroupMessage.ChatGroupUsers.UserId).FullName,
                         chatGroupMessage.Status,

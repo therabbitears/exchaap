@@ -24,11 +24,12 @@
                     <Label  StyleClass="SectionHeadingStyle" Text="General"/>
                     <Label StyleClass="formLabel" Text="What thing do you want to exchange or giveaway:"/>
                     <SearchBar Placeholder="Select from list." Focused="OnListToGetsFocus" Text="{Binding Category.Name}" Margin="0"/>
+                    <Label Text="Please select what you want to exchange of giveaway." StyleClass="validationError" IsVisible="{Binding IsCategorySelected, Converter={StaticResource cnvReveresBoolConverter}}" />
                     <StackLayout IsVisible="{Binding Category.Selected}">
                         <OffeControls:SelectedCategory x:Name="selectedItem" BindingContext="{Binding Category}" />
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="What you want exchange with:(Don't selected anything if you are giving it up)" StyleClass="formLabel" />
+                        <Label Text="What you want exchange with:(Leave unselected if you are giving it up)" StyleClass="formLabel" />
                         <SearchBar Placeholder="Select one or multiple from the list." Focused="OnExchangeWithGetsFocus"/>
                         <ScrollView Orientation="Horizontal">
                             <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
@@ -45,10 +46,15 @@
                     <Label  StyleClass="SectionHeadingStyle" Text="Detail"/>
                     <Label Text="Enter an easy and short title of this ad:" StyleClass="formLabel" />
                     <Entry Text="{Binding Heading.Value}" Placeholder="Title" />
-                    <Label Text="Enter an optional detail of this ad(Like brand or age):" StyleClass="formLabel" />
+                    <Label Text="{Binding Heading.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Heading.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+                    
+                    <Label Text="Enter detail of this ad(Like brand, age etc.):" StyleClass="formLabel" />
                     <Editor Text="{Binding Detail.Value}" Placeholder="Detail" />
+                    <Label Text="{Binding Detail.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Detail.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+
                     <Label Text="Enter optional instructions if any:" StyleClass="formLabel" />
-                    <Editor Text="{Binding Terms.Value}" Placeholder="Detail" />
+                    <Editor Text="{Binding Terms}" Placeholder="Optional: Instructions" />
+                    
                     <Label Text="The date this is available from(Keep it ticked if available from now):" StyleClass="formLabel" />
                     <Switch IsToggled="{Binding ImmediatelyAvailable}" HorizontalOptions="StartAndExpand" />
                     <StackLayout>
@@ -69,6 +75,7 @@
                         </Frame>
                         <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>
+                    <Button Text="Save" Command="{Binding SaveOfferCommand}"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

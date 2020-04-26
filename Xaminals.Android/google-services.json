@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "681040235046",
-    "firebase_url": "https://loffers.firebaseio.com",
-    "project_id": "loffers",
-    "storage_bucket": "loffers.appspot.com"
+    "project_number": "748908750927",
+    "firebase_url": "https://exchaup.firebaseio.com",
+    "project_id": "exchaup",
+    "storage_bucket": "exchaup.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:681040235046:android:4587c4ad8ddc7b4f04f4e7",
+        "mobilesdk_app_id": "1:748908750927:android:35ada6670ea68086b4a23a",
         "android_client_info": {
-          "package_name": "com.quartile.loffers"
+          "package_name": "com.quartile.exchaup"
         }
       },
       "oauth_client": [
         {
-          "client_id": "681040235046-jogc7iq09nisjo87ms65jarobmc7g32i.apps.googleusercontent.com",
+          "client_id": "748908750927-mo0f9dlp7u88rue3e0bh5ac84ajhncb1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCICxugqnf0x7SPY1txLYAnOKkX-5Y7-fk"
+          "current_key": "AIzaSyAKeCOEm6v2d15cM4FvyNeaWL7VIJEkWyE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "681040235046-jogc7iq09nisjo87ms65jarobmc7g32i.apps.googleusercontent.com",
+              "client_id": "748908750927-mo0f9dlp7u88rue3e0bh5ac84ajhncb1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

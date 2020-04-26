@@ -8,20 +8,19 @@ namespace Xaminals.Views.Offers.Models
         {
             _heading.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "Please enter offer heading/title."
+                ValidationMessage = "Please enter ad heading."
             });
 
             _detail.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "Please enter detail/description of the offer."
+                ValidationMessage = "Please enter short detail of this ad, like brand, age, genre etc."
             });
-        }     
+        }
 
         private bool Validate()
         {
-            bool isValidHeading = ValidateHeading();
-            bool isValidDetail = ValidateDetail();
-            return isValidHeading && isValidDetail;
+            IsCategorySelected = Category != null && !string.IsNullOrEmpty(Category.Id);
+            return ValidateHeading() && ValidateDetail() && IsCategorySelected;
         }
 
         private bool ValidateHeading()

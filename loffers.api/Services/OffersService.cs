@@ -106,6 +106,7 @@ namespace Loffers.Server.Services
                 TermsAndConditions = model.Terms,
                 ValidFrom = model.ValidFrom != null ? model.ValidFrom.Value : DateTime.UtcNow,
                 Image = model.Image,
+                OriginalImage = model.OriginalImage,
                 Publishers = publisherForUser,
                 Id = Guid.NewGuid().ToString(),
                 OfferCategories = model.Categories.Select(c => new OfferCategories() { Id = c.Id }).ToList(),
@@ -136,6 +137,7 @@ namespace Loffers.Server.Services
                                                 offer.OfferDescription,
                                                 offer.TermsAndConditions,
                                                 offer.Image,
+                                                offer.OriginalImage,
                                                 offer.Id,
                                                 location.PublisherLocations.Locations.Lat,
                                                 location.PublisherLocations.Locations.Long,
@@ -159,6 +161,7 @@ namespace Loffers.Server.Services
                                             Detail = d.OfferDescription,
                                             Terms = d.TermsAndConditions,
                                             d.Image,
+                                            d.OriginalImage,
                                             OfferToken = d.Id,
                                             d.PublisherName,
                                             d.PublisherLogo,
@@ -270,6 +273,7 @@ namespace Loffers.Server.Services
                                                 Detail = d.Offers.OfferDescription,
                                                 Terms = d.Offers.TermsAndConditions,
                                                 d.Offers.Image,
+                                                d.Offers.OriginalImage,
                                                 OfferToken = d.Offers.Id,
                                                 PublisherName = d.Offers.Publishers.Name,
                                                 PublisherLogo = d.Offers.Publishers.Image,
@@ -325,6 +329,7 @@ namespace Loffers.Server.Services
                                                 offer.OfferDescription,
                                                 offer.TermsAndConditions,
                                                 offer.Image,
+                                                offer.OriginalImage,
                                                 offer.Id,
                                                 LocationId = location.PublisherLocations.Id,
                                                 location.PublisherLocations.Locations.Lat,
@@ -347,6 +352,7 @@ namespace Loffers.Server.Services
                                             Detail = d.OfferDescription,
                                             Terms = d.TermsAndConditions,
                                             d.Image,
+                                            d.OriginalImage,
                                             OfferToken = d.Id,
                                             d.PublisherName,
                                             d.PublisherLogo,
@@ -380,6 +386,7 @@ namespace Loffers.Server.Services
             offerresult.ValidFrom = offer.ValidFrom.Value;
             offerresult.ValidTill = offer.ValidTo.Value;
             offerresult.Image = offer.Image;
+            offerresult.OriginalImage = offer.OriginalImage;
 
             if (offerresult.OfferCategories.Any())
             {
@@ -452,6 +459,7 @@ namespace Loffers.Server.Services
                         offer.OfferDescription,
                         offer.TermsAndConditions,
                         offer.Image,
+                        offer.OriginalImage,
                         offer.CreatedBy,
                         offer.CreatedOn,
                         offer.ValidFrom,
@@ -484,6 +492,7 @@ namespace Loffers.Server.Services
                     c.ValidFrom,
                     c.ValidTill,
                     c.Image,
+                    c.OriginalImage,
                     c.CreatedBy,
                     c.CreatedOn,
                     c.Id,

@@ -80,7 +80,7 @@ checkbox {
 }
 
 .secondaryColorText {
-    color: #FCF3E1;
+    color: #f7d081;
 }
 
 .publisherName {
@@ -93,6 +93,12 @@ checkbox {
     font-size: 14;
     width: 14;
     height: 14;
+}
+
+.goArrow {
+    color: #CF9625;
+    font-size:20;
+    font-weight:bold;
 }
 
 .gylypLabelBig {

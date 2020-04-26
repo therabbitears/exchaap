@@ -15,6 +15,7 @@ namespace Xaminals.Models
     public class ImageModel
     {
         public string url { get; set; }
+        public string originalUrl { get; set; }
         public bool uploaded { get; set; }
     }
 }

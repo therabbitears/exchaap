@@ -1,8 +1,12 @@
-﻿using Microsoft.WindowsAzure.Storage;
+﻿using loffers.api.Utils;
+using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -46,82 +50,98 @@ namespace Loffers.Server.Controllers
         public async Task<IHttpActionResult> Post()
         {
             var httpRequest = HttpContext.Current.Request;
-            //if (!Request.Content.IsMimeMultipartContent())
-            //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-
-            //var provider = new MultipartMemoryStreamProvider();
-            //await Request.Content.ReadAsMultipartAsync(provider);
-            //foreach (var file in provider.Contents)
-            //{
-            //    try
-            //    {
-            //        var filename = file.Headers.ContentDisposition.FileName.Trim('\"');
-            //        var contentType = file.Headers.ContentType;
-            //        var fileBytes = await file.ReadAsByteArrayAsync();
-
-            //        var _task = await this.UploadFileToBlobAsync(fileName, fileBytes, contentType.MediaType);
-            //        return Ok(new { url = _task });
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw (ex);
-            //    }
-            //}
-
-            //return Unauthorized();
-
             string fileName;
             if (httpRequest.Files.Count > 0)
             {
                 var postedFile = httpRequest.Files[0];
-                fileName = this.GenerateFileName(postedFile.FileName);
-                var filePath = HttpContext.Current.Server.MapPath("~/offers/" + fileName);
-                postedFile.SaveAs(filePath);
-            }
-            else
-            {
-                return BadRequest("No file is posted to save.");
-            }
+                string uniqueIdentifier = DateTime.Now.ToUniversalTime().ToString("yyyyMMdd\\THHmmssfff");
 
-            return Ok(new { url = BaseUrlToSaveImages + "offers/" + fileName });
+                byte[] Array = new byte[postedFile.ContentLength];
+                postedFile.InputStream.Read(Array, 0, Array.Length);
+
+                bool isSaved = false;
+                var largeImage = ResizeFile(Array, 800, ref isSaved);
+                fileName = this.GenerateFileName(postedFile.FileName, uniqueIdentifier);
+                var filePath = HttpContext.Current.Server.MapPath("~/offers/" + fileName);
+                File.WriteAllBytes(filePath, largeImage);
+
+                var smallImage = ResizeFile(Array, 200, ref isSaved);
+                var smallFileName = this.GenerateSmallFileName(postedFile.FileName, uniqueIdentifier);
+                filePath = HttpContext.Current.Server.MapPath("~/offers/" + smallFileName);
+                File.WriteAllBytes(filePath, smallImage);
+
+                return Ok(new { url = BaseUrlToSaveImages + "offers/" + smallFileName, originalUrl= BaseUrlToSaveImages + "offers/" + fileName });
+            }
+            return BadRequest("No file is posted to save.");
         }
 
-        //private async Task<string> UploadFileToBlobAsync(string strFileName, byte[] fileData, string fileMimeType)
-        //{
-        //try
-        //{
-        //    //var token = User.Claims.Where(a => a.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-        //    var token = User.Identity.Name;
-        //    var cloudStorageAccount = CloudStorageAccount.Parse(accessKey);
-        //    var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-        //    string strContainerName = "uploads";
-        //    var cloudBlobContainer = cloudBlobClient.GetContainerReference(strContainerName);
-        //    string fileName = this.GenerateFileName(strFileName);
-
-        //    if (await cloudBlobContainer.CreateIfNotExistsAsync())
-        //    {
-        //        await cloudBlobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
-        //    }
-
-        //    if (fileName != null && fileData != null)
-        //    {
-        //        var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(fileName);
-        //        cloudBlockBlob.Properties.ContentType = fileMimeType;
-        //        cloudBlockBlob.Metadata.Add("Owner", token);
-        //        await cloudBlockBlob.UploadFromByteArrayAsync(fileData, 0, fileData.Length);
-        //        return cloudBlockBlob.Uri.AbsoluteUri;
-        //    }
-        //    return "";
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw (ex);
-        //}
-        //}
-
-        private string GenerateFileName(string fileName)
+        private string GenerateFileName(string fileName, string uniqueString)
         {
-            return DateTime.Now.ToUniversalTime().ToString("yyyyMMdd\\THHmmssfff") + "_" + fileName.Split('.')[0] + "." + fileName.Split('.')[1];
+            return uniqueString + "_" + fileName.Split('.')[0] + "." + fileName.Split('.')[1];
+        }
+
+        private string GenerateSmallFileName(string fileName, string uniqueString)
+        {
+            return uniqueString + "_s_" + fileName.Split('.')[0] + "." + fileName.Split('.')[1];
+        }
+
+        public static byte[] ResizeFile
+                            (
+                                byte[] bytFileContent,
+                                int intTargetSize,
+                                ref bool blSavedAsPng
+                            )
+        {
+            if (bytFileContent == null)
+                return null;
+
+            blSavedAsPng = false;
+
+            using (
+                System.Drawing.Image imgOriginal = System.Drawing.Image.FromStream(new MemoryStream(bytFileContent)))
+            {
+                /// Calculate and get the new dimension of image as per the new resolution passed.
+                Size newSize = Compute.Dimensions(imgOriginal.Size, intTargetSize);
+
+                using (Bitmap imgNew = new Bitmap(newSize.Width, newSize.Height))
+                {
+                    using (Graphics canvas = Graphics.FromImage(imgNew))
+                    {
+                        canvas.SmoothingMode = SmoothingMode.HighQuality;
+                        canvas.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        canvas.CompositingQuality = CompositingQuality.HighQuality;
+                        canvas.DrawImage(imgOriginal, new Rectangle(0, 0, newSize.Width, newSize.Height));
+
+                        MemoryStream m = new MemoryStream();
+
+                        if (ImageFormat.Tiff.Equals(imgOriginal.RawFormat))
+                        {
+                            FrameDimension frameDimensions = new FrameDimension(imgOriginal.FrameDimensionsList[0]);
+
+                            // Selects first frame and save as jpeg. 
+                            imgNew.SelectActiveFrame(frameDimensions, 0);
+
+                            imgNew.Save(m, ImageFormat.Jpeg);
+                        }
+                        else if (ImageFormat.Png.Equals(imgOriginal.RawFormat) || ImageFormat.Gif.Equals(imgOriginal.RawFormat))
+                        {
+                            if (true)
+                            {
+                                blSavedAsPng = true;
+                                imgNew.Save(m, ImageFormat.Png);
+                            }
+                            else
+                            {
+                                imgNew.Save(m, ImageFormat.Jpeg);
+                            }
+                        }
+                        else
+                            imgNew.Save(m, ImageFormat.Jpeg);
+
+                        return m.ToArray();
+                    }
+                }
+            }
         }
     }
 }

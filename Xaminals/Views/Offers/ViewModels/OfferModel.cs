@@ -16,5 +16,6 @@ namespace Xaminals.Views.Offers.ViewModels
         public List<CategoryModel> Categories { get; set; }
         public CategoryModel Category { get; set; }
         public OfferPublisherLocationModel Locations { get; set; }
+        public string OriginalImage { get; set; }
     }
 }

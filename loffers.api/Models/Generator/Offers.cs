@@ -55,6 +55,9 @@ namespace loffers.api.Models.Generator
         [StringLength(200)]
         public string Image { get; set; }
 
+        [StringLength(200)]
+        public string OriginalImage { get; set; }
+
         [Required]
         [StringLength(70)]
         public string Id { get; set; }
