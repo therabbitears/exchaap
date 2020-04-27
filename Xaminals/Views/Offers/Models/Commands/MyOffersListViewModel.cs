@@ -60,7 +60,7 @@ namespace Xaminals.Views.Offers.Models
                 if (IsBusy)
                     return;
 
-                IsBusy = true;
+                HasItems = IsBusy = true;
 
                 try
                 {
@@ -86,6 +86,7 @@ namespace Xaminals.Views.Offers.Models
                 finally
                 {
                     IsBusy = false;
+                    HasItems = _myOffers.Any();
                 }
             }
             else

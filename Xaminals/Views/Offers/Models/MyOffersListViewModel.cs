@@ -4,7 +4,7 @@ using Xaminals.Views.Offers.ViewModels;
 
 namespace Xaminals.Views.Offers.Models
 {
-    public partial class MyOffersListViewModel : BaseViewModel
+    public partial class MyOffersListViewModel : ListBaseViewModel
     {
         ObservableCollection<OfferModel> _myOffers;
         public ObservableCollection<OfferModel> MyOffers

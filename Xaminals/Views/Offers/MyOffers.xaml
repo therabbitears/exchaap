@@ -9,6 +9,7 @@
              x:Class="Xaminals.Views.Offers.MyOffers"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
+             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:MyOffersListViewModel />
@@ -23,9 +24,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout StyleClass="parentContainer" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
-            <ListView x:Name="ItemsListView"
+    <StackLayout StyleClass="parentContainer">
+        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Padding="5" IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
+                <Label Text="You are not exchauping anything." StyleClass="emptyScreenTitle, primaryColorText" />
+                <Label Text="You can use below button to list your first exchaup." StyleClass="emptyScreenDescription, MediumText"/>
+                <Button Text="Let's list one" Command="{Binding AddOfferCommand}" StyleClass="primaryButton" />
+                <Label  Text="Things get old soon, but for someone it is still new. List your old stuff like books, toys, mobiles, games or anything which you want to exchange or want to giveaway to someone interested in." StyleClass="emptyScreenDescription, MediumText"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding HasItems}">
+                <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding MyOffers}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -36,22 +44,22 @@
                 ItemSelected="OnItemSelected"                
                 SelectedItem = "{Binding OfferSelectedItem}"
                 SeparatorVisibility="None" IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid BackgroundColor="White" Margin="5" Padding="5" x:Name="OfferItem">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <ContentView Grid.RowSpan="3" Grid.Column="0">
-                                    <StackLayout>
-                                        <Image 
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid BackgroundColor="White" Margin="5" Padding="5" x:Name="OfferItem">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentView Grid.RowSpan="3" Grid.Column="0">
+                                        <StackLayout>
+                                            <Image 
                                        Aspect="AspectFit" 
                                        HorizontalOptions="Center" 
                                        VerticalOptions="Start" 
@@ -59,41 +67,42 @@
                                        WidthRequest="100"
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
-                                        <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
-                                            <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
-                                        </ContentView>
-                                    </StackLayout>
-                                </ContentView>
-                                <StackLayout Grid.Column="1" Grid.Row="0">
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeadline}" StyleClass="OfferHeading"/>
-                                    </StackLayout>
-                                    <StackLayout>
-                                        <Label  Text="{Binding OfferDescription}" StyleClass="OfferSubHeading"/>
-                                    </StackLayout>
-                                </StackLayout>
-                                <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
-                                <StackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
-                                <Label Text="Listed to exchange with:"/>
-                                <StackLayout>
-                                    <ScrollView Orientation="Horizontal">
-                                        <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
-                                            <BindableLayout.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackLayout>
-                                                        <OffeControls:SelectedCategory />
-                                                    </StackLayout>
-                                                </DataTemplate>
-                                            </BindableLayout.ItemTemplate>
+                                            <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
+                                                <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
+                                            </ContentView>
                                         </StackLayout>
-                                    </ScrollView>
-                                </StackLayout>
-                                </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                    </ContentView>
+                                    <StackLayout Grid.Column="1" Grid.Row="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeadline}" StyleClass="OfferHeading"/>
+                                        </StackLayout>
+                                        <StackLayout>
+                                            <Label  Text="{Binding OfferDescription}" StyleClass="OfferSubHeading"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
+                                    <StackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
+                                        <Label Text="Listed to exchange with:"/>
+                                        <StackLayout>
+                                            <ScrollView Orientation="Horizontal">
+                                                <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
+                                                    <BindableLayout.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackLayout>
+                                                                <OffeControls:SelectedCategory />
+                                                            </StackLayout>
+                                                        </DataTemplate>
+                                                    </BindableLayout.ItemTemplate>
+                                                </StackLayout>
+                                            </ScrollView>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
         <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>
 

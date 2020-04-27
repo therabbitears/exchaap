@@ -17,9 +17,11 @@
     <StackLayout StyleClass="parentContainer">
         <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <StackLayout IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
-            <Label Text="No offer found around for the criteria, perhaps you would like to change?" />
-            <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
-            <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
+                <Label Text="Nothing around you." StyleClass="emptyScreenTitle, primaryColorText" />
+                <Label Text="You can update the criteria or can change the discovery location using the location option given in the bottom." StyleClass="emptyScreenDescription, MediumText"/>
+                <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
+                <Label Text="Or you can give refresh a try to quickly look again around you." StyleClass="emptyScreenDescription, MediumText"/>
+                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
             </StackLayout>
         <mySharedControls:FetchingLocation />
         <customControls:ExtenderListView x:Name="ItemsListView" IsVisible="{Binding HasItems}"
