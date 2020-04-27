@@ -23,7 +23,6 @@
                         </Label.Triggers>
                     </Label>
                 </StackLayout>
-                <Button FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf0b0;" Command="{Binding ShowCritriaCommand}" StyleClass="flatButton, primaryColorText" WidthRequest="30" />
             </StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
