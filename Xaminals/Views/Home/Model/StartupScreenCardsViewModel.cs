@@ -13,6 +13,14 @@ namespace exchaup.Views.Home.Model
             set { _cards = value; }
         }
 
+        private StartupCardModel _currentItem;
+        public StartupCardModel CurrentItem
+        {
+            get { return _currentItem; }
+            set { _currentItem = value; OnPropertyChanged("CurrentItem"); }
+        }
+
+
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
@@ -37,7 +45,9 @@ namespace exchaup.Views.Home.Model
                 Description = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
                 Image = "https://img.icons8.com/officel/4x/gorilla.png",
                 ShowGoButton = true
-            });            
+            });
+
+            CurrentItem = Cards[0];
         }
     }
 }

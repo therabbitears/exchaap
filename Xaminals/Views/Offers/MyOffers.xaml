@@ -15,7 +15,6 @@
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding AddOfferCommand}" Name="itemAdd"  Text="New" Order="Primary" Priority="0" />
-
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>

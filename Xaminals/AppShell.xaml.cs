@@ -26,15 +26,6 @@ namespace Xaminals
             RegisterRoutes();
             AddListners();
             this.BindingContext = SingletonLoffersContext.Context.SessionModel;
-            MessagingCenter.Subscribe<Settings>(this, "Hi", (sender) =>
-            {
-
-            });
-
-            MessagingCenter.Subscribe<SearchViewModel>(this, "CriteriaUpdated", async (obj) =>
-            {
-
-            });
         }
 
         private void AddListners()

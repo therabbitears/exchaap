@@ -16,8 +16,8 @@ namespace Xaminals
     {
         public enum UnitOfMeasurement
         {
-            Miles,
-            Killometers
+            Killometers,
+            Miles            
         }
 
         public App()

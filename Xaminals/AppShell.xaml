@@ -47,7 +47,7 @@
             <Tab.Icon>
                 <FontImageSource
                         FontFamily="{DynamicResource FontAwesomeSolid}"
-                        Glyph="&#xf02c;"
+                        Glyph="&#xf14e;"
                         Size="20"
                         Color="White" />
             </Tab.Icon>

@@ -1,5 +1,6 @@
 ﻿using exchaup;
 using exchaup.Models;
+using exchaup.Views.Home.Model;
 using Loffers.GlobalViewModel;
 using Loffers.Services.LocationServices;
 using Plugin.Geolocator;
@@ -31,7 +32,8 @@ namespace Xaminals.ViewModels
         public ICommand PopupRegisterCommand { get; set; }
         public ICommand OpenLocationDialogCommand { get; set; }
         public ICommand RecordAnalyticsEventCommand { get; set; }
-
+        public ICommand GotoAppCommand { get; set; }
+        
         public BaseViewModel()
         {
             IntializeMembers();
@@ -68,8 +70,14 @@ namespace Xaminals.ViewModels
             PopupLoginCommand = new Command(async () => await ExecutePopupLoginCommand());
             PopupRegisterCommand = new Command(async () => await ExecutePopupRegisterCommand());
             OpenUrlCommand = new Command(async (object parameter) => await Launcher.TryOpenAsync(new Uri(parameter?.ToString())));
+            GotoAppCommand = new Command(ReloadApp);
             RecordAnalyticsEventCommand = new Command(ExecuteRecordAnalyticsEventCommand);
             OpenLocationDialogCommand = new Command(OpenLocationSettings);
+        }
+
+        private void ReloadApp(object obj)
+        {
+            MessagingCenter.Send<StartupScreenCardsViewModel>(new StartupScreenCardsViewModel(), "GotoApp");
         }
 
         protected async Task ExecutePopupRegisterCommand()
@@ -319,7 +327,8 @@ namespace Xaminals.ViewModels
             }
             catch (Exception ex)
             {
-                await RaiseError(ex.Message);
+                Debug.WriteLine(ex.Message);
+                //await RaiseError(ex.Message);
             }
         }
 

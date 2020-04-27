@@ -29,8 +29,15 @@ namespace Xaminals.Views.Offers.Models
 
         async Task ExecuteAddOfferCommand()
         {
-            ShellNavigationState state = Shell.Current.CurrentState;
-            await Shell.Current.GoToAsync($"offer", true);
+            if (IsLoggedIn)
+            {
+                ShellNavigationState state = Shell.Current.CurrentState;
+                await Shell.Current.GoToAsync($"offer", true);
+            }
+            else
+            {
+                await ExecutePopupLoginCommand();
+            }
         }
 
         protected override void OnLoginStateChanged(bool isLoggedIn)

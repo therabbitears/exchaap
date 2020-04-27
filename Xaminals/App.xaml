@@ -153,12 +153,8 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <StackLayout Grid.Column="0">
-                                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton" Text="&#xf5a0;" Command="{Binding OpenMapsCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
-                            </StackLayout>
-                            <StackLayout Grid.Column="1">
                                 <Button StyleClass="flatButton, gylypButton" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf005;" Command="{Binding StarOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" >
                                     <Button.Triggers>
                                         <DataTrigger TargetType="Button" Binding="{Binding Starred}" Value="true">
@@ -167,13 +163,13 @@
                                     </Button.Triggers>
                                 </Button>
                             </StackLayout>
-                            <StackLayout Grid.Column="2">
+                            <StackLayout Grid.Column="1">
                                 <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton" Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
                             </StackLayout>
-                            <StackLayout Grid.Column="3">
+                            <StackLayout Grid.Column="2">
                                 <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton" Text="&#xf1e0;" Command="{Binding ShareOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
                             </StackLayout>
-                            <StackLayout Grid.Column="4">
+                            <StackLayout Grid.Column="3">
                                 <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf024;" Command="{Binding ReportOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
                             </StackLayout>
                         </Grid>

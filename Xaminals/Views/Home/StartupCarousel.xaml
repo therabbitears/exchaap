@@ -15,7 +15,7 @@
             <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                             <StackLayout VerticalOptions="CenterAndExpand">
                                 <Label Text="{Binding Title}"
                                FontAttributes="Bold"
@@ -32,12 +32,13 @@
                                HorizontalOptions="Center"
                                MaxLines="5"
                                LineBreakMode="TailTruncation" />
-                            </StackLayout>                            
+                            </StackLayout>
+                            <Button StyleClass="flatButton" Text="Go to app" IsVisible="{Binding ShowGoButton}" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Button StyleClass="flatButton" Text="Go to app" Command="{Binding GoToAppCommand}" />
+           
             <IndicatorView x:Name="indicatorView"
                    IndicatorColor="LightGray"
                    SelectedIndicatorColor="DarkGray"

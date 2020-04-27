@@ -70,8 +70,8 @@
                         <Label Text="Distance unit"/>
                         <Picker x:Name="Unity" HorizontalOptions="FillAndExpand" SelectedIndex="{Binding UnitOfMeasurement}" >
                             <Picker.Items>
-                                <x:String>Miles</x:String>
                                 <x:String>Kilometers</x:String>
+                                <x:String>Miles</x:String>
                             </Picker.Items>
                         </Picker>
                     </StackLayout>

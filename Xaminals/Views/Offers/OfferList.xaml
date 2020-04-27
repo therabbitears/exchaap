@@ -15,12 +15,14 @@
         <local:OffersListViewModel />
     </ContentPage.BindingContext>
     <StackLayout StyleClass="parentContainer">
-        <StackLayout IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <StackLayout IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
             <Label Text="No offer found around for the criteria, perhaps you would like to change?" />
             <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
-        </StackLayout>
+            <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
+            </StackLayout>
         <mySharedControls:FetchingLocation />
-        <customControls:ExtenderListView x:Name="ItemsListView"
+        <customControls:ExtenderListView x:Name="ItemsListView" IsVisible="{Binding HasItems}"
                 ItemsSource="{Binding Offers}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -37,5 +39,6 @@
             </x:Arguments>
         </customControls:ExtenderListView>
         <myControls:QuickFilter />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

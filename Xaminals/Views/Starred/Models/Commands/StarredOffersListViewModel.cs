@@ -15,6 +15,7 @@ namespace Xaminals.Views.Starred.Models
         {
             if (IsLoggedIn)
             {
+                HasItems = true;
                 try
                 {
                     var location = await GetCurrentLocation(false);

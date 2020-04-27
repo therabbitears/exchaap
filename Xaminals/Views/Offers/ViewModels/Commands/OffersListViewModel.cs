@@ -52,6 +52,7 @@ namespace Xaminals.Views.Offers.ViewModels
         {
             try
             {
+                HasItems = true;
                 if (isRefresh)
                     CurrentPageNumber = 0;
 
