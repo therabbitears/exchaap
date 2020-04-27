@@ -23,9 +23,29 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout StyleClass="parentContainer" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}">
-            <!--<Button Text="Refresh" Command="{Binding LoadItemsCommand}" />-->
-            <customControls:ExtenderListView x:Name="ItemsListView"
+        <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Padding="5" IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
+                <Label Text="It's nothing here" StyleClass="emptyScreenTitle, primaryColorText" />
+                <Label Text="Use chat option available on ad page to quickly chat with the people." StyleClass="emptyScreenDescription, MediumText"/>
+                <Grid BackgroundColor="#FFF" Margin="5" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <customControl:GlyphLabel Grid.Column="0" StyleClass="RegularGylphText" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf005;" VerticalOptions="CenterAndExpand" />
+                    <customControl:GlyphLabel Grid.Column="1" FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="LargeGylphText, primaryColorText" Text="&#xf075;" VerticalOptions="CenterAndExpand" />
+                    <customControl:GlyphLabel Grid.Column="2" FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="RegularGylphText" Text="&#xf1e0;" VerticalOptions="CenterAndExpand" />
+                    <customControl:GlyphLabel Grid.Column="3" FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
+                </Grid>
+            </StackLayout>
+            
+            <StackLayout IsVisible="{Binding HasItems}">
+                <customControls:ExtenderListView x:Name="ItemsListView"
                 ItemsSource="{Binding Chats}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
@@ -36,47 +56,47 @@
                 SelectionMode="Single"
                 SelectedItem="{Binding SelectedChat}"
                 OnTappedCommand="{Binding TappedItemChangedCommand}">
-            <x:Arguments>
-                <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
-            </x:Arguments>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Margin="5" Padding="5" x:Name="ChatItem">
-                            <Grid.Triggers>
-                                <DataTrigger TargetType="Grid" Binding="{Binding IsSelf}" Value="true">
-                                    <Setter Property="BackgroundColor" Value="#FFFFFF" />
-                                </DataTrigger>
-                                <MultiTrigger TargetType="Grid">
-                                    <MultiTrigger.Conditions>
-                                        <BindingCondition
+                    <x:Arguments>
+                        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                    </x:Arguments>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="5" Padding="5" x:Name="ChatItem">
+                                    <Grid.Triggers>
+                                        <DataTrigger TargetType="Grid" Binding="{Binding IsSelf}" Value="true">
+                                            <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                                        </DataTrigger>
+                                        <MultiTrigger TargetType="Grid">
+                                            <MultiTrigger.Conditions>
+                                                <BindingCondition
                                                         Binding="{Binding IsSelf}"
                                                         Value="false" />
-                                        <BindingCondition
+                                                <BindingCondition
                                                         Binding="{Binding Status}"
-                                                        Value="0" />     
-                                    </MultiTrigger.Conditions>
-                                    <Setter Property="BackgroundColor" Value="#dfdfdf" />
-                                </MultiTrigger> 
-                            </Grid.Triggers>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <ContentView Grid.RowSpan="2" Grid.Column="0">
-                                <StackLayout>
-                                        <Frame CornerRadius="100" 
+                                                        Value="0" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="BackgroundColor" Value="#dfdfdf" />
+                                        </MultiTrigger>
+                                    </Grid.Triggers>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentView Grid.RowSpan="2" Grid.Column="0">
+                                        <StackLayout>
+                                            <Frame CornerRadius="100" 
                                        HeightRequest="50"
                                        WidthRequest="50"
                                        HorizontalOptions="Center"
                                        Padding="0"
-                                       IsClippedToBounds="True">            
-                                            <Image 
+                                       IsClippedToBounds="True">
+                                                <Image 
                                        Aspect="AspectFit" 
                                        HorizontalOptions="Center" 
                                        VerticalOptions="Center" 
@@ -84,28 +104,29 @@
                                        WidthRequest="50"
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image}" />
-                                        </Frame>
-                                </StackLayout>
-                            </ContentView>
-                            <StackLayout Grid.Column="1" Grid.Row="0">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeading}" StyleClass="OfferHeading"/>
-                                    <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Stamp, Converter={StaticResource cnvDateTimeDuractionConverted}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
-                                </StackLayout>
-                            </StackLayout>
-                            <StackLayout Grid.Column="1" Grid.Row="1">
-                                    <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
-                                </StackLayout>
-                            <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
-                                <Label IsVisible="{Binding IsSelf}" Text="You:" FontAttributes="Bold" LineBreakMode="NoWrap" />
-                                <Label IsVisible="{Binding IsSelf, Converter={StaticResource cnvReveresBoolConverter}}" LineBreakMode="NoWrap" FontAttributes="Bold" Text="{Binding DisplayName, StringFormat='{0}:'}" />
-                                <Label Text="{Binding Message}"/>
-                            </StackLayout>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </customControls:ExtenderListView>
+                                            </Frame>
+                                        </StackLayout>
+                                    </ContentView>
+                                    <StackLayout Grid.Column="1" Grid.Row="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeading}" StyleClass="OfferHeading"/>
+                                            <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Stamp, Converter={StaticResource cnvDateTimeDuractionConverted}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" Grid.Row="1">
+                                        <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                                        <Label IsVisible="{Binding IsSelf}" Text="You:" FontAttributes="Bold" LineBreakMode="NoWrap" />
+                                        <Label IsVisible="{Binding IsSelf, Converter={StaticResource cnvReveresBoolConverter}}" LineBreakMode="NoWrap" FontAttributes="Bold" Text="{Binding DisplayName, StringFormat='{0}:'}" />
+                                        <Label Text="{Binding Message}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </customControls:ExtenderListView>
+            </StackLayout>
         </StackLayout>
         <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>
     </StackLayout>

@@ -4,7 +4,7 @@ using Xaminals.ViewModels;
 
 namespace Loffers.Views.Chat.Models
 {
-    public partial class ChatListViewModel : BaseViewModel
+    public partial class ChatListViewModel : ListBaseViewModel
     {
         private ObservableCollection<ChatListItemModel> _chats;
         public ObservableCollection<ChatListItemModel> Chats

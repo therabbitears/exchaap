@@ -75,7 +75,7 @@ namespace Loffers.Views.Chat.Models
         {
             if (IsLoggedIn)
             {
-                IsBusy = true;
+                HasItems = IsBusy = true;
 
                 try
                 {
@@ -113,6 +113,7 @@ namespace Loffers.Views.Chat.Models
                 finally
                 {
                     IsBusy = false;
+                    HasItems = Chats.Any();
                 }
             }
         }

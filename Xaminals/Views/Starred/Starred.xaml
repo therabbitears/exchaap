@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:Xaminals.Views.Starred.Models"             
+             xmlns:local="clr-namespace:Xaminals.Views.Starred.Models"       
+             xmlns:customControlsN="clr-namespace:Xaminals.CustomControls"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Starred.Starred"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
@@ -17,8 +18,25 @@
         <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <mySharedControls:FetchingLocation IsVisible="{Binding FetchingLocation}" />
             <StackLayout Padding="5" IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
-                <Label Text="You are not starred any offer yet, keep exploring offers and then shortlist of your preference." />
-                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
+                <Label Text="It's nothing here" StyleClass="emptyScreenTitle, primaryColorText" />
+                <Label Text="Use star option available on ad page to shortlist ads for revisit purpose." StyleClass="emptyScreenDescription, MediumText"/>
+                <Grid BackgroundColor="#FFF" Margin="5" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>                       
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="0" StyleClass="LargeGylphText, primaryColorText" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf005;" VerticalOptions="CenterAndExpand" />
+                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="1" FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="RegularGylphText" Text="&#xf075;" VerticalOptions="CenterAndExpand" />
+                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="2" FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="RegularGylphText" Text="&#xf1e0;" VerticalOptions="CenterAndExpand" />
+                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="3" FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
+                </Grid>
+                <Label  Text="Or if you have already starred an ad, you can use refresh option below see it right away." StyleClass="emptyScreenDescription, MediumText"/>
+                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText, RegularGylphText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
             </StackLayout>
 
             <StackLayout IsVisible="{Binding HasItems}">

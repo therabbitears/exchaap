@@ -14,10 +14,10 @@
                     <Label x:Name="displayLabel" StyleClass="DimText, bold" HorizontalOptions="CenterAndExpand" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}'}" />
                     <Label Text="km" StyleClass="DimText" HorizontalOptions="CenterAndExpand">
                         <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
+                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
                                 <Setter Property="Text" Value="km" />
                             </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
+                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
                                 <Setter Property="Text" Value="mi" />
                             </DataTrigger>
                         </Label.Triggers>
