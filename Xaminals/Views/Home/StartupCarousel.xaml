@@ -6,10 +6,18 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:exchaup.Views.Home.Model"
              x:Class="exchaup.Views.Home.StartupCarousel"
-             x:Name="mainPage">
+             x:Name="mainPage" BackgroundImageSource="bg.png">
     <ContentPage.BindingContext>
         <local:StartupScreenCardsViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Triggers>
+        <DataTrigger TargetType="ContentPage" Binding="{Binding CurrentOrientation}" Value="0">
+            <Setter Property="BackgroundImageSource" Value="bg.png"/>
+        </DataTrigger>
+        <DataTrigger TargetType="ContentPage" Binding="{Binding CurrentOrientation}" Value="1">
+            <Setter Property="BackgroundImageSource" Value="bg.png"/>
+        </DataTrigger>
+    </ContentPage.Triggers>
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
             <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
@@ -22,23 +30,33 @@
                                FontSize="Large"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-                                <Image Source="{Binding Image}"
-                               Aspect="AspectFill"
-                               HeightRequest="150"
-                               WidthRequest="150"
-                               HorizontalOptions="Center" />
-                                <Label Text="{Binding Description}"
-                               FontAttributes="Italic"
-                               HorizontalOptions="Center"
-                               MaxLines="5"
-                               LineBreakMode="TailTruncation" />
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout.Triggers>
+                                        <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
+                                            <Setter Property="Orientation" Value="Vertical"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
+                                            <Setter Property="Orientation" Value="Horizontal"/>
+                                        </DataTrigger>
+                                    </StackLayout.Triggers>
+                                    <Image Source="{Binding Image}"
+                                               Aspect="AspectFill"
+                                               HeightRequest="150"
+                                               WidthRequest="150"
+                                               HorizontalOptions="Center" />
+                                    <Label Text="{Binding Description}"
+                                               FontAttributes="Italic"
+                                               HorizontalOptions="Center"
+                                               MaxLines="5"
+                                               LineBreakMode="TailTruncation" />
+                                </StackLayout>
                             </StackLayout>
                             <Button StyleClass="flatButton" Text="Go to app" IsVisible="{Binding ShowGoButton}" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-           
+
             <IndicatorView x:Name="indicatorView"
                    IndicatorColor="LightGray"
                    SelectedIndicatorColor="DarkGray"

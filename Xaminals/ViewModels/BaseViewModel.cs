@@ -170,6 +170,13 @@ namespace Xaminals.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        private int _CurrentOrientation;
+        public int CurrentOrientation
+        {
+            get { return _CurrentOrientation; }
+            set { SetProperty(ref _CurrentOrientation, value); }
+        }
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
