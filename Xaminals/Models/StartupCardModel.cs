@@ -25,5 +25,6 @@ namespace exchaup.Models
         }
 
         public bool ShowGoButton { get; set; }
+        public string ShortTitle { get; set; }
     }
 }

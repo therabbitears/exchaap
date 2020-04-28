@@ -13,41 +13,26 @@ namespace exchaup.Views.Home.Model
             set { _cards = value; }
         }
 
-        private StartupCardModel _currentItem;
-        public StartupCardModel CurrentItem
-        {
-            get { return _currentItem; }
-            set { _currentItem = value; OnPropertyChanged("CurrentItem"); }
-        }
-
-
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
             this.Cards = new ObservableCollection<StartupCardModel>();
             this.Cards.Add(new StartupCardModel()
             {
-                Title = "Baboon",
-                Description = "Baboons are African and Arabian Old World monkeys belonging to the genus Papio, part of the subfamily Cercopithecinae.",
+                Title = "Things get old soon?",
+                ShortTitle = "Or rather we can have limited use out from them.",
+                Description = "But people around you may still want it, in return of their 'old' stuff, they might be still new for someone? List your old stuff like books, toys, games, mobiles or anything and find people who looking for it in exchange of their old stuff.",
                 Image = "https://img.icons8.com/flat_round/4x/year-of-monkey.png"
             });
 
             this.Cards.Add(new StartupCardModel()
             {
-                Title = "Capuchin Monkey",
-                Description = "The capuchin monkeys are New World monkeys of the subfamily Cebinae. Prior to 2011, the subfamily contained only a single genus, Cebus.",
-                Image = "https://img.icons8.com/emoji/4x/monkey.png"
-            });
-
-            this.Cards.Add(new StartupCardModel()
-            {
-                Title = "Blue Monkey",
-                Description = "The blue monkey or diademed monkey is a species of Old World monkey native to Central and East Africa, ranging from the upper Congo River basin east to the East African Rift and south to northern Angola and Zambia",
-                Image = "https://img.icons8.com/officel/4x/gorilla.png",
+                Title = "Things are ageless",
+                ShortTitle = "And we utilize them just upto our needs.",
+                Description = "Not everything has an age, like few things. We limit the use of stuff upto our needs and then we don't want them. But people around you may still want it, it might still worthy for them. List your such stuff to giveaway to them who need it. It is not always money, but sometimes it's about utilize them for upto their best value.",
+                Image = "giveaway.png",
                 ShowGoButton = true
             });
-
-            CurrentItem = Cards[0];
         }
     }
 }

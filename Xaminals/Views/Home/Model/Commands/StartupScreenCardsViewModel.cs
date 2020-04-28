@@ -35,7 +35,7 @@ namespace exchaup.Views.Home.Model
         {
             if (p is StartupCardModel value)
             {
-                CurrentItem = value;
+
             }
         }
     }

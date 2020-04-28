@@ -26,10 +26,13 @@
                         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
                             <StackLayout VerticalOptions="CenterAndExpand">
                                 <Label Text="{Binding Title}"
-                               FontAttributes="Bold"
-                               FontSize="Large"
+                                StyleClass="emptyScreenTitle, primaryColorText"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
+                                <Label Text="{Binding ShortTitle}"
+                               HorizontalOptions="Center"
+                                StyleClass="emptyScreenDescription, MediumText"
+                               VerticalOptions="Center" />                                
                                 <StackLayout Orientation="Vertical">
                                     <StackLayout.Triggers>
                                         <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
@@ -40,18 +43,13 @@
                                         </DataTrigger>
                                     </StackLayout.Triggers>
                                     <Image Source="{Binding Image}"
-                                               Aspect="AspectFill"
-                                               HeightRequest="150"
-                                               WidthRequest="150"
-                                               HorizontalOptions="Center" />
-                                    <Label Text="{Binding Description}"
-                                               FontAttributes="Italic"
-                                               HorizontalOptions="Center"
-                                               MaxLines="5"
-                                               LineBreakMode="TailTruncation" />
+                                           Aspect="AspectFill"
+                                           HeightRequest="200"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Description}" />
                                 </StackLayout>
                             </StackLayout>
-                            <Button StyleClass="flatButton" Text="Go to app" IsVisible="{Binding ShowGoButton}" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                            <Button StyleClass="primaryButton" Text="[ GO TO APP ]" Padding="10" HeightRequest="45" CornerRadius="1" FontSize="22" IsVisible="{Binding ShowGoButton}" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                         </StackLayout>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
