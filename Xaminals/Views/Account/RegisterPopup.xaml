@@ -29,35 +29,48 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0">
+                <Label Text="Invalid credentials entered" IsVisible="{Binding AreCredentialsInvalid}" StyleClass="validationError" />
                 <Label Text="Please enter your details" />
-                <Entry Text="{Binding Name.Value}"
-                       Placeholder="Your name" />
-
-                <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
-
-                <Entry Text="{Binding Email.Value}"
-                       Placeholder="Email" />
-
-                <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
-
-                <Entry Text="{Binding Password.Value}"
+                <StackLayout Margin="0" Padding="0">
+                        <StackLayout.Triggers>
+                            <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
+                                <Setter Property="Orientation" Value="Vertical"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="1">
+                                <Setter Property="Orientation" Value="Horizontal"/>
+                            </DataTrigger>
+                        </StackLayout.Triggers>
+                    <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
+                            <Entry Text="{Binding Name.Value}" Placeholder="Your name" Margin="0"/>
+                        <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+                        </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
+                        <Entry Text="{Binding Email.Value}" Placeholder="Email" Margin="0"/>
+                        <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
+                        </StackLayout>
+                    </StackLayout>
+                <StackLayout>
+                    <StackLayout.Triggers>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
+                            <Setter Property="Orientation" Value="Vertical"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="1">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Entry Text="{Binding Password.Value}"
                        Placeholder="Password"
                        IsPassword="True" />
-                <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
-
-                <Entry Text="{Binding ConfirmPassword.Value}"
-                       Placeholder="Confirm password"
-                       IsPassword="True" />
-                <Label Text="{Binding ConfirmPassword.Errors[0]}" IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" StyleClass="validationError" />
-
-                <Label Text="Invalid credentials entered" 
-                       IsVisible="{Binding AreCredentialsInvalid}" 
-                       StyleClass="validationError" />
+                        <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <Entry Text="{Binding ConfirmPassword.Value}" Placeholder="Confirm password" IsPassword="True" />
+                        <Label Text="{Binding ConfirmPassword.Errors[0]}" IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" StyleClass="validationError" />
+                    </StackLayout>
+                </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <CheckBox IsChecked="{Binding Agreed.Value}"/>
                     <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" class="MediumText, DimText">
@@ -83,10 +96,19 @@
                     </Label>
                 </StackLayout>
                 <Label Text="{Binding Agreed.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Agreed.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
+                <StackLayout>
+                    <StackLayout.Triggers>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
+                            <Setter Property="Orientation" Value="Vertical"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="1">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <Button Text="Register" HorizontalOptions="FillAndExpand" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
+                    <Button Text="Cancel" HorizontalOptions="FillAndExpand" Command="{Binding CancelPopupCommand}" />
+                </StackLayout>
             </StackLayout>
-
-            <Button Grid.Row="3" Text="Cancel" Command="{Binding CancelPopupCommand}" />
-            <Button Grid.Row="2" Text="Register" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
         </Grid>
     </StackLayout>
 </pages:PopupPage>
