@@ -39,26 +39,26 @@ namespace Xaminals
             });
         }
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            TryRefreshingTheValue();
-        }
+        //protected override void OnStart()
+        //{
+        //    base.OnStart();
+        //    TryRefreshingTheValue();
+        //}
 
-        async void TryRefreshingTheValue()
-        {
+        //async void TryRefreshingTheValue()
+        //{
 
-        }
+        //}        
 
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
+        //protected override void OnSleep()
+        //{
+        //    // Handle when your app sleeps
+        //}
 
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
-        }
+        //protected override void OnResume()
+        //{
+        //    // Handle when your app resumes
+        //}
 
         static readonly Lazy<LoffersDb> lazyInitializer = new Lazy<LoffersDb>(() =>
         {
