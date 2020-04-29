@@ -64,7 +64,7 @@ namespace Loffers.Views.Account.ViewModel
                 finally
                 {
                     service = null;
-                    IsBusy = false;                    
+                    IsBusy = false;
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace Loffers.Views.Account.ViewModel
                     Debug.WriteLine(ex);
                     await RaiseError("An error occurred while generating new password request.");
                 }
-                finally 
+                finally
                 {
                     IsBusy = false;
                     service = null;
@@ -112,7 +112,9 @@ namespace Loffers.Views.Account.ViewModel
 
         protected override bool Validate()
         {
-            return ValidateUserName() && ValidateSecurityCode() && base.Validate();
+            var validUser = ValidateUserName();
+            var validSecurity = ValidateSecurityCode();
+            return validUser && validSecurity && base.Validate();
         }
     }
 }

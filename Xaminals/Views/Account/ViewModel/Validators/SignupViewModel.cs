@@ -11,7 +11,7 @@ namespace Xaminals.Views.Account.ViewModel
                 ValidationMessage = "Please confirm you are agreed with app terms and privacy policy."
             });
 
-            _name.Validations.Add(new EmailRule<string>
+            _name.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
                 ValidationMessage = "Please enter your name."
             });
@@ -42,11 +42,12 @@ namespace Xaminals.Views.Account.ViewModel
 
         private bool Validate()
         {
-            bool isValidName = ValidateName();
-            bool isValidUser = ValidateUserName();
-            bool isValidPassword = ValidatePassword();
-            bool isValidConfirmPassword = ValidateConfirmPassword();
-            return ValidateAgreed() && isValidUser && isValidPassword && isValidConfirmPassword;
+            var userValid = ValidateName();
+            var agreed = ValidateAgreed();
+            var validUserName = ValidateUserName();
+            var validPassword = ValidatePassword();
+            var validConfirm = ValidateConfirmPassword();
+            return userValid && agreed && validUserName && validPassword && validConfirm;
         }
 
         private bool ValidateAgreed()
@@ -56,15 +57,21 @@ namespace Xaminals.Views.Account.ViewModel
 
         private bool ValidateUpdate()
         {
-            return ValidateName() && ValidateUserName();
+            var userValid = ValidateName();
+            var validUserName = ValidateUserName();
+            return userValid && validUserName;
         }
 
         private bool ValidateUpdatePassword()
         {
+            var currentPassword = ValidateCurrentPassword();
+            var validPassword = ValidatePassword();
+            var validConfirm = ValidateConfirmPassword();
+
             return
-                ValidateCurrentPassword()
-                && ValidatePassword()
-                && ValidateConfirmPassword();
+                currentPassword
+                && validPassword
+                && validConfirm;
         }
 
         private bool ValidateName()

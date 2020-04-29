@@ -20,7 +20,9 @@ namespace Xaminals.Views.Offers.Models
         private bool Validate()
         {
             IsCategorySelected = Category != null && !string.IsNullOrEmpty(Category.Id);
-            return ValidateHeading() && ValidateDetail() && IsCategorySelected;
+            var validHeading = ValidateHeading();
+            var validDetail = ValidateDetail();
+            return validHeading && validDetail && IsCategorySelected;
         }
 
         private bool ValidateHeading()

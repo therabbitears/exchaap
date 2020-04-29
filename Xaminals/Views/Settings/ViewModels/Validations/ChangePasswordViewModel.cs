@@ -26,7 +26,14 @@ namespace Xaminals.Views.Settings.ViewModels
 
         protected virtual bool Validate()
         {
-            return ValidateCurrentPassword() && ValidatePassword() && ValidateConfirmPassword();
+            var currentPassword = ValidateCurrentPassword();
+            var validPassword = ValidatePassword();
+            var validConfirm = ValidateConfirmPassword();
+
+            return
+                currentPassword
+                && validPassword
+                && validConfirm;
         }
 
         private bool ValidateCurrentPassword()
