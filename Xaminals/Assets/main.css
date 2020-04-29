@@ -63,11 +63,16 @@ button {
     background-color: #FFFFFF;
     color: #505050;
     text-transform: uppercase;
-    border-radius: 10;
+    border-radius: 2;
     border-width: 1;
     border-color: #505050;
-    padding: 2;
-    height: 35;
+    padding: 6;
+    height: 38;
+    font-size:16;
+}
+
+.smallButton {
+    font-size:12;
 }
 
 checkbox {

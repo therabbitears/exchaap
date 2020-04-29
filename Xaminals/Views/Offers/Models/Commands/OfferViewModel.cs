@@ -52,29 +52,39 @@ namespace Xaminals.Views.Offers.Models
 
                 var placemarks = await Geocoding.GetPlacemarksAsync(location);
 
-                var placemark = placemarks?.FirstOrDefault();
-                if (placemark != null)
+                try
                 {
-                    var geocodeAddress =
-                        $"AdminArea:       {placemark.AdminArea}\n" +
-                        $"CountryCode:     {placemark.CountryCode}\n" +
-                        $"CountryName:     {placemark.CountryName}\n" +
-                        $"FeatureName:     {placemark.FeatureName}\n" +
-                        $"Locality:        {placemark.Locality}\n" +
-                        $"PostalCode:      {placemark.PostalCode}\n" +
-                        $"SubAdminArea:    {placemark.SubAdminArea}\n" +
-                        $"SubLocality:     {placemark.SubLocality}\n" +
-                        $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
-                        $"Thoroughfare:    {placemark.Thoroughfare}\n";
+                    var placemark = placemarks?.FirstOrDefault();
+                    if (placemark != null)
+                    {
+                        this.Location.Name = !string.IsNullOrEmpty(placemark.SubLocality) ? placemark.SubLocality : placemark.Locality;
+                        this.Location.DisplayAddress = string.Format("{0},{1},{2}", placemark.Locality, placemark.AdminArea, placemark.PostalCode);
 
-                    await RaiseSuccess(geocodeAddress);
+                        //var geocodeAddress =
+                        //    $"AdminArea:       {placemark.AdminArea}\n" +
+                        //    $"CountryCode:     {placemark.CountryCode}\n" +
+                        //    $"CountryName:     {placemark.CountryName}\n" +
+                        //    $"FeatureName:     {placemark.FeatureName}\n" +
+                        //    $"Locality:        {placemark.Locality}\n" +
+                        //    $"PostalCode:      {placemark.PostalCode}\n" +
+                        //    $"SubAdminArea:    {placemark.SubAdminArea}\n" +
+                        //    $"SubLocality:     {placemark.SubLocality}\n" +
+                        //    $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
+                        //    $"Thoroughfare:    {placemark.Thoroughfare}\n";
+
+                        //await RaiseSuccess(geocodeAddress);
+                    }
+                }
+                catch (Exception debug)
+                {
+                    this.Location.Name = "N/A";
+                    this.Location.DisplayAddress = "N/A";
+                    Debug.WriteLine("An error while fetching geocoding info:" + debug.Message);
                 }
             }
             catch (Exception ex)
             {
                 await RaiseError(ex.Message);
-                this.Location.Name = "N/A";
-                this.Location.DisplayAddress = "N/A";
             }
         }
 

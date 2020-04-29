@@ -39,15 +39,15 @@ namespace loffers.api.Services
             return await context.SaveChangesAsync();
         }
 
-        public async Task<T> Get<T>(string value)
+        public async Task<ConfugurationModel> Get(string value)
         {
             var userConfiguration = await context.UseConfigurations.FirstOrDefaultAsync(c => c.UserId == value);
             if (userConfiguration != null)
             {
-                return JsonConvert.DeserializeObject<T>(userConfiguration.Configuration);
+                return JsonConvert.DeserializeObject<ConfugurationModel>(userConfiguration.Configuration);
             }
 
-            return Activator.CreateInstance<T>();
+            return new ConfugurationModel() { IsPublisher = false, MaxRange = 0, UnitOfMeasurement = 0 };
         }
 
         public async Task<object> UpdateSnapshot(SnapshotModel model, string userId)
@@ -78,6 +78,29 @@ namespace loffers.api.Services
 
                 context.UserProfileSnapshots.Add(snapshot);
             };
+
+            var publisher = await context.Publishers.FirstOrDefaultAsync(c => c.CreatedBy == userId);
+            if (publisher == null)
+            {
+                publisher = new Publishers()
+                {
+                    Active = true,
+                    CreatedBy = userId,
+                    CreatedOn = DateTime.UtcNow,
+                    Description = "System",
+                    Id = Guid.NewGuid().ToString(),
+                    LastEditedBy = userId,
+                    LastEditedOn = DateTime.UtcNow,
+                    Name = model.Name
+                };
+                context.Publishers.Add(publisher);
+            }
+            else
+            {
+                publisher.LastEditedBy = userId;
+                publisher.LastEditedOn = DateTime.UtcNow;
+                publisher.Name = model.Name;
+            }
 
             return await context.SaveChangesAsync();
         }

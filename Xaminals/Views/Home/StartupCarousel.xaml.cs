@@ -18,7 +18,7 @@ namespace exchaup.Views.Home
         public StartupCarousel()
         {
             InitializeComponent();
-            this.BackgroundImageSource = FileImageSource.FromFile("bg.png");
+           // this.BackgroundImageSource = FileImageSource.FromFile("bg.png");
         }
 
         private void CarouselView_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)

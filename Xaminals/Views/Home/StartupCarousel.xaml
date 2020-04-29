@@ -6,60 +6,63 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:exchaup.Views.Home.Model"
              x:Class="exchaup.Views.Home.StartupCarousel"
-             x:Name="mainPage" BackgroundImageSource="bg.png">
+             x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:StartupScreenCardsViewModel/>
     </ContentPage.BindingContext>
-    <ContentPage.Triggers>
+    <!--<ContentPage.Triggers>
         <DataTrigger TargetType="ContentPage" Binding="{Binding CurrentOrientation}" Value="0">
             <Setter Property="BackgroundImageSource" Value="bg.png"/>
         </DataTrigger>
         <DataTrigger TargetType="ContentPage" Binding="{Binding CurrentOrientation}" Value="1">
             <Setter Property="BackgroundImageSource" Value="bg.png"/>
         </DataTrigger>
-    </ContentPage.Triggers>
+    </ContentPage.Triggers>-->
     <ContentPage.Content>
-        <StackLayout StyleClass="parentContainer">
-            <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                            <StackLayout VerticalOptions="CenterAndExpand">
-                                <Label Text="{Binding Title}"
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="Red" Source="bg.png" Aspect="AspectFill"/>
+            <StackLayout StyleClass="parentContainer" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" BackgroundColor="Transparent">
+                <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                <StackLayout VerticalOptions="CenterAndExpand">
+                                    <Label Text="{Binding Title}"
                                 StyleClass="emptyScreenTitle, primaryColorText"
                                HorizontalOptions="Center"
                                VerticalOptions="Center" />
-                                <Label Text="{Binding ShortTitle}"
+                                    <Label Text="{Binding ShortTitle}"
                                HorizontalOptions="Center"
                                 StyleClass="emptyScreenDescription, MediumText"
-                               VerticalOptions="Center" />                                
-                                <StackLayout Orientation="Vertical">
-                                    <StackLayout.Triggers>
-                                        <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
-                                            <Setter Property="Orientation" Value="Vertical"/>
-                                        </DataTrigger>
-                                        <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
-                                            <Setter Property="Orientation" Value="Horizontal"/>
-                                        </DataTrigger>
-                                    </StackLayout.Triggers>
-                                    <Image Source="{Binding Image}"
+                               VerticalOptions="Center" />
+                                    <StackLayout Orientation="Vertical">
+                                        <StackLayout.Triggers>
+                                            <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
+                                                <Setter Property="Orientation" Value="Vertical"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
+                                                <Setter Property="Orientation" Value="Horizontal"/>
+                                            </DataTrigger>
+                                        </StackLayout.Triggers>
+                                        <Image Source="{Binding Image}"
                                            Aspect="AspectFill"
                                            HeightRequest="200"
                                            HorizontalOptions="Center" />
-                                    <Label Text="{Binding Description}" />
+                                        <Label Text="{Binding Description}" />
+                                    </StackLayout>
                                 </StackLayout>
+                                <Button StyleClass="primaryButton" Text="[ GO TO APP ]" Padding="10" HeightRequest="45" CornerRadius="1" FontSize="22" IsVisible="{Binding ShowGoButton}" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                             </StackLayout>
-                            <Button StyleClass="primaryButton" Text="[ GO TO APP ]" Padding="10" HeightRequest="45" CornerRadius="1" FontSize="22" IsVisible="{Binding ShowGoButton}" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
 
-            <IndicatorView x:Name="indicatorView"
+                <IndicatorView x:Name="indicatorView"
                    IndicatorColor="LightGray"
                    SelectedIndicatorColor="DarkGray"
                    HorizontalOptions="Center" IndicatorsShape="Circle" >
-            </IndicatorView>
-        </StackLayout>
+                </IndicatorView>
+            </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

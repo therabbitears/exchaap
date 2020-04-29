@@ -38,8 +38,8 @@
                         <Label Text="{Binding Name}"  VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold"/>
                         <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" VerticalOptions="Center" HorizontalOptions="EndAndExpand" StyleClass="goArrow"/>
                     </Grid>
-                    <Button Command="{Binding UpdatePasswordCommand}" CornerRadius="5" Text="Update password" />
-                    <Button Command="{Binding LogoutCommand}" CornerRadius="5" Text="Logout"  StyleClass="primaryButton"/>
+                    <Button Command="{Binding UpdatePasswordCommand}" Text="Update password" />
+                    <Button Command="{Binding LogoutCommand}" Text="Logout"  StyleClass="primaryButton"/>
                     <Label Text="Search" StyleClass="SectionHeadingStyle"/>
                     <Grid Padding="10" BackgroundColor="#FFFFFF" Margin="0,5,0,5">
                         <Grid.GestureRecognizers>

@@ -43,7 +43,7 @@
                        IsVisible="{Binding AreCredentialsInvalid}" 
                        StyleClass="validationError" />
 
-                <Button Text="Forgot password?" Command="{Binding ForgotPasswordCommand}" HorizontalOptions="Start" StyleClass="flatButton" />
+                <Button Text="Forgot password?" Command="{Binding ForgotPasswordCommand}" HorizontalOptions="Start" StyleClass="flatButton, smallButton" />
                 <Button Text="Authenticate" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
                 <Button Grid.Row="3" Text="Register" Command="{Binding RegisterCommand}" />
             </StackLayout>

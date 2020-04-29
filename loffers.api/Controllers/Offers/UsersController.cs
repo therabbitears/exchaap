@@ -126,7 +126,7 @@ namespace Loffers.Server.Controllers.Offers
                     user.PhoneNumber,
                     Publishers = await publisherService.GetPublishersForUser(UserId),
                     Categories = await categoryService.UserCategories(UserId),
-                    Configuration = await service.Get<ConfugurationModel>(UserId)
+                    Configuration = await service.Get(UserId)
                 }));
             }
 
