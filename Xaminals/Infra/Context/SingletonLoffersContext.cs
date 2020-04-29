@@ -9,7 +9,7 @@ namespace Xaminals.Infra.Context
     /// <summary>
     /// Search model
     /// </summary>
-    public class SingletonLoffersContext
+    public class SingletonLoffersContext : NotificableObject
     {
         private static readonly Lazy<SingletonLoffersContext> InstaceVariable = new Lazy<SingletonLoffersContext>();
         public static SingletonLoffersContext Context
@@ -19,7 +19,7 @@ namespace Xaminals.Infra.Context
                 return InstaceVariable.Value;
             }
         }
-       
+
 
         private static readonly Lazy<SessionModel> _session = new Lazy<SessionModel>();
         public SessionModel SessionModel
@@ -55,6 +55,13 @@ namespace Xaminals.Infra.Context
             {
                 return SettingsInstance.Value;
             }
+        }
+
+        private int _currentOrientation;
+        public int CurrentOrientation
+        {
+            get { return _currentOrientation; }
+            set { _currentOrientation = value; OnPropertyChanged("CurrentOrientation"); }
         }
     }
 }

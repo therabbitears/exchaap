@@ -50,10 +50,9 @@ namespace Xaminals.Views.Offers.Models
                 this.Location.Lat = location.Latitude;
                 this.Location.Long = location.Longitude;
 
-                var placemarks = await Geocoding.GetPlacemarksAsync(location);
-
                 try
                 {
+                    var placemarks = await Geocoding.GetPlacemarksAsync(location);
                     var placemark = placemarks?.FirstOrDefault();
                     if (placemark != null)
                     {
@@ -188,6 +187,7 @@ namespace Xaminals.Views.Offers.Models
                     var result = !string.IsNullOrEmpty(this.Id) ? await service.UpdateOffer<HttpResult<object>>(objectToSend) : await service.CreateOffer<HttpResult<object>>(objectToSend);
                     if (!result.IsError)
                     {
+                        MessagingCenter.Send<OfferViewModel>(this, "OfferAdded");
                         await ExecuteCancelCommand();
                         await RaiseSuccess("The offer has been saved successfully.");
                     }

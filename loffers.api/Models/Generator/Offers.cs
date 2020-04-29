@@ -30,7 +30,6 @@ namespace loffers.api.Models.Generator
         [StringLength(500)]
         public string OfferDescription { get; set; }
 
-        [Required]
         [StringLength(5000)]
         public string TermsAndConditions { get; set; }
 

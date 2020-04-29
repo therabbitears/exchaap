@@ -225,6 +225,11 @@
     <Compile Include="Migrations\202004260532538_ImageAdded.designer.cs">
       <DependentUpon>202004260532538_ImageAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004291411124_NonRequired.cs" />
+    <Compile Include="Migrations\202004291411124_NonRequired.designer.cs">
+      <DependentUpon>202004291411124_NonRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\CustomPasswordValidator.cs" />
     <Compile Include="Utils\Compute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Categories\CategoryController.cs" />
@@ -452,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004260532538_ImageAdded.resx">
       <DependentUpon>202004260532538_ImageAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004291411124_NonRequired.resx">
+      <DependentUpon>202004291411124_NonRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

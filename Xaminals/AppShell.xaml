@@ -14,7 +14,6 @@
        FlyoutBackgroundImageAspect="AspectFill"
        FlyoutHeaderBehavior="CollapseOnScroll"
        Navigating="OnNavigating"
-       Navigated="OnNavigated"
        x:Class="Xaminals.AppShell">
     <Shell.BindingContext>
         <local:SessionModel />

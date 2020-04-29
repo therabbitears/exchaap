@@ -41,15 +41,38 @@ namespace Xaminals
             //}
         }
 
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-        }
-
         protected override bool OnBackButtonPressed()
         {
             Current.Navigation.PopAsync(true);
             return true;
+        }
+
+        private double width = 0;
+        private double height = 0;
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            if (Context != null)
+            {
+                if (width != this.width || height != this.height)
+                {
+                    this.width = width;
+                    this.height = height;
+                    if (width > height)
+                    {
+                        Context.CurrentOrientation = 1;
+                    }
+                    else
+                    {
+                        Context.CurrentOrientation = 0;
+                    }
+                }
+            }
+        }
+
+        public static SingletonLoffersContext Context
+        {
+            get { return SingletonLoffersContext.Context; }
         }
     }
 }

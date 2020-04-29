@@ -372,12 +372,13 @@ namespace loffers.api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, ModelState.FirstOrDefault().Value.Errors.FirstOrDefault().ErrorMessage)));
             }
 
             ApplicationUser user = null;
             try
             {
+                UserManager.PasswordValidator = new CustomPasswordValidator();
                 user = new ApplicationUser() { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, Name = model.Name };
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);

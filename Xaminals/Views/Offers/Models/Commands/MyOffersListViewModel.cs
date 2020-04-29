@@ -27,6 +27,15 @@ namespace Xaminals.Views.Offers.Models
             LoadItemsCommand.Execute(null);
         }
 
+        protected override void AddListeners()
+        {
+            base.AddListeners();
+            MessagingCenter.Subscribe<OfferViewModel>(this, "OfferAdded", async (obj) =>
+            {
+                await ExecuteLoadItemsCommand();
+            });
+        }
+
         async Task ExecuteAddOfferCommand()
         {
             if (IsLoggedIn)
