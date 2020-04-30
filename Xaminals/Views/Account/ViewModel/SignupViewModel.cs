@@ -9,15 +9,15 @@ namespace Xaminals.Views.Account.ViewModel
         private ValidatableObject<string> _name;
         private ValidatableObject<string> _email;
         private ValidatableObject<string> _password;
-        private ValidatableObject<string> _phoneNumber;        
+        private ValidatableObject<string> _phoneNumber;
         private ValidatableObject<string> _confirmPassword;
         private ValidatableObject<string> _currentPassword;
 
         private bool _areCredentialsInvalid;
 
         public SignupViewModel()
-        { 
-            
+        {
+
         }
 
         protected override void IntializeMembers()
@@ -86,7 +86,7 @@ namespace Xaminals.Views.Account.ViewModel
                 _currentPassword = value;
                 OnPropertyChanged(nameof(CurrentPassword));
             }
-        }        
+        }
 
         public ValidatableObject<string> PhoneNumber
         {
@@ -108,17 +108,22 @@ namespace Xaminals.Views.Account.ViewModel
                 _confirmPassword = value;
                 OnPropertyChanged(nameof(ConfirmPassword));
             }
-        }      
+        }
 
         public bool AreCredentialsInvalid
         {
             get => _areCredentialsInvalid;
             set
             {
-                if (value == _areCredentialsInvalid) return;
-                _areCredentialsInvalid = value;
-                OnPropertyChanged(nameof(AreCredentialsInvalid));
+                SetProperty(ref _areCredentialsInvalid, value);
             }
+        }
+
+        private string _LastError;
+        public string LastError
+        {
+            get => _LastError; 
+            set { SetProperty(ref _LastError, value); }
         }
     }
 }

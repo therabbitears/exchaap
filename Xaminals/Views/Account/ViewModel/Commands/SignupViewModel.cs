@@ -33,7 +33,10 @@ namespace Xaminals.Views.Account.ViewModel
                         await ExecutePopupLoginCommand();
                     }
                     else
-                        await RaiseError(result.Errors.First().Description);
+                    {
+                        AreCredentialsInvalid = true;
+                        LastError =  result.Errors.First().Description;
+                    }
                 }
                 catch (Exception ex)
                 {

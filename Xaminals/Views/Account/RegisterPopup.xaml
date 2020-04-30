@@ -31,8 +31,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="0">
-                <Label Text="Invalid credentials entered" IsVisible="{Binding AreCredentialsInvalid}" StyleClass="validationError" />
-                <Label Text="Please enter your details" />
+                <Label Text="{Binding LastError}" IsVisible="{Binding AreCredentialsInvalid}" StyleClass="validationError" />
                 <StackLayout Margin="0" Padding="0">
                         <StackLayout.Triggers>
                             <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
