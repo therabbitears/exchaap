@@ -15,7 +15,7 @@
     </ContentPage.BindingContext>
     <pages:PopupPage.Animation>
         <rgAnimations:CustomMoveAnimation PositionIn="Bottom" PositionOut="Bottom"
-                                    DurationIn="300" DurationOut="500"
+                                    DurationIn="300" DurationOut="300"
                                     />
     </pages:PopupPage.Animation>
     <ContentPage.Content>
