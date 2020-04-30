@@ -15,7 +15,7 @@
     </Shell.SearchHandler>
     <StackLayout>
         <ScrollView Orientation="Horizontal">
-            <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}"
+            <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}" Padding="3" Margin="2"
              Orientation="Horizontal">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
