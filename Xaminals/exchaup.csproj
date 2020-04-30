@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="ViewModels\Settings\Validators\" />
+    <Folder Include="Views\Publishers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Common\Alerts\Error.xaml.cs">
@@ -102,18 +103,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Offers\Report.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Publishers\PublishedLocations.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Publishers\Publisher.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Publishers\PublisherList.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Publishers\PublisherLocation.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Settings\About.xaml">
