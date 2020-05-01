@@ -58,7 +58,7 @@
         <Tab Title="My exchaups" x:Name="tabMyOffers">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeRegular"
+                        FontFamily="FontAwesomeSolid"
                         Glyph="&#xf507;"
                         Size="20"
                         Color="White" />
@@ -95,7 +95,7 @@
         <Tab Title="Account">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeRegular"
+                        FontFamily="FontAwesomeSolid"
                         Glyph="&#xf509;"
                         Size="20"
                         Color="White" />
