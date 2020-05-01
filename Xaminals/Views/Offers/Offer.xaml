@@ -7,18 +7,24 @@
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Offers.Offer"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              Title="{Binding Title}">
     <ContentPage.BindingContext>
         <local:OfferViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Command="{Binding SaveOfferCommand}"/>
         <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-            <StackLayout StyleClass="parentContainer">
-                <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
+        <StackLayout StyleClass="parentContainer">
+            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <ScrollView>
                 <StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="General"/>
@@ -47,14 +53,14 @@
                     <Label Text="Enter an easy and short title of this ad:" StyleClass="formLabel" />
                     <Entry Text="{Binding Heading.Value}" Placeholder="Title" />
                     <Label Text="{Binding Heading.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Heading.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
-                    
+
                     <Label Text="Enter detail of this ad(Like brand, age etc.):" StyleClass="formLabel" />
                     <Editor Text="{Binding Detail.Value}" Placeholder="Detail" />
                     <Label Text="{Binding Detail.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Detail.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
                     <Label Text="Enter optional instructions if any:" StyleClass="formLabel" />
                     <Editor Text="{Binding Terms}" Placeholder="Optional: Instructions" />
-                    
+
                     <Label Text="The date this is available from(Keep it ticked if available from now):" StyleClass="formLabel" />
                     <Switch IsToggled="{Binding ImmediatelyAvailable}" HorizontalOptions="StartAndExpand" />
                     <StackLayout>
@@ -71,7 +77,7 @@
                     </StackLayout>
                     <AbsoluteLayout BackgroundColor="Transparent" Grid.Row="1" Grid.ColumnSpan="2">
                         <Frame CornerRadius="100" AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" HeightRequest="400" WidthRequest="400" HorizontalOptions="Center" Padding="0" IsClippedToBounds="True">
-                            <Image x:Name="imageView" Source="{Binding SourceImage}" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Image x:Name="imageView" Source="{Binding SourceImage, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center" />
                         </Frame>
                         <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>

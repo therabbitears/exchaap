@@ -67,7 +67,7 @@ namespace Xaminals.Views.Offers.Models
             }
         }
 
-        private ImageSource imageSource = ImageSource.FromUri(new Uri("https://loffers.sklative.com/offers/offer-placeholder.png"));
+        private ImageSource imageSource;
         public ImageSource SourceImage
         {
             get { return imageSource; }

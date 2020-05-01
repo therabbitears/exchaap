@@ -4,6 +4,9 @@ using Xamarin.Forms;
 
 namespace exchaup.Infra.Formatters
 {
+    /// <summary>
+    /// PlaceholderImageFormatter
+    /// </summary>
     public class PlaceholderImageFormatter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
