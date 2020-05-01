@@ -17,6 +17,7 @@ namespace Xaminals.Infra.Mappers
                 destination.Distance = source.Distance.Distance;
                 destination.Id = source.Id;
                 destination.Image = source.Image;
+                destination.OriginalImage = source.OriginalImage;
                 destination.LocationAddress = source.LocationAddress;
                 destination.LocationName = source.LocationName;
                 destination.PublisherLogo = source.PublisherLogo;

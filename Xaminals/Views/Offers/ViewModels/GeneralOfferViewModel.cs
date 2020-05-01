@@ -64,6 +64,14 @@ namespace Xaminals.Views.Offers.ViewModels
             set { _Image = value; OnPropertyChanged("Image"); }
         }
 
+        private string _OriginalImage;
+        public string OriginalImage
+        {
+            get { return _OriginalImage; }
+            set { _OriginalImage = value;OnPropertyChanged("OriginalImage"); }
+        }
+
+
         public string OfferToken { get; set; }
 
         private string _PublisherName;

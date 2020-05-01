@@ -21,6 +21,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -62,13 +63,13 @@
                                     <ContentView Grid.RowSpan="3" Grid.Column="0">
                                         <StackLayout>
                                             <Image 
-                                       Aspect="AspectFit" 
-                                       HorizontalOptions="Center" 
-                                       VerticalOptions="Start" 
-                                       HeightRequest="100" 
-                                       WidthRequest="100"
-                                       BackgroundColor="Transparent"
-                                       Source="{Binding Image}" />
+                                                       Aspect="AspectFit" 
+                                                       HorizontalOptions="Center" 
+                                                       VerticalOptions="Start" 
+                                                       HeightRequest="100" 
+                                                       WidthRequest="100"
+                                                       BackgroundColor="Transparent"
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}" />
                                             <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                                 <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                                             </ContentView>

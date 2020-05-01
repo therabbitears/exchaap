@@ -4,7 +4,7 @@ using System.Linq;
 namespace Xaminals.Views.Offers.ViewModels
 {
     public partial class GeneralOfferViewModel
-    {
+    {       
         protected override void AddListeners()
         {
             base.AddListeners();

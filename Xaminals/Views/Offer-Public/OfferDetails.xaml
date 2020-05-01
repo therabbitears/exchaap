@@ -23,6 +23,7 @@
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
             <localFormatters:StringToVisibilityConverter x:Key="cnvStringToVisibilityConverter"></localFormatters:StringToVisibilityConverter>
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -49,7 +50,11 @@
                                        HeightRequest="100" 
                                        WidthRequest="100"
                                        BackgroundColor="Transparent"
-                                       Source="{Binding Image}" />
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenImageCommand}" CommandParameter="{Binding OriginalImage}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
                                 <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding HasCategoroies, Converter={StaticResource cnvReveresBoolConverter}}">
                                     <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                                 </ContentView>

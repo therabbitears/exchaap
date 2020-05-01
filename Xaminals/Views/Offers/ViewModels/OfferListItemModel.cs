@@ -16,6 +16,7 @@ namespace Xaminals.Views.Offers.ViewModels
         public string Detail { get; set; }
         public string Terms { get; set; }
         public string Image { get; set; }
+        public string OriginalImage { get; set; }
         public string OfferToken { get; set; }
         public string LocationToken { get; set; }
         public string PublisherName { get; set; }
