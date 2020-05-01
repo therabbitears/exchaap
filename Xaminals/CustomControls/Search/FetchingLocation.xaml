@@ -24,7 +24,7 @@
             </StackLayout.Triggers>
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <Label Text="It seems your location service is disabled, click to enable it." StyleClass="DimText"  VerticalOptions="CenterAndExpand"/>
-                <Button FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf013;" Command="{Binding OpenLocationDialogCommand}" />
+                <Button FontFamily="FontAwesomeRegular" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf013;" Command="{Binding OpenLocationDialogCommand}" />
             </StackLayout>
         </StackLayout>
     </StackLayout>

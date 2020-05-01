@@ -13,6 +13,7 @@
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>            
             <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
@@ -83,7 +84,7 @@
                                        HeightRequest="80" 
                                        WidthRequest="80"
                                        BackgroundColor="Transparent"
-                                       Source="{Binding Image}" />
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}" />
 
                             <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                 <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />

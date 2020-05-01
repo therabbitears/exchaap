@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace Loffers.CustomControls
 {
@@ -6,14 +7,14 @@ namespace Loffers.CustomControls
     {
         public FormButton()
         {
-            this.Clicked += OnClicked;
+            this.Focused += OnFocused;
         }
 
-
-        private void OnClicked(object sender, System.EventArgs e)
+        private void OnFocused(object sender, FocusEventArgs e)
         {
             if (this.FocusedItem != null)
                 this.FocusedItem.Focus();
+            this.Command?.Execute(this.CommandParameter);
         }
 
         public static readonly BindableProperty HasItems = BindableProperty.Create(
