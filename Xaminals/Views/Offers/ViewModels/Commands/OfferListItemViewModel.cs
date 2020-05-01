@@ -17,6 +17,7 @@ namespace Xaminals.Views.Offers.ViewModels
     {
         public ICommand OpenMapsCommand { get; set; }
         public ICommand StarOfferCommand { get; set; }
+        public ICommand OpenImageCommand { get; set; }
         public ICommand ReportOfferCommand { get; set; }
         public ICommand ChatToPublisherCommand { get; set; }
         public ICommand ShareOfferCommand { get; set; }
@@ -29,6 +30,7 @@ namespace Xaminals.Views.Offers.ViewModels
             ReportOfferCommand = new Command(async () => await ExecuteReportOfferCommand());
             ChatToPublisherCommand = new Command(async (object obj) => await ExecuteChatToPublisherCommand(obj));
             ShareOfferCommand = new Command(async (object obj) => await ExecuteShareOfferCommand(obj));
+            OpenImageCommand = new Command(async (object obj) => await ExecuteOpenImageCommand(obj));
         }
 
         private async void OpenMaps(object obj)
@@ -70,6 +72,12 @@ namespace Xaminals.Views.Offers.ViewModels
             await PopupNavigation.Instance.PushAsync(new GeneralPage(this), true);
         }
 
+        private async Task ExecuteOpenImageCommand(object obj)
+        {
+            if (obj != null)
+                await PopupNavigation.Instance.PushAsync(new OfferCriteria(new exchaup.Models.OpenImageModel(obj.ToString())), true);
+        }
+
         private async Task ExecuteChatToPublisherCommand(object value)
         {
             if (IsLoggedIn)
@@ -88,7 +96,7 @@ namespace Xaminals.Views.Offers.ViewModels
             if (value is OfferListItemViewModel offer)
             {
                 string text = "Checkout this ";
-                if (offer.Categories!=null && offer.Categories.Any())
+                if (offer.Categories != null && offer.Categories.Any())
                     text += "exchange ad.";
                 else
                     text += "giveaway(giving for free) ad.";

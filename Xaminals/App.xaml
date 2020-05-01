@@ -84,8 +84,12 @@
                                        HeightRequest="80" 
                                        WidthRequest="80"
                                        BackgroundColor="Transparent"
-                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}" />
-
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OpenImageCommand}" CommandParameter="{Binding Image}"/>
+                                </Image.GestureRecognizers>                                
+                            </Image>
+                            
                             <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                 <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                             </ContentView>

@@ -45,7 +45,7 @@ namespace Xaminals.Views.Offers.ViewModels
 
         async Task ExecuteShowCritriaCommand()
         {
-            await PopupNavigation.Instance.PushAsync(new OfferCriteria(), true);
+            //await PopupNavigation.Instance.PushAsync(new OfferCriteria(), true);
         }
 
         protected virtual async Task ExecuteLoadItemsCommand(bool isRefresh)
