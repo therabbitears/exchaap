@@ -22,7 +22,6 @@ namespace Xaminals.ViewModels.Settings
         {
             base.IntializeMembers();
             this.Categories = new ObservableCollection<CategoryModel>();
-            this.Title = "Discovery categories";
         }
     }
 }

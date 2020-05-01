@@ -9,7 +9,7 @@
              x:Class="Xaminals.Views.Settings.Settings"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
-             Title="{Binding Title}">
+             Title="Account">
     <ContentPage.BindingContext>
         <local:SettingPageViewModel />
     </ContentPage.BindingContext>

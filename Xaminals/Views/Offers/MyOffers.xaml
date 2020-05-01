@@ -10,7 +10,7 @@
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:customControls="clr-namespace:Xaminals.CustomControls"
-             Title="{Binding Title}"
+             Title="My exchaups"
              x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:MyOffersListViewModel />

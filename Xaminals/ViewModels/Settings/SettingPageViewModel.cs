@@ -70,7 +70,6 @@ namespace Xaminals.ViewModels.Settings
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
-            this.Title = "Settings";
             if (App.LastState != null && !string.IsNullOrEmpty(App.LastState.LastLocationName))
             {
                 this.SelectedLocation = new SearchLocationItemViewModel()

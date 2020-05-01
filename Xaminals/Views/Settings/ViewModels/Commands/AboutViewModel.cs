@@ -9,7 +9,6 @@ namespace Loffers.Views.Settings.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
             //OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
             //TermsCommand = new Command(async () => await Launcher.TryOpenAsync(new Uri("https://www.sklative.com/legal/terms")));
             //PrivacyCommand = new Command(async () => await Launcher.CanOpenAsync(new Uri("https://www.sklative.com/policy/privacy")));

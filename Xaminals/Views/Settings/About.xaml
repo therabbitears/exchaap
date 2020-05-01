@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="Loffers.Views.Settings.About"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
-             xmlns:vm="clr-namespace:Loffers.Views.Settings.ViewModels" Title="{Binding Title}">
+             xmlns:vm="clr-namespace:Loffers.Views.Settings.ViewModels" Title="About exchaup">
 
     <ContentPage.BindingContext>
         <vm:AboutViewModel />

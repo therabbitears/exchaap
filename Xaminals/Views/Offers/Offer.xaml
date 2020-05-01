@@ -9,7 +9,7 @@
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
-             Title="{Binding Title}">
+             Title="New exhaup">
     <ContentPage.BindingContext>
         <local:OfferViewModel />
     </ContentPage.BindingContext>

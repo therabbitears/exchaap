@@ -27,17 +27,10 @@ namespace Xaminals.Views.Offers.Models
             set { _OfferSelectedItem = value; }
         }
 
-
-        public MyOffersListViewModel()
-        {
-            Title = "My offers";
-        }
-
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
             MyOffers = new ObservableCollection<OfferModel>();
-            this.Title = "My offers";
         }
     }
 }

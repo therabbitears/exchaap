@@ -32,7 +32,6 @@ namespace Xaminals.Views.Offers.ViewModels
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
-            this.Title = "Report offer";
         }
     }
 }

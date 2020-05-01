@@ -162,14 +162,6 @@ namespace Xaminals.ViewModels
             set { SetProperty(ref _FetchingLocation, value); }
         }
 
-
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
-
         private int _CurrentOrientation;
         public int CurrentOrientation
         {

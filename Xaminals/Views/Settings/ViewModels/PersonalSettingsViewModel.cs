@@ -16,7 +16,6 @@ namespace Xaminals.Views.Settings.ViewModels
             _name = new ValidatableObject<string>();
             _email = new ValidatableObject<string>();
             _phoneNumber = new ValidatableObject<string>();
-            this.Title = "User information";
         }
 
         public ValidatableObject<string> Name

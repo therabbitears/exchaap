@@ -100,7 +100,6 @@ namespace Xaminals.Views.Offers.Models
             _categories = new ObservableCollection<CategoryModel>();
             _location = new OfferPublisherLocationModel();
             Category = new CategoryModel();
-            this.Title = "Offer";
         }
 
         #region Lists

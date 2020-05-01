@@ -10,7 +10,7 @@
              xmlns:myControls="clr-namespace:Xaminals.CustomControls.Search"
              xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
              xmlns:customControls="clr-namespace:Xaminals.CustomControls"
-             Title="{Binding Title}">
+             Title="Discover exhaups">
     <ContentPage.BindingContext>
         <local:OffersListViewModel />
     </ContentPage.BindingContext>

@@ -15,7 +15,6 @@ namespace Xaminals.Views.Settings.ViewModels
             _currentPassword = new ValidatableObject<string>();
             _password = new ValidatableObject<string>();
             _confirmPassword = new ValidatableObject<string>();
-            this.Title = "Change password";
         }
 
         public ValidatableObject<string> Password

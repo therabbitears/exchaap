@@ -17,17 +17,11 @@ namespace Xaminals.Views.Offers.ViewModels
             set { _myOffers = value; }
         }
 
-        public OffersListViewModel()
-        {
-            Title = "Search offers";
-        }
-
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
             Offers = new ObservableCollection<OfferListItemViewModel>();
             Categories = new List<string>();
-            this.Title = "Discover offers";
         }
 
         protected override void AddListeners()

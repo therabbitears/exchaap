@@ -16,7 +16,6 @@ namespace Loffers.Views.Chat.Models
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
-            this.Title = "Conversations";
             this.Chats = new ObservableCollection<ChatListItemModel>();
         }
     }

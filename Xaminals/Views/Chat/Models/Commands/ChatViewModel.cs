@@ -153,7 +153,6 @@ namespace Loffers.Views.Chat.Models
                 var result = await new RestService().OfferDetail<HttpResult<OfferListItemViewModel>>(Id, location.Latitude, location.Longitude, "M");
                 if (!result.IsError)
                 {
-                    this.Title = result.Result.Title;
                     Mapper.Map(result.Result, this.Offer);
                 }
                 else

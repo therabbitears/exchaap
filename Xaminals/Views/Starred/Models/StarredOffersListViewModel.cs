@@ -5,7 +5,6 @@
         protected override void IntializeMembers()
         {
             base.IntializeMembers();
-            this.Title = "Starred offers";
         }
     }
 }

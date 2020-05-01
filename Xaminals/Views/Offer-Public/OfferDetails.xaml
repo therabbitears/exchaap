@@ -22,6 +22,7 @@
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
+            <localFormatters:StringToVisibilityConverter x:Key="cnvStringToVisibilityConverter"></localFormatters:StringToVisibilityConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -100,8 +101,10 @@
                             <Label Grid.Column="4" VerticalOptions="CenterAndExpand" Text="{Binding Distance, Converter={StaticResource cnvDistanceToUnit}}" StyleClass="DimText"  />
                         </Grid>
                     </Grid>
-                    <Label Text="Additional detail" StyleClass="SectionHeadingStyle"/>
-                    <Label Text="{Binding Terms}"/>
+                    <StackLayout IsVisible="{Binding Terms, Converter={StaticResource cnvStringToVisibilityConverter}}">
+                        <Label Text="Additional detail" StyleClass="SectionHeadingStyle"/>
+                        <Label Text="{Binding Terms}"/>
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

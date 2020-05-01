@@ -12,7 +12,7 @@
              xmlns:customControls="clr-namespace:Xaminals.CustomControls"
              mc:Ignorable="d"
              x:Class="Loffers.Views.Chat.Chats"
-             Title="{Binding Title}">
+             Title="Conversations">
     <ContentPage.BindingContext>
         <local:ChatListViewModel />
     </ContentPage.BindingContext>
