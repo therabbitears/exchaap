@@ -36,7 +36,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Name}"  VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf105;" VerticalOptions="Center" HorizontalOptions="EndAndExpand" StyleClass="goArrow"/>
+                        <customControl:GlyphLabel FontFamily="FontAwesomeSolid" Text="&#xf105;" VerticalOptions="Center" HorizontalOptions="EndAndExpand" StyleClass="goArrow"/>
                     </Grid>
                     <Button Command="{Binding UpdatePasswordCommand}" Text="Update password" />
                     <Button Command="{Binding LogoutCommand}" Text="Logout"  StyleClass="primaryButton"/>
@@ -53,7 +53,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding CategoriesCount, StringFormat='{0} categories Selected'}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
-                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
+                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
                     </Grid>
                     <!--<StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
                         <Label Text="Maximum range"/>
@@ -87,7 +87,7 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Label Text="About LoFers" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
-                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="{StaticResource FontAwesomeSolid}" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
+                        <customControl:GlyphLabel Text="&#xf105;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
                     </Grid>
                 </StackLayout>
                 <stateControls:NotLoggedIn HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding Context.SessionModel.IsLoggedIn, Converter={StaticResource cnvReveresBoolConverter}}"/>

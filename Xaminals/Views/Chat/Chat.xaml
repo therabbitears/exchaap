@@ -113,7 +113,7 @@
             <StackLayout Orientation="Horizontal">
                 <Entry Text="{Binding Message}"
                        Placeholder="Message" HorizontalOptions="FillAndExpand" x:Name="txtMessage"  />
-                <CustomeControls:FormButton FocusedItem="{x:Reference Name=txtMessage}"  FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf1d8;" Command="{Binding SendMessageCommand}" StyleClass="flatButton, primaryColorText" WidthRequest="30" />
+                <CustomeControls:FormButton FocusedItem="{x:Reference Name=txtMessage}"  FontFamily="FontAwesomeSolid" Text="&#xf1d8;" Command="{Binding SendMessageCommand}" StyleClass="flatButton, primaryColorText" WidthRequest="30" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

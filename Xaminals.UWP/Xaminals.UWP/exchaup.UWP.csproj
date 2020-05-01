@@ -282,23 +282,6 @@
       <Name>exchaup</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Fonts\MerriweatherSans-Regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Fonts\MerriweatherSans-Bold.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Fonts\FontAwesome5Brands-Regular-400.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Fonts\FontAwesome5Free-Regular-400.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\Fonts\FontAwesome5Free-Solid-900.otf" />
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

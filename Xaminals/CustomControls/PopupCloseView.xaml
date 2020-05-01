@@ -11,7 +11,7 @@
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CancelPopupCommand}" />
             </StackLayout.GestureRecognizers>
-            <customControl:GlyphLabel Margin="0,-10,0,0" FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf2d1;" WidthRequest="45" FontSize="24" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Gray" />
+            <customControl:GlyphLabel Margin="0,-10,0,0" FontFamily="FontAwesomeSolid" Text="&#xf2d1;" WidthRequest="45" FontSize="24" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Gray" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

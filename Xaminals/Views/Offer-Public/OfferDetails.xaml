@@ -84,7 +84,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" StyleClass="flatButton, gylypButton"  FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf005;" Command="{Binding StarOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"  CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" >
+                            <Button Grid.Column="0" StyleClass="flatButton, gylypButton"  FontFamily="FontAwesomeSolid" Text="&#xf005;" Command="{Binding StarOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"  CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" >
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button" Binding="{Binding Starred}" Value="true">
                                         <Setter Property="TextColor" Value="#f7fc5d" />
@@ -94,9 +94,9 @@
                                     </DataTrigger>
                                 </Button.Triggers>
                             </Button>
-                            <Button Grid.Column="1" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="flatButton, gylypButton"  Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
-                            <Button Grid.Column="2" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="flatButton, gylypButton"  Text="&#xf1e0;"  Command="{Binding ShareOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
-                            <Button Grid.Column="3" FontFamily="{StaticResource FontAwesomeSolid}"  StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf024;" Command="{Binding ReportOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
+                            <Button Grid.Column="1" FontFamily="FontAwesomeSolid"  StyleClass="flatButton, gylypButton"  Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
+                            <Button Grid.Column="2" FontFamily="FontAwesomeSolid"  StyleClass="flatButton, gylypButton"  Text="&#xf1e0;"  Command="{Binding ShareOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
+                            <Button Grid.Column="3" FontFamily="FontAwesomeSolid"  StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf024;" Command="{Binding ReportOfferCommand}" BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}"   CommandParameter="{Binding Source={x:Reference OfferItem}, Path=BindingContext}" />
                             <Label Grid.Column="4" VerticalOptions="CenterAndExpand" Text="{Binding Distance, Converter={StaticResource cnvDistanceToUnit}}" StyleClass="DimText"  />
                         </Grid>
                     </Grid>

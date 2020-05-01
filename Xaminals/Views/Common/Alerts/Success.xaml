@@ -24,7 +24,7 @@
                         <ColumnDefinition Width="35" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button FontFamily="{StaticResource FontAwesomeSolid}" Grid.Row="0" Grid.Column="0" StyleClass="gylypButtonMedium, flatButton, gylypButton, whiteText" Text="&#xf057;" Command="{Binding CancelPopupCommand}" CommandParameter="{Binding .}" HorizontalOptions="StartAndExpand" />
+                    <Button FontFamily="FontAwesomeSolid" Grid.Row="0" Grid.Column="0" StyleClass="gylypButtonMedium, flatButton, gylypButton, whiteText" Text="&#xf057;" Command="{Binding CancelPopupCommand}" CommandParameter="{Binding .}" HorizontalOptions="StartAndExpand" />
                     <Label Text="{Binding Message}" VerticalOptions="CenterAndExpand" Grid.Row="0" Grid.Column="1" HorizontalOptions="StartAndExpand" />
                 </Grid>
             </Frame>

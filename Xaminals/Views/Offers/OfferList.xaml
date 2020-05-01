@@ -21,7 +21,7 @@
                 <Label Text="You can update the criteria or can change the discovery location using the location option given in the bottom." StyleClass="emptyScreenDescription, MediumText"/>
                 <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
                 <Label Text="Or you can give refresh a try to quickly look again around you." StyleClass="emptyScreenDescription, MediumText"/>
-                <Button FontFamily="{StaticResource FontAwesomeSolid}" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
+                <Button FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
             </StackLayout>
         <mySharedControls:FetchingLocation />
         <customControls:ExtenderListView x:Name="ItemsListView" IsVisible="{Binding HasItems}"

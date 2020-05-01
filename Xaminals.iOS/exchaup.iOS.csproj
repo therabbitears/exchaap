@@ -105,8 +105,6 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
-    <BundleResource Include="Resources\MerriweatherSans-Bold.ttf" />
-    <BundleResource Include="Resources\MerriweatherSans-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

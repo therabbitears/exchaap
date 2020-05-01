@@ -9,6 +9,11 @@ using Xaminals.Data.Database;
 using Xaminals.Infra.Context;
 using Xaminals.Services.HttpServices;
 
+[assembly: ExportFont("MerriweatherSans-Regular.ttf", Alias = "Merri")]
+[assembly: ExportFont("MerriweatherSans-Bold.ttf", Alias = "MerriBold")]
+[assembly: ExportFont("FontAwesome5Free-Regular-400.otf", Alias = "FontAwesomeRegular")]
+[assembly: ExportFont("FontAwesome5Free-Solid-900.otf", Alias = "FontAwesomeSolid")]
+[assembly: ExportFont("FontAwesome5Brands-Regular-400.otf", Alias = "FontAwesomeBrands")]
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Xaminals
 {

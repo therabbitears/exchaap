@@ -35,7 +35,7 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText">
+                        <customControl:GlyphLabel FontFamily="FontAwesomeSolid" WidthRequest="30" FontSize="20" StyleClass="DimText">
                             <customControl:GlyphLabel.Triggers>
                                 <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="false">
                                     <Setter Property="Text" Value="&#xf1da;"/>

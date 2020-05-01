@@ -21,7 +21,7 @@
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CancelPopupCommand}" />
                 </StackLayout.GestureRecognizers>
-                <customControl:GlyphLabel FontFamily="{StaticResource FontAwesomeSolid}" Text="&#xf2d1;" FontSize="20" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Gray" />
+                <customControl:GlyphLabel FontFamily="FontAwesomeSolid" Text="&#xf2d1;" FontSize="20" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Gray" />
             </StackLayout>
             <StackLayout>
                 <Label Text="Are you sure you want to logout of the application?" />
