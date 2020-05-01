@@ -171,7 +171,7 @@
       <Version>7.1.1</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>1.2.0.223</Version>
+      <Version>2.0.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Geolocator">
       <Version>4.5.0.6</Version>
@@ -179,12 +179,12 @@
     <PackageReference Include="Xamarin.Azure.NotificationHubs.iOS">
       <Version>2.0.4</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
     <PackageReference Include="Xamarin.Firebase.iOS.Analytics">
       <Version>6.4.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>4.5.0.530</Version>
+      <Version>4.6.0.726</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
