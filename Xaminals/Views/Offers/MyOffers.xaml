@@ -10,7 +10,8 @@
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:customControls="clr-namespace:Xaminals.CustomControls"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:MyOffersListViewModel />
     </ContentPage.BindingContext>
@@ -49,6 +50,7 @@
                             <ViewCell>
                                 <Grid BackgroundColor="White" Margin="5" Padding="5" x:Name="OfferItem">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -96,6 +98,19 @@
                                                 </StackLayout>
                                             </ScrollView>
                                         </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                                        <Label Text="Deactivated ads won't show up in the search." StyleClass="DimText"/>
+                                        <Button   Text="Deactivate" StyleClass="flatButton" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext.DeactivateCommand}" CommandParameter="{Binding .}" >
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="true">
+                                                <Setter Property="Text" Value="Deactivate"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="false">
+                                                <Setter Property="Text" Value="Activate"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
                                     </StackLayout>
                                 </Grid>
                             </ViewCell>

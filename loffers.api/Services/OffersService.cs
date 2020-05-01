@@ -117,6 +117,19 @@ namespace Loffers.Server.Services
             return await Create(offer);
         }
 
+        public async Task Activate(OfferModel model, string userId)
+        {
+            var offer = await context.Offers.FirstOrDefaultAsync(c => c.Id == model.Id && c.CreatedBy == userId);
+            if (offer != null)
+            {
+                offer.Active = !offer.Active;
+                await context.SaveChangesAsync();
+                return;
+            }
+
+            throw new Exception("This ad doesn't belong to you.");
+        }
+
         public async Task<object> FindOffersAround(double currentLat, double currentLong, int maximumDistanceInMeters, string[] categories, string unit, string token, int pageNumber)
         {
             var take = 10;
@@ -154,6 +167,7 @@ namespace Loffers.Server.Services
                                                 offer.OfferCategories,
                                                 offer.Categories,
                                                 offer.OfferID,
+                                                offer.Active,
                                                 Starred = string.IsNullOrEmpty(token) ? false : context.UserStarredOffers.Any(c => c.OfferId == offer.OfferID && c.OfferLocationID == location.OfferLocationID && c.UserId == token && c.Active)
                                             })
                                         .Select(d => new
@@ -183,11 +197,12 @@ namespace Loffers.Server.Services
                                             },
                                             d.Id,
                                             d.Starred,
+                                            d.Active,
                                             Url = BaseUrlToSaveImages + "home/offerdetails?id=" + d.Id + "&unit=" + unit
-                                        });
+                                        }).Where(c => c.Active);
 
             if (categories != null && categories.Any())
-                resultSet = resultSet.Where(c => c.Categories.Any(d => categories.Contains(d.Id)));
+                resultSet = resultSet.Where(c => categories.Contains(c.Category.Id));
 
             if (maximumDistanceInMeters > 0)
                 resultSet = resultSet.Where(c => c.Distance.Distance <= maximumDistanceInMeters);
@@ -372,15 +387,14 @@ namespace Loffers.Server.Services
 
         public async Task<object> Update(OfferModel offer, string token)
         {
-            var offerresult = await context.Offers.Include(c => c.OfferCategories).Include(c => c.OfferLocations).FirstOrDefaultAsync(c => c.Id == offer.Id);
+            var offerresult = await context.Offers.Include(c => c.OfferCategories).Include(c => c.OfferLocations).FirstOrDefaultAsync(c => c.Id == offer.Id && c.CreatedBy == token);
             offerresult.Active = true;
             offerresult.LastEditedBy = token;
             offerresult.LastEditedOn = DateTime.Now;
             offerresult.OfferDescription = offer.Detail;
             offerresult.OfferHeadline = offer.Heading;
             offerresult.TermsAndConditions = offer.Terms;
-            offerresult.ValidFrom = offer.ValidFrom.Value;
-            offerresult.ValidTill = offer.ValidTo.Value;
+            offerresult.ValidFrom = offer.ValidFrom != null ? offer.ValidFrom.Value : DateTime.UtcNow;
             offerresult.Image = offer.Image;
             offerresult.OriginalImage = offer.OriginalImage;
 
@@ -492,6 +506,7 @@ namespace Loffers.Server.Services
                     c.CreatedBy,
                     c.CreatedOn,
                     c.Id,
+                    c.Active,
                     Category = new { c.Categories.Id, c.Categories.Name, c.Categories.Image },
                     Categories = c.OfferCategories.Select(d => new { d.Categories.Id, d.Categories.Name, d.Categories.Image }),
                     Locations = c.OfferLocations.Select(d => new { d.PublisherLocations.Id, d.PublisherLocations.Locations.Name }).FirstOrDefault()

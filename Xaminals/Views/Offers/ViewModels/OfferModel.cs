@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Xaminals.Models;
 using Xaminals.Views.Categories.Models.DTO;
 
 namespace Xaminals.Views.Offers.ViewModels
 {
-    public class OfferModel
+    public class OfferModel : NotificableObject
     {
         public string Image { get; set; }
         public string Id { get; set; }
@@ -17,5 +18,11 @@ namespace Xaminals.Views.Offers.ViewModels
         public CategoryModel Category { get; set; }
         public OfferPublisherLocationModel Locations { get; set; }
         public string OriginalImage { get; set; }
+        private bool _Active;
+        public bool Active
+        {
+            get { return _Active; }
+            set { _Active = value; OnPropertyChanged("Active"); }
+        }
     }
 }

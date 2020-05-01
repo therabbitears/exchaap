@@ -73,6 +73,21 @@ namespace Loffers.Server.Controllers.Offers
             }
         }
 
+        [HttpPut]
+        [Route("activate")]
+        public async Task<IHttpActionResult> Activate([FromBody] OfferModel model)
+        {
+            try
+            {
+                await service.Activate(model, UserId);
+                return Ok(new HttpResult(true, false));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new HttpResult(new { }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, "An error occurred while updating the offer.")));
+            }
+        }
+
         [Route("search")]
         [HttpGet]
         [AllowAnonymous]

@@ -16,6 +16,7 @@ namespace Xaminals.Views.Offers.Models
         public Command LoadItemsCommand { get; set; }
         public Command EditOfferCommand { get; set; }
         public Command AddOfferCommand { get; set; }
+        public Command DeactivateCommand { get; set; }
 
 
         protected override void IntializeCommands()
@@ -24,6 +25,7 @@ namespace Xaminals.Views.Offers.Models
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddOfferCommand = new Command(async () => await ExecuteAddOfferCommand());
             EditOfferCommand = new Command(EditOffer);
+            DeactivateCommand = new Command(async (object sender) => await ExecuteDeactivateCommand(sender));
             LoadItemsCommand.Execute(null);
         }
 
@@ -109,6 +111,31 @@ namespace Xaminals.Views.Offers.Models
             {
                 ShellNavigationState state = Shell.Current.CurrentState;
                 await Shell.Current.GoToAsync($"offer?offerid=" + offerSelectedItem.Id, true);
+            }
+        }
+
+        async Task ExecuteDeactivateCommand(object sender)
+        {
+            if (sender is OfferModel offer)
+            {
+                IsBusy = true;
+                try
+                {
+                    var result = await new RestService().ActivateOffers<HttpResult<bool>>(new { offer.Id, offer.Active });
+                    if (!result.IsError)
+                        offer.Active = !offer.Active;
+                    else
+                        await RaiseError(result.Errors.First().Description);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                    await RaiseError("An error occurred while updating the ad.");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
         }
     }

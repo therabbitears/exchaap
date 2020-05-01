@@ -91,6 +91,7 @@ namespace Xaminals.Views.Offers.Models
         {
             base.AddListeners();
             this.PropertyChanged += OnPropertryChanged;
+           // this.Id = "18d9377d-11d3-42c8-8696-0462673c18d6";
         }
 
         private void OnPropertryChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

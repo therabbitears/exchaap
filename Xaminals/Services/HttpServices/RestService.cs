@@ -115,6 +115,11 @@ namespace Xaminals.Services.HttpServices
             return await Get<T>(UrlConstants.OnePublishersUrl + "/" + id);
         }
 
+        public async Task<T> ActivateOffers<T>(object item) where T : IHttpResult
+        {
+            return await Put<T>(item, UrlConstants.ActivateOfferUrl);
+        }
+
         public async Task<T> AddPublisherLocation<T>(object valueToSend) where T : IHttpResult
         {
             return await Create<T>(valueToSend, UrlConstants.AddPublisherLocationUrl, true);

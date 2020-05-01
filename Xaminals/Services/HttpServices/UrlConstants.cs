@@ -4,7 +4,7 @@
     {
         //public const string baseUrl = "http://localhost:1234/";
         public const string baseUrl = "https://exchaup.sklative.com/";
-        //public const string baseUrl = "http://localhost:64224/";
+        // public const string baseUrl = "http://localhost:64224/";
 
 
         public const string CreateUrl = "api/account/register";
@@ -46,5 +46,6 @@
 
         public const string SearchLocationsUrl = "api/locations/search";
         public const string PublicOffers = "api/categories/list";
+        public const string ActivateOfferUrl = "api/offers/activate";
     }
 }

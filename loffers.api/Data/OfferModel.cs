@@ -16,5 +16,6 @@ namespace Loffers.Server.Data
         public OfferLocationModel OfferLocation { get; set; }
         public string Id { get; set; }
         public string OriginalImage { get; set; }
+        public bool Active { get; set; }
     }
 }
