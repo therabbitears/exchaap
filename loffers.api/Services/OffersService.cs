@@ -234,14 +234,13 @@ namespace Loffers.Server.Services
             throw new OfferNotFoundException();
         }
 
-        public async Task<object> Star(string token, string locationToken, string user)
+        public async Task<object> Star(string token, string user)
         {
-            var offer = await context.Offers.FirstOrDefaultAsync(c => c.Id == token);
-            var publisherLocation = await context.PublisherLocations.FirstOrDefaultAsync(c => c.Id == locationToken);
-            if (offer != null && publisherLocation != null)
+            var offer = await context.Offers.Include(c => c.OfferLocations).FirstOrDefaultAsync(c => c.Id == token);
+            var offerLocation = offer?.OfferLocations?.FirstOrDefault();
+            if (offer != null && offerLocation != null)
             {
-                var offerLocation = await context.OfferLocations.FirstOrDefaultAsync(c => c.OfferID == offer.OfferID && c.PublisherLocationID == publisherLocation.PublisherLocationID && c.Active);
-                var starred = await context.UserStarredOffers.FirstOrDefaultAsync(c => c.UserId == user && c.OfferId == offer.OfferID && c.OfferLocationID == offerLocation.OfferLocationID);
+                var starred = await context.UserStarredOffers.FirstOrDefaultAsync(c => c.UserId == user && c.OfferId == offer.OfferID);
                 if (starred != null)
                 {
                     starred.LastEditedOn = DateTime.Now;

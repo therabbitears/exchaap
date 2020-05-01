@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xaminals;
 using Xaminals.Infra.Mappers;
 using Xaminals.Infra.Results;
 using Xaminals.Services.HttpServices;
@@ -31,7 +30,7 @@ namespace Loffers.Views.Chat.Models
             StartChatCommand = new Command(async (object obj) => await ExecuteStartChatCommand(obj));
             LoadChatCommand = new Command(async (object obj) => await ExecuteLoadChatCommand(obj));
             GoToOfferCommand = new Command(async (object obj) => await ExecuteGoToOfferCommand(obj));
-        }      
+        }
 
         protected override void AddListeners()
         {
@@ -84,7 +83,7 @@ namespace Loffers.Views.Chat.Models
 
             try
             {
-                var result = await new RestService().StartChat<HttpResult<ChatModel>>(Id, LocationId, GroupName);
+                var result = await new RestService().StartChat<HttpResult<ChatModel>>(Id, GroupName);
                 if (!result.IsError)
                 {
                     this.Users.Clear();

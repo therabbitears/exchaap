@@ -18,7 +18,7 @@ namespace Xaminals.Views.Offers.ViewModels
         {
             new ReportOptionModel{ Text="Offensive and inappropriate"},
             new ReportOptionModel{ Text="Incorrect information"},
-            new ReportOptionModel{ Text="Vendor denied the offer"},
+            new ReportOptionModel{ Text="Possible malpractice or scam"},
             new ReportOptionModel{ Text="Other"}
         };
 

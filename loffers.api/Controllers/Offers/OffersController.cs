@@ -130,7 +130,7 @@ namespace Loffers.Server.Controllers.Offers
         {
             try
             {
-                var offerResult = await service.Star(model.token, model.locationToken, UserId);
+                var offerResult = await service.Star(model.token, UserId);
                 return Ok(new HttpResult(offerResult));
             }
             catch (OfferNotFoundException ex)

@@ -18,11 +18,11 @@ namespace loffers.api.Controllers.Chats
 
         [Route("start/{id}")]
         [HttpGet]
-        public async Task<IHttpActionResult> Start(string id, string locationId, string groupName = null)
+        public async Task<IHttpActionResult> Start(string id, string groupName = null)
         {
             try
             {
-                var chatResult = await service.Start(id, locationId, groupName, UserId);
+                var chatResult = await service.Start(id, groupName, UserId);
                 return Ok(new HttpResult(chatResult));
             }
             catch (Exception ex)

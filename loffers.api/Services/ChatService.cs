@@ -11,14 +11,14 @@ namespace loffers.api.Services
 {
     public class ChatService : BaseService
     {
-        internal async Task<object> Start(string offerId, string locationId, string groupName, string userId)
+        internal async Task<object> Start(string offerId, string groupName, string userId)
         {
             ChatGroups existingGroup = null;
             OfferLocations offerLocations = null;
 
             if (string.IsNullOrEmpty(groupName))
             {
-                offerLocations = await context.OfferLocations.Include("Offers").Include("PublisherLocations").FirstOrDefaultAsync(c => c.Offers.Id == offerId && c.PublisherLocations.Id == locationId);
+                offerLocations = await context.OfferLocations.Include("Offers").FirstOrDefaultAsync(c => c.Offers.Id == offerId);
                 groupName = string.Format("{0}_{1}_{2}", offerLocations.PublisherLocationID, offerLocations.Offers.Id, userId);
             }
 

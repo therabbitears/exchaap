@@ -125,9 +125,9 @@ namespace Xaminals.Services.HttpServices
             return await Create<T>(valueToSend, UrlConstants.AddPublisherLocationUrl, true);
         }
 
-        public async Task<T> StartChat<T>(string id, string locationId, string groupName) where T : IHttpResult
+        public async Task<T> StartChat<T>(string id, string groupName) where T : IHttpResult
         {
-            var queryStringList = new List<QueryString>() { new QueryString() { key = "groupName", value = groupName }, new QueryString() { key = "locationId", value = locationId } };
+            var queryStringList = new List<QueryString>() { new QueryString() { key = "groupName", value = groupName } };
             return await Get<T>(UrlConstants.StartChatUrl + "/" + id, queryStringList);
         }
 

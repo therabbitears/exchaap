@@ -54,7 +54,7 @@
 
             <ShellContent Route="discovery"
                       Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate OfferDetails:OfferDetails}" Shell.NavBarIsVisible="False" />
+                      ContentTemplate="{DataTemplate offerviews:OfferList}" Shell.NavBarIsVisible="False" />
         </Tab>
         <Tab Title="My exchaups" x:Name="tabMyOffers">
             <Tab.Icon>
