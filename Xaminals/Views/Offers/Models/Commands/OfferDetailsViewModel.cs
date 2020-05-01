@@ -32,7 +32,7 @@ namespace Xaminals.Views.Offers.Models
         {
             base.AddListeners();
             this.PropertyChanged += OnPropertChanged;
-            //Id = "72d90861-4203-430a-8530-e7989953b4b6";
+            Id = "18d9377d-11d3-42c8-8696-0462673c18d6";
         }
 
         protected override void IntializeCommands()

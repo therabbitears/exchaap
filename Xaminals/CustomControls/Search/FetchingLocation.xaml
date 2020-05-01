@@ -9,7 +9,7 @@
     <StackLayout>
         <StackLayout IsVisible="{Binding FetchingLocation}"  Padding="2">
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                <customControl:GlyphLabel x:Name="labelCompans" FontFamily="FontAwesomeSolid" VerticalOptions="CenterAndExpand" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
+                <customControl:GlyphLabel x:Name="labelCompans" FontFamily="FontAwesomeRegular" VerticalOptions="CenterAndExpand" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
                 <Label Text="Fetching your location..." StyleClass="DimText"  VerticalOptions="CenterAndExpand"/>
             </StackLayout>
         </StackLayout>

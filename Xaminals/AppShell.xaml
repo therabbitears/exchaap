@@ -7,6 +7,7 @@
        xmlns:settingsview="clr-namespace:Xaminals.Views.Settings"  
        xmlns:vsettingsview="clr-namespace:Loffers.Views.Settings"  
        xmlns:homeViews="clr-namespace:exchaup.Views.Home"
+       xmlns:OfferDetails="clr-namespace:Xaminals.Views.Offer_Public"
        xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
        xmlns:starredview="clr-namespace:Xaminals.Views.Starred"  
        xmlns:chatview="clr-namespace:Loffers.Views.Chat"  
@@ -53,7 +54,7 @@
 
             <ShellContent Route="discovery"
                       Style="{StaticResource MainShell}"
-                      ContentTemplate="{DataTemplate offerviews:OfferList}" Shell.NavBarIsVisible="False" />
+                      ContentTemplate="{DataTemplate OfferDetails:OfferDetails}" Shell.NavBarIsVisible="False" />
         </Tab>
         <Tab Title="My exchaups" x:Name="tabMyOffers">
             <Tab.Icon>
