@@ -45,7 +45,7 @@
         <Tab Title="Discover" x:Name="tabDiscover">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeSolid"
+                        FontFamily="FontAwesomeRegular"
                         Glyph="&#xf14e;"
                         Size="20"
                         Color="White" />
@@ -58,7 +58,7 @@
         <Tab Title="My exchaups" x:Name="tabMyOffers">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeSolid"
+                        FontFamily="FontAwesomeRegular"
                         Glyph="&#xf507;"
                         Size="20"
                         Color="White" />
@@ -71,7 +71,7 @@
         <Tab Title="Starred" x:Name="tabStarred">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeSolid"
+                        FontFamily="FontAwesomeRegular"
                         Glyph="&#xf005;"
                         Size="20"
                         Color="White" />
@@ -83,7 +83,7 @@
         <Tab Title="Chats" x:Name="tabChats">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeSolid"
+                        FontFamily="FontAwesomeRegular"
                         Glyph="&#xf086;"
                         Size="20"
                         Color="White" />
@@ -95,7 +95,7 @@
         <Tab Title="Account">
             <Tab.Icon>
                 <FontImageSource
-                        FontFamily="FontAwesomeSolid"
+                        FontFamily="FontAwesomeRegular"
                         Glyph="&#xf509;"
                         Size="20"
                         Color="White" />
