@@ -42,6 +42,7 @@
                                 </DataTrigger>
                                 <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="true">
                                     <Setter Property="Text" Value="&#xf14e;"/>
+                                    <Setter Property="FontFamily" Value="FontAwesomeRegular"/>
                                 </DataTrigger>
                             </customControl:GlyphLabel.Triggers>
                         </customControl:GlyphLabel>

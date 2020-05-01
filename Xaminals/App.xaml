@@ -13,55 +13,25 @@
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
-            <!--<Style TargetType="Button">
-                <Setter Property="FontFamily">
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="iOS" Value="MerriweatherSans-Regular" />
-                        <On Platform="Android" Value="MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
-                        <On Platform="UWP" Value="/Assets/Fonts/MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
-                    </OnPlatform>
-                </Setter>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Merri" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="Merri" />
+            </Style>
+            <Style TargetType="SearchBar">
+                <Setter Property="FontFamily" Value="Merri" />
             </Style>
             <Style TargetType="Label">
                 <Style.Triggers>
                     <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">
-                        <Setter Property="FontFamily">
-                            <OnPlatform x:TypeArguments="x:String">
-                                <On Platform="iOS" Value="MerriweatherSans-Bold" />
-                                <On Platform="Android" Value="MerriweatherSans-Bold.ttf#MerriweatherSans-Bold" />
-                                <On Platform="UWP" Value="/Assets/Fonts/MerriweatherSans-Bold.ttf#MerriweatherSans-Bold" />
-                            </OnPlatform>
-                        </Setter>
+                        <Setter Property="FontFamily" Value="MerriBold" />
                     </Trigger>
                 </Style.Triggers>
 
-                <Setter Property="FontFamily">
-                    <OnPlatform x:TypeArguments="x:String">
-                        <On Platform="iOS" Value="MerriweatherSans-Regular" />
-                        <On Platform="Android" Value="MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
-                        <On Platform="UWP" Value="/Assets/Fonts/MerriweatherSans-Regular.ttf#MerriweatherSans-Regular" />
-                    </OnPlatform>
-                </Setter>
+                <Setter Property="FontFamily" Value="Merri" />
                 <Setter Property="FontSize" Value="16" />
-            </Style>-->
-            <!--<OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
-                <On Platform="Android" Value="FontAwesome5Brands-Regular-400.otf#Regular" />
-                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
-                <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Brands-Regular-400.otf#Font Awesome 5 Brands" />
-            </OnPlatform>
-
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
-                <On Platform="Android" Value="FontAwesome5Free-Solid-900.otf#Regular" />
-                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
-                <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Free-Solid-900.otf#Font Awesome 5 Free" />
-            </OnPlatform>
-
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
-                <On Platform="Android" Value="FontAwesome5Free-Regular-400.otf#Regular" />
-                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
-                <On Platform="UWP" Value="/Assets/Fonts/FontAwesome5Free-Regular-400.otf#Font Awesome 5 Free" />
-            </OnPlatform>-->
-
+            </Style>
         </ResourceDictionary>
         <DataTemplate x:Key="AnimalTemplate">
             <Grid Padding="10">
@@ -128,34 +98,13 @@
                         </StackLayout>
                         <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
                             <Label Text="Expected to exchange with:"/>
-                            <!--<customControlN:WrapLayout>-->
-                            <FlexLayout BindableLayout.ItemsSource="{Binding Categories}" HorizontalOptions="Start" Wrap="Wrap" 
-                        JustifyContent="Start">
+                            <FlexLayout BindableLayout.ItemsSource="{Binding Categories}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
                                             <OffeControls:SelectedCategory  />
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </FlexLayout>
-                            <!--</customControlN:WrapLayout>-->
-                            <!--<StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout HorizontalOptions="Start">
-                                                <OffeControls:SelectedCategory />
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>-->
-                            <!--<StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackLayout HorizontalOptions="Start">
-                                            <OffeControls:SelectedCategory />
-                                        </StackLayout>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>-->
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
@@ -171,7 +120,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" StyleClass="flatButton, gylypButton" FontFamily="FontAwesomeSolid" Text="&#xf005;" Command="{Binding StarOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" >
+                            <Button Grid.Column="0" StyleClass="flatButton, gylypButton" FontFamily="FontAwesomeRegular" Text="&#xf005;" Command="{Binding StarOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" >
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button" Binding="{Binding Starred}" Value="true">
                                         <Setter Property="TextColor" Value="#c48404" />
@@ -179,7 +128,7 @@
                                 </Button.Triggers>
                             </Button>
 
-                            <Button Grid.Column="1" FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton" Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
+                            <Button Grid.Column="1" FontFamily="FontAwesomeRegular" StyleClass="flatButton, gylypButton" Text="&#xf075;" Command="{Binding ChatToPublisherCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
                             <Button Grid.Column="2" FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton" Text="&#xf1e0;" Command="{Binding ShareOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
                             <Button Grid.Column="3" FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf024;" Command="{Binding ReportOfferCommand}" CommandParameter="{Binding .}" HorizontalOptions="CenterAndExpand" />
                             <Label HorizontalOptions="End" Grid.Column="4" VerticalOptions="CenterAndExpand" Text="{Binding Distance.Distance, Converter={StaticResource cnvDistanceToUnit}}" StyleClass="DimText" />
@@ -236,34 +185,14 @@
                        FontAttributes="Bold" />
             </Grid>
         </DataTemplate>
-
-        <!--<DataTemplate x:Key="LocationHistoryTemplate">
-            <Grid Padding="10" x:Name="itemLocation">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <customControl:GlyphLabel Text="&#xf1da;" FontFamily="{StaticResource FontAwesomeSolid}" WidthRequest="30" FontSize="20" StyleClass="DimText" />
-                <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
-            </Grid>
-        </DataTemplate>-->
-
         <DataTemplate x:Key="AnimalSearchTemplate">
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.15*" />
-                    <ColumnDefinition Width="0.85*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Image Source="{Binding ImageUrl}" 
-                       Aspect="AspectFill"
-                       HeightRequest="40" 
-                       WidthRequest="40" />
-                <Label Grid.Column="1" 
-                       Text="{Binding Name}" 
-                       FontAttributes="Bold" />
+                <customControl:GlyphLabel FontFamily="FontAwesomeRegular" Text="&#xf3c5;" WidthRequest="30" FontSize="20" StyleClass="DimText" />
+                <Label Grid.Column="1" Text="{Binding Name}" />
             </Grid>
         </DataTemplate>
     </Application.Resources>
