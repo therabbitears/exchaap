@@ -30,7 +30,7 @@
                                                 <Setter Property="Orientation" Value="Horizontal"/>
                                             </DataTrigger>
                                         </StackLayout.Triggers>
-                                        <Image Source="startscreen-2.png"
+                                        <Image Source="startscreen.png"
                                            Aspect="AspectFill"
                                            HeightRequest="300"
                                            HorizontalOptions="Center" />

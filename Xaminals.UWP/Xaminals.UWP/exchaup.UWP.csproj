@@ -253,7 +253,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </Content>
-    <Content Include="startscreen-2.png">
+    <Content Include="startscreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </Content>

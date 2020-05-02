@@ -212,7 +212,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\startscreen-2.png">
+    <AndroidResource Include="Resources\drawable\startscreen.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
