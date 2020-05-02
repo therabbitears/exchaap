@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xaminals.Infra.Results;
 using Xaminals.Services.HttpServices;
+using Xaminals.Views.Offer_Public;
 using Xaminals.Views.Offers.ViewModels;
 
 namespace Xaminals.Views.Offers.Models
@@ -17,6 +19,7 @@ namespace Xaminals.Views.Offers.Models
         public Command EditOfferCommand { get; set; }
         public Command AddOfferCommand { get; set; }
         public Command DeactivateCommand { get; set; }
+        public Command OpenImageCommand { get; set; }       
 
 
         protected override void IntializeCommands()
@@ -26,6 +29,7 @@ namespace Xaminals.Views.Offers.Models
             AddOfferCommand = new Command(async () => await ExecuteAddOfferCommand());
             EditOfferCommand = new Command(EditOffer);
             DeactivateCommand = new Command(async (object sender) => await ExecuteDeactivateCommand(sender));
+            OpenImageCommand = new Command(async (object obj) => await ExecuteOpenImageCommand(obj));
             LoadItemsCommand.Execute(null);
         }
 
@@ -36,6 +40,12 @@ namespace Xaminals.Views.Offers.Models
             {
                 await ExecuteLoadItemsCommand();
             });
+        }
+
+        private async Task ExecuteOpenImageCommand(object obj)
+        {
+            if (obj != null)
+                await PopupNavigation.Instance.PushAsync(new OfferCriteria(new exchaup.Models.OpenImageModel(obj.ToString())), true);
         }
 
         async Task ExecuteAddOfferCommand()

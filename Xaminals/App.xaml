@@ -21,7 +21,7 @@
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
             <Style TargetType="SearchBar">
-                <Setter Property="FontFamily" Value="Merri" />
+                <Setter Property="FontFamily" Value="" />
             </Style>
             <Style TargetType="Label">
                 <Style.Triggers>

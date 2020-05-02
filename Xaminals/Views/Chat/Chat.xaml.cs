@@ -12,5 +12,10 @@ namespace Loffers.Views.Chat
             InitializeComponent();         
            
         }
+
+        private void txtMessage_Completed(object sender, System.EventArgs e)
+        {
+            txtMessage.Focus();
+        }
     }
 }

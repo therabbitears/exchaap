@@ -20,6 +20,7 @@
         <ResourceDictionary>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
             <localLoffersFormatters:DateTimeDuractionConverted x:Key="cnvDateTimeDuractionConverted"></localLoffersFormatters:DateTimeDuractionConverted>
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout StyleClass="parentContainer" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
@@ -103,7 +104,7 @@
                                        HeightRequest="50" 
                                        WidthRequest="50"
                                        BackgroundColor="Transparent"
-                                       Source="{Binding Image}" />
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}" />
                                             </Frame>
                                         </StackLayout>
                                     </ContentView>

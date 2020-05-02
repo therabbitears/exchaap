@@ -17,7 +17,7 @@
         <ResourceDictionary>
             <localFormatters:MessageBubbleConverter x:Key="cnvMessageBubbleConverter"></localFormatters:MessageBubbleConverter>
             <localFormatters:MessageBubbleDirectionConverter x:Key="cnvMessageBubbleDirectionConverter"></localFormatters:MessageBubbleDirectionConverter>
-
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -50,7 +50,7 @@
                                        HeightRequest="50" 
                                        WidthRequest="50"
                                        BackgroundColor="Transparent"
-                                       Source="{Binding Image}" />
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}"/>
                             </Frame>
 
                         </StackLayout>
@@ -111,8 +111,8 @@
                 </ScrollView>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Entry Text="{Binding Message}"
-                       Placeholder="Message" HorizontalOptions="FillAndExpand" x:Name="txtMessage"  />
+                <Editor Text="{Binding Message}"
+                       Placeholder="Message" HorizontalOptions="FillAndExpand" x:Name="txtMessage" Keyboard="Chat" AutoSize="TextChanges"  />
                 <CustomeControls:FormButton  FocusedItem="{x:Reference Name=txtMessage}"  FontFamily="FontAwesomeSolid" Text="&#xf1d8;" Command="{Binding SendMessageCommand}" StyleClass="flatButton, primaryColorText" WidthRequest="30" />
             </StackLayout>
         </StackLayout>

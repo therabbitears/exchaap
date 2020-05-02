@@ -52,7 +52,7 @@
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}">
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding OpenImageCommand}" CommandParameter="{Binding OriginalImage}"/>
+                                        <TapGestureRecognizer BindingContext="{Binding Source={x:Reference MainContextHolder}, Path=BindingContext}" Command="{Binding OpenImageCommand}" CommandParameter="{Binding OriginalImage}"/>
                                     </Image.GestureRecognizers>
                                 </Image>
                                 <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding HasCategoroies, Converter={StaticResource cnvReveresBoolConverter}}">

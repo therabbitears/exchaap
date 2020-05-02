@@ -27,6 +27,7 @@ namespace Xaminals.Views.Offers.Models
             set { _OfferSelectedItem = value; }
         }
 
+
         protected override void IntializeMembers()
         {
             base.IntializeMembers();

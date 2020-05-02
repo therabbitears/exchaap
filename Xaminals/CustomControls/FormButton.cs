@@ -7,41 +7,39 @@ namespace Loffers.CustomControls
     {
         public FormButton()
         {
-            this.Focused += OnFocused;
+            this.Clicked += OnClicked;
         }
 
-        private void OnFocused(object sender, FocusEventArgs e)
+        private void OnClicked(object sender, EventArgs e)
         {
             if (this.FocusedItem != null)
                 this.FocusedItem.Focus();
+
             this.Command?.Execute(this.CommandParameter);
         }
 
         public static readonly BindableProperty HasItems = BindableProperty.Create(
                               propertyName: "FocusedItem",
-                              returnType: typeof(Entry),
+                              returnType: typeof(Editor),
                               declaringType: typeof(FormButton),
                               defaultValue: null,
                               defaultBindingMode: BindingMode.TwoWay,
                               propertyChanged: onProperyChanged
-      );
+                    );
 
         private static void onProperyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            // ----- Someone changed the full control's Value property. Store
-            //       that new value in the internal Switch's IsToggled property.
             FormButton targetView;
-
             targetView = (FormButton)bindable;
             if (targetView != null)
-                targetView.FocusedItem = (Entry)newValue;
+                targetView.FocusedItem = (Editor)newValue;
         }
 
-        public Entry FocusedItem
+        public Editor FocusedItem
         {
             get
             {
-                return (Entry)GetValue(HasItems);
+                return (Editor)GetValue(HasItems);
             }
             set
             {
