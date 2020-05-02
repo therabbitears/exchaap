@@ -13,6 +13,7 @@ using Xaminals.Services.HttpServices;
 [assembly: ExportFont("MerriweatherSans-Bold.ttf", Alias = "MerriBold")]
 [assembly: ExportFont("FontAwesome5Free-Regular-400.otf", Alias = "FontAwesomeRegular")]
 [assembly: ExportFont("FontAwesome5Free-Solid-900.otf", Alias = "FontAwesomeSolid")]
+[assembly: ExportFont("Playball-Regular.ttf", Alias = "Playball")]
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Xaminals
 {

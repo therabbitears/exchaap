@@ -26,5 +26,23 @@ namespace exchaup.Models
 
         public bool ShowGoButton { get; set; }
         public string ShortTitle { get; set; }
+
+        private bool _IsFirstScreen;
+        public bool IsFirstScreen
+        {
+            get { return _IsFirstScreen; }
+            set { _IsFirstScreen = value; OnPropertyChanged("IsFirstScreen"); }
+        }
+
+        private bool _IsSecondScreen;
+        public bool IsSecondScreen
+        {
+            get { return _IsSecondScreen; }
+            set { _IsSecondScreen = value; OnPropertyChanged("IsSecondScreen"); }
+        }
+    }
+
+    public class CategoryStartupCardModel : StartupCardModel 
+    {
     }
 }

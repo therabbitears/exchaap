@@ -6,8 +6,7 @@
              mc:Ignorable="d"
              x:Class="exchaup.Views.Common.CategorySelection"
              xmlns:Model="clr-namespace:exchaup.Views.Common.Models"
-             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
-             Title="Select categories">
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer">
     <ContentPage.BindingContext>
         <Model:CategorySelectionViewModel />
     </ContentPage.BindingContext>

@@ -81,7 +81,6 @@
                         </Frame>
                         <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>
-                    <!--<Button Text="Save" Command="{Binding SaveOfferCommand}"/>-->
                 </StackLayout>
             </ScrollView>
         </StackLayout>

@@ -15,6 +15,7 @@
     <None Remove="Resources\Fonts\FontAwesome5Free-Solid-900.otf" />
     <None Remove="Resources\Fonts\MerriweatherSans-Bold.ttf" />
     <None Remove="Resources\Fonts\MerriweatherSans-Regular.ttf" />
+    <None Remove="Resources\Fonts\Playball-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,9 @@
     <Folder Include="Controls\" />
     <Folder Include="ViewModels\Settings\Validators\" />
     <Folder Include="Views\Publishers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\Playball-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Common\Alerts\Error.xaml.cs">
@@ -87,9 +91,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Common\CategorySelection.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Home\StartScreen.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Home\StartupCarousel.xaml">
