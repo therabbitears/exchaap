@@ -20,6 +20,7 @@ using Xaminals.Models;
 using Xaminals.Services.HttpServices;
 using Xaminals.Views.Account;
 using Xaminals.Views.Common.Alerts;
+using Xaminals.Views.Offer_Public;
 
 namespace Xaminals.ViewModels
 {
@@ -33,7 +34,8 @@ namespace Xaminals.ViewModels
         public ICommand OpenLocationDialogCommand { get; set; }
         public ICommand RecordAnalyticsEventCommand { get; set; }
         public ICommand GotoAppCommand { get; set; }
-        
+        public Command OpenImageCommand { get; set; }
+
         public BaseViewModel()
         {
             IntializeMembers();
@@ -73,6 +75,13 @@ namespace Xaminals.ViewModels
             GotoAppCommand = new Command(ReloadApp);
             RecordAnalyticsEventCommand = new Command(ExecuteRecordAnalyticsEventCommand);
             OpenLocationDialogCommand = new Command(OpenLocationSettings);
+            OpenImageCommand = new Command(async (object obj) => await ExecuteOpenImageCommand(obj));
+        }
+
+        private async Task ExecuteOpenImageCommand(object obj)
+        {
+            if (obj != null)
+                await PopupNavigation.Instance.PushAsync(new OfferCriteria(new exchaup.Models.OpenImageModel(obj.ToString())), true);
         }
 
         private void ReloadApp(object obj)

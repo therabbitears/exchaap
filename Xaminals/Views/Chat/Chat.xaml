@@ -50,7 +50,11 @@
                                        HeightRequest="50" 
                                        WidthRequest="50"
                                        BackgroundColor="Transparent"
-                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}"/>
+                                       Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OpenImageCommand}" CommandParameter="{Binding OriginalImage}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
                             </Frame>
 
                         </StackLayout>

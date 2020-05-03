@@ -23,7 +23,6 @@ namespace Xaminals.Views.Offers.Models
         public ICommand StarOfferCommand { get; set; }
         public ICommand ReportOfferCommand { get; set; }
         public ICommand ChatToPublisherCommand { get; set; }
-        public ICommand OpenImageCommand { get; set; }
         public ICommand ShareOfferCommand
         {
             get; set;
@@ -47,8 +46,6 @@ namespace Xaminals.Views.Offers.Models
             ReportOfferCommand = new Command(async () => await ExecuteReportOfferCommand());
             ChatToPublisherCommand = new Command(async (object obj) => await ExecuteChatToPublisherCommand(obj));
             ShareOfferCommand = new Command(async (object obj) => await ExecuteShareOfferCommand(obj));
-            OpenImageCommand = new Command(async (object obj) => await ExecuteOpenImageCommand(obj));
-
             //MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             //{
             //    var newItem = item as Item;
@@ -57,12 +54,6 @@ namespace Xaminals.Views.Offers.Models
             //});
 
 
-        }
-
-        private async Task ExecuteOpenImageCommand(object obj)
-        {
-            if (obj != null)
-                await PopupNavigation.Instance.PushAsync(new OfferCriteria(new exchaup.Models.OpenImageModel(obj.ToString())), true);
         }
 
         private async void Star(object obj)

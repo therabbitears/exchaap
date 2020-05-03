@@ -47,8 +47,8 @@ namespace exchaup.Views.Common.Models
             }
         }
 
-        private ICategorySelectable _SelectInto;
-        public ICategorySelectable SelectInto
+        private ISelectable _SelectInto;
+        public ISelectable SelectInto
         {
             get { return _SelectInto; }
             set { SetProperty(ref _SelectInto, value); }

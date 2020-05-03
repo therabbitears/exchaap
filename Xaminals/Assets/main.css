@@ -156,6 +156,10 @@ checkbox {
     color: #ec8021;
 }
 
+.solid {
+    font-weight:600;
+}
+
 .chatBubble {
     padding: 4;
     margin: 2;

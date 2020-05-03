@@ -74,7 +74,7 @@
                                                     <TapGestureRecognizer Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext.OpenImageCommand}" CommandParameter="{Binding OriginalImage}"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
-                                                
+
                                             <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                                 <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                                             </ContentView>
@@ -102,15 +102,16 @@
                                     <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                                         <Label Text="Deactivated ads won't show up in the search." StyleClass="DimText"/>
                                         <Button   Text="Deactivate" StyleClass="flatButton" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext.DeactivateCommand}" CommandParameter="{Binding .}" >
-                                        <Button.Triggers>
-                                            <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="true">
-                                                <Setter Property="Text" Value="Deactivate"/>
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="false">
-                                                <Setter Property="Text" Value="Activate"/>
-                                            </DataTrigger>
-                                        </Button.Triggers>
-                                    </Button>
+                                            <Button.Triggers>
+                                                <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="true">
+                                                    <Setter Property="BackgroundColor" Value="#CF9625"/>
+                                                    <Setter Property="Text" Value="Deactivate"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="false">
+                                                    <Setter Property="Text" Value="Activate"/>
+                                                </DataTrigger>
+                                            </Button.Triggers>
+                                        </Button>
                                     </StackLayout>
                                 </Grid>
                             </ViewCell>

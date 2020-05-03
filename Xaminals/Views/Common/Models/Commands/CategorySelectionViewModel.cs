@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xaminals.Infra.Results;
 using Xaminals.Services.HttpServices;
 using Xaminals.Views.Categories.Models.DTO;
+using Xaminals.Views.Offers.Models;
 
 namespace exchaup.Views.Common.Models
 {
@@ -32,11 +33,11 @@ namespace exchaup.Views.Common.Models
         {
             try
             {
-                if (SelectInto != null)
+                if (SelectInto != null && SelectInto is ICategoriesSelectable selectable)
                 {
                     foreach (var item in SelectedCategories)
                     {
-                        SelectInto.Categories.Add(item);
+                        selectable.Categories.Add(item);
                     }
                 }
 
@@ -54,13 +55,13 @@ namespace exchaup.Views.Common.Models
             {
                 if (sender is CategoryModel selected)
                 {
-                    if (!MultiSelection)
+                    if (!MultiSelection && SelectInto is ICategorySelectable selectable)
                     {
                         //SelectInto.Category = selected;
-                        SelectInto.Category.Id = selected.Id;
-                        SelectInto.Category.Image = selected.Image;
-                        SelectInto.Category.Name = selected.Name;
-                        SelectInto.Category.Selected = selected.Selected;
+                        selectable.Category.Id = selected.Id;
+                        selectable.Category.Image = selected.Image;
+                        selectable.Category.Name = selected.Name;
+                        selectable.Category.Selected = selected.Selected;
                         await Shell.Current.Navigation.PopAsync(true);
                     }
                     else

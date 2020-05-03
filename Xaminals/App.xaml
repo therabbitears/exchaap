@@ -65,7 +65,7 @@
             </StackLayout>
         </ControlTemplate>
         <DataTemplate x:Key="CategorySelectionTemplate">
-            <Grid Padding="10" x:Name="itemLocation">
+            <Grid x:Name="itemLocation" RowSpacing="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -73,19 +73,27 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Image Source="{Binding Image}" HeightRequest="30" WidthRequest="30" Aspect="AspectFit">
-                    <Image.Triggers>
-                        <DataTrigger TargetType="Image" Binding="{Binding IsParent}" Value="true">
+                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                    <StackLayout.Triggers>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="true">
                             <Setter Property="IsVisible" Value="False"/>
                             <Setter Property="Margin" Value="-20,0,0,0"/>
                         </DataTrigger>
-                        <DataTrigger TargetType="Image" Binding="{Binding IsParent}" Value="false">
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="false">
                             <Setter Property="IsVisible" Value="True"/>
                             <Setter Property="Margin" Value="0,0,0,0"/>
                         </DataTrigger>
-                    </Image.Triggers>
-                </Image>
-                <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                    </StackLayout.Triggers>
+                    <CheckBox StyleClass="primaryColorText" VerticalOptions="Center" IsChecked="{Binding Selected}"  />
+                    <Image Source="{Binding Image}" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Aspect="AspectFit"/>
+                </StackLayout>
+                <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  VerticalOptions="Center" >
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding IsParent}" Value="true">
+                            <Setter Property="FontAttributes" Value="Bold"/>
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="OfferPublicTemplate">

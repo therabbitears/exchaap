@@ -18,8 +18,7 @@ namespace Xaminals.Views.Offers.Models
         public Command LoadItemsCommand { get; set; }
         public Command EditOfferCommand { get; set; }
         public Command AddOfferCommand { get; set; }
-        public Command DeactivateCommand { get; set; }
-        public Command OpenImageCommand { get; set; }       
+        public Command DeactivateCommand { get; set; }              
 
 
         protected override void IntializeCommands()
@@ -28,8 +27,7 @@ namespace Xaminals.Views.Offers.Models
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             AddOfferCommand = new Command(async () => await ExecuteAddOfferCommand());
             EditOfferCommand = new Command(EditOffer);
-            DeactivateCommand = new Command(async (object sender) => await ExecuteDeactivateCommand(sender));
-            OpenImageCommand = new Command(async (object obj) => await ExecuteOpenImageCommand(obj));
+            DeactivateCommand = new Command(async (object sender) => await ExecuteDeactivateCommand(sender));           
             LoadItemsCommand.Execute(null);
         }
 
@@ -40,13 +38,7 @@ namespace Xaminals.Views.Offers.Models
             {
                 await ExecuteLoadItemsCommand();
             });
-        }
-
-        private async Task ExecuteOpenImageCommand(object obj)
-        {
-            if (obj != null)
-                await PopupNavigation.Instance.PushAsync(new OfferCriteria(new exchaup.Models.OpenImageModel(obj.ToString())), true);
-        }
+        }       
 
         async Task ExecuteAddOfferCommand()
         {

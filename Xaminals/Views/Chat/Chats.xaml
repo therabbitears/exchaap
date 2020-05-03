@@ -44,7 +44,7 @@
                     <customControl:GlyphLabel Grid.Column="3" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
                 </Grid>
             </StackLayout>
-            
+
             <StackLayout IsVisible="{Binding HasItems}">
                 <customControls:ExtenderListView x:Name="ItemsListView"
                 ItemsSource="{Binding Chats}"
@@ -63,7 +63,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Margin="5" Padding="5" x:Name="ChatItem">
+                                <Grid RowSpacing="0" Padding="5" x:Name="ChatItem">
                                     <Grid.Triggers>
                                         <DataTrigger TargetType="Grid" Binding="{Binding IsSelf}" Value="true">
                                             <Setter Property="BackgroundColor" Value="#FFFFFF" />

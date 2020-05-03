@@ -19,7 +19,9 @@ namespace Xaminals.Views.Settings.ViewModels
 
         private bool ValidateUpdate()
         {
-            return ValidateName() && ValidateEmail();
+            var name = ValidateName();
+            var email=ValidateEmail();
+            return name && email;
         }
 
         private bool ValidateEmail()

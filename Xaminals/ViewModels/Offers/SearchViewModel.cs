@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using Xaminals.Views.Categories.Models.DTO;
+using Xaminals.Views.Offers.Models;
 
 namespace Xaminals.ViewModels.Offers
 {
-    public partial class SearchViewModel : BaseViewModel
+    public partial class SearchViewModel : BaseViewModel, ICategoriesSelectable
     {
         private int _MaxDistance=1;
         public int MaxDistance

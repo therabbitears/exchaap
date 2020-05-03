@@ -3,9 +3,18 @@ using Xaminals.Views.Categories.Models.DTO;
 
 namespace Xaminals.Views.Offers.Models
 {
-    public interface ICategorySelectable
+    public interface ISelectable
+    {
+
+    }
+
+    public interface ICategoriesSelectable : ISelectable
     {
         ObservableCollection<CategoryModel> Categories { get; set; }
+    }
+
+    public interface ICategorySelectable : ISelectable
+    {
         CategoryModel Category { get; set; }
     }
 }

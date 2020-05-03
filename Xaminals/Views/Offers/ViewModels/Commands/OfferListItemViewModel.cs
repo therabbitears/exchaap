@@ -17,7 +17,6 @@ namespace Xaminals.Views.Offers.ViewModels
     {
         public ICommand OpenMapsCommand { get; set; }
         public ICommand StarOfferCommand { get; set; }
-        public ICommand OpenImageCommand { get; set; }
         public ICommand ReportOfferCommand { get; set; }
         public ICommand ChatToPublisherCommand { get; set; }
         public ICommand ShareOfferCommand { get; set; }
@@ -30,7 +29,6 @@ namespace Xaminals.Views.Offers.ViewModels
             ReportOfferCommand = new Command(async () => await ExecuteReportOfferCommand());
             ChatToPublisherCommand = new Command(async (object obj) => await ExecuteChatToPublisherCommand(obj));
             ShareOfferCommand = new Command(async (object obj) => await ExecuteShareOfferCommand(obj));
-            OpenImageCommand = new Command(async (object obj) => await ExecuteOpenImageCommand(obj));
         }
 
         private async void OpenMaps(object obj)
@@ -70,12 +68,6 @@ namespace Xaminals.Views.Offers.ViewModels
         private async Task ExecuteReportOfferCommand()
         {
             await PopupNavigation.Instance.PushAsync(new GeneralPage(this), true);
-        }
-
-        private async Task ExecuteOpenImageCommand(object obj)
-        {
-            if (obj != null)
-                await PopupNavigation.Instance.PushAsync(new OfferCriteria(new exchaup.Models.OpenImageModel(obj.ToString())), true);
         }
 
         private async Task ExecuteChatToPublisherCommand(object value)

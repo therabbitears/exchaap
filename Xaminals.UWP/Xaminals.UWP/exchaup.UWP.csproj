@@ -225,6 +225,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="collapsible1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </Content>
     <Content Include="giveaway.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -14,10 +14,7 @@
     <ContentPage.BindingContext>
         <local:OffersListViewModel />
     </ContentPage.BindingContext>
-    <RelativeLayout StyleClass="parentContainer">
-        <mySharedControls:FetchingLocation HeightRequest="30" IsVisible="{Binding FetchingLocation}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"/>
+    <RelativeLayout StyleClass="parentContainer">     
         <StackLayout 
                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=1,Constant=0}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
@@ -48,11 +45,15 @@
             </x:Arguments>
         </customControls:ExtenderListView>        
         </StackLayout>
-        <StackLayout BackgroundColor="#FFF"
-                HeightRequest="100"
+        <mySharedControls:FetchingLocation HeightRequest="30" IsVisible="{Binding FetchingLocation}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"/>
+        <StackLayout 
+                HeightRequest="400"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.9,Constant=0}">
             <myControls:QuickFilter />
         </StackLayout>
     </RelativeLayout>
 </ContentPage>
+    

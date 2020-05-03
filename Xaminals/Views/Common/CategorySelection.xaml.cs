@@ -13,7 +13,7 @@ namespace exchaup.Views.Common
             InitializeComponent();
         }
 
-        public CategorySelection(bool multiSelection, ICategorySelectable category) : this()
+        public CategorySelection(bool multiSelection, ICategoriesSelectable category) : this()
         {
             if (this.BindingContext is CategorySelectionViewModel context)
             {
