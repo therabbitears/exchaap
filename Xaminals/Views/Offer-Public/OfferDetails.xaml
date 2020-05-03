@@ -65,7 +65,7 @@
                             <Label  Text="{Binding Detail}" StyleClass="OfferSubHeading"/>
                             <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                             <StackLayout IsVisible="{Binding HasCategoroies}">
-                                <Label Text="Expected to exchange with:"/>
+                                <Label Text="Expected to exchange with:" FontAttributes="Bold" StyleClass="MediumText"/>
                                 <ScrollView Orientation="Horizontal">
                                     <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                         <BindableLayout.ItemTemplate>

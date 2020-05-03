@@ -49,7 +49,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid BackgroundColor="White" Margin="5" Padding="5" x:Name="OfferItem">
+                                <Grid BackgroundColor="White" Padding="5" RowSpacing="0" x:Name="OfferItem">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
@@ -91,19 +91,13 @@
                                     <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
                                     <StackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
                                         <Label Text="Listed to exchange with:"/>
-                                        <StackLayout>
-                                            <ScrollView Orientation="Horizontal">
-                                                <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
-                                                    <BindableLayout.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <StackLayout>
-                                                                <OffeControls:SelectedCategory />
-                                                            </StackLayout>
-                                                        </DataTemplate>
-                                                    </BindableLayout.ItemTemplate>
-                                                </StackLayout>
-                                            </ScrollView>
-                                        </StackLayout>
+                                        <FlexLayout BindableLayout.ItemsSource="{Binding Categories}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <OffeControls:SelectedCategory  />
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </FlexLayout>
                                     </StackLayout>
                                     <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                                         <Label Text="Deactivated ads won't show up in the search." StyleClass="DimText"/>

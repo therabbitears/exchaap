@@ -11,13 +11,12 @@
         <local:StartupScreenCardsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <!--<AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">-->
         <StackLayout StyleClass="parentContainer">
             <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                            <StackLayout VerticalOptions="CenterAndExpand"  IsVisible="{Binding IsFirstScreen}">
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout VerticalOptions="FillAndExpand"  IsVisible="{Binding IsFirstScreen}">
                                 <Label Text="Things are ageless" StyleClass="emptyScreenTitle, primaryColorText"
                                                    HorizontalOptions="Center" FontSize="30"
                                                    VerticalOptions="Center"  FontFamily="Playball"/>

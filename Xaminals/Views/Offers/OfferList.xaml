@@ -14,16 +14,23 @@
     <ContentPage.BindingContext>
         <local:OffersListViewModel />
     </ContentPage.BindingContext>
-    <StackLayout StyleClass="parentContainer">
-        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <RelativeLayout StyleClass="parentContainer">
+        <mySharedControls:FetchingLocation HeightRequest="30" IsVisible="{Binding FetchingLocation}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"/>
+        <StackLayout 
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=1,Constant=0}"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                         RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"
+                         VerticalOptions="FillAndExpand" 
+                         HorizontalOptions="FillAndExpand">
         <StackLayout IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
                 <Label Text="Nothing around you." StyleClass="emptyScreenTitle, primaryColorText" />
                 <Label Text="You can update the criteria or can change the discovery location using the location option given in the bottom." StyleClass="emptyScreenDescription, MediumText"/>
                 <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
                 <Label Text="Or you can give refresh a try to quickly look again around you." StyleClass="emptyScreenDescription, MediumText"/>
                 <Button FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
-            </StackLayout>
-        <mySharedControls:FetchingLocation />
+            </StackLayout>       
         <customControls:ExtenderListView x:Name="ItemsListView" IsVisible="{Binding HasItems}"
                 ItemsSource="{Binding Offers}"
                 VerticalOptions="FillAndExpand"
@@ -39,8 +46,13 @@
             <x:Arguments>
                 <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
             </x:Arguments>
-        </customControls:ExtenderListView>
-        <myControls:QuickFilter />
+        </customControls:ExtenderListView>        
         </StackLayout>
-    </StackLayout>
+        <StackLayout
+                HeightRequest="100"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.9,Constant=0}">
+            <myControls:QuickFilter />
+        </StackLayout>
+    </RelativeLayout>
 </ContentPage>

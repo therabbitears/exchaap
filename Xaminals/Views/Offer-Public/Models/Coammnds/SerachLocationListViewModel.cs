@@ -42,6 +42,7 @@ namespace exchaup.Views.Offer_Public.Models
             var selectedItem = sender as SearchLocationItemViewModel;
             try
             {
+                Context.SettingsModel.SelectedLocation.SelectedAt = DateTime.Now;
                 Context.SettingsModel.SelectedLocation.IsCurrent = selectedItem.IsCurrent;
                 Context.SettingsModel.SelectedLocation.Landmark = selectedItem.Landmark;
                 Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;

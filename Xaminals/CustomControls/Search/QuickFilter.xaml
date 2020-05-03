@@ -2,11 +2,12 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              x:Class="Xaminals.CustomControls.Search.QuickFilter">
-    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Padding="5,0">
+    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Padding="5,0" BackgroundColor="#FFF">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
             <StackLayout VerticalOptions="StartAndExpand" Orientation="Horizontal">
                 <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
@@ -40,6 +41,14 @@
                 <Label Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Text="{Binding Context.SettingsModel.SelectedLocation.Name}" StyleClass="MediumText" />
                 <Button Text="Tap to edit" Command="{Binding SelectLocationCommand}" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" StyleClass="flatButton, MediumText, smallButton" />
             </Grid>
+            <Label StyleClass="SectionHeadingStyle" Text="Categories"/>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Context.SearchModel.Categories}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <OffeControls:SelectedCategory  />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
         </StackLayout>
     </StackLayout>
 </ContentView>

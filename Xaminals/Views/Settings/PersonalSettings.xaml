@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Settings.ViewModels"
+             xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Settings.PersonalSettings"
@@ -11,6 +12,11 @@
     <ContentPage.BindingContext>
         <local:PersonalSettingsViewModel />
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Update" Command="{Binding SaveDetailsCommand}"/>
         <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
@@ -19,13 +25,13 @@
         <StackLayout StyleClass="parentContainer">
             <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <Entry Text="{Binding Name.Value}" Placeholder="Your name" />
-            <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError"/>
+            <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
             <Entry Text="{Binding Email.Value}" Placeholder="Email" />
-            <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError"/>
+            <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
             <Entry Text="{Binding PhoneNumber.Value}" Placeholder="Phone number" />
-            <Label Text="{Binding PhoneNumber.Errors[0]}" StyleClass="validationError"/>
+            <Label Text="{Binding PhoneNumber.Errors[0]}" StyleClass="validationError" IsVisible="{Binding PhoneNumber.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

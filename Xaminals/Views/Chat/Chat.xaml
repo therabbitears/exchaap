@@ -57,7 +57,7 @@
                     </ContentView>
                     <StackLayout Grid.Column="1" Grid.Row="0">
                         <StackLayout Orientation="Horizontal">
-                            <Label HorizontalOptions="StartAndExpand"  Text="{Binding Name}" StyleClass="OfferHeading"/>
+                            <Label HorizontalOptions="StartAndExpand" LineBreakMode="TailTruncation" MaxLines="1" Text="{Binding Name}" StyleClass="OfferHeading"/>
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Grid.Column="1" Grid.Row="1">

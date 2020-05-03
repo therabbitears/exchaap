@@ -1,4 +1,5 @@
-﻿using Xaminals.Models;
+﻿using System;
+using Xaminals.Models;
 
 namespace exchaup.Views.Offer_Public.Models
 {
@@ -38,5 +39,7 @@ namespace exchaup.Views.Offer_Public.Models
             get { return _IsCurrent; }
             set { _IsCurrent = value; OnPropertyChanged("IsCurrent"); }
         }
+
+        public DateTime SelectedAt { get; set; }
     }
 }

@@ -28,7 +28,7 @@
         <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding Saved}" Margin="20"  SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10" x:Name="itemLocation">
+                    <Grid Padding="10" x:Name="itemLocation" ColumnSpacing="0" RowSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>

@@ -110,7 +110,7 @@
                                     </ContentView>
                                     <StackLayout Grid.Column="1" Grid.Row="0">
                                         <StackLayout Orientation="Horizontal">
-                                            <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeading}" StyleClass="OfferHeading"/>
+                                            <Label LineBreakMode="TailTruncation"  HorizontalOptions="StartAndExpand" MaxLines="1"  Text="{Binding OfferHeading}" StyleClass="OfferHeading"/>
                                             <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Stamp, Converter={StaticResource cnvDateTimeDuractionConverted}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
                                         </StackLayout>
                                     </StackLayout>
