@@ -106,12 +106,12 @@
                                        BackgroundColor="Transparent"
                                        Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}" />
                                             </Frame>
+                                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Text="{Binding Stamp, Converter={StaticResource cnvDateTimeDuractionConverted}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
                                         </StackLayout>
                                     </ContentView>
                                     <StackLayout Grid.Column="1" Grid.Row="0">
                                         <StackLayout Orientation="Horizontal">
                                             <Label LineBreakMode="TailTruncation"  HorizontalOptions="StartAndExpand" MaxLines="1"  Text="{Binding OfferHeading}" StyleClass="OfferHeading"/>
-                                            <Label HorizontalOptions="End" VerticalOptions="Center" Text="{Binding Stamp, Converter={StaticResource cnvDateTimeDuractionConverted}}" LineBreakMode="NoWrap" StyleClass="DimText"  />
                                         </StackLayout>
                                     </StackLayout>
                                     <StackLayout Grid.Column="1" Grid.Row="1">

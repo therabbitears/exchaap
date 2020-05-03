@@ -48,7 +48,7 @@
             </x:Arguments>
         </customControls:ExtenderListView>        
         </StackLayout>
-        <StackLayout
+        <StackLayout BackgroundColor="#FFF"
                 HeightRequest="100"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.9,Constant=0}">
