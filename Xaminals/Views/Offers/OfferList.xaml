@@ -48,7 +48,7 @@
         <mySharedControls:FetchingLocation HeightRequest="30" IsVisible="{Binding FetchingLocation}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=0,Constant=0}"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"/>
-        <StackLayout 
+        <StackLayout x:Name="bottomSheet"
                 HeightRequest="400"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.9,Constant=0}">
