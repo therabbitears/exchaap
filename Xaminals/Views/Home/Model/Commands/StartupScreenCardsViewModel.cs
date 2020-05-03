@@ -19,6 +19,7 @@ namespace exchaup.Views.Home.Model
         public ICommand CurrentItemCommand { get; set; }
         public ICommand SaveDataCoammnd { get; set; }
         public ICommand FetchCateoriesDataCoammnd { get; set; }
+        public ICommand FetchLocationCoammnd { get; set; }
 
         protected override void IntializeCommands()
         {
@@ -27,9 +28,29 @@ namespace exchaup.Views.Home.Model
             SaveDataCoammnd = new Command((object sender) => ExecureSaveDataCoammnd(null));
             CurrentItemCommand = new Command(async (object sender) => await ExecureCurrentItemCommand(null));
             FetchCateoriesDataCoammnd = new Command(ExecureFetchCateoriesDataCoammnd);
+            FetchLocationCoammnd = new Command(FetchLocation);
             FetchCateoriesDataCoammnd.Execute(null);
             SaveDataCoammnd.Execute(null);
             RecordAnalyticsEventCommand.Execute(AnalyticsModel.InstanceOf(AnalyticsModel.EventNames.PageViewEvent, AnalyticsModel.ParameterNames.PageName, "startupcarousel"));
+        }
+
+        public async void FetchLocation(object obj)
+        {
+            try
+            {
+                var location = await GetCurrentLocation();
+                if (location != null)
+                {
+                    Context.SettingsModel.SelectedLocation.SelectedAt = DateTime.Now;
+                    Context.SettingsModel.SelectedLocation.IsCurrent = true;
+                    Context.SettingsModel.SelectedLocation.Long = location.Longitude;
+                    Context.SettingsModel.SelectedLocation.Lat = location.Latitude;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         public async Task ExecureGoCommand(object p)

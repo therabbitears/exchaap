@@ -244,6 +244,10 @@ namespace Xaminals.ViewModels
         {
             if (!Context.SettingsModel.SelectedLocation.IsCurrent)
                 return new Location(Context.SettingsModel.SelectedLocation.Lat, Context.SettingsModel.SelectedLocation.Long);
+            else if (Context.SettingsModel.SelectedLocation.IsCurrent && Context.SettingsModel.SelectedLocation.Lat >= 0)
+            {
+                return new Location(Context.SettingsModel.SelectedLocation.Lat, Context.SettingsModel.SelectedLocation.Long);
+            }
 
             return await LoadLocation(tryCached, token);
         }
