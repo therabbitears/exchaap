@@ -244,8 +244,9 @@ namespace Xaminals.ViewModels
         {
             if (!Context.SettingsModel.SelectedLocation.IsCurrent)
                 return new Location(Context.SettingsModel.SelectedLocation.Lat, Context.SettingsModel.SelectedLocation.Long);
-            else if (Context.SettingsModel.SelectedLocation.IsCurrent && Context.SettingsModel.SelectedLocation.Lat >= 0)
+            else if (Context.SettingsModel.SelectedLocation.IsPrefetched)
             {
+                Context.SettingsModel.SelectedLocation.IsPrefetched = false;
                 return new Location(Context.SettingsModel.SelectedLocation.Lat, Context.SettingsModel.SelectedLocation.Long);
             }
 
@@ -281,7 +282,6 @@ namespace Xaminals.ViewModels
                 }
 
                 location = location ?? await Geolocation.GetLocationAsync(request, token);
-                var reverse = await Geocoding.GetPlacemarksAsync(location);
             }
             catch (Exception ex)
             {

@@ -19,8 +19,7 @@ namespace Loffers.Views.Chat.Models
         public ICommand LoadOfferCommand { get; set; }
         public ICommand StartChatCommand { get; set; }
         public ICommand LoadChatCommand { get; set; }
-        public ICommand GoToOfferCommand { get; set; }
-
+        public ICommand GoToOfferCommand { get; set; }        
 
         protected override void IntializeCommands()
         {
@@ -152,6 +151,7 @@ namespace Loffers.Views.Chat.Models
                 var result = await new RestService().OfferDetail<HttpResult<OfferListItemViewModel>>(Id, location.Latitude, location.Longitude, "M");
                 if (!result.IsError)
                 {
+                    this.Title = result.Result.Name;
                     Mapper.Map(result.Result, this.Offer);
                 }
                 else

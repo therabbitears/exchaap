@@ -32,6 +32,13 @@ namespace Loffers.Views.Chat.Models
             set { _group = value; }
         }
 
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; OnPropertyChanged("Title"); }
+        }
+
         ObservableCollection<ChatGroupUserViewModel> _users;
         public ObservableCollection<ChatGroupUserViewModel> Users
         {

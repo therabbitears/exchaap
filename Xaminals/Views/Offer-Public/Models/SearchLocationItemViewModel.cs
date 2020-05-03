@@ -41,5 +41,12 @@ namespace exchaup.Views.Offer_Public.Models
         }
 
         public DateTime SelectedAt { get; set; }
+        
+        private bool _IsPrefetched;
+        public bool IsPrefetched
+        {
+            get { return _IsPrefetched; }
+            set { _IsCurrent = value; OnPropertyChanged("IsPrefetched"); }
+        }
     }
 }
