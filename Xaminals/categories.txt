@@ -1,0 +1,62 @@
+﻿[
+  {
+"Id": "0162a806-cec6-4e25-baf8-058952f6d261",
+"Name": "Books",
+"Image": "https://img.icons8.com/plasticine/1x/books.png",
+"ParentId": null
+},
+  {
+"Id": "20bd4bad-e05f-486f-a6ae-d90c3255bd35",
+"Name": "Toys",
+"Image": "https://img.icons8.com/plasticine/1x/plush.png",
+"ParentId": null
+},
+  {
+"Id": "5c069d6d-2ca7-4406-9322-30c1c687b397",
+"Name": "Mobile & accessories",
+"Image": "https://img.icons8.com/cotton/1x/mobile-order.png",
+"ParentId": null
+},
+  {
+"Id": "7cbb6d41-427e-401b-a9c3-0f9af429964e",
+"Name": "Novel",
+"Image": "https://img.icons8.com/bubbles/1x/literature.png",
+"ParentId": "0162a806-cec6-4e25-baf8-058952f6d261"
+},
+  {
+"Id": "81726d64-64e8-4b36-aa87-c52cf6b4d922",
+"Name": "Academic",
+"Image": "https://img.icons8.com/doodle/1x/books.png",
+"ParentId": "0162a806-cec6-4e25-baf8-058952f6d261"
+},
+  {
+"Id": "66aa7c0e-18be-4459-8647-5b48edf453f1",
+"Name": "Baby cart",
+"Image": "https://img.icons8.com/bubbles/1x/boy-stroller.png",
+"ParentId": "20bd4bad-e05f-486f-a6ae-d90c3255bd35"
+},
+  {
+"Id": "3fcf8bd2-3303-411b-991c-a8fe4f8b34b9",
+"Name": "Baby bed",
+"Image": "https://img.icons8.com/flat_round/1x/crib.png",
+"ParentId": "20bd4bad-e05f-486f-a6ae-d90c3255bd35"
+},
+  {
+"Id": "46f188db-a2a8-44d5-b171-c0adbbb3d7d9",
+"Name": "Mobile",
+"Image": "https://img.icons8.com/dusk/1x/cell-phone.png",
+"ParentId": "5c069d6d-2ca7-4406-9322-30c1c687b397"
+},
+  {
+"Id": "e175cd99-72c9-441e-a43d-f959d9b0e3e4",
+"Name": "Mobile headphones",
+"Image": "https://img.icons8.com/cute-clipart/1x/headphones.png",
+"ParentId": "5c069d6d-2ca7-4406-9322-30c1c687b397"
+},
+  {
+"Id": "84015d66-22b7-44ba-b60f-9d9c9b8d1c15",
+"Name": "Charger",
+"Image": "https://img.icons8.com/cotton/2x/park-and-charge.png",
+"ParentId": "5c069d6d-2ca7-4406-9322-30c1c687b397"
+}
+]

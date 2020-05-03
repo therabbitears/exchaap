@@ -12,88 +12,94 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <!--<AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">-->
-            <StackLayout StyleClass="parentContainer">
-                <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="20">
-                                <StackLayout VerticalOptions="CenterAndExpand"  IsVisible="{Binding IsFirstScreen}">
-                                    <Label Text="Things are ageless" StyleClass="emptyScreenTitle, primaryColorText"
+        <StackLayout StyleClass="parentContainer">
+            <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <StackLayout VerticalOptions="CenterAndExpand"  IsVisible="{Binding IsFirstScreen}">
+                                <Label Text="Things are ageless" StyleClass="emptyScreenTitle, primaryColorText"
                                                    HorizontalOptions="Center" FontSize="30"
                                                    VerticalOptions="Center"  FontFamily="Playball"/>
-                                    <StackLayout Orientation="Vertical">
-                                        <StackLayout.Triggers>
-                                            <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
-                                                <Setter Property="Orientation" Value="Vertical"/>
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
-                                                <Setter Property="Orientation" Value="Horizontal"/>
-                                            </DataTrigger>
-                                        </StackLayout.Triggers>
-                                        <Image Source="startscreen.png"
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout.Triggers>
+                                        <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
+                                            <Setter Property="Orientation" Value="Vertical"/>
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
+                                            <Setter Property="Orientation" Value="Horizontal"/>
+                                        </DataTrigger>
+                                    </StackLayout.Triggers>
+                                    <Image Source="startscreen.png"
                                            Aspect="AspectFill"
                                            HeightRequest="300"
                                            HorizontalOptions="Center" />
-                                        <Label Text="Things are to be utilized, exchange or giveaway your old thing i.e. books, toys, games." VerticalOptions="CenterAndExpand" />
-                                    </StackLayout>
-                                <Button StyleClass="primaryButton" Text="Skip all" HorizontalOptions="EndAndExpand" Padding="10" HeightRequest="45" CornerRadius="1" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                                    <Label Text="Things are to be utilized, exchange or giveaway your old thing i.e. books, toys, games." VerticalOptions="CenterAndExpand" />
                                 </StackLayout>
-                                <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding IsSecondScreen}">
-                                    <Label Text="Explore categories" StyleClass="emptyScreenTitle, primaryColorText"
+                                <Button StyleClass="primaryButton" Text="Skip all" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" Padding="10" HeightRequest="45" CornerRadius="1" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                            </StackLayout>
+                            <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding IsSecondScreen}">
+                                <Label Text="Explore categories" StyleClass="emptyScreenTitle, primaryColorText"
                                                    HorizontalOptions="Center" FontSize="30"
                                                    VerticalOptions="Center"  FontFamily="Playball"/>
-                                    <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}" Margin="20" >
-                                        <CollectionView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid Padding="10" x:Name="itemLocation">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto" />
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
-                                                    <StackLayout Grid.Column="0" Orientation="Horizontal">
-                                                        <StackLayout.Triggers>
-                                                            <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="true">
-                                                                <Setter Property="IsVisible" Value="False"/>
-                                                                <Setter Property="Margin" Value="-20,0,0,0"/>
-                                                            </DataTrigger>
-                                                            <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="false">
-                                                                <Setter Property="IsVisible" Value="True"/>
-                                                                <Setter Property="Margin" Value="0,0,0,0"/>
-                                                            </DataTrigger>
-                                                        </StackLayout.Triggers>
-                                                        <CheckBox StyleClass="primaryColorText" IsChecked="{Binding Selected}"  />
-                                                        <Image Source="{Binding Image}" HeightRequest="30" WidthRequest="30" Aspect="AspectFit"/>
-                                                    </StackLayout>
-                                                    <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
-                                                </Grid>
-                                            </DataTemplate>
-                                        </CollectionView.ItemTemplate>
-                                    </CollectionView>
-                                    <Grid Padding="10" x:Name="itemLocation">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                                <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid x:Name="itemLocation" RowSpacing="0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Grid.Column="0" Orientation="Horizontal">
+                                                    <StackLayout.Triggers>
+                                                        <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="true">
+                                                            <Setter Property="IsVisible" Value="False"/>
+                                                            <Setter Property="Margin" Value="-20,0,0,0"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger TargetType="StackLayout" Binding="{Binding IsParent}" Value="false">
+                                                            <Setter Property="IsVisible" Value="True"/>
+                                                            <Setter Property="Margin" Value="0,0,0,0"/>
+                                                        </DataTrigger>
+                                                    </StackLayout.Triggers>
+                                                    <CheckBox StyleClass="primaryColorText" VerticalOptions="Center" IsChecked="{Binding Selected}"  />
+                                                    <Image Source="{Binding Image}" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Aspect="AspectFit"/>
+                                                </StackLayout>
+                                                <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  VerticalOptions="Center" >
+                                                    <Label.Triggers>
+                                                        <DataTrigger TargetType="Label" Binding="{Binding IsParent}" Value="true">
+                                                            <Setter Property="FontAttributes" Value="Bold"/>
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <Grid Padding="10" x:Name="itemLocation">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
                                     <Button StyleClass="primaryButton" Text="Select and Go" Grid.Column="0" Padding="10" HeightRequest="45" CornerRadius="1" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
-                                        <Button Text="Skip" Padding="10" HeightRequest="45" Grid.Column="1" CornerRadius="1" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
-                                    </Grid>
-                                </StackLayout>
+                                    <Button Text="Skip" Padding="10" HeightRequest="45" Grid.Column="1" CornerRadius="1" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                                </Grid>
                             </StackLayout>
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <IndicatorView x:Name="indicatorView"
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
                    IndicatorColor="LightGray"
                    SelectedIndicatorColor="DarkGray"
                    HorizontalOptions="Center" IndicatorsShape="Circle" >
-                </IndicatorView>
-            </StackLayout>
+            </IndicatorView>
+        </StackLayout>
         <!--</AbsoluteLayout>-->
     </ContentPage.Content>
 </ContentPage>

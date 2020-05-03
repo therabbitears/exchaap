@@ -1,4 +1,5 @@
-﻿using exchaup.Models;
+﻿using exchaup.Data;
+using exchaup.Models;
 using System.Collections.ObjectModel;
 using Xaminals.ViewModels;
 using Xaminals.Views.Categories.Models.DTO;
@@ -25,7 +26,7 @@ namespace exchaup.Views.Home.Model
         {
             base.IntializeMembers();
             this.Cards = new ObservableCollection<StartupCardModel>();
-            this.FilteredCategories = new ObservableCollection<CategoryModel>();
+            this.FilteredCategories = new ObservableCollection<CategoryModel>(DataStore.Categories());
             this.Cards.Add(new StartupCardModel()
             {
                 Title = "Things get old soon?",

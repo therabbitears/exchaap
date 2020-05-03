@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              x:Class="Xaminals.CustomControls.Search.QuickFilter">
-    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Padding="5,0">
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
             <StackLayout VerticalOptions="StartAndExpand" Orientation="Horizontal">
                 <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />

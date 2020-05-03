@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\categories.txt" />
     <None Remove="Resources\Fonts\FontAwesome5Free-Regular-400.otf" />
     <None Remove="Resources\Fonts\FontAwesome5Free-Solid-900.otf" />
     <None Remove="Resources\Fonts\MerriweatherSans-Bold.ttf" />
@@ -19,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="categories.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Fonts\FontAwesome5Free-Regular-400.otf" />
     <EmbeddedResource Include="Resources\Fonts\FontAwesome5Free-Solid-900.otf" />
     <EmbeddedResource Include="Resources\Fonts\MerriweatherSans-Bold.ttf" />
