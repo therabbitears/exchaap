@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Loffers.CustomControls.Search
+namespace exchaup.CustomControls.Search
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FetchingLocation : ContentView

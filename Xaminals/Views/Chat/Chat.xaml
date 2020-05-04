@@ -5,11 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:local="clr-namespace:Loffers.Views.Chat.Models"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              mc:Ignorable="d"
              x:Class="Loffers.Views.Chat.Chat"
-             xmlns:CustomeControls="clr-namespace:Loffers.CustomControls">
+             xmlns:CustomeControls="clr-namespace:exchaup.CustomControls">
     <ContentPage.BindingContext>
         <local:ChatViewModel />
     </ContentPage.BindingContext>

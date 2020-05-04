@@ -4,12 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Starred.Models"       
-             xmlns:customControlsN="clr-namespace:Xaminals.CustomControls"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Starred.Starred"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
-             xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
-             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
+             xmlns:mySharedControls="clr-namespace:exchaup.CustomControls.Search"
+             xmlns:customControls="clr-namespace:exchaup.CustomControls"
              Title="Favorite exchaups">
     <ContentPage.BindingContext>
         <local:StarredOffersListViewModel />
@@ -30,10 +29,10 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="0" StyleClass="LargeGylphText, primaryColorText" FontFamily="FontAwesomeSolid" Text="&#xf005;" VerticalOptions="CenterAndExpand" />
-                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="1" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf075;" VerticalOptions="CenterAndExpand" />
-                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="2" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf1e0;" VerticalOptions="CenterAndExpand" />
-                    <customControlsN:GlyphLabel Grid.Row="0" Grid.Column="3" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Row="0" Grid.Column="0" StyleClass="LargeGylphText, primaryColorText" FontFamily="FontAwesomeSolid" Text="&#xf005;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Row="0" Grid.Column="1" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf075;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Row="0" Grid.Column="2" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf1e0;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Row="0" Grid.Column="3" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
                 </Grid>
                 <Label  Text="Or if you have already starred an ad, you can use refresh option below see it right away." StyleClass="emptyScreenDescription, MediumText"/>
                 <Button FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton, primaryColorText, RegularGylphText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />

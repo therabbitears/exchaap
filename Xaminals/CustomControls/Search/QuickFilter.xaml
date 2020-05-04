@@ -2,45 +2,38 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              x:Class="Xaminals.CustomControls.Search.QuickFilter">
-    <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="Transparent" Padding="5,0" Margin="0">
-        <Image Source="collapsible1.png" HeightRequest="30">
+    <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="Transparent" Margin="0" Spacing="0">
+        <Image Source="up.png" HeightRequest="10">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnTapped"/>
             </Image.GestureRecognizers>
         </Image>
-        <Grid RowSpacing="4" BackgroundColor="#FFF">
+        <Grid RowSpacing="0" BackgroundColor="#FFF" Padding="8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackLayout Orientation="Horizontal" Grid.Row="0">
-                <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
-                <StackLayout WidthRequest="30" VerticalOptions="Center">
-                    <Label x:Name="displayLabel" StyleClass="DimText, bold" HorizontalOptions="CenterAndExpand" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}'}" />
-                    <Label Text="km" StyleClass="DimText" HorizontalOptions="CenterAndExpand">
+            <StackLayout Orientation="Horizontal" Grid.Row="0" Spacing="0" Margin="0" Padding="0">
+                <Slider Margin="0,0,5,0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
+                    <Label StyleClass="DimText" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
-                                <Setter Property="Text" Value="km" />
+                                <Setter Property="Text" Value="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0} km'}" />
                             </DataTrigger>
                             <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
-                                <Setter Property="Text" Value="mi" />
+                                <Setter Property="Text" Value="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0} mi'}" />
                             </DataTrigger>
                         </Label.Triggers>
                     </Label>
-                </StackLayout>
             </StackLayout>
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
@@ -54,17 +47,8 @@
                 </Grid.GestureRecognizers>
                 <customControl:GlyphLabel Grid.Row="0" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="labelCompans" FontFamily="FontAwesomeRegular" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
                 <Label Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Text="{Binding Context.SettingsModel.SelectedLocation.Name}" StyleClass="MediumText" />
-                <Button Text="Tap to edit" Command="{Binding SelectLocationCommand}" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" StyleClass="flatButton, MediumText, smallButton" />
+                <Label Text="Tap to edit" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" StyleClass="MediumText" />
             </Grid>
-            <Label Grid.Row="2" StyleClass="MediumText, solid" Text="Categories"/>
-            <SearchBar Grid.Row="3" Placeholder="Select one or multiple from the list." Focused="OnSearchBarTapped"/>
-            <FlexLayout BindableLayout.ItemsSource="{Binding Context.SearchModel.Categories}" Wrap="Wrap" JustifyContent="Start" Grid.Row="4">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <OffeControls:SelectedCategory  />
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </FlexLayout>
         </Grid>
     </StackLayout>
 </ContentView>

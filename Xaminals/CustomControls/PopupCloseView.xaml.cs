@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Loffers.CustomControls
+namespace exchaup.CustomControls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopupCloseView : ContentView

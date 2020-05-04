@@ -4,7 +4,7 @@
 //using Xamarin.Forms;
 //using Xamarin.Forms.Maps;
 
-//namespace Xaminals.CustomControls
+//namespace exchaup.CustomControls
 //{
 //    public class BindableMap : Map
 //    {

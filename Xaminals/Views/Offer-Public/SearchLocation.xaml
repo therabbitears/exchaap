@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="exchaup.Views.Offer_Public.SearchLocation"
              xmlns:controls="clr-namespace:exchaup.CustomControls.SearchHandlers"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:local="clr-namespace:exchaup.Views.Offer_Public.Models"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              Title="Set location">

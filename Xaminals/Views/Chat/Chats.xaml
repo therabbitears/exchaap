@@ -6,10 +6,9 @@
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:localLoffersFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              xmlns:local="clr-namespace:Loffers.Views.Chat.Models"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
-             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
+             xmlns:customControls="clr-namespace:exchaup.CustomControls"
              mc:Ignorable="d"
              x:Class="Loffers.Views.Chat.Chats"
              Title="Conversations">
@@ -38,10 +37,10 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <customControl:GlyphLabel Grid.Column="0" StyleClass="RegularGylphText" FontFamily="FontAwesomeSolid" Text="&#xf005;" VerticalOptions="CenterAndExpand" />
-                    <customControl:GlyphLabel Grid.Column="1" FontFamily="FontAwesomeSolid" StyleClass="LargeGylphText, primaryColorText" Text="&#xf075;" VerticalOptions="CenterAndExpand" />
-                    <customControl:GlyphLabel Grid.Column="2" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf1e0;" VerticalOptions="CenterAndExpand" />
-                    <customControl:GlyphLabel Grid.Column="3" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Column="0" StyleClass="RegularGylphText" FontFamily="FontAwesomeSolid" Text="&#xf005;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Column="1" FontFamily="FontAwesomeSolid" StyleClass="LargeGylphText, primaryColorText" Text="&#xf075;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Column="2" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf1e0;" VerticalOptions="CenterAndExpand" />
+                    <customControls:GlyphLabel Grid.Column="3" FontFamily="FontAwesomeSolid" StyleClass="RegularGylphText" Text="&#xf024;" VerticalOptions="CenterAndExpand" />
                 </Grid>
             </StackLayout>
 

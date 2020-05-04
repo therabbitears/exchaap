@@ -1,7 +1,7 @@
 ﻿using System.Collections.Specialized;
 using Xamarin.Forms;
 
-namespace Loffers.CustomControls
+namespace exchaup.CustomControls
 {
     public class BottomScrolledListView : ListView
     {

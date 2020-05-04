@@ -1,4 +1,6 @@
-﻿using exchaup.Views.Common;
+﻿using exchaup.CustomControls.Search;
+using exchaup.Views.Common;
+using Rg.Plugins.Popup.Services;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,7 +11,7 @@ namespace Xaminals.CustomControls.Search
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuickFilter : ContentView
     {
-        private bool open;     
+        private bool open;
         public QuickFilter()
         {
             InitializeComponent();
@@ -17,21 +19,7 @@ namespace Xaminals.CustomControls.Search
 
         async void OnTapped(object sender, EventArgs e)
         {
-            if (open)
-            {
-                MessagingCenter.Send<QuickFilter>(this, "CloseCrieteria");
-            }
-            else
-            {
-                MessagingCenter.Send<QuickFilter>(this, "ShowCrieteria");
-            }
-
-            open = !open;
-        }
-
-        private void OnSearchBarTapped(object sender, FocusEventArgs e)
-        {
-            Shell.Current.Navigation.PushAsync(new CategorySelection(true, this.BindingContext as ICategoriesSelectable));
+            await PopupNavigation.Instance.PushAsync(new ExtendedSearch(this.BindingContext), true);
         }
     }
 }

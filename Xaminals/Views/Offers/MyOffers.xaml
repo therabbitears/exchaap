@@ -9,7 +9,7 @@
              x:Class="Xaminals.Views.Offers.MyOffers"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
-             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
+             xmlns:customControls="clr-namespace:exchaup.CustomControls"
              Title="My exchaups"
              x:Name="mainPage">
     <ContentPage.BindingContext>

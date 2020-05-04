@@ -4,9 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
-             x:Class="Loffers.CustomControls.Search.FetchingLocation">
-    <StackLayout BackgroundColor="#FFF">
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
+             x:Class="exchaup.CustomControls.Search.FetchingLocation">
+    <StackLayout Spacing="0">
         <StackLayout Padding="2">
             <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                 <customControl:GlyphLabel x:Name="labelCompans" FontFamily="FontAwesomeRegular" VerticalOptions="CenterAndExpand" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />

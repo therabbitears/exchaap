@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
+             mc:Ignorable="d"
+             x:Class="exchaup.CustomControls.Search.ExtendedSearch">
+    <pages:PopupPage.Animation>
+        <rgAnimations:CustomMoveAnimation PositionIn="Bottom" PositionOut="Bottom" DurationIn="300" DurationOut="200" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#FFF" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
+            <customControl:PopupCloseView />
+            <Grid RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Orientation="Horizontal" Grid.Row="0">
+                    <Slider Margin="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
+                    <StackLayout WidthRequest="30" VerticalOptions="Center">
+                        <Label x:Name="displayLabel" StyleClass="DimText, bold" HorizontalOptions="CenterAndExpand" Text="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0}'}" />
+                        <Label Text="km" StyleClass="DimText" HorizontalOptions="CenterAndExpand">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
+                                    <Setter Property="Text" Value="km" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
+                                    <Setter Property="Text" Value="mi" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SelectLocationCommand}"/>
+                    </Grid.GestureRecognizers>
+                    <customControl:GlyphLabel Grid.Row="0" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="labelCompans" FontFamily="FontAwesomeRegular" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
+                    <Label Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Text="{Binding Context.SettingsModel.SelectedLocation.Name}" StyleClass="MediumText" />
+                    <Button Text="Tap to edit" Command="{Binding SelectLocationCommand}" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" StyleClass="flatButton, MediumText, smallButton" />
+                </Grid>
+                <Label Grid.Row="2" StyleClass="MediumText, solid" Text="Categories"/>
+                <SearchBar Grid.Row="3" Placeholder="Select one or multiple from the list." Focused="SearchBar_Focused"/>
+                <FlexLayout BindableLayout.ItemsSource="{Binding Context.SearchModel.Categories}" Wrap="Wrap" JustifyContent="Start" Grid.Row="4">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <OffeControls:SelectedCategory  />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

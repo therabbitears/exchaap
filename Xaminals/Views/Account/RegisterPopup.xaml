@@ -9,7 +9,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              x:Class="Xaminals.Views.Account.RegisterPopup"
-             xmlns:customControl="clr-namespace:Loffers.CustomControls;assembly=exchaup"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              CloseWhenBackgroundIsClicked="False">
     <ContentPage.BindingContext>

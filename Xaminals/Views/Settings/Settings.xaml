@@ -7,7 +7,7 @@
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Settings.Settings"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              Title="Account">
     <ContentPage.BindingContext>

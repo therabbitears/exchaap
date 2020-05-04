@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Xaminals.CustomControls
+namespace exchaup.CustomControls
 {
     public class ExtenderListView : ListView
     {

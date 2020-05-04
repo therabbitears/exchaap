@@ -5,12 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Offers.Models"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              x:Class="Xaminals.Views.Offer_Public.OfferDetails"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
-             xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
+             xmlns:mySharedControls="clr-namespace:exchaup.CustomControls.Search"
              Title="{Binding Offer.Name}">
     <ContentPage.BindingContext>
         <local:OfferDetailsViewModel />

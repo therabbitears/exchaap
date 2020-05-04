@@ -8,13 +8,62 @@
              x:Class="Xaminals.Views.Offers.OfferList"
              NavigationPage.HasNavigationBar="False"
              xmlns:myControls="clr-namespace:Xaminals.CustomControls.Search"
-             xmlns:mySharedControls="clr-namespace:Loffers.CustomControls.Search"
-             xmlns:customControls="clr-namespace:Xaminals.CustomControls"
+             xmlns:mySharedControls="clr-namespace:exchaup.CustomControls.Search"
+             xmlns:customControls="clr-namespace:exchaup.CustomControls"
              Title="Discover exhaups">
     <ContentPage.BindingContext>
         <local:OffersListViewModel />
     </ContentPage.BindingContext>
-    <RelativeLayout StyleClass="parentContainer">     
+    <StackLayout StyleClass="parentContainer">
+        <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
+                <Label Text="Nothing around you." StyleClass="emptyScreenTitle, primaryColorText" />
+                <Label Text="You can update the criteria or can change the discovery location using the location option given in the bottom." StyleClass="emptyScreenDescription, MediumText"/>
+                <Button Text="UPDATE" Command="{Binding ShowCritriaCommand}" StyleClass="primaryButton" />
+                <Label Text="Or you can give refresh a try to quickly look again around you." StyleClass="emptyScreenDescription, MediumText"/>
+                <Button FontFamily="FontAwesomeSolid" StyleClass="flatButton, gylypButton, primaryColorText" Text="&#xf2f1;" Command="{Binding LoadItemsCommand}" />
+            </StackLayout>
+            <mySharedControls:FetchingLocation IsVisible="{Binding FetchingLocation}" />
+            <customControls:ExtenderListView x:Name="ItemsListView" IsVisible="{Binding HasItems}"
+                ItemsSource="{Binding Offers}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                SeparatorVisibility="None" ItemTemplate="{StaticResource OfferPublicTemplate}"
+                OnTappedCommand="{Binding OnTappedCommand}"
+                CurrentPageNumber ="{Binding CurrentPageNumber}"
+                OnDataRequiredCommand="{Binding OnDataRequiredCommand}"
+                AnyItem="{Binding HasItems}">
+                <x:Arguments>
+                    <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                </x:Arguments>
+            </customControls:ExtenderListView>
+            <myControls:QuickFilter />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Xaminals.Views.Offers.ViewModels"   
+             mc:Ignorable="d"
+             x:Class="Xaminals.Views.Offers.OfferList"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:myControls="clr-namespace:Xaminals.CustomControls.Search"
+             xmlns:mySharedControls="clr-namespace:exchaup.CustomControls.Search"
+             xmlns:customControls="clr-namespace:exchaup.CustomControls"
+             Title="Discover exhaups">
+    <ContentPage.BindingContext>
+        <local:OffersListViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout StyleClass="parentContainer">     
         <StackLayout 
                          RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=1,Constant=0}"
                          RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
@@ -54,6 +103,6 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=.9,Constant=0}">
             <myControls:QuickFilter />
         </StackLayout>
-    </RelativeLayout>
-</ContentPage>
-    
+    </StackLayout>
+</ContentPage>-->
+

@@ -4,14 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Loffers.CustomControls.PopupCloseView"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup">
+             x:Class="exchaup.CustomControls.PopupCloseView"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup">
   <ContentView.Content>
         <StackLayout Padding="3">
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CancelPopupCommand}" />
             </StackLayout.GestureRecognizers>
-            <customControl:GlyphLabel Margin="0,-10,0,0" FontFamily="FontAwesomeSolid" Text="&#xf078;" WidthRequest="45" FontSize="24" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Gray" />
+            <Image Source="down.png" HeightRequest="10" />
+            <!--<customControl:GlyphLabel Margin="0" FontFamily="FontAwesomeSolid" Text="&#xf078;" WidthRequest="45" FontSize="24" FontAttributes="Bold" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Gray" />-->
         </StackLayout>
     </ContentView.Content>
 </ContentView>

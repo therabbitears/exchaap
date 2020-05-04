@@ -229,6 +229,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </Content>
+    <Content Include="down.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </Content>
     <Content Include="giveaway.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -258,6 +262,10 @@
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </Content>
     <Content Include="startscreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </Content>
+    <Content Include="up.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </Content>

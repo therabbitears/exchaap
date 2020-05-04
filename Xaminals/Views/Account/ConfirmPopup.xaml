@@ -8,7 +8,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              mc:Ignorable="d"
              x:Class="Loffers.Views.Account.ConfirmPopup"
-             xmlns:customControl="clr-namespace:Xaminals.CustomControls;assembly=exchaup">
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup">
     <ContentPage.BindingContext>
         <local:SettingPageViewModel />
     </ContentPage.BindingContext>
