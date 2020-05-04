@@ -34,7 +34,7 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <customControl:GlyphLabel FontFamily="FontAwesomeSolid" WidthRequest="30" FontSize="20" StyleClass="DimText">
                             <customControl:GlyphLabel.Triggers>

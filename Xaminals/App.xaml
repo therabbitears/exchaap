@@ -225,9 +225,9 @@
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <customControl:GlyphLabel FontFamily="FontAwesomeSolid" Text="&#xf3c5;" WidthRequest="30" FontSize="20" StyleClass="DimText" />
+                <customControl:GlyphLabel FontFamily="FontAwesomeSolid" Text="&#xf3c5;" FontSize="20" StyleClass="DimText" />
                 <Label Grid.Column="1" Text="{Binding Name}" />
             </Grid>
         </DataTemplate>
