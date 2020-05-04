@@ -9,7 +9,7 @@
     <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="Transparent" Margin="0" Spacing="0">
         <Image Source="up.png" HeightRequest="10">
             <Image.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnTapped"/>
+                <TapGestureRecognizer Command="{Binding ShowCrieteriaCommand}"/>
             </Image.GestureRecognizers>
         </Image>
         <Grid RowSpacing="0" BackgroundColor="#FFF" Padding="8">

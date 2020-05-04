@@ -12,7 +12,8 @@
             <localFormatters:DistanceToUnit x:Key="cnvDistanceToUnit"></localFormatters:DistanceToUnit>
             <localFormatters:ListItemsToBoolConverter x:Key="cnvListItemsToBool"></localFormatters:ListItemsToBoolConverter>
             <localFormatters:ReveresBoolConverter x:Key="cnvReveresBoolConverter"></localFormatters:ReveresBoolConverter>
-            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>            
+            <localFormatters:TrimListConverter x:Key="cnvTrimListConverter"></localFormatters:TrimListConverter>
+            <localFormatters:PlaceholderImageFormatter x:Key="cnvPlaceholderImageFormatter"></localFormatters:PlaceholderImageFormatter>
             <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
@@ -118,9 +119,9 @@
                                        Source="{Binding Image, Converter={StaticResource cnvPlaceholderImageFormatter}, ConverterParameter='offerplaceholder.png'}">
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding OpenImageCommand}" CommandParameter="{Binding OriginalImage}"/>
-                                </Image.GestureRecognizers>                                
+                                </Image.GestureRecognizers>
                             </Image>
-                            
+
                             <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                 <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                             </ContentView>
@@ -134,13 +135,14 @@
                         </StackLayout>
                         <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
                             <Label Text="Expected to exchange with:"/>
-                            <FlexLayout BindableLayout.ItemsSource="{Binding Categories}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <OffeControls:SelectedCategory  />
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </FlexLayout>
+                            <OffeControls:CategoriesCompactView BindingContext="{Binding Categories}" />
+                            <!--<FlexLayout BindableLayout.ItemsSource="{Binding Categories,Converter={StaticResource cnvTrimListConverter}, ConverterParameter=2}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <OffeControls:SelectedCategory  />
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </FlexLayout>-->
                         </StackLayout>
                     </StackLayout>
                     <StackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">

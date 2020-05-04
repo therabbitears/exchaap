@@ -1,4 +1,5 @@
-﻿using exchaup.Views.Offer_Public;
+﻿using exchaup.CustomControls.Search;
+using exchaup.Views.Offer_Public;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Xaminals.Views.Offers.ViewModels
 
         async Task ExecuteShowCritriaCommand()
         {
-            //await PopupNavigation.Instance.PushAsync(new OfferCriteria(), true);
+            await PopupNavigation.Instance.PushAsync(new ExtendedSearch(this), true);
         }
 
         protected virtual async Task ExecuteLoadItemsCommand(bool isRefresh)
