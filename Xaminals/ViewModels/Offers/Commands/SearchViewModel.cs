@@ -49,7 +49,7 @@ namespace Xaminals.ViewModels.Offers
                 var result = await new RestService().OfferCategories<HttpResult<List<CategoryModel>>>();
                 if (!result.IsError)
                 {
-                    foreach (var item in result.Result)
+                    foreach (var item in result.Result.Where(c => !string.IsNullOrEmpty(c.ParentId)))
                     {
                         _categories.Add(item);
                     }
