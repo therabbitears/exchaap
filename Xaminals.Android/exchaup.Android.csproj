@@ -194,12 +194,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\giveaway.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\offerplaceholder.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -214,11 +208,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\startscreen.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\collapsible1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>

@@ -27,6 +27,8 @@ namespace Xaminals.Views.Offers.ViewModels
         protected override void AddListeners()
         {
             base.AddListeners();
+            this.Context.SettingsModel.SelectedLocation.PropertyChanged += OnPropertyChanged;
+
             MessagingCenter.Subscribe<SearchViewModel>(this, "CriteriaUpdated", async (obj) =>
             {
                 this.MaxDistance = Context.SearchModel.MaxDistance;
@@ -35,6 +37,12 @@ namespace Xaminals.Views.Offers.ViewModels
 
                 await ExecuteLoadItemsCommand(true);
             });
+        }
+
+        private void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Name")
+                LoadItemsCommand.Execute(null);
         }
 
         private int _maxDistance = 15;

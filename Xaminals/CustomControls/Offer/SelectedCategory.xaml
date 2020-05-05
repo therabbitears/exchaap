@@ -7,9 +7,20 @@
              x:Class="exchaup.CustomControls.Offer.SelectedCategory">
   <ContentView.Content>
         <Frame Margin="2" Padding="6,4" CornerRadius="10" BackgroundColor="#f2f2f2" x:Name="parent">
+            <Frame.Triggers>
+                <DataTrigger TargetType="Frame" Binding="{Binding Selected}" Value="true">
+                    <Setter Property="BackgroundColor" Value="#c9c9c9"/>
+                </DataTrigger>
+            </Frame.Triggers>
             <StackLayout Orientation="Horizontal">
                 <Image Source="{Binding Image}" WidthRequest="15" HeightRequest="15" Margin="1,0"/>
-                <Label Text="{Binding Name}" StyleClass="DimText, MediumText"/>
+                <Label Text="{Binding Name}" StyleClass="DimText, MediumText">
+                <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Selected}" Value="true">
+                        <Setter Property="FontAttributes" Value="Bold"/>
+                    </DataTrigger>
+                </Label.Triggers>
+                </Label>
             </StackLayout>
         </Frame>
     </ContentView.Content>

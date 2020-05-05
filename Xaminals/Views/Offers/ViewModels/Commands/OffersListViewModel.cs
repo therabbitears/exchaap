@@ -10,7 +10,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xaminals.Infra.Results;
 using Xaminals.Services.HttpServices;
-using Xaminals.Views.Offer_Public;
 
 namespace Xaminals.Views.Offers.ViewModels
 {

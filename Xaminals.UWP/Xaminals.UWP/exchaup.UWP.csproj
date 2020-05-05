@@ -143,10 +143,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bg.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\cat.png">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
@@ -232,10 +228,6 @@
     <Content Include="down.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </Content>
-    <Content Include="giveaway.png">
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="offerplaceholder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

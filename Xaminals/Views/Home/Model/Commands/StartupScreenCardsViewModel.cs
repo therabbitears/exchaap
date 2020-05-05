@@ -17,7 +17,6 @@ namespace exchaup.Views.Home.Model
     {
         public ICommand GoToAppCommand { get; set; }
         public ICommand CurrentItemCommand { get; set; }
-        public ICommand SaveDataCoammnd { get; set; }
         public ICommand FetchCateoriesDataCoammnd { get; set; }
         public ICommand FetchLocationCoammnd { get; set; }
 
@@ -25,12 +24,11 @@ namespace exchaup.Views.Home.Model
         {
             base.IntializeCommands();
             GoToAppCommand = new Command(async (object sender) => await ExecureGoCommand(null));
-            SaveDataCoammnd = new Command((object sender) => ExecureSaveDataCoammnd(null));
             CurrentItemCommand = new Command(async (object sender) => await ExecureCurrentItemCommand(null));
             FetchCateoriesDataCoammnd = new Command(ExecureFetchCateoriesDataCoammnd);
             FetchLocationCoammnd = new Command(FetchLocation);
             FetchCateoriesDataCoammnd.Execute(null);
-            SaveDataCoammnd.Execute(null);
+            FetchLocationCoammnd.Execute(null);
             RecordAnalyticsEventCommand.Execute(AnalyticsModel.InstanceOf(AnalyticsModel.EventNames.PageViewEvent, AnalyticsModel.ParameterNames.PageName, "startupcarousel"));
         }
 
@@ -41,10 +39,12 @@ namespace exchaup.Views.Home.Model
                 var location = await GetCurrentLocation();
                 if (location != null)
                 {
+                    var state = new ApplicationStateModel() { SkipIntro = true, CustomLocation = false };
                     Context.SettingsModel.SelectedLocation.SelectedAt = DateTime.Now;
                     Context.SettingsModel.SelectedLocation.IsCurrent = true;
-                    Context.SettingsModel.SelectedLocation.Long = location.Longitude;
-                    Context.SettingsModel.SelectedLocation.Lat = location.Latitude;
+                    Context.SettingsModel.SelectedLocation.Long = state.Long = location.Longitude;
+                    Context.SettingsModel.SelectedLocation.Lat = state.Lat = location.Latitude;
+                    await Database.SaveLastState(state);
                 }
             }
             catch (Exception ex)
@@ -64,11 +64,6 @@ namespace exchaup.Views.Home.Model
             }
 
             MessagingCenter.Send<StartupScreenCardsViewModel>(this, "GotoApp");
-        }
-
-        public async void ExecureSaveDataCoammnd(object p)
-        {
-            await Database.SaveLastState(new ApplicationStateModel() { SkipIntro = true });
         }
 
         public async Task ExecureCurrentItemCommand(object p)

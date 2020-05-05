@@ -6,13 +6,14 @@
              mc:Ignorable="d"
              xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              x:Class="Xaminals.CustomControls.Search.QuickFilter">
-    <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="Transparent" Margin="0" Spacing="0">
-        <Image Source="up.png" HeightRequest="10">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding ShowCrieteriaCommand}"/>
-            </Image.GestureRecognizers>
-        </Image>
-        <Grid RowSpacing="0" BackgroundColor="#FFF" Padding="8">
+    <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="#FFF" Margin="0" Spacing="0">
+        <ContentView Padding="3">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ShowCritriaCommand}"/>
+            </ContentView.GestureRecognizers>
+            <Image Source="up.png" HeightRequest="10"/>
+        </ContentView>
+        <Grid RowSpacing="0"  Padding="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

@@ -45,9 +45,9 @@ namespace exchaup.Views.Offer_Public.Models
                 Context.SettingsModel.SelectedLocation.SelectedAt = DateTime.Now;
                 Context.SettingsModel.SelectedLocation.IsCurrent = selectedItem.IsCurrent;
                 Context.SettingsModel.SelectedLocation.Landmark = selectedItem.Landmark;
-                Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;
                 Context.SettingsModel.SelectedLocation.Long = selectedItem.Long;
                 Context.SettingsModel.SelectedLocation.Lat = selectedItem.Lat;
+                Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;
                 if (!selectedItem.IsCurrent)
                 {
                     await AddLocation(selectedItem);

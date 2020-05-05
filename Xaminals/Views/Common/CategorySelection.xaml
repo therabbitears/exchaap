@@ -30,7 +30,7 @@
         <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding FilteredCategories}" Margin="20" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10" x:Name="itemLocation">
+                    <Grid  RowSpacing="5" x:Name="itemLocation">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
@@ -50,7 +50,13 @@
                                 </DataTrigger>
                             </Image.Triggers>
                         </Image>
-                        <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                        <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  VerticalOptions="Center" >
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsParent}" Value="true">
+                                    <Setter Property="FontAttributes" Value="Bold"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

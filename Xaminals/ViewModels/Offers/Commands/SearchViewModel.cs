@@ -16,13 +16,21 @@ namespace Xaminals.ViewModels.Offers
     {
         public ICommand LoadItemsCommand { get; set; }
         public ICommand SaveCriteriaCommand { get; set; }
+        public ICommand CategoryClickedCommand { get; set; }
 
         protected override void IntializeCommands()
         {
             base.IntializeCommands();
             LoadItemsCommand = new Command(async () => await ExecuteLoadCategoriesCommand());
             SaveCriteriaCommand = new Command(async () => await ExecuteSaveCriteriaCommand());
+            CategoryClickedCommand = new Command(async (object sender) => await ExecuteCategoryClickedCommand(sender));
             LoadItemsCommand.Execute(null);
+        }
+
+        async Task ExecuteCategoryClickedCommand(object sender)
+        {
+            if (sender is CategoryModel category)
+                category.Selected = !category.Selected;
         }
 
         async Task ExecuteSaveCriteriaCommand()
