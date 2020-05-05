@@ -64,18 +64,14 @@
                             <Label  Text="{Binding Detail}" StyleClass="OfferSubHeading"/>
                             <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                             <StackLayout IsVisible="{Binding HasCategoroies}">
-                                <Label Text="Expected to exchange with:" FontAttributes="Bold" StyleClass="MediumText"/>
-                                <ScrollView Orientation="Horizontal">
-                                    <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout HorizontalOptions="Start">
-                                                    <OffeControls:SelectedCategory />
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
-                                    </StackLayout>
-                                </ScrollView>
+                                <Label Text="Expected to exchange with:" StyleClass="DimText, MediumText"/>
+                                <FlexLayout BindableLayout.ItemsSource="{Binding Categories,Converter={StaticResource cnvTrimListConverter}, ConverterParameter=2}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <OffeControls:SelectedCategory  />
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </FlexLayout>
                             </StackLayout>
                         </StackLayout>
                         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">

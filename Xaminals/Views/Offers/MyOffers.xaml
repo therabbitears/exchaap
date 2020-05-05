@@ -90,7 +90,7 @@
                                     </StackLayout>
                                     <OffeControls:SelectedCategory BindingContext="{Binding Category}" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" />
                                     <StackLayout Grid.Row="2" Grid.Column="1" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
-                                        <Label Text="Listed to exchange with:"/>
+                                        <Label Text="Listed to exchange with:" StyleClass="DimText, MediumText"/>
                                         <FlexLayout BindableLayout.ItemsSource="{Binding Categories}" HorizontalOptions="Start" Wrap="Wrap" JustifyContent="Start">
                                             <BindableLayout.ItemTemplate>
                                                 <DataTemplate>
@@ -104,6 +104,7 @@
                                         <Button   Text="Deactivate" StyleClass="flatButton" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext.DeactivateCommand}" CommandParameter="{Binding .}" >
                                             <Button.Triggers>
                                                 <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="true">
+                                                    <Setter Property="BackgroundColor" Value="#CF9625"/>
                                                     <Setter Property="BackgroundColor" Value="#CF9625"/>
                                                     <Setter Property="Text" Value="Deactivate"/>
                                                 </DataTrigger>

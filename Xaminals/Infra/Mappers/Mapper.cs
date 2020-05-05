@@ -37,7 +37,6 @@ namespace Xaminals.Infra.Mappers
                 destination.Category.Id = source.Category.Id;
                 destination.Category.Name = source.Category.Name;
                 destination.Category.Image = source.Category.Image;
-                destination.Category.Selected = true;
 
                 destination.Categories = destination.Categories ?? new ObservableCollection<CategoryModel>();
                 destination.Categories.Clear();

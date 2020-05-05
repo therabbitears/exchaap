@@ -65,7 +65,7 @@
             </StackLayout>
         </ControlTemplate>
         <DataTemplate x:Key="CategorySelectionTemplate">
-            <Grid x:Name="itemLocation" RowSpacing="5">
+            <Grid x:Name="itemLocation" Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -128,11 +128,9 @@
                         </StackLayout>
                     </ContentView>
                     <StackLayout Grid.Column="1" Grid.Row="0">
-                        <Label HorizontalOptions="StartAndExpand" Grid.Column="0"  Text="{Binding Name}" StyleClass="OfferHeading"/>
+                        <Label HorizontalOptions="StartAndExpand" Grid.Column="0" LineBreakMode="TailTruncation" MaxLines="2"  Text="{Binding Name}" StyleClass="OfferHeading"/>
                         <Label  Text="{Binding Detail}" LineBreakMode="TailTruncation" MaxLines="2" StyleClass="OfferSubHeading"/>
-                        <StackLayout>
-                            <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
-                        </StackLayout>
+                        <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                         <StackLayout IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=false}">
                             <Label Text="Expected to exchange with:" StyleClass="DimText, MediumText"/>
                             <OffeControls:CategoriesCompactView BindingContext="{Binding Categories}" />

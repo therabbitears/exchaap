@@ -46,7 +46,7 @@
                         <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
                         </StackLayout>
                     <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
-                        <Entry Text="{Binding Email.Value}" Placeholder="Email" Margin="0"/>
+                        <Entry Text="{Binding Email.Value}" Placeholder="Email address" Margin="0"/>
                         <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
                         </StackLayout>
                     </StackLayout>

@@ -6,11 +6,11 @@ namespace Xaminals.ViewModels.Offers
 {
     public partial class SearchViewModel : BaseViewModel, ICategoriesSelectable
     {
-        private int _MaxDistance=1;
+        private int _MaxDistance = 1;
         public int MaxDistance
         {
             get { return _MaxDistance; }
-            set { _MaxDistance = value; OnPropertyChanged("MaxDistance"); }
+            set { SetProperty(ref _MaxDistance, value); }
         }
 
         ObservableCollection<CategoryModel> _categories;

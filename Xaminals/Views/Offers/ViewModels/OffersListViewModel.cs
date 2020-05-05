@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -51,8 +50,8 @@ namespace Xaminals.Views.Offers.ViewModels
             get { return _maxDistance; }
             set
             {
-                _maxDistance = value;
-                OnPropertyChanged("MaxDistance");
+                Context.SearchModel.MaxDistance = value;
+                SetProperty(ref _maxDistance, value);
             }
         }
 
