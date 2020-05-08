@@ -48,7 +48,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <customControl:GlyphLabel Grid.Row="0" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="labelCompans" FontFamily="FontAwesomeRegular" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />

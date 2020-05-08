@@ -187,7 +187,7 @@ namespace Loffers.Server.Services
                                             d.SubPublisherLogo,
                                             d.ValidFrom,
                                             d.ValidTill,
-                                            Categories = d.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
+                                            Categories = d.OfferCategories.Where(c => c.Active).Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
                                             Category = new { d.Categories.Id, d.Categories.Image, d.Categories.Name },
                                             Coordinates = new { d.Lat, d.Long },
                                             Distance = new CoordinatesDistance()
@@ -302,7 +302,7 @@ namespace Loffers.Server.Services
                                                 LocationToken = d.OfferLocations.PublisherLocations.Id,
                                                 d.Offers.ValidTill,
                                                 Category = new { d.Offers.Categories.Id, d.Offers.Categories.Image, d.Offers.Categories.Name },
-                                                Categories = d.Offers.OfferCategories.Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
+                                                Categories = d.Offers.OfferCategories.Where(c => c.Active).Select(c => new { c.Categories.Name, c.Categories.Id, c.Categories.Image }),
                                                 Coordinates = new { d.OfferLocations.PublisherLocations.Locations.Lat, d.OfferLocations.PublisherLocations.Locations.Long },
                                                 Distance = new CoordinatesDistance() { DistanceIn = unit },
                                                 d.Offers.Id,
