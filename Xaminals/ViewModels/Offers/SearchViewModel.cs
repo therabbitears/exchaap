@@ -28,6 +28,8 @@ namespace Xaminals.ViewModels.Offers
 
         public ObservableCollection<PublisherLocationModel> SearchResults { get; private set; }
 
+        public int MaxAllowed => int.MaxValue;
+
         protected override void IntializeMembers()
         {
             base.IntializeMembers();

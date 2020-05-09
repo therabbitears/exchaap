@@ -138,6 +138,8 @@ namespace Xaminals.Views.Offers.Models
             }
         }
 
+        public int MaxAllowed => 3;
+
         #endregion
     }
 }

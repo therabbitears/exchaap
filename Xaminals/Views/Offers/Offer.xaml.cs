@@ -15,12 +15,12 @@ namespace Xaminals.Views.Offers
 
         private void OnListToGetsFocus(object sender, FocusEventArgs e)
         {
-            Shell.Current.Navigation.PushAsync(new CategorySelection(false, this.BindingContext as ICategoriesSelectable));
+            Shell.Current.Navigation.PushAsync(new CategorySelection(this.BindingContext as ICategorySelectable));
         }
 
         private void OnExchangeWithGetsFocus(object sender, FocusEventArgs e)
         {
-            Shell.Current.Navigation.PushAsync(new CategorySelection(true, this.BindingContext as ICategoriesSelectable));
+            Shell.Current.Navigation.PushAsync(new CategorySelection(this.BindingContext as ICategoriesSelectable));
         }
     }
 }

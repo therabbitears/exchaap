@@ -11,6 +11,7 @@ namespace Xaminals.Views.Offers.Models
     public interface ICategoriesSelectable : ISelectable
     {
         ObservableCollection<CategoryModel> Categories { get; set; }
+        int MaxAllowed { get; }
     }
 
     public interface ICategorySelectable : ISelectable

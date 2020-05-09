@@ -62,14 +62,13 @@ namespace exchaup.Views.Offer_Public.Models
                     Lat = selectedItem.Lat
                 };
                 await Database.SaveLastState(newState);
+                await Shell.Current.Navigation.PopAsync(true);
             }
             catch (Exception ex)
             {
                 await RaiseError(ex.Message);
                 Debug.WriteLine(ex.Message);
             }
-
-            await Shell.Current.Navigation.PopAsync(true);
         }
 
         async Task ExecuteLoadExistingCommand(object sender)

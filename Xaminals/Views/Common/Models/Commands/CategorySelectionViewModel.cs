@@ -14,10 +14,13 @@ namespace exchaup.Views.Common.Models
 {
     public partial class CategorySelectionViewModel
     {
+        private const string MAX_CATEGORY_MESSAGE = "You can select upto {0} categories.";
+
         public ICommand LoadItemsCommand { get; set; }
         public ICommand ExrecuteQueryCommand { get; set; }
         public ICommand ItemSelectionCommand { get; set; }
         public ICommand RaiseOkCommand { get; set; }
+        public ICommand ClickedOnCategoryItemCommand { get; set; }
 
         protected override void IntializeCommands()
         {
@@ -25,8 +28,15 @@ namespace exchaup.Views.Common.Models
             LoadItemsCommand = new Command(async (object sender) => await ExecuteLoadItemsCommand(sender));
             ExrecuteQueryCommand = new Command(async () => await ExecuteQuery());
             ItemSelectionCommand = new Command(async (object sender) => await ExecuteItemSelectionCommand(sender));
-            RaiseOkCommand = new Command(async (object sender) => await ExecuteRaiseOkCommand(sender));            
+            RaiseOkCommand = new Command(async (object sender) => await ExecuteRaiseOkCommand(sender));
+            ClickedOnCategoryItemCommand = new Command(async (object sender) => await ExecuteClickedOnCategoryItemCommand(sender));
             LoadItemsCommand.Execute(null);
+        }
+
+        async Task ExecuteClickedOnCategoryItemCommand(object sender)
+        {
+            if (sender is CategoryModel category)
+                SelectedCategories.Remove(category);
         }
 
         async Task ExecuteRaiseOkCommand(object sender)
@@ -57,17 +67,21 @@ namespace exchaup.Views.Common.Models
                 {
                     if (!MultiSelection && SelectInto is ICategorySelectable selectable)
                     {
-                        //SelectInto.Category = selected;
                         selectable.Category.Id = selected.Id;
                         selectable.Category.Image = selected.Image;
                         selectable.Category.Name = selected.Name;
                         selectable.Category.Selected = selected.Selected;
                         await Shell.Current.Navigation.PopAsync(true);
                     }
-                    else
+                    else if (SelectInto is ICategoriesSelectable multiSelectable)
                     {
                         if (!selected.IsParent && !SelectedCategories.Any(c => c.Id == selected.Id))
-                            SelectedCategories.Add(selected);
+                        {
+                            if (multiSelectable.MaxAllowed > SelectedCategories.Count || multiSelectable.MaxAllowed == 0)
+                                SelectedCategories.Add(selected);
+                            else
+                                await RaiseError(string.Format(MAX_CATEGORY_MESSAGE, multiSelectable.MaxAllowed));
+                        }
                     }
                 }
             }

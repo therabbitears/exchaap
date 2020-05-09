@@ -17,7 +17,7 @@ namespace exchaup.CustomControls.Search
 
         private void SearchBar_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
         {
-            Shell.Current.Navigation.PushAsync(new CategorySelection(true, this.BindingContext as ICategoriesSelectable));
+            Shell.Current.Navigation.PushAsync(new CategorySelection(this.BindingContext as ICategoriesSelectable));
         }
     }
 }
