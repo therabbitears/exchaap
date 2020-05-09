@@ -11,8 +11,6 @@ namespace exchaup.Views.Common
         public CategorySelection()
         {
             InitializeComponent();
-            if (this.BindingContext is CategorySelectionViewModel context)
-                context.SelectInto = new OfferViewModel();
         }
 
         public CategorySelection(ISelectable category) : this()
@@ -20,7 +18,7 @@ namespace exchaup.Views.Common
             if (this.BindingContext is CategorySelectionViewModel context)
             {
                 context.SelectInto = category;
-                if (category is ICategoriesSelectable multiple)
+                if (category is ICategoriesSelectable)
                     context.MultiSelection = true;
             }
         }

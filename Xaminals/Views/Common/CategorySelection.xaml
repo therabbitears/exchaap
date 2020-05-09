@@ -15,22 +15,23 @@
         <SearchHandler Placeholder="Enter search term" x:Name="searchHandler" Query="{Binding Query}" />
     </Shell.SearchHandler>
     <StackLayout>
-        <ScrollView Orientation="Horizontal" IsVisible="{Binding MultiSelection}">
-            <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}" Padding="3" Margin="2"
-             Orientation="Horizontal">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer  Command="{Binding Source={x:Reference mainPage}, Path=BindingContext.ClickedOnCategoryItemCommand}" CommandParameter="{Binding .}"/>
-                            </StackLayout.GestureRecognizers>
-                            <OffeControls:SelectedCategory />
-                        </StackLayout>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
-        </ScrollView>
-        <Button Text="OK" StyleClass="primaryButton" Command="{Binding RaiseOkCommand}"/>
+        <StackLayout IsVisible="{Binding MultiSelection}">
+            <ScrollView Orientation="Horizontal">
+                <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}" Padding="3" Margin="2" Orientation="Horizontal">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference mainPage}, Path=BindingContext.ClickedOnCategoryItemCommand}" CommandParameter="{Binding .}"/>
+                                </StackLayout.GestureRecognizers>
+                                <OffeControls:SelectedCategory />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <Button Text="OK" StyleClass="primaryButton" Command="{Binding RaiseOkCommand}"/>
+        </StackLayout>
         <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding FilteredCategories}" Margin="20" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
