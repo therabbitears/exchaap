@@ -43,7 +43,6 @@ namespace exchaup.Views.Common.Models
             set
             {
                 SetProperty(ref _MultiSelection, value);
-                // ItemSelectionCommand.Execute(new CategoryModel() { Id = "adsd-dasd-dsad-dsad--dasd-dasd-", Image = "https://us.v-cdn.net/5019960/uploads/userpics/113/n3Z7GA6I9VNTC.png", Name = "Dumped", Selected = true });
             }
         }
 
