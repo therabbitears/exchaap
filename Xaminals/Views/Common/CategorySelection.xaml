@@ -15,10 +15,10 @@
         <SearchHandler Placeholder="Enter search term" x:Name="searchHandler" Query="{Binding Query}" />
     </Shell.SearchHandler>
     <StackLayout>
-        <StackLayout IsVisible="{Binding MultiSelection}">
+        <StackLayout IsVisible="{Binding MultiSelection}" Padding="3">
             <Label Text="Tap on category below to unselect." StyleClass="DimText"/>
             <ScrollView Orientation="Horizontal">
-                <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}" Padding="3" Margin="2" Orientation="Horizontal">
+                <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}" Padding="2" Margin="2" Orientation="Horizontal">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -36,7 +36,7 @@
         <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding FilteredCategories}" Margin="20" SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid  RowSpacing="5" x:Name="itemLocation">
+                    <Grid Margin="5" x:Name="itemLocation">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>

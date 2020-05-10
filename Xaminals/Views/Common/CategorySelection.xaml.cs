@@ -18,8 +18,14 @@ namespace exchaup.Views.Common
             if (this.BindingContext is CategorySelectionViewModel context)
             {
                 context.SelectInto = category;
-                if (category is ICategoriesSelectable && maxAllowed > 1)
+                if (category is ICategoriesSelectable categories && maxAllowed > 1)
+                {
                     context.MultiSelection = true;
+                    foreach (var item in categories.Categories)
+                    {
+                        context.SelectedCategories.Add(item);
+                    }
+                }
                 else
                     context.MultiSelection = false;
             }
