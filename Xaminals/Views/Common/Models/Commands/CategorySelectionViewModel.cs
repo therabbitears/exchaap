@@ -47,7 +47,8 @@ namespace exchaup.Views.Common.Models
                 {
                     foreach (var item in SelectedCategories)
                     {
-                        selectable.Categories.Add(item);
+                        if (!selectable.Categories.Any(c => c.Id == item.Id))
+                            selectable.Categories.Add(item);
                     }
                 }
 
