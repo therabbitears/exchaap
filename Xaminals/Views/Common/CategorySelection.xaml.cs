@@ -13,13 +13,15 @@ namespace exchaup.Views.Common
             InitializeComponent();
         }
 
-        public CategorySelection(ISelectable category) : this()
+        public CategorySelection(ISelectable category, int maxAllowed) : this()
         {
             if (this.BindingContext is CategorySelectionViewModel context)
             {
                 context.SelectInto = category;
-                if (category is ICategoriesSelectable)
+                if (category is ICategoriesSelectable && maxAllowed > 1)
                     context.MultiSelection = true;
+                else
+                    context.MultiSelection = false;
             }
         }
     }

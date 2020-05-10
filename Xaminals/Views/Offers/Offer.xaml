@@ -9,7 +9,7 @@
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
-             Title="New exhaup">
+             Title="New exhaup" x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:OfferViewModel />
     </ContentPage.BindingContext>
@@ -42,6 +42,9 @@
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference mainPage}, Path=BindingContext.ClickedOnCategoryItemCommand}" CommandParameter="{Binding .}"/>
+                                            </StackLayout.GestureRecognizers>
                                             <OffeControls:SelectedCategory />
                                         </StackLayout>
                                     </DataTemplate>

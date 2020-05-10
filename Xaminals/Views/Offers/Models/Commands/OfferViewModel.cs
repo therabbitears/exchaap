@@ -22,7 +22,7 @@ namespace Xaminals.Views.Offers.Models
         public ICommand SelectImageCommand { get; set; }
         public Command LoadOfferCommand { get; set; }
         public Command LoadCurrentLocationCommand { get; set; }
-
+        public ICommand ClickedOnCategoryItemCommand { get; set; }
 
         public string Image { get; set; }
         public string OriginalImage { get; set; }
@@ -33,6 +33,7 @@ namespace Xaminals.Views.Offers.Models
             SaveOfferCommand = new Command(SaveOffer);
             SelectImageCommand = new Command(SelectImage);
             LoadCurrentLocationCommand = new Command(ExecuteLoadCurrentLocationCommand);
+            ClickedOnCategoryItemCommand = new Command(async (object sender) => await ExecuteClickedOnCategoryItemCommand(sender));
             if (!string.IsNullOrEmpty(Id))
             {
                 LoadOfferCommand = new Command(async () => await ExecuteLoadOfferCommand());
@@ -40,6 +41,12 @@ namespace Xaminals.Views.Offers.Models
             }
 
             LoadCurrentLocationCommand.Execute(null);
+        }
+
+        async Task ExecuteClickedOnCategoryItemCommand(object sender)
+        {
+            if (sender is CategoryModel category)
+                Categories.Remove(category);
         }
 
         async void ExecuteLoadCurrentLocationCommand()

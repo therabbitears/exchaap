@@ -16,6 +16,7 @@
     </Shell.SearchHandler>
     <StackLayout>
         <StackLayout IsVisible="{Binding MultiSelection}">
+            <Label Text="Tap on category below to unselect." StyleClass="DimText"/>
             <ScrollView Orientation="Horizontal">
                 <StackLayout BindableLayout.ItemsSource="{Binding SelectedCategories}" Padding="3" Margin="2" Orientation="Horizontal">
                     <BindableLayout.ItemTemplate>
