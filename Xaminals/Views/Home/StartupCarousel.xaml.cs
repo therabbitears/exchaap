@@ -1,12 +1,9 @@
-﻿using System;
+﻿using exchaup.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xaminals;
 using Xaminals.ViewModels;
 
 namespace exchaup.Views.Home
@@ -14,28 +11,20 @@ namespace exchaup.Views.Home
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StartupCarousel : ContentPage
     {
-        int count = 0;
         public StartupCarousel()
         {
             InitializeComponent();
-           // this.BackgroundImageSource = FileImageSource.FromFile("bg.png");
         }
 
         private void CarouselView_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
         {
-            try
+            if (e.CurrentItem is StartupCardModel card && card.IsSecondScreen)
             {
-                if (count == 2)
-                {
-                    Application.Current.MainPage = new AppShell();
-                    return;
-                }
-
-                count++;
+                this.BackgroundImageSource = null;
             }
-            catch (Exception ex)
+            else
             {
-                // Shell 
+                this.BackgroundImageSource = ImageSource.FromFile("bg.png");
             }
         }
 
