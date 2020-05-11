@@ -76,14 +76,14 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="By clicking this you are agreed with our " />
-                                <Span Text="terms" TextColor="#d00000" TextDecorations="Underline">
+                                <Span Text="terms" TextColor="#CF9625" TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding OpenUrlCommand}"
                                           CommandParameter="http://loffers.sklative.com/legal/terms" />
                                     </Span.GestureRecognizers>
                                 </Span>
                                 <Span Text=" and " />
-                                <Span Text="privacy policy" TextColor="#d00000" TextDecorations="Underline">
+                                <Span Text="privacy policy" TextColor="#CF9625" TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding OpenUrlCommand}"
                                           CommandParameter="http://loffers.sklative.com/policy/privacy" />

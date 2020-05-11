@@ -41,10 +41,23 @@
                 <Label Text="Invalid credentials entered" 
                        IsVisible="{Binding AreCredentialsInvalid}" 
                        StyleClass="validationError" />
-
-                <Button Text="Forgot password?" Command="{Binding ForgotPasswordCommand}" HorizontalOptions="Start" StyleClass="flatButton, nopadding, nomargin" />
-                <Button Text="Login" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
-                <Button Grid.Row="3" Text="Register" Command="{Binding RegisterCommand}" />
+                <Label StyleClass="MediumText" Text="Forgot password?" HorizontalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout.Triggers>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
+                            <Setter Property="Orientation" Value="Vertical"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="1">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <Button Text="Login" HorizontalOptions="FillAndExpand"  Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
+                    <Button HorizontalOptions="FillAndExpand"  Text="Register" Command="{Binding RegisterCommand}" />
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
