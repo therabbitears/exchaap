@@ -6,87 +6,90 @@
              mc:Ignorable="d"
              xmlns:local="clr-namespace:exchaup.Views.Home.Model"
              x:Class="exchaup.Views.Home.StartupCarousel"
-             x:Name="mainPage" BackgroundImageSource="bg.png">
+             x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:StartupScreenCardsViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10" BackgroundColor="Transparent">
-            <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView" CurrentItemChanged="CarouselView_CurrentItemChanged">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                            <StackLayout VerticalOptions="FillAndExpand"  IsVisible="{Binding IsFirstScreen}">
-                                <StackLayout VerticalOptions="CenterAndExpand">
-                                    <StackLayout Orientation="Vertical">
-                                        <StackLayout.Triggers>
-                                            <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
-                                                <Setter Property="Orientation" Value="Vertical"/>
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
-                                                <Setter Property="Orientation" Value="Horizontal"/>
-                                            </DataTrigger>
-                                        </StackLayout.Triggers>
-                                        <Image Source="startscreen.png"
+        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Image AbsoluteLayout.LayoutFlags="All" x:Name="bgimg" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Source="bg.png" Aspect="AspectFill"/>
+            <StackLayout Padding="10" BackgroundColor="Transparent" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                <CarouselView ItemsSource="{Binding Cards}" IndicatorView="indicatorView" CurrentItemChanged="CarouselView_CurrentItemChanged">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <StackLayout VerticalOptions="FillAndExpand"  IsVisible="{Binding IsFirstScreen}">
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout.Triggers>
+                                                <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="0">
+                                                    <Setter Property="Orientation" Value="Vertical"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="StackLayout" Binding="{Binding BindingContext.CurrentOrientation, Source={x:Reference mainPage}}" Value="1">
+                                                    <Setter Property="Orientation" Value="Horizontal"/>
+                                                </DataTrigger>
+                                            </StackLayout.Triggers>
+                                            <Image Source="startscreen.png"
                                            Aspect="AspectFill"
                                            HeightRequest="300"
                                            HorizontalOptions="Center" />
-                                        <StackLayout>
-                                            <Label StyleClass="emptyScreenTitle, primaryColorText"
+                                            <StackLayout>
+                                                <Label StyleClass="emptyScreenTitle, primaryColorText"
                                                    HorizontalOptions="Center" FontSize="22"
                                                    VerticalOptions="Center" FontAttributes="Bold" >
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <FormattedString.Spans>
-                                                            <Span TextColor="#CF9625" Text="Things are "/>
-                                                            <Span TextColor="#3cba8c" Text="ageless"/>
-                                                        </FormattedString.Spans>
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            <Label Text="Things are to be utilized, exchange or giveaway your old thing i.e. books, toys, games." VerticalOptions="CenterAndExpand" />
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <FormattedString.Spans>
+                                                                <Span TextColor="#CF9625" Text="Things are "/>
+                                                                <Span TextColor="#3cba8c" Text="ageless"/>
+                                                            </FormattedString.Spans>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label Text="Things are to be utilized, exchange or giveaway your old thing i.e. books, toys, games." VerticalOptions="CenterAndExpand" />
+                                            </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
+                                    <Button Text="Skip introduction" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="10" HeightRequest="45" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                                 </StackLayout>
-                                <Button Text="Skip introduction" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Padding="10" HeightRequest="45" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
-                            </StackLayout>
-                            <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding IsSecondScreen}">
-                                <Label StyleClass="emptyScreenTitle, primaryColorText"
+                                <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding IsSecondScreen}">
+                                    <Label StyleClass="emptyScreenTitle, primaryColorText"
                                                    HorizontalOptions="Center" FontSize="22"
                                                    VerticalOptions="Center" FontAttributes="Bold" Margin="0,5" >
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <FormattedString.Spans>
-                                                <Span TextColor="#3cba8c" Text="Explore "/>
-                                                <Span TextColor="#CF9625" Text="categories"/>
-                                            </FormattedString.Spans>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label StyleClass="DimText" Text="You can choose the categories now which you can always select and change from within app later."/>
-                                <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}" ItemTemplate="{StaticResource CategorySelectionTemplate}" />
-                                <Grid Padding="10" x:Name="itemLocation">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button Text="Explore selected" Grid.Column="0" Padding="10" HeightRequest="45" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
-                                    <Button Text="Skip categories" Padding="10" HeightRequest="45" Grid.Column="1" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
-                                </Grid>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <FormattedString.Spans>
+                                                    <Span TextColor="#3cba8c" Text="Explore "/>
+                                                    <Span TextColor="#CF9625" Text="categories"/>
+                                                </FormattedString.Spans>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label StyleClass="DimText" Text="You can choose the categories now which you can always select and change from within app later."/>
+                                    <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}" ItemTemplate="{StaticResource CategorySelectionTemplate}" />
+                                    <Grid Padding="10" x:Name="itemLocation">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Text="Explore selected" Grid.Column="0" Padding="10" HeightRequest="45" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                                        <Button Text="Skip categories" Padding="10" HeightRequest="45" Grid.Column="1" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                                    </Grid>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-            <IndicatorView x:Name="indicatorView"
-                   IndicatorColor="#FFF"
-                   SelectedIndicatorColor="#d1c7b2"
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="#d1c7b2"
+                   SelectedIndicatorColor="#FFF"
                    IndicatorSize="12"
                    HorizontalOptions="Center" IndicatorsShape="Circle" >
-            </IndicatorView>
-        </StackLayout>
+                </IndicatorView>
+            </StackLayout>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

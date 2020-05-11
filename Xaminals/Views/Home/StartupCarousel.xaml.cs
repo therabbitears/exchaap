@@ -20,11 +20,11 @@ namespace exchaup.Views.Home
         {
             if (e.CurrentItem is StartupCardModel card && card.IsSecondScreen)
             {
-                this.BackgroundImageSource = null;
+                bgimg.Source = null;
             }
             else
             {
-                this.BackgroundImageSource = ImageSource.FromFile("bg.png");
+                bgimg.Source = ImageSource.FromFile("bg.png");
             }
         }
 
