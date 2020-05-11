@@ -42,11 +42,11 @@
                             </DataTrigger>
                         </StackLayout.Triggers>
                     <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
-                            <Entry Text="{Binding Name.Value}" Placeholder="Your name" Margin="0"/>
+                        <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="Your name" Margin="0"/>
                         <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
                         </StackLayout>
                     <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
-                        <Entry Text="{Binding Email.Value}" Placeholder="Email address" Margin="0"/>
+                        <customControlN:CustomeEntry Text="{Binding Email.Value}" Placeholder="Email address" Margin="0"/>
                         <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
                         </StackLayout>
                     </StackLayout>
@@ -60,13 +60,13 @@
                         </DataTrigger>
                     </StackLayout.Triggers>
                     <StackLayout HorizontalOptions="FillAndExpand">
-                        <Entry Text="{Binding Password.Value}"
+                        <customControlN:CustomeEntry Text="{Binding Password.Value}"
                        Placeholder="Password"
                        IsPassword="True" />
                         <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
                     </StackLayout>
                     <StackLayout HorizontalOptions="FillAndExpand">
-                        <Entry Text="{Binding ConfirmPassword.Value}" Placeholder="Confirm password" IsPassword="True" />
+                        <customControlN:CustomeEntry Text="{Binding ConfirmPassword.Value}" Placeholder="Confirm password" IsPassword="True" />
                         <Label Text="{Binding ConfirmPassword.Errors[0]}" IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" StyleClass="validationError" />
                     </StackLayout>
                 </StackLayout>

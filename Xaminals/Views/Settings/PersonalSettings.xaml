@@ -24,13 +24,13 @@
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
             <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
-            <Entry Text="{Binding Name.Value}" Placeholder="Your name" />
+            <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="Your name" />
             <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-            <Entry Text="{Binding Email.Value}" Placeholder="Email" />
+            <customControlN:CustomeEntry Text="{Binding Email.Value}" Placeholder="Email" />
             <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-            <Entry Text="{Binding PhoneNumber.Value}" Placeholder="Phone number" />
+            <customControlN:CustomeEntry Text="{Binding PhoneNumber.Value}" Placeholder="Phone number" />
             <Label Text="{Binding PhoneNumber.Errors[0]}" StyleClass="validationError" IsVisible="{Binding PhoneNumber.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
         </StackLayout>
     </ContentPage.Content>

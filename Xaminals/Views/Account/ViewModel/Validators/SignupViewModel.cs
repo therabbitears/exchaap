@@ -16,9 +16,14 @@ namespace Xaminals.Views.Account.ViewModel
                 ValidationMessage = "Please enter your name."
             });
 
-            _email.Validations.Add(new EmailRule<string>
+            _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
                 ValidationMessage = "Please enter your email address."
+            });
+
+            _email.Validations.Add(new EmailRule<string>
+            {
+                ValidationMessage = "Please enter a valid email address."
             });
 
             _currentPassword.Validations.Add(new IsNotNullOrEmptyRule<string>

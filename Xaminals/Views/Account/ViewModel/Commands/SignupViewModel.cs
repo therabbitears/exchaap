@@ -22,6 +22,7 @@ namespace Xaminals.Views.Account.ViewModel
         {
             if (Validate())
             {
+                IsBusy = true;
                 var service = new RestService();
                 try
                 {

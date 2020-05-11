@@ -17,11 +17,11 @@
             <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
-            <Style TargetType="Entry">
+            <Style TargetType="customControl:CustomEditor">
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
-            <Style TargetType="SearchBar">
-                <Setter Property="FontFamily" Value="" />
+            <Style TargetType="customControl:CustomeEntry">
+                <Setter Property="FontFamily" Value="Merri" />
             </Style>
             <Style TargetType="Label">
                 <Style.Triggers>

@@ -54,7 +54,7 @@
                     </StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="Detail"/>
                     <Label Text="Enter an easy and short title of this ad:" StyleClass="formLabel" />
-                    <Entry Text="{Binding Heading.Value}" Placeholder="Title" />
+                    <customControlN:CustomeEntry Text="{Binding Heading.Value}" Placeholder="Title" />
                     <Label Text="{Binding Heading.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Heading.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
                     <Label Text="Enter detail of this ad(Like brand, age etc.):" StyleClass="formLabel" />

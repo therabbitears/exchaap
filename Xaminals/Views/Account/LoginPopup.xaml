@@ -27,13 +27,13 @@
             <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <StackLayout>
                 <Label Text="Please enter your credentials" />
-                <Entry Text="{Binding Username.Value}"
+                <customControlN:CustomeEntry Text="{Binding Username.Value}"
                        Placeholder="Email address" />
 
                 <Label Text="{Binding Username.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Username.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
 
-                <Entry Text="{Binding Password.Value}"
+                <customControlN:CustomeEntry Text="{Binding Password.Value}"
                        Placeholder="Password"
                        IsPassword="True" />
                 <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>

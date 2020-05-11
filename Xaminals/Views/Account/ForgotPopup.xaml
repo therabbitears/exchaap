@@ -34,7 +34,7 @@
                         <Setter Property="IsVisible" Value="False"/>
                     </DataTrigger>
                 </StackLayout.Triggers>
-                <Entry Text="{Binding UserName.Value}"
+                <customControlN:CustomeEntry Text="{Binding UserName.Value}"
                        Placeholder="Email address" />
                 <Label Text="{Binding UserName.Errors[0]}" StyleClass="validationError" IsVisible="{Binding UserName.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
@@ -49,20 +49,20 @@
                         <Setter Property="IsVisible" Value="False"/>
                     </DataTrigger>
                 </StackLayout.Triggers>
-                <Entry Text="{Binding UserName.Value}"
+                <customControlN:CustomeEntry Text="{Binding UserName.Value}"
                        Placeholder="Email address" IsEnabled="false"  />
                 <Label Text="{Binding UserName.Errors[0]}" StyleClass="validationError" IsVisible="{Binding UserName.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-                <Entry Text="{Binding SecurityCode.Value}"
+                <customControlN:CustomeEntry Text="{Binding SecurityCode.Value}"
                        Placeholder="Security code sent" />
                 <Label Text="{Binding SecurityCode.Errors[0]}" StyleClass="validationError" IsVisible="{Binding SecurityCode.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-                <Entry Text="{Binding Password.Value}"
+                <customControlN:CustomeEntry Text="{Binding Password.Value}"
                        Placeholder="Password"
                        IsPassword="True" />
                 <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-                <Entry Text="{Binding ConfirmPassword.Value}"
+                <customControlN:CustomeEntry Text="{Binding ConfirmPassword.Value}"
                        Placeholder="Confirm password"
                        IsPassword="True" />
                 <Label Text="{Binding ConfirmPassword.Errors[0]}" StyleClass="validationError" IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
