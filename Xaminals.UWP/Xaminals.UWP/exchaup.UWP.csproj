@@ -221,6 +221,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="bgtwo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </Content>
     <Content Include="bg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
