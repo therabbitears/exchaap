@@ -25,7 +25,6 @@ namespace Xaminals.ViewModels.Offers
             LoadItemsCommand = new Command(async () => await ExecuteLoadCategoriesCommand());
             SaveCriteriaCommand = new Command(async () => await ExecuteSaveCriteriaCommand());
             CategoryClickedCommand = new Command(async (object sender) => await ExecuteCategoryClickedCommand(sender));
-
         }
 
         protected override void AddListeners()
