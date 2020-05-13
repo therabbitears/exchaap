@@ -43,7 +43,7 @@
     </Shell.Resources>
 
     <TabBar x:Name="RootTab">
-        <Tab Title="Discover" x:Name="tabDiscover">
+        <Tab Title="Find" x:Name="tabDiscover">
             <Tab.Icon>
                 <FontImageSource
                         FontFamily="FontAwesomeRegular"
@@ -56,7 +56,7 @@
                       Style="{StaticResource MainShell}"
                       ContentTemplate="{DataTemplate offerviews:OfferList}" Shell.NavBarIsVisible="False" />
         </Tab>
-        <Tab Title="My exchaups" x:Name="tabMyOffers">
+        <Tab Title="My Ads" x:Name="tabMyOffers">
             <Tab.Icon>
                 <FontImageSource
                         FontFamily="FontAwesomeSolid"

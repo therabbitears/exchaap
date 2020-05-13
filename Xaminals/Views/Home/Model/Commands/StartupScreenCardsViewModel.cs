@@ -57,9 +57,13 @@ namespace exchaup.Views.Home.Model
         {
             if (this.FilteredCategories?.Any(c => c.Selected) == true)
             {
-                foreach (var item in FilteredCategories.Where(c => c.Selected))
+                foreach (var item in FilteredCategories)
                 {
-                    App.Context.SearchModel.Categories.Add(item);
+                    var oneCategory = App.Context.SearchModel.Categories.FirstOrDefault(c => c.Id == item.Id);
+                    if (oneCategory == null)
+                        App.Context.SearchModel.Categories.Add(item);
+                    else
+                        oneCategory.Selected = item.Selected;
                 }
             }
 

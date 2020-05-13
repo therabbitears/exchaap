@@ -33,14 +33,21 @@ namespace Loffers.GlobalViewModel
 
         async Task ExecuteLoadStaticCommand(object value)
         {
-            var categories = await Context.Database.GetCategoriesAsync();
-            if (categories?.Any() == true)
+            try
             {
-                foreach (var category in categories)
+                var categories = await Context.Database.GetCategoriesAsync();
+                if (categories?.Any() == true)
                 {
-                    this.Context.SearchModel.Categories.Add(category);
+                    foreach (var category in categories)
+                    {
+                        this.Context.SearchModel.Categories.Add(category);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }            
         }
 
         protected override void OnLoginStateChanged(bool isLoggedIn)

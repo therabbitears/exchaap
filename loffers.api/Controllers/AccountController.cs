@@ -129,6 +129,7 @@ namespace loffers.api.Controllers
                 return BadRequest(ModelState);
             }
 
+            UserManager.PasswordValidator = new CustomPasswordValidator();
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
 
@@ -189,6 +190,7 @@ namespace loffers.api.Controllers
                 return BadRequest(ModelState);
             }
 
+            UserManager.PasswordValidator = new CustomPasswordValidator();
             IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
 
             if (!result.Succeeded)
@@ -470,13 +472,7 @@ namespace loffers.api.Controllers
                     return Ok(new HttpResult(successResult));
                 }
 
-                var errorResult = new
-                {
-                    status = 403,
-                    userName = token,
-                };
-
-                return Ok(new HttpResult(errorResult, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, "An error occurred while updating the user information."), user.Id));
+                return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, result.Errors.FirstOrDefault())));
             }
 
             var notFoundResult = new
@@ -551,6 +547,7 @@ namespace loffers.api.Controllers
                     var user = await UserManager.FindByNameAsync(model.EmailAddress);
                     if (user != null)
                     {
+                        UserManager.PasswordValidator = new CustomPasswordValidator();
                         var result = await UserManager.RemovePasswordAsync(user.Id);
                         if (result.Succeeded)
                         {
@@ -590,6 +587,7 @@ namespace loffers.api.Controllers
             var user = await UserManager.FindByNameAsync(token);
             if (user != null)
             {
+                UserManager.PasswordValidator = new CustomPasswordValidator();
                 var result = await UserManager.ChangePasswordAsync(user.Id, model.CurrentPassword, model.NewPassword);
                 if (result.Succeeded)
                 {

@@ -112,32 +112,41 @@ namespace Xaminals.Views.Offers.Models
 
         private async void SelectImage(object obj)
         {
-            await CrossMedia.Current.Initialize();
-            if (!CrossMedia.Current.IsPickPhotoSupported)
+            try
             {
-                //await DisplayAlert("Error", "This is not support on your device.", "OK");
-                return;
+                await CrossMedia.Current.Initialize();
+                if (!CrossMedia.Current.IsPickPhotoSupported)
+                {
+                    //await DisplayAlert("Error", "This is not support on your device.", "OK");
+                    return;
+                }
+                else
+                {
+                    var mediaOption = new PickMediaOptions()
+                    {
+                        PhotoSize = PhotoSize.Medium
+                    };
+
+                    _mediaFile = await CrossMedia.Current.PickPhotoAsync();
+                    if (_mediaFile == null) return;
+
+                    //SourceImage = ImageSource.FromStream(() => _mediaFile.GetStream());
+
+                    ImageStream = _mediaFile.GetStream();
+                    try
+                    {
+                        SourceImage = ImageSource.FromStream(() => _mediaFile.GetStream());
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.Message);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var mediaOption = new PickMediaOptions()
-                {
-                    PhotoSize = PhotoSize.Medium
-                };
-
-                _mediaFile = await CrossMedia.Current.PickPhotoAsync();
-                if (_mediaFile == null) return;
-
-                //SourceImage = ImageSource.FromStream(() => _mediaFile.GetStream());
-
-                ImageStream = _mediaFile.GetStream();
-                try
-                {
-                    SourceImage = ImageSource.FromStream(() => _mediaFile.GetStream());
-                }
-                catch (Exception ex)
-                {
-                }
+                await RaiseError("An error occurred, make sure you have granted permission to access the media.");
+                Debug.WriteLine(ex.Message);
             }
         }
 
