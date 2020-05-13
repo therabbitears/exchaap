@@ -1,8 +1,6 @@
-﻿using exchaup.Views.Common;
-using Rg.Plugins.Popup.Pages;
-using Xamarin.Forms;
+﻿using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
-using Xaminals.Views.Offers.Models;
+using Xaminals.ViewModels;
 
 namespace exchaup.CustomControls.Search
 {
@@ -15,9 +13,16 @@ namespace exchaup.CustomControls.Search
             this.BindingContext = binding;
         }
 
-        private void SearchBar_Focused(object sender, Xamarin.Forms.FocusEventArgs e)
+        protected override void OnAppearingAnimationEnd()
         {
-            Shell.Current.Navigation.PushAsync(new CategorySelection(this.BindingContext as ICategoriesSelectable, int.MaxValue));
+            base.OnAppearingAnimationEnd();
+            (this.BindingContext as BaseViewModel).Context.SearchModel.RequireData = true;
+        }
+
+        protected override void OnDisappearingAnimationEnd()
+        {
+            base.OnDisappearingAnimationEnd();
+            (this.BindingContext as BaseViewModel).Context.SearchModel.RequireData = false;
         }
     }
 }

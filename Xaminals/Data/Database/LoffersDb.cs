@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xaminals.Models;
+using Xaminals.Views.Categories.Models.DTO;
 using Xaminals.Views.Offers.ViewModels;
 
 namespace Xaminals.Data.Database
@@ -49,6 +50,11 @@ namespace Xaminals.Data.Database
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(ApplicationStateModel)).ConfigureAwait(false);
                 }
 
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(CategoryModel).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(CategoryModel)).ConfigureAwait(false);
+                }
+
                 //if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(OfferListItemViewModel).Name))
                 //{
                 //    await Database.CreateTablesAsync(CreateFlags.None, typeof(OfferListItemViewModel)).ConfigureAwait(false);
@@ -78,6 +84,26 @@ namespace Xaminals.Data.Database
         public Task<OfferListItemViewModel> GetItemAsync(string id)
         {
             return Database.Table<OfferListItemViewModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        }
+
+        public Task<CategoryModel> GetCategoryAsync(string id)
+        {
+            return Database.Table<CategoryModel>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        }
+
+        public Task<List<CategoryModel>> GetCategoriesAsync()
+        {
+            return Database.Table<CategoryModel>().ToListAsync();
+        }
+
+        public Task<int> UpdateCategoryAsync(CategoryModel obj)
+        {
+            return Database.UpdateAsync(obj);
+        }
+
+        public Task<int> InsertCategoryAsync(CategoryModel obj)
+        {
+            return Database.InsertAsync(obj);
         }
 
         public Task<int> SaveItemAsync(OfferListItemViewModel item)

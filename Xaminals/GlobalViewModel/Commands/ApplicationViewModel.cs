@@ -19,13 +19,28 @@ namespace Loffers.GlobalViewModel
 
         public ICommand ValidateTokenCommand { get; set; }
         public ICommand StartConnectionCommand { get; set; }
+        public ICommand LoadStaticCommand { get; set; }
 
         protected override void IntializeCommands()
         {
             base.IntializeCommands();
             ValidateTokenCommand = new Command(async (object value) => await ExecuteValidateTokenCommand(value));
             StartConnectionCommand = new Command(async (object value) => await ExecuteStartConnectionCommand(value));
+            LoadStaticCommand = new Command(async (object value) => await ExecuteLoadStaticCommand(value));
             ValidateTokenCommand.Execute(null);
+            LoadStaticCommand.Execute(null);
+        }
+
+        async Task ExecuteLoadStaticCommand(object value)
+        {
+            var categories = await Context.Database.GetCategoriesAsync();
+            if (categories?.Any() == true)
+            {
+                foreach (var category in categories)
+                {
+                    this.Context.SearchModel.Categories.Add(category);
+                }
+            }
         }
 
         protected override void OnLoginStateChanged(bool isLoggedIn)

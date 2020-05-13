@@ -1,9 +1,11 @@
-﻿using Xaminals.Models;
+﻿using SQLite;
+using Xaminals.Models;
 
 namespace Xaminals.Views.Categories.Models.DTO
 {
     public class CategoryModel : NotificableObject
     {
+        [PrimaryKey]
         public string Id { get; set; }
         
         private string _Name;

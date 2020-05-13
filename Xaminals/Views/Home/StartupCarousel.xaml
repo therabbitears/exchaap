@@ -31,7 +31,7 @@
                                             </StackLayout.Triggers>
                                             <Image Source="startscreen.png"
                                            Aspect="AspectFill"
-                                           HeightRequest="300"
+                                           HeightRequest="180"
                                            HorizontalOptions="Center" />
                                             <StackLayout>
                                                 <Label StyleClass="emptyScreenTitle, primaryColorText"
@@ -66,7 +66,7 @@
                                         </Label.FormattedText>
                                     </Label>
                                     <Label StyleClass="DimText" Text="You can choose the categories now which you can always select and change from within app later."/>
-                                    <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}" ItemTemplate="{StaticResource CategorySelectionTemplate}" />
+                                    <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}" ItemTemplate="{StaticResource CategorySelectionTemplate}" VerticalScrollBarVisibility="Always" />
                                     <Grid Padding="10" x:Name="itemLocation">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -75,7 +75,7 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
-                                        <Button Text="Explore selected" Grid.Column="0" Padding="10" HeightRequest="45" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
+                                        <Button Text="Explore selected" StyleClass="primaryButton" Grid.Column="0" Padding="10" HeightRequest="45" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                                         <Button Text="Skip categories" Padding="10" HeightRequest="45" Grid.Column="1" CornerRadius="30" FontSize="14" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext. GoToAppCommand}" />
                                     </Grid>
                                 </StackLayout>
