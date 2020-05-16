@@ -461,7 +461,11 @@ namespace Loffers.Server.Services
             {
                 if (context.Offers.Any(c => c.CreatedBy == token))
                 {
-                    var offer = await context.Offers.Include(c => c.Categories).Include("OfferCategories").Include("OfferCategories.Categories").FirstOrDefaultAsync(c => c.Id == id);
+                    var offer = await context.Offers
+                        .Include(c => c.OfferLocations).Include("OfferLocations.PublisherLocations").Include("OfferLocations.PublisherLocations.Locations")
+                        .Include(c => c.Categories).Include("OfferCategories").Include("OfferCategories.Categories").FirstOrDefaultAsync(c => c.Id == id);
+                    var location = offer.OfferLocations.FirstOrDefault();
+
                     var offerObject = new
                     {
                         offer.OfferHeadline,
@@ -475,6 +479,7 @@ namespace Loffers.Server.Services
                         offer.ValidTill,
                         offer.Active,
                         offer.Id,
+                        Locations = new { location.PublisherLocations.Id, location.PublisherLocations.Locations.DisplayAddress, location.PublisherLocations.Locations.Name, location.PublisherLocations.Locations.Lat, location.PublisherLocations.Locations.Long },
                         Category = new { offer.Categories.Id, offer.Categories.Name, offer.Categories.Image },
                         Categories = offer.OfferCategories.Select(c => new OfferCategoryModel { Id = c.Categories.Id, Name = c.Categories.Name, Selected = false, Image = c.Categories.Image }).ToList()
                     };

@@ -43,5 +43,7 @@ namespace loffers.api.Models.Generator
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PublisherLocations> PublisherLocations { get; set; }
+
+        public bool Explorable { get; set; }
     }
 }

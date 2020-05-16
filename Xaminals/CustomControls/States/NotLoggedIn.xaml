@@ -13,8 +13,8 @@
     </ContentView.Resources>
     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <StackLayout VerticalOptions="CenterAndExpand">
-        <Button Text="Register" Command="{Binding PopupRegisterCommand}" />
             <Button Text="Login" Command="{Binding PopupLoginCommand}" StyleClass="primaryButton" />
+            <Button Text="Register" Command="{Binding PopupRegisterCommand}" />
         </StackLayout>
     </StackLayout>
 </ContentView>

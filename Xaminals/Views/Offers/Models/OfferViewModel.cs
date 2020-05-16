@@ -67,7 +67,7 @@ namespace Xaminals.Views.Offers.Models
             }
         }
 
-        private ImageSource imageSource;
+        private ImageSource imageSource = ImageSource.FromFile("selectimage.png");
         public ImageSource SourceImage
         {
             get { return imageSource; }

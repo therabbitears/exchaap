@@ -5,8 +5,21 @@ namespace Xaminals.Views.Categories.Models.DTO
     public class PublisherLocationModel : NotificableObject, ILocation
     {
         public string Id { get; set; }
-        public string Name { get; set; }
-        public string DisplayAddress { get; set; }
+
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; OnPropertyChanged("Name"); }
+        }
+
+        private string _DisplayAddress;
+        public string DisplayAddress
+        {
+            get { return _DisplayAddress; }
+            set { _DisplayAddress = value;OnPropertyChanged("DisplayAddress"); }
+        }
+
         public double Lat { get; set; }
         public double Long { get; set; }
 

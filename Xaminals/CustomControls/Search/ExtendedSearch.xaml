@@ -47,7 +47,7 @@
                         </Label.Triggers>
                     </Label>
                 </Grid>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                     </Grid.RowDefinitions>

@@ -229,6 +229,10 @@
     <Compile Include="Migrations\202004291411124_NonRequired.designer.cs">
       <DependentUpon>202004291411124_NonRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005161410396_Discoveravle.cs" />
+    <Compile Include="Migrations\202005161410396_Discoveravle.designer.cs">
+      <DependentUpon>202005161410396_Discoveravle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Providers\CustomPasswordValidator.cs" />
     <Compile Include="Utils\Compute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -381,6 +385,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -460,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004291411124_NonRequired.resx">
       <DependentUpon>202004291411124_NonRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005161410396_Discoveravle.resx">
+      <DependentUpon>202005161410396_Discoveravle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

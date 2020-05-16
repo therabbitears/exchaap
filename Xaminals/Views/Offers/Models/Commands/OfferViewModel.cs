@@ -41,8 +41,8 @@ namespace Xaminals.Views.Offers.Models
                 LoadOfferCommand = new Command(async () => await ExecuteLoadOfferCommand());
                 LoadOfferCommand.Execute(null);
             }
-
-            LoadCurrentLocationCommand.Execute(null);
+            else
+                LoadCurrentLocationCommand.Execute(null);
         }
 
         void ExecuteClickedOnCategoryItemCommand(object sender)
@@ -58,23 +58,22 @@ namespace Xaminals.Views.Offers.Models
                 var location = await LoadLocation(true);
                 this.Location.Lat = location.Latitude;
                 this.Location.Long = location.Longitude;
-
-                try
-                {
-                    var placemarks = await Geocoding.GetPlacemarksAsync(location);
-                    var placemark = placemarks?.FirstOrDefault();
-                    if (placemark != null)
-                    {
-                        this.Location.Name = !string.IsNullOrEmpty(placemark.SubLocality) ? placemark.SubLocality : placemark.Locality;
-                        this.Location.DisplayAddress = string.Format("{0},{1},{2}", placemark.Locality, placemark.AdminArea, placemark.PostalCode);
-                    }
-                }
-                catch (Exception debug)
-                {
-                    this.Location.Name = "Current location";
-                    this.Location.DisplayAddress = "Current location";
-                    Debug.WriteLine("An error while fetching geocoding info:" + debug.Message);
-                }
+                //try
+                //{
+                //    var placemarks = await Geocoding.GetPlacemarksAsync(location);
+                //    var placemark = placemarks?.FirstOrDefault();
+                //    if (placemark != null)
+                //    {
+                //        this.Location.Name = !string.IsNullOrEmpty(placemark.SubLocality) ? placemark.SubLocality : placemark.Locality;
+                //        this.Location.DisplayAddress = string.Format("{0},{1},{2}", placemark.Locality, placemark.AdminArea, placemark.PostalCode);
+                //    }
+                //}
+                //catch (Exception debug)
+                //{
+                //    this.Location.Name = "Current location";
+                //    this.Location.DisplayAddress = "Current location";
+                //    Debug.WriteLine("An error while fetching geocoding info:" + debug.Message);
+                //}
             }
             catch (Exception ex)
             {
@@ -92,7 +91,7 @@ namespace Xaminals.Views.Offers.Models
 
         private void OnLocationPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "IsCurrent")
+            if (e.PropertyName == "IsCurrent" && Location.IsCurrent)
                 LoadCurrentLocationCommand.Execute(null);
         }
 

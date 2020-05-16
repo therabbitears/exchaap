@@ -9,7 +9,7 @@ namespace loffers.api.Services
     {
         public async Task<object> Search(string keyword)
         {
-            return await context.Locations.Where(c => c.Name.StartsWith(keyword)).Select(c => new { c.Name, Landmark = c.DisplayAddress, c.Lat, c.Long }).Take(15).ToListAsync();
+            return await context.Locations.Where(c => c.Explorable && c.Name.StartsWith(keyword)).Select(c => new { c.Name, Landmark = c.DisplayAddress, c.Lat, c.Long }).Take(15).ToListAsync();
         }
     }
 }

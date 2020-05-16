@@ -390,7 +390,7 @@ namespace loffers.api.Controllers
                     var message = result.Errors.FirstOrDefault();
                     if (message.Contains("already taken"))
                     {
-                        message = "Cannot update the email/username as it already associated with other user, if you feel it is a misuse kindly contact us.";
+                        message = "Email/username is not available as it already associated with other user, if you feel it is a misuse kindly contact us.";
                     }
 
                     return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, message)));
