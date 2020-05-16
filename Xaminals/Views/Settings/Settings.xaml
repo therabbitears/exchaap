@@ -86,7 +86,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Label Text="About ExchaUp" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
+                        <Label Text="About xchaup" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
                         <customControl:GlyphLabel Text="&#xf105;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
                     </Grid>
                 </StackLayout>

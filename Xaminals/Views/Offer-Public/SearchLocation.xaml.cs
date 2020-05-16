@@ -8,7 +8,7 @@ namespace exchaup.Views.Offer_Public
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchLocation : ContentPage
     {
-        public SearchLocation(ILocation location)
+        public SearchLocation(ILocation location = null)
         {
             InitializeComponent();
             if (this.BindingContext is SerachLocationListViewModel context)

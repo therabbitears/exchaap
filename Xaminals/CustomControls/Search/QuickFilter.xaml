@@ -21,19 +21,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackLayout Orientation="Horizontal" Grid.Row="0" Spacing="0" Margin="0" Padding="0">
-                <Slider Margin="0,0,5,8" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
-                    <Label StyleClass="DimText" HorizontalOptions="End" VerticalOptions="CenterAndExpand">
-                        <Label.Triggers>
-                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
-                                <Setter Property="Text" Value="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0} km'}" />
-                            </DataTrigger>
-                            <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
-                                <Setter Property="Text" Value="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0} mi'}" />
-                            </DataTrigger>
-                        </Label.Triggers>
-                    </Label>
-            </StackLayout>
+            <Grid Grid.Row="0" RowSpacing="0" ColumnSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Slider Margin="0,0,0,5" Grid.Column="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
+                <Label StyleClass="DimText" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">
+                            <Setter Property="Text" Value="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0} km'}" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="1">
+                            <Setter Property="Text" Value="{Binding Source={x:Reference slider}, Path=Value, StringFormat='{0:F0} mi'}" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+            </Grid>
             <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition />

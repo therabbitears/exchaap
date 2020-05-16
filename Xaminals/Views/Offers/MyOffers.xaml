@@ -10,7 +10,7 @@
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:customControls="clr-namespace:exchaup.CustomControls"
-             Title="My exchaups"
+             Title="My ads"
              x:Name="mainPage">
     <ContentPage.BindingContext>
         <local:MyOffersListViewModel />
@@ -29,8 +29,8 @@
     <StackLayout StyleClass="parentContainer">
         <StackLayout IsVisible="{Binding Context.SessionModel.IsLoggedIn}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Padding="5" IsVisible="{Binding HasItems, Converter={StaticResource cnvReveresBoolConverter}}" VerticalOptions="CenterAndExpand">
-                <Label Text="You are not exchauping anything." StyleClass="emptyScreenTitle, primaryColorText" />
-                <Label Text="You can use below button to list your first exchaup." StyleClass="emptyScreenDescription, MediumText"/>
+                <Label Text="You are not xchauping anything." StyleClass="emptyScreenTitle, primaryColorText" />
+                <Label Text="You can use below button to list your first xchaup." StyleClass="emptyScreenDescription, MediumText"/>
                 <Button Text="Let's list one" Command="{Binding AddOfferCommand}" StyleClass="primaryButton" />
                 <Label  Text="Things get old soon, but for someone it is still new. List your old stuff like books, toys, mobiles, games or anything which you want to exchange or want to giveaway to someone interested in." StyleClass="emptyScreenDescription, MediumText"/>
             </StackLayout>

@@ -9,7 +9,7 @@
              xmlns:stateControls="clr-namespace:Loffers.CustomControls.States"
              xmlns:mySharedControls="clr-namespace:exchaup.CustomControls.Search"
              xmlns:customControls="clr-namespace:exchaup.CustomControls"
-             Title="Favorite exchaups">
+             Title="Favorite xchaups">
     <ContentPage.BindingContext>
         <local:StarredOffersListViewModel />
     </ContentPage.BindingContext>
