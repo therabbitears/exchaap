@@ -49,5 +49,22 @@ namespace Xaminals.Views.Settings.ViewModels
                 OnPropertyChanged(nameof(ConfirmPassword));
             }
         }
+
+        bool _areCredentialsInvalid;
+        public bool AreCredentialsInvalid
+        {
+            get => _areCredentialsInvalid;
+            set
+            {
+                SetProperty(ref _areCredentialsInvalid, value);
+            }
+        }
+
+        private string _LastError;
+        public string LastError
+        {
+            get => _LastError;
+            set { SetProperty(ref _LastError, value); }
+        }
     }
 }

@@ -30,7 +30,7 @@
                 </StackLayout.GestureRecognizers>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="App terms of use" />
-                    <customControl:GlyphLabel Text="&#xf105;" FontFamily="FontAwesomeSolid" StyleClass="goArrow" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                    <customControl:GlyphLabel Text="&#xf35d;" FontFamily="FontAwesomeSolid" StyleClass="goArrow" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
             </StackLayout>
             <StackLayout Padding="12" BackgroundColor="#FFFFFF">
@@ -39,7 +39,7 @@
                 </StackLayout.GestureRecognizers>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Privacy policy" />
-                    <customControl:GlyphLabel Text="&#xf105;" FontFamily="FontAwesomeSolid" StyleClass="goArrow" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
+                    <customControl:GlyphLabel Text="&#xf35d;" FontFamily="FontAwesomeSolid" StyleClass="goArrow" VerticalOptions="Center" HorizontalOptions="EndAndExpand" />
                 </StackLayout>
             </StackLayout>
             <Label HorizontalOptions="CenterAndExpand" StyleClass="DimText, bold" Text="App version 1.0.0"/>

@@ -1,7 +1,7 @@
-﻿using Plugin.Media;
+﻿using exchaup.Views.Offer_Public;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,8 +20,9 @@ namespace Xaminals.Views.Offers.Models
     {
         public ICommand SaveOfferCommand { get; set; }
         public ICommand SelectImageCommand { get; set; }
-        public Command LoadOfferCommand { get; set; }
-        public Command LoadCurrentLocationCommand { get; set; }
+        public ICommand LoadOfferCommand { get; set; }
+        public ICommand SelectLocationCommand { get; set; }
+        public ICommand LoadCurrentLocationCommand { get; set; }
         public ICommand ClickedOnCategoryItemCommand { get; set; }
 
         public string Image { get; set; }
@@ -33,7 +34,8 @@ namespace Xaminals.Views.Offers.Models
             SaveOfferCommand = new Command(SaveOffer);
             SelectImageCommand = new Command(SelectImage);
             LoadCurrentLocationCommand = new Command(ExecuteLoadCurrentLocationCommand);
-            ClickedOnCategoryItemCommand = new Command(async (object sender) => await ExecuteClickedOnCategoryItemCommand(sender));
+            ClickedOnCategoryItemCommand = new Command(ExecuteClickedOnCategoryItemCommand);
+            SelectLocationCommand = new Command(async (object sender) => await Shell.Current.Navigation.PushAsync(new SearchLocation(this.Location), true));
             if (!string.IsNullOrEmpty(Id))
             {
                 LoadOfferCommand = new Command(async () => await ExecuteLoadOfferCommand());
@@ -43,7 +45,7 @@ namespace Xaminals.Views.Offers.Models
             LoadCurrentLocationCommand.Execute(null);
         }
 
-        async Task ExecuteClickedOnCategoryItemCommand(object sender)
+        void ExecuteClickedOnCategoryItemCommand(object sender)
         {
             if (sender is CategoryModel category)
                 Categories.Remove(category);
@@ -53,7 +55,7 @@ namespace Xaminals.Views.Offers.Models
         {
             try
             {
-                var location = await LoadLocation(false);
+                var location = await LoadLocation(true);
                 this.Location.Lat = location.Latitude;
                 this.Location.Long = location.Longitude;
 
@@ -65,26 +67,12 @@ namespace Xaminals.Views.Offers.Models
                     {
                         this.Location.Name = !string.IsNullOrEmpty(placemark.SubLocality) ? placemark.SubLocality : placemark.Locality;
                         this.Location.DisplayAddress = string.Format("{0},{1},{2}", placemark.Locality, placemark.AdminArea, placemark.PostalCode);
-
-                        //var geocodeAddress =
-                        //    $"AdminArea:       {placemark.AdminArea}\n" +
-                        //    $"CountryCode:     {placemark.CountryCode}\n" +
-                        //    $"CountryName:     {placemark.CountryName}\n" +
-                        //    $"FeatureName:     {placemark.FeatureName}\n" +
-                        //    $"Locality:        {placemark.Locality}\n" +
-                        //    $"PostalCode:      {placemark.PostalCode}\n" +
-                        //    $"SubAdminArea:    {placemark.SubAdminArea}\n" +
-                        //    $"SubLocality:     {placemark.SubLocality}\n" +
-                        //    $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
-                        //    $"Thoroughfare:    {placemark.Thoroughfare}\n";
-
-                        //await RaiseSuccess(geocodeAddress);
                     }
                 }
                 catch (Exception debug)
                 {
-                    this.Location.Name = "N/A";
-                    this.Location.DisplayAddress = "N/A";
+                    this.Location.Name = "Current location";
+                    this.Location.DisplayAddress = "Current location";
                     Debug.WriteLine("An error while fetching geocoding info:" + debug.Message);
                 }
             }
@@ -98,7 +86,14 @@ namespace Xaminals.Views.Offers.Models
         {
             base.AddListeners();
             this.PropertyChanged += OnPropertryChanged;
-           // this.Id = "18d9377d-11d3-42c8-8696-0462673c18d6";
+            this.Location.PropertyChanged += OnLocationPropertyChanged;
+            // this.Id = "18d9377d-11d3-42c8-8696-0462673c18d6";
+        }
+
+        private void OnLocationPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "IsCurrent")
+                LoadCurrentLocationCommand.Execute(null);
         }
 
         private void OnPropertryChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

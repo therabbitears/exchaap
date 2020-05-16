@@ -8,6 +8,7 @@
              x:Class="Xaminals.Views.Offers.Offer"
              xmlns:OffeControls="clr-namespace:exchaup.CustomControls.Offer"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              Title="New exhaup" x:Name="mainPage">
     <ContentPage.BindingContext>
@@ -84,6 +85,22 @@
                         </Frame>
                         <Button BackgroundColor="Transparent" FontSize="100" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>
+                    <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectLocationCommand}"/>
+                        </Grid.GestureRecognizers>
+                        <customControl:GlyphLabel Grid.Row="0" VerticalOptions="CenterAndExpand" Grid.Column="0" x:Name="labelCompans" FontFamily="FontAwesomeRegular" Text="&#xf14e;" StyleClass="gylypLabelBig, primaryColorText" />
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand" Text="{Binding Location.Name}" StyleClass="MediumText" />
+                        <Label Text="Tap to edit" Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand" StyleClass="MediumText" />
+                    </Grid>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

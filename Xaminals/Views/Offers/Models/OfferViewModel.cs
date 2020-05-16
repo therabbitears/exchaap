@@ -98,7 +98,7 @@ namespace Xaminals.Views.Offers.Models
             _detail = new ValidatableObject<string>();
             _validfrom = new ValidatableObject<DateTime?>();
             _categories = new ObservableCollection<CategoryModel>();
-            _location = new OfferPublisherLocationModel();
+            _location = new OfferPublisherLocationModel() { Name = "Current location", DisplayAddress = "Current location", IsCurrent = true };
             Category = new CategoryModel();
         }
 

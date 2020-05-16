@@ -42,26 +42,42 @@ namespace exchaup.Views.Offer_Public.Models
             var selectedItem = sender as SearchLocationItemViewModel;
             try
             {
-                Context.SettingsModel.SelectedLocation.SelectedAt = DateTime.Now;
-                Context.SettingsModel.SelectedLocation.IsCurrent = selectedItem.IsCurrent;
-                Context.SettingsModel.SelectedLocation.Landmark = selectedItem.Landmark;
-                Context.SettingsModel.SelectedLocation.Long = selectedItem.Long;
-                Context.SettingsModel.SelectedLocation.Lat = selectedItem.Lat;
-                Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;
-                if (!selectedItem.IsCurrent)
+                if (this.Selectable != null)
                 {
-                    await AddLocation(selectedItem);
+                    if (!selectedItem.IsCurrent)
+                    {
+                        this.Selectable.Long = selectedItem.Long;
+                        this.Selectable.Lat = selectedItem.Lat;
+                    }
+
+                    this.Selectable.DisplayAddress = selectedItem.Landmark;
+                    this.Selectable.Name = selectedItem.Name;
+                    this.Selectable.IsCurrent = selectedItem.IsCurrent;
                 }
-                await Database.DeleteStates();
-                var newState = new exchaup.Models.ApplicationStateModel()
+                else
                 {
-                    SkipIntro = true,
-                    CustomLocation = !selectedItem.IsCurrent,
-                    LastLocationName = selectedItem.Name,
-                    Long = selectedItem.Long,
-                    Lat = selectedItem.Lat
-                };
-                await Database.SaveLastState(newState);
+                    Context.SettingsModel.SelectedLocation.SelectedAt = DateTime.Now;
+                    Context.SettingsModel.SelectedLocation.IsCurrent = selectedItem.IsCurrent;
+                    Context.SettingsModel.SelectedLocation.Landmark = selectedItem.Landmark;
+                    Context.SettingsModel.SelectedLocation.Long = selectedItem.Long;
+                    Context.SettingsModel.SelectedLocation.Lat = selectedItem.Lat;
+                    Context.SettingsModel.SelectedLocation.Name = selectedItem.Name;
+                    if (!selectedItem.IsCurrent)
+                    {
+                        await AddLocation(selectedItem);
+                    }
+                    await Database.DeleteStates();
+                    var newState = new exchaup.Models.ApplicationStateModel()
+                    {
+                        SkipIntro = true,
+                        CustomLocation = !selectedItem.IsCurrent,
+                        LastLocationName = selectedItem.Name,
+                        Long = selectedItem.Long,
+                        Lat = selectedItem.Lat
+                    };
+                    await Database.SaveLastState(newState);
+                }
+
                 await Shell.Current.Navigation.PopAsync(true);
             }
             catch (Exception ex)

@@ -41,7 +41,7 @@
                     <Button Command="{Binding UpdatePasswordCommand}" Text="Update password" />
                     <Button Command="{Binding LogoutCommand}" Text="Logout"  StyleClass="primaryButton"/>
                     <Label Text="Search" StyleClass="SectionHeadingStyle"/>
-                    <Grid Padding="10" BackgroundColor="#FFFFFF" Margin="0,5,0,5">
+                    <!--<Grid Padding="10" BackgroundColor="#FFFFFF" Margin="0,5,0,5">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ClickCategoriesInfoCommand}" />
                         </Grid.GestureRecognizers>
@@ -54,7 +54,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding CategoriesCount, StringFormat='{0} categories Selected'}" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" />
                         <customControl:GlyphLabel Text="&#xf105;" FontFamily="FontAwesomeSolid" VerticalOptions="Center" StyleClass="goArrow" HorizontalOptions="EndAndExpand" />
-                    </Grid>
+                    </Grid>-->
                     <!--<StackLayout  Padding="10" Margin="0,5,0,5" BackgroundColor="#FFFFFF">
                         <Label Text="Maximum range"/>
                         <Slider Maximum="100" DragCompletedCommand="{Binding SaveSettingCommands}" Minimum="1" Value="{Binding MaxRange}" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" x:Name="slider" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40"/>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Xaminals.ViewModels;
+using Xaminals.Views.Categories.Models.DTO;
 
 namespace exchaup.Views.Offer_Public.Models
 {
@@ -25,6 +26,14 @@ namespace exchaup.Views.Offer_Public.Models
             get { return _Query; }
             set { SetProperty(ref _Query, value); }
         }
+
+        private ILocation _selectable;
+        public ILocation Selectable
+        {
+            get { return _selectable; }
+            set { _selectable = value; }
+        }
+
 
         protected override void IntializeMembers()
         {

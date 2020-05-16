@@ -24,6 +24,7 @@
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
             <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
+            <Label Text="{Binding LastError}" StyleClass="validationError" IsVisible="{Binding AreCredentialsInvalid}"/>
             <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="Your name" />
             <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 

@@ -32,7 +32,10 @@ namespace Xaminals.Views.Settings.ViewModels
                         await RaiseSuccess("The passwords has been updated successfully.");
                     }
                     else
-                        await RaiseError(result.Errors.First().Description);
+                    {
+                        LastError = result.Errors.First().Description;
+                        AreCredentialsInvalid = true;
+                    }
                 }
                 catch (Exception ex)
                 {

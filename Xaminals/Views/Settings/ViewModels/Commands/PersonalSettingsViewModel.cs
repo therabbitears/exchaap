@@ -38,11 +38,12 @@ namespace Xaminals.Views.Settings.ViewModels
                     _email.Value = result.Result.Email;
                     _name.Value = result.Result.Name;
                     _phoneNumber.Value = result.Result.PhoneNumber;
-                    //await ExecuteCancelCommand();
-                    //await RaiseSuccess("The information has been updated successfully.");
                 }
                 else
-                    await RaiseError(result.Errors.First().Description);
+                {
+                    LastError = result.Errors.First().Description;
+                    AreCredentialsInvalid = true;
+                }
             }
             catch (Exception ex)
             {
@@ -69,11 +70,13 @@ namespace Xaminals.Views.Settings.ViewModels
                         App.Context.SettingsModel.Name = this.Name.Value;
                         App.Context.SettingsModel.Email = this.Email.Value;
                         App.Context.SettingsModel.PhoneNumber = this.PhoneNumber.Value;
-                        await RaiseSuccess("User information has been updated successfully.");
                         await ExecuteCancelCommand();
                     }
                     else
-                        await RaiseError(result.Errors.First().Description);
+                    {
+                        LastError = result.Errors.First().Description;
+                        AreCredentialsInvalid = true;
+                    }
                 }
                 catch (Exception ex)
                 {

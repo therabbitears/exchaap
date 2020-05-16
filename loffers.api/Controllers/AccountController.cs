@@ -386,7 +386,15 @@ namespace loffers.api.Controllers
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
                 if (!result.Succeeded)
-                    return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, result.Errors.FirstOrDefault())));
+                {
+                    var message = result.Errors.FirstOrDefault();
+                    if (message.Contains("already taken"))
+                    {
+                        message = "Cannot update the email/username as it already associated with other user, if you feel it is a misuse kindly contact us.";
+                    }
+
+                    return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, message)));
+                }
 
                 #region Tech debt-- move it somewhere else
 
@@ -472,7 +480,13 @@ namespace loffers.api.Controllers
                     return Ok(new HttpResult(successResult));
                 }
 
-                return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, result.Errors.FirstOrDefault())));
+                var message = result.Errors.FirstOrDefault();
+                if (message.Contains("already taken"))
+                {
+                    message = "Cannot update the email/username as it already associated with other user, if you feel it is a misuse kindly contact us.";
+                }
+
+                return Ok(new HttpResult(new { Token = string.Empty }, true, HttpResult.SingleError(HttpResult.ErrorCodes.GENERALERROR, message)));
             }
 
             var notFoundResult = new
