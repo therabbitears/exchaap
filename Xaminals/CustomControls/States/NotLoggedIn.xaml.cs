@@ -9,7 +9,11 @@ using Xamarin.Forms.Xaml;
 
 namespace Loffers.CustomControls.States
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class NotLoggedIn : ContentView
     {
         public NotLoggedIn()

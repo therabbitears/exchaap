@@ -4,7 +4,11 @@ using Xaminals.ViewModels;
 
 namespace exchaup.CustomControls.Search
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class ExtendedSearch : PopupPage
     {
         public ExtendedSearch(object binding)

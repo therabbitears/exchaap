@@ -5,7 +5,11 @@ using Xaminals.Views.Offers.Models;
 
 namespace exchaup.Views.Common
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class CategorySelection : ContentPage
     {
         public CategorySelection()

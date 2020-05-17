@@ -9,7 +9,11 @@ using Xaminals.ViewModels;
 
 namespace exchaup.Views.Home
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class StartupCarousel : ContentPage
     {
         public StartupCarousel()

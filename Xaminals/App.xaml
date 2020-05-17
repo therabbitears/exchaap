@@ -122,7 +122,7 @@
                                 </Image.GestureRecognizers>
                             </Image>
 
-                            <ContentView StyleClass="expiryTag, primaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
+                            <ContentView StyleClass="expiryTag, secondaryBackground" HorizontalOptions="FillAndExpand" IsVisible="{Binding Categories, Converter={StaticResource cnvListItemsToBool}, ConverterParameter=true}">
                                 <Label Padding="2" HorizontalOptions="CenterAndExpand" Text="Giveaway" />
                             </ContentView>
                         </StackLayout>

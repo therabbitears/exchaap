@@ -4,7 +4,11 @@ using Xaminals.Views.Offers.ViewModels;
 
 namespace Xaminals.Views.Offer_Public
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class GeneralPage : PopupPage
     {
         public GeneralPage()

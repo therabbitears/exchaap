@@ -3,7 +3,11 @@ using Xamarin.Forms.Xaml;
 
 namespace Loffers.Views.Chat
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class Chat : ContentPage
     {
        

@@ -3,7 +3,11 @@ using Xamarin.Forms.Xaml;
 
 namespace exchaup.CustomControls.Search
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class FetchingLocation : ContentView
     {
         //CancellationToken token = new CancellationToken(false);

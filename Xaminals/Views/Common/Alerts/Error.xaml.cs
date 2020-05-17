@@ -9,7 +9,11 @@ using Xaminals.Views.Common.Alerts.ViewModels;
 
 namespace Xaminals.Views.Common.Alerts
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class Error : PopupPage
     {
         public Error(string message)

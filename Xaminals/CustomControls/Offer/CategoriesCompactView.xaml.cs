@@ -5,7 +5,11 @@ using Xamarin.Forms.Xaml;
 
 namespace exchaup.CustomControls.Offer
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class CategoriesCompactView : ContentView
     {
         public CategoriesCompactView()

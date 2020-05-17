@@ -9,7 +9,11 @@ using Xamarin.Forms.Xaml;
 
 namespace Xaminals.Views.Offer_Public
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class OfferDetails : ContentPage
     {
         public OfferDetails()

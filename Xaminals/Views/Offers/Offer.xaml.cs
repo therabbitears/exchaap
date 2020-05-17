@@ -5,7 +5,11 @@ using Xaminals.Views.Offers.Models;
 
 namespace Xaminals.Views.Offers
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class Offer : ContentPage
     {
         public Offer()

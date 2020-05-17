@@ -14,7 +14,11 @@ using Xaminals.Services.HttpServices;
 [assembly: ExportFont("FontAwesome5Free-Regular-400.otf", Alias = "FontAwesomeRegular")]
 [assembly: ExportFont("FontAwesome5Free-Solid-900.otf", Alias = "FontAwesomeSolid")]
 //[assembly: ExportFont("Playball-Regular.ttf", Alias = "Playball")]
+#if DEBUG
+[assembly: XamlCompilation(XamlCompilationOptions.Skip)]
+#else
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
 namespace Xaminals
 {
     public partial class App : Application

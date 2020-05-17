@@ -5,7 +5,11 @@ using Xaminals.Views.Categories.Models.DTO;
 
 namespace exchaup.Views.Offer_Public
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class SearchLocation : ContentPage
     {
         public SearchLocation(ILocation location = null)

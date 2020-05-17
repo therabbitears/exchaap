@@ -10,7 +10,11 @@ using Xamarin.Forms.Xaml;
 
 namespace Xaminals.Views.Account
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class RegisterPopup : PopupPage
     {
         public RegisterPopup()

@@ -1,11 +1,14 @@
 ﻿using exchaup.Models;
 using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
-using Xaminals.Infra.Context;
 
 namespace Xaminals.Views.Offer_Public
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class OfferCriteria : PopupPage
     {
         public OfferCriteria(OpenImageModel model)

@@ -9,7 +9,11 @@ using Xamarin.Forms.Xaml;
 
 namespace exchaup.CustomControls
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class PopupCloseView : ContentView
     {
         public PopupCloseView()

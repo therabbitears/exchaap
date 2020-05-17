@@ -11,9 +11,6 @@
        xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
        xmlns:starredview="clr-namespace:Xaminals.Views.Starred"  
        xmlns:chatview="clr-namespace:Loffers.Views.Chat"  
-       FlyoutBackgroundImage="photo.jpg"
-       FlyoutBackgroundImageAspect="AspectFill"
-       FlyoutHeaderBehavior="CollapseOnScroll"
        Navigating="OnNavigating"
        x:Class="Xaminals.AppShell">
     <Shell.BindingContext>

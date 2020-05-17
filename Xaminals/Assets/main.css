@@ -193,6 +193,11 @@ checkbox {
     background-color: #CF9625;
 }
 
+
+.secondaryBackground {
+    background-color: #3cba8c;
+}
+
 .successBackground {
     background-color: #00D0D0;
 }

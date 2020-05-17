@@ -1,10 +1,13 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xaminals.CustomControls.Search;
 
 namespace Xaminals.Views.Offers
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+#if DEBUG
+    [XamlCompilation(XamlCompilationOptions.Skip)]
+#else
+   [XamlCompilation(XamlCompilationOptions.Compile)]
+#endif
     public partial class OfferList : ContentPage
     {
         public OfferList()

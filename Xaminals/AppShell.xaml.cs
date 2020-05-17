@@ -12,7 +12,6 @@ namespace Xaminals
     public partial class AppShell : Shell
     {
         public Dictionary<string, Type> Routes { get; } = new Dictionary<string, Type>();
-        public ICommand HelpCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
 
         public AppShell()
         {
