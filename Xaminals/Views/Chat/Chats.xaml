@@ -62,7 +62,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid RowSpacing="0" Padding="5" x:Name="ChatItem">
+                                <Grid RowSpacing="0" Padding="5" Margin="2" x:Name="ChatItem">
                                     <Grid.Triggers>
                                         <DataTrigger TargetType="Grid" Binding="{Binding IsSelf}" Value="true">
                                             <Setter Property="BackgroundColor" Value="#FFFFFF" />

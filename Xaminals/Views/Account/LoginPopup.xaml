@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
+             xmlns:resources="clr-namespace:exchaup.Resources"
              xmlns:local="clr-namespace:Xaminals.Views.Account.ViewModel"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
@@ -25,28 +26,28 @@
         <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
             <customControlN:PopupCloseView />
             <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
-            <StackLayout>
-                <Label Text="Please enter your credentials" />
-                <customControlN:CustomeEntry Text="{Binding Username.Value}"
-                       Placeholder="Email address" />
+            <StackLayout Spacing="2">
+                <Label Text="{x:Static resources:AppResources.Label_YourEmailOrPhone}" StyleClass="formLabel"/>
+                <customControlN:CustomeEntry Margin="0" Text="{Binding Username.Value}"
+                       Placeholder="{x:Static resources:AppResources.Label_EnterEmailOrPhone}" />
 
-                <Label Text="{Binding Username.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Username.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+                <Label  Text="{Binding Username.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Username.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-
+                <Label Text="{x:Static resources:AppResources.Label_Password}" StyleClass="formLabel"/>
                 <customControlN:CustomeEntry Text="{Binding Password.Value}"
-                       Placeholder="Password"
-                       IsPassword="True" />
+                       Placeholder="{x:Static resources:AppResources.Label_EnterYourPassword}"
+                       IsPassword="True"  Margin="0" />
                 <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-                <Label Text="Invalid credentials entered" 
+                <Label  Text="{x:Static resources:AppResources.Label_InvalidCrentials}" 
                        IsVisible="{Binding AreCredentialsInvalid}" 
                        StyleClass="validationError" />
-                <Label StyleClass="MediumText" Text="Forgot password?" HorizontalOptions="Start">
+                <Label StyleClass="MediumText" Text="{x:Static resources:AppResources.Label_ForgotPassword}" HorizontalOptions="Start">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                     </Label.GestureRecognizers>
                 </Label>
-                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" Spacing="2">
                     <StackLayout.Triggers>
                         <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
                             <Setter Property="Orientation" Value="Vertical"/>
@@ -55,8 +56,8 @@
                             <Setter Property="Orientation" Value="Horizontal"/>
                         </DataTrigger>
                     </StackLayout.Triggers>
-                    <Button Text="Login" HorizontalOptions="FillAndExpand"  Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
-                    <Button HorizontalOptions="FillAndExpand"  Text="Register" Command="{Binding RegisterCommand}" />
+                    <Button Text="{x:Static resources:AppResources.Label_Login}" HorizontalOptions="FillAndExpand"  Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
+                    <Button HorizontalOptions="FillAndExpand"  Text="{x:Static resources:AppResources.Label_RegisterNewAccount}" Command="{Binding RegisterCommand}" />
                 </StackLayout>
             </StackLayout>
         </StackLayout>

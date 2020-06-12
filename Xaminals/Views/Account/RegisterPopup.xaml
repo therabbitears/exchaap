@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
              xmlns:local="clr-namespace:Xaminals.Views.Account.ViewModel"
+             xmlns:resources="clr-namespace:exchaup.Resources"
              mc:Ignorable="d"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
@@ -30,27 +31,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0">
+            <StackLayout Grid.Row="0" Spacing="2">
                 <Label Text="{Binding LastError}" IsVisible="{Binding AreCredentialsInvalid}" StyleClass="validationError" />
-                <StackLayout Margin="0" Padding="0">
-                        <StackLayout.Triggers>
-                            <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
-                                <Setter Property="Orientation" Value="Vertical"/>
-                            </DataTrigger>
-                            <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="1">
-                                <Setter Property="Orientation" Value="Horizontal"/>
-                            </DataTrigger>
-                        </StackLayout.Triggers>
-                    <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
-                        <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="Your name" Margin="0"/>
-                        <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
-                        </StackLayout>
-                    <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0">
-                        <customControlN:CustomeEntry Text="{Binding Email.Value}" Placeholder="Email address" Margin="0"/>
-                        <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
-                        </StackLayout>
-                    </StackLayout>
-                <StackLayout>
+                <StackLayout Margin="0" Padding="0" Spacing="2">
                     <StackLayout.Triggers>
                         <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
                             <Setter Property="Orientation" Value="Vertical"/>
@@ -59,31 +42,53 @@
                             <Setter Property="Orientation" Value="Horizontal"/>
                         </DataTrigger>
                     </StackLayout.Triggers>
-                    <StackLayout HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
+                        <Label Text="{x:Static resources:AppResources.Label_YourName}" StyleClass="formLabel"/>
+                        <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="{x:Static resources:AppResources.Label_EnterYourName}" Margin="0"/>
+                        <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" Margin="0" Padding="0" Spacing="0">
+                        <Label Text="{x:Static resources:AppResources.Label_YourEmailOrPhone}" StyleClass="formLabel"/>
+                        <customControlN:CustomeEntry Text="{Binding Email.Value}" Placeholder="{x:Static resources:AppResources.Label_EnterEmailOrPhone}" Margin="0"/>
+                        <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" Margin="0" Padding="0" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Spacing="2">
+                    <StackLayout.Triggers>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
+                            <Setter Property="Orientation" Value="Vertical"/>
+                        </DataTrigger>
+                        <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="1">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                        <Label Text="{x:Static resources:AppResources.Label_Password}" StyleClass="formLabel"/>
                         <customControlN:CustomeEntry Text="{Binding Password.Value}"
-                       Placeholder="Password"
+                       Placeholder="{x:Static resources:AppResources.Label_EnterYourPassword}"
                        IsPassword="True" />
                         <Label Text="{Binding Password.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Password.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
                     </StackLayout>
-                    <StackLayout HorizontalOptions="FillAndExpand">
-                        <customControlN:CustomeEntry Text="{Binding ConfirmPassword.Value}" Placeholder="Confirm password" IsPassword="True" />
+                    <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
+                        <Label Text="{x:Static resources:AppResources.Label_ConfirmPassword}" StyleClass="formLabel"/>
+                        <customControlN:CustomeEntry Text="{Binding ConfirmPassword.Value}" Placeholder="{x:Static resources:AppResources.Label_ConfirmPassword}" IsPassword="True" />
                         <Label Text="{Binding ConfirmPassword.Errors[0]}" IsVisible="{Binding ConfirmPassword.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" StyleClass="validationError" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Spacing="2">
                     <CheckBox IsChecked="{Binding Agreed.Value}"/>
                     <Label HorizontalOptions="Center" VerticalOptions="CenterAndExpand" class="MediumText, DimText">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="By clicking this you are agreed with our " />
-                                <Span Text="terms" TextColor="#CF9625" TextDecorations="Underline">
+                                <Span Text="terms" TextColor="#5999ff" TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding OpenUrlCommand}"
                                           CommandParameter="http://loffers.sklative.com/legal/terms" />
                                     </Span.GestureRecognizers>
                                 </Span>
                                 <Span Text=" and " />
-                                <Span Text="privacy policy" TextColor="#CF9625" TextDecorations="Underline">
+                                <Span Text="privacy policy" TextColor="#5999ff" TextDecorations="Underline">
                                     <Span.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding OpenUrlCommand}"
                                           CommandParameter="http://loffers.sklative.com/policy/privacy" />
@@ -95,7 +100,7 @@
                     </Label>
                 </StackLayout>
                 <Label Text="{Binding Agreed.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Agreed.IsValid, Converter={StaticResource cnvReveresBoolConverter}}" />
-                <StackLayout>
+                <StackLayout Spacing="4">
                     <StackLayout.Triggers>
                         <DataTrigger TargetType="StackLayout" Binding="{Binding Context.CurrentOrientation}" Value="0">
                             <Setter Property="Orientation" Value="Vertical"/>
@@ -104,8 +109,8 @@
                             <Setter Property="Orientation" Value="Horizontal"/>
                         </DataTrigger>
                     </StackLayout.Triggers>
-                    <Button Text="Register" HorizontalOptions="FillAndExpand" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
-                    <Button Text="Cancel" HorizontalOptions="FillAndExpand" Command="{Binding CancelPopupCommand}" />
+                    <Button Text="{x:Static resources:AppResources.Label_RegisterNewAccount}" HorizontalOptions="FillAndExpand" Command="{Binding AuthenticateCommand}" StyleClass="primaryButton" />
+                    <Button Text="{x:Static resources:AppResources.Label_Cancel}" HorizontalOptions="FillAndExpand" Command="{Binding CancelPopupCommand}" />
                 </StackLayout>
             </StackLayout>
         </Grid>

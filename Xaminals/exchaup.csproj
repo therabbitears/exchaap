@@ -46,6 +46,11 @@
     <Folder Include="Views\Publishers\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Views\Common\Alerts\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
@@ -74,6 +79,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="CustomControls\States\NotLoggedIn.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Account\ConfirmPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

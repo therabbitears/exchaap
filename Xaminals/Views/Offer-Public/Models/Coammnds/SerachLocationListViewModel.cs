@@ -101,6 +101,8 @@ namespace exchaup.Views.Offer_Public.Models
                         this.Saved.Add(item);
                     }
                 }
+
+                AppendFromHistory();
             }
             catch (Exception ex)
             {
@@ -130,11 +132,13 @@ namespace exchaup.Views.Offer_Public.Models
                         {
                             this.Locations.Add(item);
                         }
+
+                        AppendFromHistory();
                     }
                     else
                     {
                         await RaiseError(result.Errors.First().Description);
-                    }
+                    }                    
                 }
                 catch (Exception ex)
                 {
@@ -148,6 +152,14 @@ namespace exchaup.Views.Offer_Public.Models
 
                 if (lastQuery != Query)
                     await ExecuteSearchCommand(Query);
+            }
+        }
+
+        private void AppendFromHistory()
+        {
+            foreach (var item in Saved)
+            {
+                this.Locations.Add(item);
             }
         }
 
