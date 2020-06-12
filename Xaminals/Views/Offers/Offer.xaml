@@ -64,8 +64,8 @@
 
                     <Label Text="Enter optional instructions if any:" StyleClass="formLabel" />
                     <Editor Text="{Binding Terms}" Placeholder="Optional: Instructions" />
-
-                    <Label Text="The date this is available from(Keep it ticked if available from now):" StyleClass="formLabel" />
+                    <Label  StyleClass="SectionHeadingStyle" Text="Appearance"/>
+                    <Label Text="Available from now(Untick and select the date if available after specific date):" StyleClass="formLabel" />
                     <Switch IsToggled="{Binding ImmediatelyAvailable}" HorizontalOptions="StartAndExpand" />
                     <StackLayout>
                         <StackLayout.Triggers>
@@ -85,6 +85,7 @@
                         </Frame>
                         <Button BackgroundColor="Transparent" FontSize="80" TextColor="Gray" Text="+" Command="{Binding SelectImageCommand}"  AbsoluteLayout.LayoutBounds=".5,0,200,200" AbsoluteLayout.LayoutFlags="XProportional" BorderRadius="100" />
                     </AbsoluteLayout>
+                    <Label Text="List into:" StyleClass="formLabel" />
                     <Grid Grid.Row="1" RowSpacing="0" ColumnSpacing="0">
                         <Grid.RowDefinitions>
                             <RowDefinition />

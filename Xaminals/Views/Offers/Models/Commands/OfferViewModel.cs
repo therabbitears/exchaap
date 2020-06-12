@@ -1,6 +1,7 @@
 ﻿using exchaup.Views.Offer_Public;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace Xaminals.Views.Offers.Models
             SelectImageCommand = new Command(SelectImage);
             LoadCurrentLocationCommand = new Command(ExecuteLoadCurrentLocationCommand);
             ClickedOnCategoryItemCommand = new Command(ExecuteClickedOnCategoryItemCommand);
-            SelectLocationCommand = new Command(async (object sender) => await Shell.Current.Navigation.PushAsync(new SearchLocation(this.Location), true));
+            SelectLocationCommand = new Command(async (object sender) => await PopupNavigation.Instance.PushAsync(new SearchLocationPopup(this.Location), true));
             if (!string.IsNullOrEmpty(Id))
             {
                 LoadOfferCommand = new Command(async () => await ExecuteLoadOfferCommand());

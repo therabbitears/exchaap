@@ -29,7 +29,7 @@ namespace Xaminals.Views.Offers.ViewModels
             ShowCritriaCommand = new Command(async () => await ExecuteShowCritriaCommand());
             OnTappedCommand = new Command(async (object sender) => await ExecuteOnTappedCommand(sender));
             OnDataRequiredCommand = new Command(async (object sender) => await ExecuteLoadItemsCommand(false));
-            SelectLocationCommand = new Command(async (object sender) => await Shell.Current.Navigation.PushAsync(new SearchLocation(),true));
+            SelectLocationCommand = new Command(async (object sender) => await PopupNavigation.Instance.PushAsync(new SearchLocationPopup(), true));
             SaveLastItemsCommand = new Command(async (object sender) => ExecuteSaveLastItemsCommand(sender));
             LoadItemsCommand.Execute(null);
         }

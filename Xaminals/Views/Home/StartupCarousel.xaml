@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:local="clr-namespace:exchaup.Views.Home.Model"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              x:Class="exchaup.Views.Home.StartupCarousel"
              x:Name="mainPage">
     <ContentPage.BindingContext>
@@ -66,6 +67,7 @@
                                         </Label.FormattedText>
                                     </Label>
                                     <Label StyleClass="DimText" Text="You can choose the categories now which you can always select and change from within app later."/>
+                                    <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
                                     <CollectionView ItemsSource="{Binding BindingContext.FilteredCategories}" BindingContext="{Binding Source={x:Reference Name=mainPage}}" ItemTemplate="{StaticResource CategorySelectionTemplate}" VerticalScrollBarVisibility="Always" />
                                     <Grid Padding="10" x:Name="itemLocation">
                                         <Grid.RowDefinitions>

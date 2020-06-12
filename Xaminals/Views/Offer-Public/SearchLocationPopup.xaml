@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rgAnimations="clr-namespace:Xaminals.Views.Common.Animations;assembly=exchaup"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
+             xmlns:local="clr-namespace:exchaup.Views.Offer_Public.Models"
+             mc:Ignorable="d"
+             x:Class="exchaup.Views.Offer_Public.SearchLocationPopup"
+             xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup" x:Name="mainPage">
+    <pages:PopupPage.Animation>
+        <rgAnimations:CustomMoveAnimation PositionIn="Bottom" PositionOut="Bottom" DurationIn="300" DurationOut="200" />
+    </pages:PopupPage.Animation>
+    <ContentPage.BindingContext>
+        <local:SerachLocationListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
+            <customControlN:PopupCloseView />
+            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
+            <customControl:CustomeEntry Placeholder="Start typing location name" Text="{Binding Query}"/>
+            <StackLayout x:Name="locationsList" BindableLayout.ItemsSource="{Binding Locations}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10" Padding="5" x:Name="itemLocation" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectionCommand, Source={x:Reference mainPage}}" CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <customControl:GlyphLabel FontFamily="FontAwesomeSolid" Text="&#xf14e;" WidthRequest="30" FontSize="20" StyleClass="DimText" />
+                            <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <Label StyleClass="OfferHeading" Text="History"/>
+            <CollectionView SelectionChangedCommand="{Binding ItemSelectionCommand}" SelectionChangedCommandParameter="{Binding Source={x:Reference listViewData}, Path=SelectedItem}"  x:Name="listViewData" ItemsSource="{Binding Saved}" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10" Padding="5" x:Name="itemLocation" ColumnSpacing="0" RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <customControl:GlyphLabel FontFamily="FontAwesomeSolid" WidthRequest="30" FontSize="20" StyleClass="DimText">
+                                <customControl:GlyphLabel.Triggers>
+                                    <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="false">
+                                        <Setter Property="Text" Value="&#xf1da;"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="true">
+                                        <Setter Property="Text" Value="&#xf14e;"/>
+                                        <Setter Property="FontFamily" Value="FontAwesomeRegular"/>
+                                    </DataTrigger>
+                                </customControl:GlyphLabel.Triggers>
+                            </customControl:GlyphLabel>
+                            <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

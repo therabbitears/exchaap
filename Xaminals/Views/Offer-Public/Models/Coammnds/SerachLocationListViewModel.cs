@@ -78,7 +78,8 @@ namespace exchaup.Views.Offer_Public.Models
                     await Database.SaveLastState(newState);
                 }
 
-                await Shell.Current.Navigation.PopAsync(true);
+                await CloseAllPopups();
+                //await Shell.Current.Navigation.PopAsync(true);
             }
             catch (Exception ex)
             {
