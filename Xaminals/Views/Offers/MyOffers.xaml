@@ -80,21 +80,16 @@
                                         </StackLayout>
                                     </ContentView>
                                     <StackLayout Grid.Column="1" Grid.Row="0">
-                                        <Label Text="Deactivate" StyleClass="primaryColorText" TextDecorations="Underline" HorizontalOptions="EndAndExpand">
-                                            <Label.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext.DeactivateCommand}" CommandParameter="{Binding .}" />
-                                            </Label.GestureRecognizers>
-                                            <Label.Triggers>
+                                        <Button Text="Deactivate" StyleClass="primaryColorText, MediumText, flatButton, gridButton" Command="{Binding Source={x:Reference Name=mainPage}, Path=BindingContext.DeactivateCommand}" CommandParameter="{Binding .}" HorizontalOptions="EndAndExpand">
+                                            <Button.Triggers>
                                                 <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="true">
-                                                    <Setter Property="BackgroundColor" Value="#CF9625"/>
                                                     <Setter Property="Text" Value="Deactivate"/>
                                                 </DataTrigger>
                                                 <DataTrigger TargetType="Button" Binding="{Binding Active}" Value="false">
                                                     <Setter Property="Text" Value="Activate"/>
-                                                    <Setter Property="BackgroundColor" Value="#3cba8c"/>
                                                 </DataTrigger>
-                                            </Label.Triggers>
-                                        </Label>
+                                            </Button.Triggers>
+                                        </Button>
                                             <Label HorizontalOptions="StartAndExpand"  Text="{Binding OfferHeadline}" StyleClass="OfferHeading"/>
                                             <Label  Text="{Binding OfferDescription}" StyleClass="OfferSubHeading"/>
                                     </StackLayout>

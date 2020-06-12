@@ -17,7 +17,7 @@
     </pages:PopupPage.Animation>
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
-            <StackLayout>dded 
+            <StackLayout>
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CancelPopupCommand}" />
                 </StackLayout.GestureRecognizers>

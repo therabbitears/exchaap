@@ -100,6 +100,12 @@ checkbox {
     margin: 3;
 }
 
+.gridButton {
+    padding: 0;
+    margin: 0;
+    height:20;
+}
+
 .primaryColorText {
     color: #CF9625;
 }
