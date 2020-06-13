@@ -60,52 +60,59 @@ namespace Loffers.GlobalViewModel
         {
             if (IsLoggedIn)
             {
-                hubConnection = new HubConnection(UrlConstants.baseUrl + "signalr");
-                AddListeners(hubConnection);
-
-                chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
-                hubConnection.Headers.Add("Authorization", "bearer " + Context.SessionModel.Token.token);
-                chatHubProxy.On<string, int, string, bool>("messageReceived", (string message, int messageType, string groupName, bool self) =>
+                try
                 {
-                    MainThread.BeginInvokeOnMainThread(() =>
+                    hubConnection = new HubConnection(UrlConstants.baseUrl + "signalr");
+                    AddListeners(hubConnection);
+
+                    chatHubProxy = hubConnection.CreateHubProxy("ChatHub");
+                    hubConnection.Headers.Add("Authorization", "bearer " + Context.SessionModel.Token.token);
+                    chatHubProxy.On<string, int, string, bool>("messageReceived", (string message, int messageType, string groupName, bool self) =>
                     {
-                        var newMessage = new MessageViewModel()
+                        MainThread.BeginInvokeOnMainThread(() =>
                         {
-                            Message = message,
-                            IsSelf = self,
-                            Stamp = DateTime.UtcNow,
-                            GroupName = groupName
-                        };
+                            var newMessage = new MessageViewModel()
+                            {
+                                Message = message,
+                                IsSelf = self,
+                                Stamp = DateTime.UtcNow,
+                                GroupName = groupName
+                            };
 
-                        OnMessageArrived?.Invoke(newMessage);
+                            OnMessageArrived?.Invoke(newMessage);
+                        });
                     });
-                });
 
-                //chatHubProxy.On<string, int, string, string>("messageReceived", (string message, int messageType, string groupName, string sender) =>
-                //{
-                //    MainThread.BeginInvokeOnMainThread(() =>
-                //    {
-                //        var newMessage = new MessageViewModel()
-                //        {
-                //            Message = message,
-                //            IsSelf = Context.SessionModel.Token.token == sender,
-                //            Stamp = DateTime.Now,
-                //            GroupName = groupName
-                //        };
+                    //chatHubProxy.On<string, int, string, string>("messageReceived", (string message, int messageType, string groupName, string sender) =>
+                    //{
+                    //    MainThread.BeginInvokeOnMainThread(() =>
+                    //    {
+                    //        var newMessage = new MessageViewModel()
+                    //        {
+                    //            Message = message,
+                    //            IsSelf = Context.SessionModel.Token.token == sender,
+                    //            Stamp = DateTime.Now,
+                    //            GroupName = groupName
+                    //        };
 
-                //        OnMessageArrived?.Invoke(newMessage);
-                //    });
-                //});
+                    //        OnMessageArrived?.Invoke(newMessage);
+                    //    });
+                    //});
 
-                chatHubProxy.On<DateTime>("onConnected", (DateTime time) =>
-                {
-                    MainThread.BeginInvokeOnMainThread(() =>
+                    chatHubProxy.On<DateTime>("onConnected", (DateTime time) =>
                     {
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
                         //  RaiseSuccess(time.ToString());
                     });
-                });
+                    });
 
-                await StartConnection();
+                    await StartConnection();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
             }
             else
             {

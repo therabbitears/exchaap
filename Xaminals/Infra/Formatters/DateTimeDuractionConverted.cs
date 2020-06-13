@@ -19,7 +19,7 @@ namespace exchaup.Infra.Formatters
                 else if (DateTime.UtcNow.Date.Subtract(converted).TotalDays < 7)
                     return string.Format("{0} day(s) ago", Math.Round(DateTime.UtcNow.Subtract(converted).TotalDays));
 
-                return converted.ToString("At {0}", culture.DateTimeFormat);
+                return converted.ToString(culture.DateTimeFormat);
             }
 
             return value;

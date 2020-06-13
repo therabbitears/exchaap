@@ -117,8 +117,13 @@
                                         <OffeControls:SelectedCategory ShowColor="False" BindingContext="{Binding Category}"  HorizontalOptions="Start" />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
-                                        <Label IsVisible="{Binding IsSelf}" Text="You:" FontAttributes="Bold" LineBreakMode="NoWrap" />
-                                        <Label IsVisible="{Binding IsSelf, Converter={StaticResource cnvReveresBoolConverter}}" LineBreakMode="NoWrap" FontAttributes="Bold" Text="{Binding DisplayName, StringFormat='{0}:'}" />
+                                        <Label Text="You:" FontAttributes="Bold" LineBreakMode="NoWrap">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding IsSelf}" Value="False">
+                                                    <Setter Property="Text" Value="{Binding DisplayName, StringFormat='{0}:'}"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
                                         <Label Text="{Binding Message}"/>
                                     </StackLayout>
                                 </Grid>
