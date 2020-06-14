@@ -1,10 +1,7 @@
 ﻿using Rg.Plugins.Popup.Animations;
-using Rg.Plugins.Popup.Animations.Base;
 using Rg.Plugins.Popup.Enums;
 using Rg.Plugins.Popup.Pages;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 

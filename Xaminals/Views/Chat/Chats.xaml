@@ -52,8 +52,7 @@
                 RefreshCommand="{Binding LoadItemsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                SeparatorVisibility="Default"
-                SelectionMode="Single"
+                SelectionMode="Single" SeparatorVisibility="None"
                 SelectedItem="{Binding SelectedChat}"
                 OnTappedCommand="{Binding TappedItemChangedCommand}">
                     <x:Arguments>

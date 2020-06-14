@@ -35,7 +35,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Slider Margin="0,0,0,5" Grid.Column="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding Context.SearchModel.MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
+                    <customControl:CustomeSlider Margin="0,0,0,5" Grid.Column="0" Maximum="100" HorizontalOptions="FillAndExpand" Minimum="1" Value="{Binding Context.SearchModel.MaxDistance}" DragCompletedCommand="{Binding LoadItemsCommand}"  x:Name="slider" MinimumTrackColor="#CF9625" MaximumTrackColor="#f7d081" ThumbColor="#CF9625" />
                     <Label StyleClass="DimText" Grid.Column="1" VerticalOptions="CenterAndExpand">
                         <Label.Triggers>
                             <DataTrigger TargetType="Label" Binding="{Binding Context.SettingsModel.UnitOfMeasurement}" Value="0">

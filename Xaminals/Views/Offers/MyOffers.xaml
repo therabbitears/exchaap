@@ -60,7 +60,7 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <ContentView Grid.RowSpan="3" Grid.Column="0">
-                                        <StackLayout>
+                                        <StackLayout Margin="0, 20,0,0">
                                             <Image 
                                                        Aspect="AspectFit" 
                                                        HorizontalOptions="Center" 

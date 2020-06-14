@@ -17,12 +17,12 @@
             <Style TargetType="Button">
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
-            <Style TargetType="customControl:CustomEditor">
+            <!--<Style TargetType="customControl:CustomEditor">
                 <Setter Property="FontFamily" Value="Merri" />
             </Style>
             <Style TargetType="customControl:CustomeEntry">
                 <Setter Property="FontFamily" Value="Merri" />
-            </Style>
+            </Style>-->
             <Style TargetType="Label">
                 <Style.Triggers>
                     <Trigger TargetType="Label" Property="FontAttributes" Value="Bold">

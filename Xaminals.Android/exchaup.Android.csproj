@@ -99,6 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="CustomerRenderers\CustomeEntryRenderer.cs" />
+    <Compile Include="CustomerRenderers\CustomeSliderRenderer.cs" />
     <Compile Include="FirebaseAnalytics.cs" />
     <Compile Include="LocationService.cs" />
     <Compile Include="MainActivity.cs" />
