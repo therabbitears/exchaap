@@ -98,6 +98,7 @@ namespace exchaup.Views.Offer_Public.Models
                 {
                     foreach (var item in items.OrderByDescending(c => c.IsCurrent))
                     {
+                        item.IsSaved = true;
                         this.Saved.Add(item);
                     }
                 }

@@ -187,9 +187,16 @@ namespace Xaminals.Services.HttpServices
                 new QueryString{key= "pageNumber",value= pageNumber.ToString()}
             };
 
+
             if (categories != null && categories.Length > 0)
+            {
+                int index = 0;
                 foreach (var item in categories)
-                    queryStrings.Add(new QueryString() { key = "categories", value = item });
+                {
+                    queryStrings.Add(new QueryString() { key = "categories[" + index.ToString() + "]", value = item });
+                    index++;
+                }
+            }
 
 
             return await Get<T>(UrlConstants.OfferSearchUrl, queryStrings);
@@ -306,10 +313,9 @@ namespace Xaminals.Services.HttpServices
                     var query = HttpUtility.ParseQueryString(builder.Query);
                     foreach (var item in queryStrings)
                     {
-                        query[item.key] = item.value;
+                        query.Add(item.key, item.value);
                     }
                     builder.Query = query.ToString();
-
                 }
 
                 var Uri = new Uri(UrlConstants.baseUrl + url + builder.Query.ToString());

@@ -19,12 +19,13 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White" Margin="0,50,0,0" VerticalOptions="EndAndExpand" Padding="20,0,20,20">
             <customControlN:PopupCloseView />
-            <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
-            <customControl:CustomeEntry Placeholder="Start typing location name" Text="{Binding Query}"/>
+            <!--<customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>-->
+            <customControl:IndicatingSearch Title="Enter location name to search" />
+            <!--<customControl:CustomeEntry Placeholder="Start typing location name" Text="{Binding Query}"/>-->
             <StackLayout x:Name="locationsList" BindableLayout.ItemsSource="{Binding Locations}" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="2" BackgroundColor="#F8F8F8" Padding="2,10" x:Name="itemLocation" ColumnSpacing="0" RowSpacing="0">
+                        <Grid Margin="1" Padding="2,5" x:Name="itemLocation" ColumnSpacing="0" RowSpacing="0">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemSelectionCommand, Source={x:Reference mainPage}}" CommandParameter="{Binding .}"/>
                             </Grid.GestureRecognizers>
@@ -35,7 +36,16 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <customControl:GlyphLabel FontFamily="FontAwesomeSolid" Text="&#xf14e;" FontSize="20" StyleClass="DimText" />
+                            <customControl:GlyphLabel Margin="0,0,2,0" FontFamily="FontAwesomeSolid" Text="&#xf3c5;" FontSize="20" StyleClass="DimText" >
+                                <customControl:GlyphLabel.Triggers>
+                                    <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsCurrent}" Value="True">
+                                        <Setter Property="Text" Value="&#xf14e;"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="customControl:GlyphLabel" Binding="{Binding IsSaved}" Value="True">
+                                        <Setter Property="Text" Value="&#xf1da;"/>
+                                    </DataTrigger>
+                                </customControl:GlyphLabel.Triggers>
+                            </customControl:GlyphLabel>
                             <Label Grid.Column="1" StyleClass="primaryColorText" Text="{Binding Name}"  />
                         </Grid>
                     </DataTemplate>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customControl="clr-namespace:exchaup.CustomControls;assembly=exchaup"
+             mc:Ignorable="d"
+             x:Class="exchaup.CustomControls.IndicatingSearch">
+    <ContentView.Content>
+        <Grid>
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <customControl:CustomeEntry x:Name="txtQuery" Padding="40,10,10,20" Grid.Row="0" Grid.Column="0" Text="{Binding Query}"  VerticalOptions="Center"/>
+            <ActivityIndicator WidthRequest="20" IsRunning="{Binding IsBusy}" Grid.Row="0" Grid.Column="0" HorizontalOptions="End"  VerticalOptions="Center"/>
+            <customControl:GlyphLabel WidthRequest="20" FontFamily="FontAwesomeSolid" Text="&#xf002;" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" StyleClass="goArrow"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -48,5 +48,7 @@ namespace exchaup.Views.Offer_Public.Models
             get { return _IsPrefetched; }
             set { _IsPrefetched = value; OnPropertyChanged("IsPrefetched"); }
         }
+
+        public bool IsSaved { get; set; }
     }
 }

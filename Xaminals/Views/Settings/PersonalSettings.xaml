@@ -2,13 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:resources="clr-namespace:exchaup.Resources"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Xaminals.Views.Settings.ViewModels"
              xmlns:localFormatters="clr-namespace:exchaup.Infra.Formatters"
              xmlns:customControlN="clr-namespace:exchaup.CustomControls;assembly=exchaup"
              mc:Ignorable="d"
              x:Class="Xaminals.Views.Settings.PersonalSettings"
-             Title="Your information">
+             Title="{x:Static resources:AppResources.Label_YourInformation}">
     <ContentPage.BindingContext>
         <local:PersonalSettingsViewModel />
     </ContentPage.BindingContext>
@@ -18,20 +19,23 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Update" Command="{Binding SaveDetailsCommand}"/>
-        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
+        <ToolbarItem Text="{x:Static resources:AppResources.Label_Update}" Command="{Binding SaveDetailsCommand}"/>
+        <ToolbarItem Text="{x:Static resources:AppResources.Label_Cancel}" Command="{Binding CancelCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout StyleClass="parentContainer">
             <customControlN:SpinnerView IsVisible="{Binding IsBusy}"/>
             <Label Text="{Binding LastError}" StyleClass="validationError" IsVisible="{Binding AreCredentialsInvalid}"/>
-            <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="Your name" />
+            <Label Text="{x:Static resources:AppResources.Label_YourName}"  StyleClass="formLabel"/>
+            <customControlN:CustomeEntry Text="{Binding Name.Value}" Placeholder="{x:Static resources:AppResources.Label_EnterYourName}" />
             <Label Text="{Binding Name.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Name.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
-
-            <customControlN:CustomeEntry Text="{Binding Email.Value}" Placeholder="Email" />
+            
+            <Label Text="{x:Static resources:AppResources.Label_YourEmail}" StyleClass="formLabel"/>
+            <customControlN:CustomeEntry Text="{Binding Email.Value}" Placeholder="{x:Static resources:AppResources.Label_EnterEmailOrPhone}"  />
             <Label Text="{Binding Email.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Email.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
-            <customControlN:CustomeEntry Text="{Binding PhoneNumber.Value}" Placeholder="Phone number" />
+            <Label Text="{x:Static resources:AppResources.Label_CustomerMobileLabel}"  StyleClass="formLabel"/>
+            <customControlN:CustomeEntry Placeholder="{x:Static resources:AppResources.Label_EnterPhoneNumber}" Text="{Binding PhoneNumber.Value}" />
             <Label Text="{Binding PhoneNumber.Errors[0]}" StyleClass="validationError" IsVisible="{Binding PhoneNumber.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
         </StackLayout>
     </ContentPage.Content>

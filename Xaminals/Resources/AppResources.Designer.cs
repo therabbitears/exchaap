@@ -79,6 +79,15 @@ namespace exchaup.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile number:.
+        /// </summary>
+        internal static string Label_CustomerMobileLabel {
+            get {
+                return ResourceManager.GetString("Label_CustomerMobileLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm your password.
         /// </summary>
         internal static string Label_EnterConfirmPassword {
@@ -93,6 +102,15 @@ namespace exchaup.Resources {
         internal static string Label_EnterEmailOrPhone {
             get {
                 return ResourceManager.GetString("Label_EnterEmailOrPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter phone number.
+        /// </summary>
+        internal static string Label_EnterPhoneNumber {
+            get {
+                return ResourceManager.GetString("Label_EnterPhoneNumber", resourceCulture);
             }
         }
         
@@ -196,11 +214,38 @@ namespace exchaup.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        internal static string Label_Update {
+            get {
+                return ResourceManager.GetString("Label_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email:.
+        /// </summary>
+        internal static string Label_YourEmail {
+            get {
+                return ResourceManager.GetString("Label_YourEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your email:.
         /// </summary>
         internal static string Label_YourEmailOrPhone {
             get {
                 return ResourceManager.GetString("Label_YourEmailOrPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your information.
+        /// </summary>
+        internal static string Label_YourInformation {
+            get {
+                return ResourceManager.GetString("Label_YourInformation", resourceCulture);
             }
         }
         

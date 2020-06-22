@@ -13,7 +13,7 @@ namespace Xaminals.Droid.CustomerRenderers
         {
             base.OnElementChanged(e);
             if (e.NewElement == null) return;
-            Control.SetPadding(Control.PaddingLeft, 0, Control.PaddingRight, 15);
+            Control.SetPadding(Control.PaddingLeft, 0, Control.PaddingRight, 0);
         }
     }
 }
