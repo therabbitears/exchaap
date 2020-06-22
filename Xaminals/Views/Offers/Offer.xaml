@@ -30,14 +30,14 @@
                 <StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="General"/>
                     <Label StyleClass="formLabel" Text="What thing do you want to exchange or giveaway:"/>
-                    <SearchBar Placeholder="Select from list." Focused="OnListToGetsFocus" Text="{Binding Category.Name}" Margin="0"/>
+                    <SearchBar Placeholder="Select item you want to exchange or give away from list" Focused="OnListToGetsFocus" Text="{Binding Category.Name}" Margin="0"/>
                     <Label Text="Please select what you want to exchange of giveaway." StyleClass="validationError" IsVisible="{Binding IsCategorySelected, Converter={StaticResource cnvReveresBoolConverter}}" />
                     <StackLayout IsVisible="{Binding Category.Selected}">
                         <OffeControls:SelectedCategory x:Name="selectedItem" BindingContext="{Binding Category}" />
                     </StackLayout>
                     <StackLayout>
                         <Label Text="What you want exchange with:(Leave unselected if you are giving it up)" StyleClass="formLabel" />
-                        <SearchBar Placeholder="Select one or multiple from the list." Focused="OnExchangeWithGetsFocus"/>
+                        <SearchBar Placeholder="Optional:Select one or multiple items you want to exchange with." Focused="OnExchangeWithGetsFocus"/>
                         <ScrollView Orientation="Horizontal">
                             <StackLayout BindableLayout.ItemsSource="{Binding Categories}" Orientation="Horizontal">
                                 <BindableLayout.ItemTemplate>
@@ -55,15 +55,15 @@
                     </StackLayout>
                     <Label  StyleClass="SectionHeadingStyle" Text="Detail"/>
                     <Label Text="Enter an easy and short title of this ad:" StyleClass="formLabel" />
-                    <customControlN:CustomeEntry Text="{Binding Heading.Value}" Placeholder="Title" />
+                    <customControlN:CustomeEntry Text="{Binding Heading.Value}" Placeholder="Title of the ad" />
                     <Label Text="{Binding Heading.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Heading.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
                     <Label Text="Enter detail of this ad(Like brand, age etc.):" StyleClass="formLabel" />
-                    <Editor Text="{Binding Detail.Value}" Placeholder="Detail" />
+                    <Editor Text="{Binding Detail.Value}" Placeholder="You can enter brand or age or any information" />
                     <Label Text="{Binding Detail.Errors[0]}" StyleClass="validationError" IsVisible="{Binding Detail.IsValid, Converter={StaticResource cnvReveresBoolConverter}}"/>
 
                     <Label Text="Enter optional instructions if any:" StyleClass="formLabel" />
-                    <Editor Text="{Binding Terms}" Placeholder="Optional: Instructions" />
+                    <Editor Text="{Binding Terms}" Placeholder="Optional: Instructions or detail" />
                     <Label  StyleClass="SectionHeadingStyle" Text="Appearance"/>
                     <Label Text="Available from now(Untick and select the date if available after specific date):" StyleClass="formLabel" />
                     <Switch IsToggled="{Binding ImmediatelyAvailable}" HorizontalOptions="StartAndExpand" />
