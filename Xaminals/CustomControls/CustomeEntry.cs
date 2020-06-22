@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace exchaup.CustomControls
 {
@@ -17,7 +16,6 @@ namespace exchaup.CustomControls
         private static void onProperyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             CustomeEntry targetView;
-
             targetView = (CustomeEntry)bindable;
             if (targetView != null)
                 targetView.Padding = (Thickness)newValue;
