@@ -123,6 +123,15 @@
   <data name="Label_ConfirmPassword" xml:space="preserve">
     <value>Confirm password:</value>
   </data>
+  <data name="Label_ConfirmPasswordLabel" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Label_CurrentPassword" xml:space="preserve">
+    <value>Enter your current password</value>
+  </data>
+  <data name="Label_CurrentPasswordLabel" xml:space="preserve">
+    <value>Current password:</value>
+  </data>
   <data name="Label_CustomerMobileLabel" xml:space="preserve">
     <value>Mobile number:</value>
   </data>
@@ -131,6 +140,9 @@
   </data>
   <data name="Label_EnterEmailOrPhone" xml:space="preserve">
     <value>Enter your email address</value>
+  </data>
+  <data name="Label_EnterNewPassword" xml:space="preserve">
+    <value>Enter new password</value>
   </data>
   <data name="Label_EnterPhoneNumber" xml:space="preserve">
     <value>Enter phone number</value>
@@ -154,6 +166,9 @@
     <value>Sign in</value>
   </data>
   <data name="Label_Password" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="Label_PasswordLabel" xml:space="preserve">
     <value>Password:</value>
   </data>
   <data name="Label_RegisterNewAccount" xml:space="preserve">

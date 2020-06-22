@@ -79,6 +79,33 @@ namespace exchaup.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm password.
+        /// </summary>
+        internal static string Label_ConfirmPasswordLabel {
+            get {
+                return ResourceManager.GetString("Label_ConfirmPasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your current password.
+        /// </summary>
+        internal static string Label_CurrentPassword {
+            get {
+                return ResourceManager.GetString("Label_CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password:.
+        /// </summary>
+        internal static string Label_CurrentPasswordLabel {
+            get {
+                return ResourceManager.GetString("Label_CurrentPasswordLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mobile number:.
         /// </summary>
         internal static string Label_CustomerMobileLabel {
@@ -102,6 +129,15 @@ namespace exchaup.Resources {
         internal static string Label_EnterEmailOrPhone {
             get {
                 return ResourceManager.GetString("Label_EnterEmailOrPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter new password.
+        /// </summary>
+        internal static string Label_EnterNewPassword {
+            get {
+                return ResourceManager.GetString("Label_EnterNewPassword", resourceCulture);
             }
         }
         
@@ -174,6 +210,15 @@ namespace exchaup.Resources {
         internal static string Label_Password {
             get {
                 return ResourceManager.GetString("Label_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        internal static string Label_PasswordLabel {
+            get {
+                return ResourceManager.GetString("Label_PasswordLabel", resourceCulture);
             }
         }
         
