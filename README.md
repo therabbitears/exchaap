@@ -1,23 +1,15 @@
----
-name: Xamarin.Forms - Xaminals
-description: "Xamarin.Forms Shell reduces the complexity of mobile application development by providing fundamental features #shell (UI)"
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-extensions:
-    tags:
-    - ui
-    - shell
-urlFragment: userinterface-xaminals
----
-# Xaminals
+**Name: Xamarin.Forms - exchaup**
+**Description:** "Exchaup is a person to person location based plateform where you can exchange your old stuff in return of something listed which you want, this plateform also enables people to 'giveup' their old and used stuff."
 
-Xamarin.Forms Shell reduces the complexity of mobile application development by providing the fundamental features that most mobile applications require. This includes a common navigation user experience, a URI-based navigation scheme, and an integrated search handler.
+It can suggest you the stuff around you and according to your preference and enables you to get in touch using a realtime messaging using SignalR.
 
-This sample demonstrates a Xamarin.Forms Shell application.
+**Front End:**
+-  Xamarin forms
+- MVVM
+- XAML
 
-For more information about this sample, see [Xamarin.Forms Shell](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/).
-
-![Xaminals application screenshot](Screenshots/01All.png "Xaminals application screenshot")
+**Back End**
+- Asp.net core.
+- SignalR.
+- Entity Framework core.
+- Sql server
